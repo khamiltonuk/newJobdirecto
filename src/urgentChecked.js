@@ -22,13 +22,14 @@ export default class UrgentChecked extends React.Component {
   render() {
     return (
       <div id="urgentCheckedContainer">
-        <h1 id="UrgentCheckedTitle">Usted a marcado anuncio CALIDAD</h1>
+        <h1 id="UrgentCheckedTitle">Usted a marcado anuncio AZUL</h1>
         <img id="urgentExample" src="urgentExample.png" />
         <p className="UrgentCheckedText">
-          Los anuncios CALIDAD los ven muchas mas personas. <br />
+          Los anuncios azules los ven muchas mas personas. <br />
           <br />
-          Quienes usan anuncios de CALIDAD se diferencian del resto y consiguen
-          gente mas rapido y con experiencia. Cuestan tan solo 10$.
+          Quienes usan anuncios de azules se diferencian del resto y consiguen
+          gente mas rapido y con experiencia. Cuestan tan solo 10 dolares (5
+          veces menos que en Craigslist).
           <br />
           <br />
         </p>
