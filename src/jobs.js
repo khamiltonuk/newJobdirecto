@@ -89,7 +89,9 @@ export class Jobs extends React.Component {
     return (
       <div className="bg">
         <h1 id="title" classname="heading-1">
-          JobDirecto - Trabajos en Nueva York
+          JobDirecto
+          <br />
+          <span id="subTitle">Trabajos en Nueva York</span>
         </h1>
         {this.context.title}
         {this.state.show && (

@@ -364,6 +364,10 @@ button {
   margin-top: 9%;
 }
 
+#subTitle {
+  font-size: 45px;
+}
+
 .filter {
   height: 90px;
   border-radius: 6px;
