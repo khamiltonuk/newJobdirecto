@@ -40,7 +40,8 @@ INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, addres
 New York, NY 10281', '(212) 981-8577', 'Manhattan', 'true');
 
 
-INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('Restaurante Mexicano', 'chef con experiencia', '', '', '', '', '', '347-264-2205 mandar mensaje para entrevista', 'Queens', 'que sea lider y maneje operaciones del dia a dia', 'true');
 
 
-INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('Negocio Ejemplo', 'Gente con experiencia', '', '', 'part time o full time hay', '', '', '', 'Manhattan', 'se le entrena si tiene poca experiencia, se busca gente que pueda empezar de inmediato', 'true');
+INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('Negocio Ejemplo', 'cocinero de linea', '', '', 'part time o full time hay', '', '', '', 'Manhattan', 'se le entrena si tiene poca experiencia, se busca gente que pueda empezar de inmediato', 'true');
+
+INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('', '', '', '', '', '', '', '', '', '', 'true');

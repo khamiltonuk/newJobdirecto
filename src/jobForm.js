@@ -61,9 +61,11 @@ export class JobForm extends React.Component {
       jobFormClass.push("yellow");
     }
     return (
-      <div className={jobFormClass.join(" ")}>
+      <div className="jobFormClass">
         <form onSubmit={this.handleSubmit}>
-          <h1 id="formTitle">Crear Anuncio de Trabajo en segundos</h1>
+          <h1 id="formTitle" className="heading-1">
+            JobDirecto
+          </h1>
           <p className="formQuestions">Como se llama su negocio?</p>
           <input
             className="formInputs"
@@ -117,43 +119,47 @@ export class JobForm extends React.Component {
             }
             onChange={this.handleChange}
           />
+          <br />
+          <br />
           <p className="formQuestions">Paga en cheque o cash?</p>
           {this.state.jobData &&
             this.state.jobData.data &&
             this.state.jobData.data.typepay === "cash" && (
-              <label htmlFor="cash">
-                Cash
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cash"
-                    defaultChecked="defaultChecked"
-                    onChange={this.handleChange}
-                  />
-                </span>
-                Cheque
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cheque"
-                    onChange={this.handleChange}
-                  />
-                </span>
-                Cash y Cheque
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="Cash y Cheque"
-                    onChange={this.handleChange}
-                  />
-                </span>
-              </label>
+              <div className="typePay">
+                <label className="formQuestions" htmlFor="cash">
+                  Cash
+                  <span>
+                    <input
+                      className="radio"
+                      type="radio"
+                      name="typepay"
+                      value="cash"
+                      defaultChecked="defaultChecked"
+                      onChange={this.handleChange}
+                    />
+                  </span>
+                  Cheque
+                  <span>
+                    <input
+                      className="radio"
+                      type="radio"
+                      name="typepay"
+                      value="cheque"
+                      onChange={this.handleChange}
+                    />
+                  </span>
+                  Cash y Cheque
+                  <span>
+                    <input
+                      className="radio"
+                      type="radio"
+                      name="typepay"
+                      value="Cash y Cheque"
+                      onChange={this.handleChange}
+                    />
+                  </span>
+                </label>
+              </div>
             )}
           {(this.state.jobData &&
             this.state.jobData.data &&
@@ -280,6 +286,8 @@ export class JobForm extends React.Component {
                 </span>
               </label>
             ))}
+          <br />
+          <br />
           <p className="formQuestions"> Cual es el horario?</p>
           <input
             className="formInputs"
@@ -306,6 +314,7 @@ export class JobForm extends React.Component {
           />
           <p className="formQuestions">En que area se encuentra?</p>
           <select
+            id="areaInput"
             className="formInputs"
             type="text"
             name="area"
@@ -417,32 +426,43 @@ export class JobForm extends React.Component {
           />
           <br />
           {/**/}
+          <br />
+          <br />
           <div id="yesAndCheckbox">
             <label id="si" htmlFor="urgentCheckBox">
-              Quiero que mi anuncio sea azul
+              Quiero que mi anuncio sea azul (10$)
             </label>
-            <input
-              id="urgentCheckBox"
-              type="checkbox"
-              name="urgent"
-              defaultValue={
-                this.state.jobData && this.state.jobData.data
-                  ? this.state.jobData.data.urgent
-                  : true
-              }
-              onChange={this.handleChange}
-              onClick={this.makeUrgent}
-            />
+            <br />
+            <br />
+            <label class="switch">
+              <input
+                id="urgentCheckBox"
+                type="checkbox"
+                name="urgent"
+                defaultValue={
+                  this.state.jobData && this.state.jobData.data
+                    ? this.state.jobData.data.urgent
+                    : true
+                }
+                onChange={this.handleChange}
+                onClick={this.makeUrgent}
+              />
+              <span class="slider round" />
+            </label>
           </div>{" "}
           <br />
           <br />
           <br />
           <input
             id="listo"
+            className="btn-primary"
             onClick={this.submission}
             type="submit"
             value="Listo"
           />
+          <br />
+          <br />
+          <br />
         </form>
       </div>
     );
