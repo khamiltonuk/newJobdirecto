@@ -11,7 +11,7 @@ function StripeButton2() {
       .redirectToCheckout({
         items: [{ sku: "sku_FKbzx0lbo7bZZR", quantity: 1 }],
         successUrl:
-          window.location.protocol + "//www.jobdirecto.com/jobConfirm",
+          window.location.protocol + "//www.jobdirecto.com/personConfirm",
         cancelUrl:
           window.location.protocol + "//www.jobdirecto.com/StripeButton"
       })
