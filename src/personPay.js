@@ -39,7 +39,7 @@ export default class PersonPay extends React.Component {
           <br />
           <br />
         </p>
-        <StripeButton />
+        <StripeButton2 />
         <button
           onClick={this.cancelPay}
           id="UrgentCheckedButtonNO"
