@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import StripeButton from "./stripebutton.js";
+import StripeButton2 from "./stripebutton2.js";
 
 export default class PersonPay extends React.Component {
   constructor(props) {
