@@ -43,4 +43,4 @@ function StripeButton2() {
   );
 }
 
-export default StripeButton;
+export default StripeButton2;
