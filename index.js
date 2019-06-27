@@ -56,7 +56,6 @@ app.get("/getDate", function(req, res) {
 app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.get("/getJobDetails/:id", function(req, res) {
-  console.log("asasdasd");
   return database.getJobInfo(req.params.id).then(data => {
     res.json({
       data
@@ -121,22 +120,26 @@ app.post("/finalizeJob", (req, res) => {
   res.json({
     success: true
   });
-  console.log("req session after: ", req.session);
 });
 
 app.post("/finalizePerson", (req, res) => {
-  console.log("im happening");
   req.session.personAd = req.body;
   res.json({
     success: true
   });
-  console.log("req session after: ", req.session);
 });
 
 app.post("/cancelUrgency", function(req, res) {
   // delete req.session.urgent;
   req.session.job.urgent = "false";
-  console.log("in cancelUrgency: ", req.session);
+  res.json({
+    success: true
+  });
+});
+
+app.post("/cancelPay", function(req, res) {
+  // delete req.session.urgent;
+  // req.session.per = "false";
   res.json({
     success: true
   });
@@ -191,7 +194,6 @@ app.post("/publishPerson", (req, res) => {
       req.session.userId
     )
     .then(() => {
-      console.log("yo");
       // req.session.jobId = results[0].id;
       req.session = null;
       res.json({

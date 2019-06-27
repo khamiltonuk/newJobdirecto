@@ -25,7 +25,8 @@ export default class PersonPay extends React.Component {
         <h1 id="UrgentCheckedTitle" className="heading-1">
           Ahora puede poner un anuncio de BUSCO TRABAJO
         </h1>
-        <img id="urgentExample" src="urgentExample.png" />
+        {/*<img id="urgentExample" src="personpay.png" />
+         */}{" "}
         <p className="UrgentCheckedText">
           Si realmente necesita trabajo, ahora puede poner un anuncio naranja en
           nuestra pagina por un precio de 10$.
@@ -39,7 +40,6 @@ export default class PersonPay extends React.Component {
           <br />
         </p>
         <StripeButton />
-
         <button
           onClick={this.cancelPay}
           id="UrgentCheckedButtonNO"
