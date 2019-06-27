@@ -112,9 +112,9 @@ export class JobConfirm extends React.Component {
             </tr>
           </table>
           <div className="confirmButtons">
-            <Link to="/jobForm">
+            {/*  <Link to="/jobForm">
               <input className="btn-secondary" type="submit" value="Corregir" />
-            </Link>
+            </Link>*/}
             <Link to="/">
               <input
                 onClick={this.handleSubmit}

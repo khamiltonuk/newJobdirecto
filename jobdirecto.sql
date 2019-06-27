@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS personas;
+
 
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
@@ -15,6 +17,20 @@ CREATE TABLE jobs(
     urgent VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE personas(
+    id SERIAL PRIMARY KEY,
+    personName VARCHAR(300),
+    personStatus VARCHAR(300),
+    personSkill VARCHAR(300),
+    personExperience VARCHAR(1300),
+    personSchedule VARCHAR(1300),
+    personArea VARCHAR(300),
+    personNumber VARCHAR(300),
+    personExtraInfo VARCHAR(1300),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 CREATE TABLE temporalAnalytics(
     id SERIAL PRIMARY KEY,

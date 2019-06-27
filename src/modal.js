@@ -9,6 +9,7 @@ export default class Modal extends React.Component {
 
   componentDidMount() {
     axios.get("/getJobDetails/" + this.props.id).then(result => {
+      console.log("working details: ", result);
       this.setState({
         jobData: result.data
       });

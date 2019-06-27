@@ -39,6 +39,12 @@ app.get("/getJobInfo", function(req, res) {
   });
 });
 
+app.get("/getPersonInfo", function(req, res) {
+  res.json({
+    data: req.session.personAd
+  });
+});
+
 app.get("/getDate", function(req, res) {
   return database.getDate(req.session.jobId).then(data => {
     res.json({
@@ -50,11 +56,21 @@ app.get("/getDate", function(req, res) {
 app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.get("/getJobDetails/:id", function(req, res) {
+  console.log("asasdasd");
   return database.getJobInfo(req.params.id).then(data => {
     res.json({
       data
     });
     req.session.restname = data.restname;
+  });
+});
+
+app.get("/getPeopleDetails/:id", function(req, res) {
+  return database.getPeopleInfo(req.params.id).then(data => {
+    res.json({
+      data
+    });
+    req.session.personname = data.personname;
   });
 });
 
@@ -67,6 +83,15 @@ app.get("/getJobforCorrect", function(req, res) {
 app.get("/getJobs", function(req, res) {
   req.session = null;
   return database.getJobs().then(data => {
+    res.json({
+      data
+    });
+  });
+});
+
+app.get("/getPeople", function(req, res) {
+  req.session = null;
+  return database.getPeople().then(data => {
     res.json({
       data
     });
@@ -93,6 +118,15 @@ app.get("/jobform", async function(req, res) {
 
 app.post("/finalizeJob", (req, res) => {
   req.session.job = req.body;
+  res.json({
+    success: true
+  });
+  console.log("req session after: ", req.session);
+});
+
+app.post("/finalizePerson", (req, res) => {
+  console.log("im happening");
+  req.session.personAd = req.body;
   res.json({
     success: true
   });
@@ -133,6 +167,31 @@ app.post("/publishJob", (req, res) => {
       req.session.userId
     )
     .then(() => {
+      // req.session.jobId = results[0].id;
+      req.session = null;
+      res.json({
+        success: true
+      });
+    });
+});
+
+app.post("/publishPerson", (req, res) => {
+  console.log("hi dubbi");
+  return database
+    .publishPerson(
+      req.body.personData.data.personName,
+      req.body.personData.data.personStatus,
+      req.body.personData.data.personSkill,
+      req.body.personData.data.personExperience,
+
+      req.body.personData.data.personArea,
+      req.body.personData.data.personSchedule,
+      req.body.personData.data.personNumber,
+      req.body.personData.data.personExtraInfo,
+      req.session.userId
+    )
+    .then(() => {
+      console.log("yo");
       // req.session.jobId = results[0].id;
       req.session = null;
       res.json({

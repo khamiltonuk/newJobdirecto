@@ -2,37 +2,44 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Modal from "./modal";
+import ModalPeople from "./modalPeople";
+
 import Moment from "react-moment";
 import "moment/locale/es";
+import { LanguageContext } from "./languageContext";
+
 var ReactGA = require("react-ga");
 
 export class Jobs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
+      showModalPeople: false
     };
     this.handleChangeArea = this.handleChangeArea.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickModalPeople = this.handleClickModalPeople.bind(this);
+
     this.hideModal = this.hideModal.bind(this);
+    this.hideModalPeople = this.hideModalPeople.bind(this);
+
     this.urgentJobInterval = this.urgentJobInterval.bind(this);
     this.trackCreateJob = this.trackCreateJob.bind(this);
   }
 
   componentDidMount() {
+    axios.get("/getPeople").then(result => {
+      this.setState({ peopleData: result.data }, () => {
+        console.log("look at this people state: ", this.state.peopleData.data);
+      });
+    });
+
     axios.get("/getJobs").then(result => {
       this.setState({ jobData: result.data }, () => {
         console.log("look at this beautiful state: ", this.state.jobData.data);
       });
-    });
-
-    axios.get("/getUrgentJobs").then(result => {
-      this.setState({ urgentJobData: result.data }, () => {});
-    });
-
-    axios.get("/getDate").then(result => {
-      this.setState({ dateData: result.data });
     });
   }
 
@@ -54,8 +61,19 @@ export class Jobs extends React.Component {
     });
   }
 
+  handleClickModalPeople(event) {
+    this.setState({
+      showModalPeople: true,
+      selectedPersonId: event
+    });
+  }
+
   hideModal() {
     this.setState({ show: false });
+  }
+
+  hideModalPeople() {
+    this.setState({ showModalPeople: false });
   }
 
   trackCreateJob(event) {
@@ -82,29 +100,39 @@ export class Jobs extends React.Component {
 
   render() {
     let date = new Date();
-    if (!this.state.jobData || !this.state.urgentJobData) {
+    if (!this.state.jobData || !this.state.peopleData) {
       return null;
     }
-    console.log(this.context);
     return (
       <div className="bg">
-        <h1 id="title" classname="heading-1">
+        <h1 id="title" className="heading-1">
           JobDirecto
           <br />
           <span id="subTitle">Trabajos en Nueva York</span>
         </h1>
         {this.context.title}
+        <div>
+          <h1 />
+        </div>
         {this.state.show && (
           <Modal id={this.state.selectedJobId} close={this.hideModal} />
+        )}
+        {this.state.showModalPeople && (
+          <ModalPeople
+            id={this.state.selectedPersonId}
+            close={this.hideModalPeople}
+          />
         )}
         <div className="buttonsAndFilters">
           <Link to="/jobForm">
             <input
-              id="createJob"
+              id="iamlookingforstaff"
               type="submit"
-              value="Crear anuncio"
-              className="btn-primary"
+              value="Busco personal"
             />
+          </Link>
+          <Link to="/personForm">
+            <input id="iamlookingforjob" type="submit" value="Busco trabajo" />
           </Link>
 
           <div className="filtersbutton">
@@ -152,6 +180,27 @@ export class Jobs extends React.Component {
                       <span className="jobTypeUrgent">{data.jobtype}</span>
                     </p>
                     <p>{data.area}</p>
+                    <div className="jobMoment">
+                      <Moment fromNow>{data.created_at}</Moment>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          {!this.state.userSelectionArea &&
+            this.state.peopleData.data.map(data => {
+              if (this.urgentJobInterval(data.created_at) === true) {
+                return (
+                  <div
+                    onClick={e => this.handleClickModalPeople(data.id)}
+                    className="peopleData"
+                    key={data.id}
+                  >
+                    <p>
+                      <span className="restName">{data.personname}</span>
+                      <span className="busca"> busca trabajo de </span>
+                      <span className="jobType"> {data.personskill} </span>
+                    </p>
                     <div className="jobMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>

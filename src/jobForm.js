@@ -38,12 +38,18 @@ export class JobForm extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    this.setState(
+      {
+        [event.target.name]: event.target.value
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   }
 
   handleSubmit(event) {
+    console.log("watch me dance", this.state);
     event.preventDefault();
     console.log("state in job form: ", this.state);
     axios.post("/finalizeJob", this.state).then(resp => {

@@ -26,6 +26,7 @@ exports.publishJob = function(
   extrainfo,
   urgent
 ) {
+  console.log("look Job");
   return db
     .query(
       `
@@ -53,26 +54,59 @@ exports.publishJob = function(
     });
 };
 
+exports.publishPerson = function(
+  personName,
+  personStatus,
+  personSkill,
+  personExperience,
+  personSchedule,
+  personArea,
+  personNumber,
+  personExtraInfo
+) {
+  console.log("look person!");
+  return db
+    .query(
+      `
+        INSERT INTO personas
+        (personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        returning *;
+        `,
+      [
+        personName,
+        personStatus,
+        personSkill,
+        personExperience,
+        personSchedule,
+        personArea,
+        personNumber,
+        personExtraInfo
+      ]
+    )
+    .then(function(results) {
+      return results.rows;
+    });
+};
+
 exports.getJobInfo = function(id) {
   return db.query(`SELECT * FROM jobs WHERE id = $1`, [id]).then(results => {
     return results.rows[0];
   });
 };
 
-exports.getDate = function(id) {
+exports.getPeopleInfo = function(id) {
   return db
-    .query(`SELECT created_at FROM jobs WHERE id = $1`, [id])
+    .query(`SELECT * FROM personas WHERE id = $1`, [id])
     .then(results => {
+      console.log("is experience here", results);
       return results.rows[0];
     });
 };
 
-exports.getJobDetails = function() {
+exports.getDate = function(id) {
   return db
-    .query(
-      `SELECT id, restname, jobtype, hourpay, typepay, schedule, contact, address, phone FROM jobs WHERE id = $1`,
-      [id]
-    )
+    .query(`SELECT created_at FROM jobs WHERE id = $1`, [id])
     .then(results => {
       return results.rows[0];
     });
@@ -94,6 +128,20 @@ exports.getJobs = function() {
     .query(
       `SELECT *
         FROM jobs
+        ORDER BY id DESC
+        LIMIT 100
+        ;`
+    )
+    .then(results => {
+      return results.rows;
+    });
+};
+
+exports.getPeople = function() {
+  return db
+    .query(
+      `SELECT *
+        FROM personas
         ORDER BY id DESC
         LIMIT 100
         ;`

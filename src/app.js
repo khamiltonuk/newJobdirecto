@@ -1,18 +1,19 @@
-import React from "react";
+import React, { contextType } from "react";
 import axios from "axios";
 import { JobConfirm } from "./jobConfirm.js";
 import { JobForm } from "./jobForm.js";
+import { PersonForm } from "./personForm.js";
+import PersonPay from "./personPay.js";
+import { PersonConfirm } from "./personConfirm.js";
 import { Jobs } from "./jobs.js";
 import LoginOrRegister from "./loginorregister.js";
 import Login from "./login.js";
 import Register from "./register.js";
 import UrgentChecked from "./urgentChecked.js";
-import { LanguageContext } from "./languageContext";
-import LanguageButton from "./languageButton";
-
 import { BrowserRouter, Route } from "react-router-dom";
-
 import ReactGA from "react-ga";
+import { LanguageContext, languages } from "./languageContext";
+import LanguageButton from "./languageButton";
 
 function initializeReactGA() {
   ReactGA.initialize("UA-129656531-1");
@@ -22,13 +23,25 @@ function initializeReactGA() {
 export class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      languages: languages.spanish
+    };
+    this.toggleLanguage = () => {
+      this.setState(state => ({
+        languages:
+          state.languages === languages.spanish
+            ? languages.english
+            : languages.spanish
+      }));
+    };
   }
   render() {
     return (
       <BrowserRouter>
         <div>
-          <LanguageButton />
-          <LanguageContext.Provider>
+          <LanguageContext.Provider value={this.state.languages}>
+            <LanguageButton changeLanguage={this.toggleLanguage} />
             <Route path="/jobform" component={JobForm} />
             <Route path="/urgentChecked" component={UrgentChecked} />
             <Route path="/loginorregister" component={LoginOrRegister} />
@@ -40,6 +53,13 @@ export class App extends React.Component {
               render={props => <JobDetails {...props} key={props.match.url} />}
             />
             <Route exact="exact" path="/" component={Jobs} />
+            <Route exact="exact" path="/personForm" component={PersonForm} />
+            <Route exact="exact" path="/personPay" component={PersonPay} />
+            <Route
+              exact="exact"
+              path="/personConfirm"
+              component={PersonConfirm}
+            />
           </LanguageContext.Provider>
         </div>
       </BrowserRouter>
