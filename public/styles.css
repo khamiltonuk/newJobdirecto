@@ -4,7 +4,7 @@ body {
 
 /* jobs page */
 .allJobs {
-  margin-top: 190px;
+  margin-top: 90px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -35,11 +35,16 @@ body {
   color: white;
 }
 
-.jobTypeUrgent {
-  font-size: 55px;
-  color: white;
-  font-weight: 750;
-  word-break: break-word;
+.peopleData {
+  width: 42.5%;
+  background-color: orange;
+  /* background-color: #adff2f; */
+  border-style: solid;
+  border-width: 6px;
+  margin: 10px;
+  font-size: 40px;
+  padding: 20px;
+  color: black;
 }
 
 .jobData {
@@ -51,12 +56,11 @@ body {
   padding: 20px;
 }
 
-.jobData.yellow {
-  background-color: white;
-}
-
-.jobForm.yellow {
-  background-color: white;
+.jobTypeUrgent {
+  font-size: 55px;
+  color: white;
+  font-weight: 750;
+  word-break: break-word;
 }
 
 a:link,
@@ -65,44 +69,8 @@ a:visited {
   text-decoration: none;
 }
 
-.filtersbutton {
-  display: inline-block;
-  display: flex;
-  flex-wrap: nowrap;
-  margin: 30px;
-}
-
-.filters {
-  /* margin: 50px; */
-  display: flex;
-}
-
-#createJob {
-  left: 90px;
-  position: absolute;
-  height: 100px;
-  width: 300px;
-  font-size: 40px;
-  margin-right: 10px;
-  background-color: dodgerblue;
-  color: white;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
 .buttonsAndFilters {
   margin-top: 80px;
-}
-
-.filter {
-  height: 100px;
-  width: 300px;
-  font-size: 30px;
-  margin: 12px;
-  background-color: #f1f1f1;
-  float: right;
-  right: 100px;
-  position: absolute;
 }
 
 #jobDetails {
@@ -128,13 +96,10 @@ a:visited {
 }
 
 /* job form */
-.formQuestions {
-  font-size: 40px;
-}
 
 .formInputs {
   font-size: 40px;
-  width: 100%;
+  width: 95%;
   height: 80px;
   line-height: 1.5;
   padding: 8px 12px;
@@ -146,7 +111,9 @@ a:visited {
 }
 
 .jobForm {
-  margin: 40px;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
   padding: 20px;
 }
 
@@ -159,7 +126,7 @@ a:visited {
 
 #listo {
   width: 50%;
-  height: 100px;
+  height: 130px;
   font-size: 50px;
   background-color: dodgerblue;
   color: white;
@@ -170,13 +137,6 @@ a:visited {
 .jobConfirmPage {
   margin: 40px;
   padding: 20px;
-}
-
-.confirmButton {
-  width: 300px;
-  height: 100px;
-  font-size: 50px;
-  margin: 30px;
 }
 
 .confirmButtons {
@@ -194,16 +154,26 @@ td {
   padding: 15px;
 }
 
-.confirmTitle {
-  margin-bottom: 100px;
-  font-size: 45px;
-}
-
 .modal {
   transform: translate(-50%, -50%);
   position: fixed;
   z-index: 2;
-  background: #f1f1f1;
+  background: black;
+  border-style: solid;
+  width: 93%;
+  height: 83%;
+  top: 50%;
+  left: 50%;
+  color: white;
+  display: flex;
+  /* word-break: break-word; */
+}
+
+.modalPeople {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: 2;
+  background: orange;
   border-style: solid;
   width: 93%;
   height: 83%;
@@ -211,6 +181,7 @@ td {
   left: 50%;
   color: black;
   display: flex;
+  /* word-break: break-word; */
 }
 
 .jobMoment {
@@ -220,12 +191,6 @@ td {
   align-items: flex-end;
   font-style: oblique;
 }
-
-label {
-  font-size: 30px;
-}
-
-/* Login & Registration Page */
 
 .login-container {
   text-align: center;
@@ -259,21 +224,11 @@ label {
   font-size: 24px;
   animation: blinker 1s linear infinite;
 }
-Urgent @keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
 
 .LoginOrRegister {
   width: 330px;
   height: 130px;
   font-size: 40px;
-}
-
-#title {
-  font-size: 50px;
-  text-align: center;
 }
 
 .restName {
@@ -291,8 +246,8 @@ Urgent @keyframes blinker {
 }
 
 .switch {
-  height: 70px;
-  width: 70px;
+  height: 150px;
+  width: 80px;
 }
 
 #urgentCheckedContainer {
@@ -300,30 +255,8 @@ Urgent @keyframes blinker {
   text-align: center;
 }
 
-#UrgentCheckedTitle {
-  font-size: 50px;
-}
-
 .UrgentCheckedText {
   font-size: 40px;
-}
-
-#UrgentCheckedButtonYES {
-  width: 80%;
-  height: 200px;
-  font-size: 49px;
-  font-weight: bold;
-  margin: 20px;
-  background-color: dodgerblue;
-  color: white;
-}
-
-#UrgentCheckedButtonNO {
-  width: 80%;
-  height: 200px;
-  font-size: 40px;
-  margin: 20px;
-  background-color: #fffdd0;
 }
 
 #urgentExample {
@@ -332,11 +265,13 @@ Urgent @keyframes blinker {
 }
 
 #si {
-  font-size: 52px;
+  font-size: 35px;
   margin-right: 30px;
   font-weight: 750;
   font-style: bold;
-  color: navy;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Ubuntu, sans-serif;
+  color: #0074d4;
 }
 
 #urgentCheckBox {
@@ -347,18 +282,206 @@ Urgent @keyframes blinker {
   color: blue;
 }
 
-#formTitle {
-  margin-bottom: 60px;
-}
-
 #sellingPitchInForm {
   font-size: 15px;
   margin-bottom: 40px;
 }
 
+.formQuestions,
+label {
+  font-size: 25px;
+  color: #565656;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Ubuntu, sans-serif;
+}
+
+#formTitle,
+#title {
+  color: #303030;
+  /* font-size: 14px; */
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Ubuntu, sans-serif;
+}
+
+.btn-primary,
+button[type="submit"] {
+  color: white;
+  background: #0074d4;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 25px;
+}
+.btn-secondary {
+  background: #fffdd0;
+  color: #000;
+  font-size: 35px;
+  padding: 28px;
+}
+
+.btn-secondary,
+.btn-primary,
+input[type="button"],
+button {
+  /* width: 100%; */
+  margin: 30px 30px 12px;
+  box-shadow: inset 0 0 0 1px rgba(50, 50, 93, 0.1),
+    0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+  border: 0;
+  border-radius: 6px;
+  transition: all 0.2s ease, box-shadow 0.08s ease-in;
+}
+
+.filter {
+  height: 100px;
+  width: 300px;
+  font-size: 30px;
+  margin: 12px;
+  background-color: #f1f1f1;
+  float: left;
+  margin-top: 60px;
+  margin-left: 20px;
+}
+
+#iamlookingforstaff {
+  left: 0;
+  position: absolute;
+  color: white;
+  background: #0074d4;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 35px;
+  margin-left: 30px;
+}
+
+#iamlookingforjob {
+  color: black;
+  background: orange;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 35px;
+  margin-left: 650px;
+}
+
+.allJobs {
+  margin-top: 260px;
+}
+
+.jobFormClass {
+  /* padding: 5%; */
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.heading-1 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+#title {
+  text-align: center;
+  font-size: 55px;
+  margin-top: 9%;
+}
+
+#subTitle {
+  font-size: 45px;
+}
+
+.filter {
+  height: 90px;
+  border-radius: 6px;
+}
+
+/* SWITCH! */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 80px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 75px;
+  width: 75px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(70px);
+  -moz-transform: translateX(70px);
+
+  -ms-transform: translateX(70px);
+  transform: translateX(70px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 100px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* RESPONSIVE */
+
 @media only screen and (min-width: 1000px) {
+  #areaInput {
+    height: 50px;
+  }
+
+  .modal {
+    position: fixed;
+    width: 93%;
+    height: 92%;
+    overflow: scroll;
+  }
+
   .jobData,
-  .urgentJobData {
+  .urgentJobData,
+  .peopleData {
     width: 15.5%;
     font-size: 20px;
   }
@@ -367,14 +490,18 @@ Urgent @keyframes blinker {
     line-height: 40px;
   }
 
+  #iamlookingforjob {
+    margin-left: 450px;
+  }
+
   .filter {
-    position: relative;
-    left: 400px;
+    position: absolute;
+    left: 30px;
     font-size: 30px;
   }
 
   .allJobs {
-    margin-top: 60px;
+    margin-top: 100px;
   }
 
   .jobType {
@@ -412,11 +539,14 @@ Urgent @keyframes blinker {
 
   #si {
     font-size: 25px;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Ubuntu, sans-serif;
+    color: #0074d4;
   }
 
   #listo {
     width: 400px;
-    height: 50px;
+    height: 100px;
     font-size: 25px;
     background-color: dodgerblue;
     color: white;
@@ -449,5 +579,14 @@ Urgent @keyframes blinker {
     height: 100px;
     font-size: 30px;
     font-weight: bold;
+  }
+
+  .allJobs {
+    margin-top: 12%;
+  }
+
+  .filter {
+    height: 75px;
+    border-radius: 6px;
   }
 }
