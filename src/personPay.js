@@ -46,7 +46,7 @@ export default class PersonPay extends React.Component {
           id="UrgentCheckedButtonNO"
           className="btn-secondary"
         >
-          No necesito con urgencia
+          Deseo seguir buscando sin pagar
         </button>
       </div>
     );

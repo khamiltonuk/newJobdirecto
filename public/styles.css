@@ -452,7 +452,7 @@ input:checked + .slider:before {
 
 .formQuestions,
 label {
-  font-size: 25px;
+  font-size: 35px;
   color: #565656;
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
