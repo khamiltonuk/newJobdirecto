@@ -466,7 +466,7 @@ input:checked + .slider:before {
 }
 
 /* RESPONSIVE */
-
+/*
 @media (min-width: 1000px) {
   #areaInput {
     height: 50px;
@@ -520,12 +520,12 @@ input:checked + .slider:before {
     font-size: 27px;
   }
 
-  /* .formInputs {
+  .formInputs {
     width: 30%;
     height: 30px;
     font-size: 25px;
     margin-bottom: 20px;
-  } */
+  }
 
   .radio {
     width: 2em;
@@ -589,4 +589,4 @@ input:checked + .slider:before {
     height: 75px;
     border-radius: 6px;
   }
-}
+} */
