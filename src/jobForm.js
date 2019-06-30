@@ -8,7 +8,6 @@ export class JobForm extends React.Component {
     this.state = { addClass: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.makeUrgent = this.makeUrgent.bind(this);
   }
 
   componentDidMount() {
@@ -32,11 +31,6 @@ export class JobForm extends React.Component {
     });
   }
 
-  makeUrgent() {
-    this.setState({ addClass: !this.state.addClass });
-    // addClass backgroundColor yellow to .jobForm
-  }
-
   handleChange(event) {
     this.setState(
       {
@@ -49,7 +43,6 @@ export class JobForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log("watch me dance", this.state);
     event.preventDefault();
     console.log("state in job form: ", this.state);
     axios.post("/finalizeJob", this.state).then(resp => {
@@ -62,10 +55,6 @@ export class JobForm extends React.Component {
   }
 
   render() {
-    let jobFormClass = ["jobForm"];
-    if (this.state.addClass) {
-      jobFormClass.push("yellow");
-    }
     return (
       <div className="jobFormClass">
         <form onSubmit={this.handleSubmit}>
@@ -98,21 +87,6 @@ export class JobForm extends React.Component {
             required="required"
             onChange={this.handleChange}
           />
-          {this.state.jobtype === "Otro" && (
-            <div>
-              <p className="formQuestions" style={{ color: "blue" }}>
-                <b>Que busca?</b>
-              </p>
-              <input
-                autoFocus
-                className="formInputs"
-                type="text"
-                name="otro"
-                required="required"
-                onChange={this.handleChange}
-              />
-            </div>
-          )}
           <p className="formQuestions">Cuanto paga?</p>
           <input
             className="formInputs"
