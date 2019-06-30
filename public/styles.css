@@ -4,7 +4,7 @@ body {
 
 /* jobs page */
 .allJobs {
-  margin-top: 90px;
+  margin-top: 130px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -24,43 +24,29 @@ body {
 
 .urgentJobData {
   width: 42.5%;
-  background-color: #004f94;
-  /* background-color: #adff2f; */
-  border-style: solid;
-  border-width: 6px;
-  margin: 10px;
-  font-size: 40px;
-  line-height: 65px;
-  padding: 20px;
-  color: white;
-}
-
-.peopleData {
-  width: 42.5%;
-  background-color: orange;
-  /* background-color: #adff2f; */
+  background-color: yellow;
   border-style: solid;
   border-width: 6px;
   margin: 10px;
   font-size: 40px;
   padding: 20px;
-  color: black;
 }
 
 .jobData {
   width: 42.5%;
-  background-color: #fffdd0;
+  background-color: #b0dfe5;
   border-style: solid;
   margin: 10px;
   font-size: 40px;
   padding: 20px;
 }
 
-.jobTypeUrgent {
-  font-size: 55px;
-  color: white;
-  font-weight: 750;
-  word-break: break-word;
+.jobData.yellow {
+  background-color: white;
+}
+
+.jobForm.yellow {
+  background-color: white;
 }
 
 a:link,
@@ -69,10 +55,43 @@ a:visited {
   text-decoration: none;
 }
 
-.buttonsAndFilters {
+.filtersbutton {
+  display: inline-block;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 30px;
   margin-top: 80px;
 }
 
+.filters {
+  /* margin: 50px; */
+  display: flex;
+}
+
+.filter {
+  height: 80px;
+  width: 260px;
+  font-size: 30px;
+  margin: 12px;
+  background-color: #f1f1f1;
+  left: 90px;
+  position: absolute;
+}
+
+#createJob {
+  height: 100px;
+  width: 300px;
+  font-size: 40px;
+  margin-right: 10px;
+  background-color: dodgerblue;
+  float: right;
+  right: 100px;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+}
+
+/* job details page */
 #jobDetails {
   margin: 10px;
   padding: 10px;
@@ -96,6 +115,23 @@ a:visited {
 }
 
 /* job form */
+.formQuestions {
+  font-size: 40px;
+}
+
+.formInputs {
+  font-size: 50px;
+  width: 60%;
+  height: 60%;
+  margin-bottom: 35px;
+  border-style: solid;
+  border-width: medium;
+}
+
+.jobForm {
+  margin: 40px;
+  padding: 20px;
+}
 
 .radio {
   width: 3em;
@@ -106,17 +142,21 @@ a:visited {
 
 #listo {
   width: 50%;
-  height: 130px;
+  height: 100px;
   font-size: 50px;
-  background-color: dodgerblue;
-  color: white;
-  margin-top: 50px;
 }
 
 /* confirm page */
 .jobConfirmPage {
   margin: 40px;
   padding: 20px;
+}
+
+.confirmButton {
+  width: 300px;
+  height: 100px;
+  font-size: 50px;
+  margin: 30px;
 }
 
 .confirmButtons {
@@ -134,26 +174,16 @@ td {
   padding: 15px;
 }
 
+.confirmTitle {
+  margin-bottom: 100px;
+  font-size: 45px;
+}
+
 .modal {
   transform: translate(-50%, -50%);
   position: fixed;
   z-index: 2;
-  background: black;
-  border-style: solid;
-  width: 93%;
-  height: 83%;
-  top: 50%;
-  left: 50%;
-  color: white;
-  display: flex;
-  /* word-break: break-word; */
-}
-
-.modalPeople {
-  transform: translate(-50%, -50%);
-  position: fixed;
-  z-index: 2;
-  background: orange;
+  background: #f1f1f1;
   border-style: solid;
   width: 93%;
   height: 83%;
@@ -161,7 +191,6 @@ td {
   left: 50%;
   color: black;
   display: flex;
-  /* word-break: break-word; */
 }
 
 .jobMoment {
@@ -171,6 +200,12 @@ td {
   align-items: flex-end;
   font-style: oblique;
 }
+
+label {
+  font-size: 30px;
+}
+
+/* Login & Registration Page */
 
 .login-container {
   text-align: center;
@@ -205,29 +240,41 @@ td {
   animation: blinker 1s linear infinite;
 }
 
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .LoginOrRegister {
   width: 330px;
   height: 130px;
   font-size: 40px;
 }
 
+#title {
+  font-size: 50px;
+  text-align: center;
+}
+
 .restName {
-  word-break: break-word;
+  color: black;
 }
 
 .busca {
+  color: black;
   font-style: italic;
 }
 
 .jobType {
   font-size: 45px;
+  color: black;
   font-weight: 900;
-  word-break: break-word;
 }
 
 .switch {
-  height: 150px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
 }
 
 #urgentCheckedContainer {
@@ -235,8 +282,28 @@ td {
   text-align: center;
 }
 
+#UrgentCheckedTitle {
+  font-size: 50px;
+}
+
 .UrgentCheckedText {
   font-size: 40px;
+}
+
+#UrgentCheckedButtonYES {
+  width: 80%;
+  height: 200px;
+  font-size: 49px;
+  margin: 20px;
+  background-color: yellow;
+}
+
+#UrgentCheckedButtonNO {
+  width: 80%;
+  height: 200px;
+  font-size: 49px;
+  margin: 20px;
+  background-color: #b0dfe5;
 }
 
 #urgentExample {
@@ -245,224 +312,11 @@ td {
 }
 
 #si {
-  font-size: 35px;
+  font-size: 60px;
   margin-right: 30px;
-  font-weight: 750;
-  font-style: bold;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Ubuntu, sans-serif;
-  color: #0074d4;
 }
 
 #urgentCheckBox {
-  width: 70px;
-  height: 70px;
-  border: 1em solid #000;
-  background-color: blue;
-  color: blue;
+  width: 50px;
+  height: 50px;
 }
-
-#sellingPitchInForm {
-  font-size: 15px;
-  margin-bottom: 40px;
-}
-
-.formQuestions,
-label {
-  font-size: 25px;
-  color: #565656;
-  font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Ubuntu, sans-serif;
-}
-
-.formInputs {
-  font-size: 40px;
-  width: 95%;
-  height: 80px;
-  line-height: 1.5;
-  padding: 8px 12px;
-  margin-bottom: 35px;
-  border-style: solid;
-  border-width: medium;
-  border-radius: 6px;
-  border-color: grey;
-}
-
-.jobForm {
-  margin: 0 auto;
-  max-width: 800px;
-  width: 100%;
-  padding: 20px;
-}
-
-#formTitle,
-#title {
-  color: #303030;
-  /* font-size: 14px; */
-  font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Ubuntu, sans-serif;
-}
-
-.btn-primary,
-button[type="submit"] {
-  color: white;
-  background: #0074d4;
-  font-size: 50px;
-  font-weight: bold;
-  padding: 25px;
-}
-.btn-secondary {
-  background: #fffdd0;
-  color: #000;
-  font-size: 35px;
-  padding: 28px;
-}
-
-.btn-secondary,
-.btn-primary,
-input[type="button"],
-button {
-  /* width: 100%; */
-  margin: 30px 30px 12px;
-  box-shadow: inset 0 0 0 1px rgba(50, 50, 93, 0.1),
-    0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07);
-  border: 0;
-  border-radius: 6px;
-  transition: all 0.2s ease, box-shadow 0.08s ease-in;
-}
-
-.filter {
-  height: 100px;
-  width: 300px;
-  font-size: 30px;
-  margin: 12px;
-  background-color: #f1f1f1;
-  float: left;
-  margin-top: 60px;
-  margin-left: 20px;
-}
-
-#iamlookingforstaff {
-  left: 0;
-  position: absolute;
-  color: white;
-  background: #0074d4;
-  font-size: 40px;
-  font-weight: bold;
-  padding: 35px;
-  margin-left: 30px;
-}
-
-#iamlookingforjob {
-  color: black;
-  background: orange;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 35px;
-  margin-left: 650px;
-}
-
-.allJobs {
-  margin-top: 260px;
-}
-
-.jobFormClass {
-  /* padding: 5%; */
-  margin-right: 40px;
-  margin-left: 40px;
-}
-
-.heading-1 {
-  font-size: 50px;
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-#title {
-  text-align: center;
-  font-size: 55px;
-  margin-top: 9%;
-}
-
-#subTitle {
-  font-size: 45px;
-}
-
-.filter {
-  height: 90px;
-  border-radius: 6px;
-}
-
-/* SWITCH! */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 150px;
-  height: 80px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  -moz-transition: 0.4s;
-  -ms-transition: 0.4s;
-
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 75px;
-  width: 75px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  -moz-transition: 0.4s;
-  -ms-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(70px);
-  -moz-transform: translateX(70px);
-
-  -ms-transform: translateX(70px);
-  transform: translateX(70px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 100px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-/* RESPONSIVE */
