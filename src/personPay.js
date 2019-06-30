@@ -25,6 +25,8 @@ export default class PersonPay extends React.Component {
         <h1 id="UrgentCheckedTitle" className="heading-1">
           Ahora puede poner un anuncio de BUSCO TRABAJO
         </h1>
+        <br />
+        <br />
         {/*<img id="urgentExample" src="personpay.png" />
          */}{" "}
         <p className="UrgentCheckedText">
@@ -32,10 +34,9 @@ export default class PersonPay extends React.Component {
           nuestra pagina por un precio de 10$.
           <br />
           <br />
-          Miles de personas visitan Jobdirecto cada dia buscando y ofreciendo
-          trabajo. Si busca trabajo, ahora podra poner un anuncio naranja que
-          estara por encima de los anuncios gratis (sin color) por 48 horas.{" "}
-          <br />
+          Los anuncios naranjas son solo para quienes buscan trabajo con
+          urgencia. Se mantienen arriba en la lista por 48 horas y los ven miles
+          de personas. <br />
           <br />
           <br />
         </p>
@@ -45,7 +46,7 @@ export default class PersonPay extends React.Component {
           id="UrgentCheckedButtonNO"
           className="btn-secondary"
         >
-          Quiero seguir buscando sin pagar
+          No necesito con urgencia
         </button>
       </div>
     );

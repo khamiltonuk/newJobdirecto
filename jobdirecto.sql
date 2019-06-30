@@ -64,4 +64,4 @@ INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, addres
 
 
 
-INSERT INTO personas (personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo) VALUES ('Josue', '', 'Cocinero', '', '', '', '', '');
+INSERT INTO personas (personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo) VALUES ('Juan Carlos', 'seeksJob', 'Dishwasher o preparador', 'he travajado de dishwasher 2 años y tengo poquita experiencia de preparador comida americana aprendo rapido pero', 'en manhattan o brooklyn me queda cerca', 'puedo todos los dias manana tarde o noche', '646-240-3249', 'soy responsable con mi travajo, no bebo');
