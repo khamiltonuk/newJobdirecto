@@ -267,7 +267,7 @@ td {
   margin-bottom: 40px;
 }
 
-/* .formQuestions,
+.formQuestions,
 label {
   font-size: 25px;
   color: #565656;
@@ -294,7 +294,7 @@ label {
   max-width: 800px;
   width: 100%;
   padding: 20px;
-} */
+}
 
 #formTitle,
 #title {
@@ -466,127 +466,3 @@ input:checked + .slider:before {
 }
 
 /* RESPONSIVE */
-
-@media only screen and (min-width: 1000px) {
-  #areaInput {
-    height: 50px;
-  }
-
-  .modal {
-    position: fixed;
-    width: 93%;
-    height: 92%;
-    overflow: scroll;
-  }
-
-  .jobData,
-  .urgentJobData,
-  .peopleData {
-    width: 15.5%;
-    font-size: 20px;
-  }
-
-  .urgentJobData {
-    line-height: 40px;
-  }
-
-  #iamlookingforjob {
-    margin-left: 450px;
-  }
-
-  .filter {
-    position: absolute;
-    left: 30px;
-    font-size: 30px;
-  }
-
-  .allJobs {
-    margin-top: 100px;
-  }
-
-  .jobType {
-    font-size: 25px;
-  }
-
-  .jobMoment {
-    font-size: 17px;
-  }
-
-  #createJob {
-    font-size: 30px;
-  }
-
-  .formQuestions {
-    font-size: 27px;
-  }
-
-  .formInputs {
-    width: 30%;
-    height: 30px;
-    font-size: 25px;
-    margin-bottom: 20px;
-  }
-
-  .radio {
-    width: 2em;
-    height: 2em;
-  }
-
-  #urgentCheckBox {
-    width: 30px;
-    height: 30px;
-  }
-
-  #si {
-    font-size: 25px;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-      Helvetica Neue, Ubuntu, sans-serif;
-    color: #0074d4;
-  }
-
-  #listo {
-    width: 400px;
-    height: 100px;
-    font-size: 25px;
-    background-color: dodgerblue;
-    color: white;
-    font-weight: bold;
-  }
-
-  .jobTypeUrgent {
-    font-size: 35px;
-  }
-
-  #urgentExample {
-    width: 550px;
-  }
-
-  #UrgentCheckedTitle {
-    font-size: 25px;
-  }
-  #urgentCheckedContainer {
-    text-align: left;
-  }
-
-  .UrgentCheckedText {
-    font-size: 30px;
-    margin-top: -60px;
-  }
-
-  #UrgentCheckedButtonYES,
-  #UrgentCheckedButtonNO {
-    width: 530px;
-    height: 100px;
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  .allJobs {
-    margin-top: 12%;
-  }
-
-  .filter {
-    height: 75px;
-    border-radius: 6px;
-  }
-}
