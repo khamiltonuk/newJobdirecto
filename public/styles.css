@@ -369,19 +369,13 @@ button {
   margin-top: 260px;
 }
 
-.jobFormClass {
-  /* padding: 5%; */
-  margin-right: 40px;
-  margin-left: 40px;
-}
-
 /* .heading-1 {
   font-size: 50px;
   text-align: center;
   margin-bottom: 60px;
 } */
 
-#title {
+/* #title {
   text-align: center;
   font-size: 55px;
   margin-top: 9%;
@@ -396,7 +390,6 @@ button {
   border-radius: 6px;
 }
 
-/* SWITCH! */
 .switch {
   position: relative;
   display: inline-block;
@@ -404,14 +397,12 @@ button {
   height: 80px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -457,14 +448,13 @@ input:checked + .slider:before {
   transform: translateX(70px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 100px;
 }
 
 .slider.round:before {
   border-radius: 50%;
-}
+} */
 
 /* RESPONSIVE */
 /*
