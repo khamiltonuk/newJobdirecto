@@ -1,4 +1,4 @@
-body {
+/* body {
   width: 100vw;
 }
 
@@ -445,8 +445,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/* RESPONSIVE */
-
 @media (min-width: 1000px) {
   #areaInput {
     height: 50px;
@@ -569,4 +567,4 @@ input:checked + .slider:before {
     height: 75px;
     border-radius: 6px;
   }
-}
+} */
