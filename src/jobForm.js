@@ -56,7 +56,7 @@ export class JobForm extends React.Component {
 
   render() {
     return (
-      <div className="jobFormClass">
+      <div className="jobForm">
         <form onSubmit={this.handleSubmit}>
           <h1 id="formTitle" className="heading-1">
             JobDirecto
