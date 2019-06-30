@@ -179,7 +179,7 @@ export class Jobs extends React.Component {
                       <span className="busca"> busca </span>
                       <span className="jobTypeUrgent">{data.jobtype}</span>
                     </p>
-                    <p>{data.area}</p>
+                    <p className="areainjobdata">{data.area}</p>
                     <div className="jobMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
@@ -226,7 +226,7 @@ export class Jobs extends React.Component {
                       <span className="busca"> busca </span>
                       <span className="jobType">{data.jobtype}</span>
                     </p>
-                    <p>{data.area}</p>
+                    <p className="areainjobdata">{data.area}</p>
                     <div className="jobMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
@@ -251,7 +251,7 @@ export class Jobs extends React.Component {
                       <span className="busca"> busca </span>
                       <span className="jobType">{data.jobtype}</span>
                     </p>
-                    <p>{data.area}</p>
+                    <p className="areainjobdata">{data.area}</p>
                     <div className="jobMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
@@ -273,7 +273,7 @@ export class Jobs extends React.Component {
                       <span className="busca"> busca </span>
                       <span className="jobType">{data.jobtype}</span>
                     </p>
-                    <p>{data.area}</p>
+                    <p className="areainjobdata">{data.area}</p>
                     <div className="jobMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
