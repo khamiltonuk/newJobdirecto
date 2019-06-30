@@ -32,7 +32,7 @@ export class PersonForm extends React.Component {
 
   render() {
     return (
-      <div className="jobFormClass">
+      <div className="jobForm">
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
           <h2>Solo para quienes buscan trabajo con urgencia</h2>
