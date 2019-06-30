@@ -445,15 +445,13 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-@media (max-width: 999px) {
-  .formQuestions,
-  label {
-    font-size: 15px;
-    color: #565656;
-    font-weight: 500;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-      Helvetica Neue, Ubuntu, sans-serif;
-  }
+.formQuestions,
+label {
+  font-size: 25px;
+  color: #565656;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Ubuntu, sans-serif;
 }
 @media (min-width: 1000px) {
   #areaInput {
