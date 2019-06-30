@@ -3,6 +3,10 @@
   margin: 0px;
 }
 
+p {
+  font-size: 25px;
+}
+
 body {
   width: 100vw;
 }
@@ -284,15 +288,6 @@ td {
   margin-bottom: 40px;
 }
 
-.formQuestions,
-label {
-  font-size: 100^;
-  color: #565656;
-  font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Ubuntu, sans-serif;
-}
-
 #formTitle,
 #title {
   color: #303030;
@@ -450,6 +445,16 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+@media (max-width: 999px) {
+  .formQuestions,
+  label {
+    font-size: 15px;
+    color: #565656;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Ubuntu, sans-serif;
+  }
+}
 @media (min-width: 1000px) {
   #areaInput {
     height: 50px;
