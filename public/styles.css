@@ -97,26 +97,6 @@ a:visited {
 
 /* job form */
 
-.formInputs {
-  font-size: 40px;
-  width: 95%;
-  height: 80px;
-  line-height: 1.5;
-  padding: 8px 12px;
-  margin-bottom: 35px;
-  border-style: solid;
-  border-width: medium;
-  border-radius: 6px;
-  border-color: grey;
-}
-
-.jobForm {
-  margin: 0 auto;
-  max-width: 800px;
-  width: 100%;
-  padding: 20px;
-}
-
 .radio {
   width: 3em;
   height: 3em;
@@ -224,11 +204,6 @@ td {
   font-size: 24px;
   animation: blinker 1s linear infinite;
 }
-Urgent @keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
 
 .LoginOrRegister {
   width: 330px;
@@ -292,7 +267,7 @@ Urgent @keyframes blinker {
   margin-bottom: 40px;
 }
 
-.formQuestions,
+/* .formQuestions,
 label {
   font-size: 25px;
   color: #565656;
@@ -300,6 +275,26 @@ label {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Ubuntu, sans-serif;
 }
+
+.formInputs {
+  font-size: 40px;
+  width: 95%;
+  height: 80px;
+  line-height: 1.5;
+  padding: 8px 12px;
+  margin-bottom: 35px;
+  border-style: solid;
+  border-width: medium;
+  border-radius: 6px;
+  border-color: grey;
+}
+
+.jobForm {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+} */
 
 #formTitle,
 #title {
@@ -442,7 +437,6 @@ button {
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
   -ms-transition: 0.4s;
-
   transition: 0.4s;
 }
 
