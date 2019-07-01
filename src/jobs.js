@@ -175,7 +175,8 @@ export class Jobs extends React.Component {
                     key={data.id}
                   >
                     <p>
-                      <span className="busca">Se busca </span>
+                      <span className="restName">{data.restname} </span>
+                      <span className="busca">busca </span>
                       <span className="jobTypeUrgent">{data.jobtype}</span>
                     </p>
                     <p className="areainjobdata">{data.area}</p>
