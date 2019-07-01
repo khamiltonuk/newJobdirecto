@@ -60,7 +60,7 @@ New York, NY 10281', '(212) 981-8577', 'Manhattan', 'true');
 
 INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('Negocio Ejemplo', 'cocinero de linea', '', '', 'part time o full time hay', '', '', '', 'Manhattan', 'se le entrena si tiene poca experiencia, se busca gente que pueda empezar de inmediato', 'true');
 
-INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('', '', '', '', '', '', '', '', '', '', 'true');
+INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, extrainfo, urgent) VALUES ('Wallys Deli', 'deli/ grill person', '', '', 'full time', 'Wally', '3345 broadway', '(917) 405-8424', 'Manhattan', 'debe tener experiencia porque es un deli ocupado', 'true');
 
 
 

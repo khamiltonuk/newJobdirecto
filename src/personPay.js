@@ -30,13 +30,13 @@ export default class PersonPay extends React.Component {
         {/*<img id="urgentExample" src="personpay.png" />
          */}{" "}
         <p className="UrgentCheckedText">
-          Si realmente necesita trabajo, ahora puede poner un anuncio naranja en
-          nuestra pagina por un precio de 10$.
+          Si desea diferenciarse del resto, ahora puede poner un anuncio naranja
+          en nuestra pagina por un precio de 10$!
           <br />
           <br />
-          Los anuncios naranjas son solo para quienes buscan trabajo con
-          urgencia. Se mantienen arriba en la lista por 48 horas y los ven miles
-          de personas. <br />
+          Su anuncio no sera borrado y se mantendra arriba en la lista por 48
+          horas y lo veran miles de personas para que pueda encontrar trabajo
+          con rapidez. <br />
           <br />
           <br />
         </p>

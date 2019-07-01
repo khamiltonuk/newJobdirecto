@@ -51,14 +51,14 @@ export default class ModalPeople extends React.Component {
               {" "}
               <td className="jobDetailsText">Horario:</td>
               <td className="jobDetailsText">
-                {this.state.peopleData.data.personarea}
+                {this.state.peopleData.data.personschedule}
               </td>
             </tr>
             <tr>
               {" "}
               <td className="jobDetailsText">Area:</td>
               <td className="jobDetailsText">
-                {this.state.peopleData.data.personschedule}
+                {this.state.peopleData.data.personarea}
               </td>
             </tr>
             <tr>

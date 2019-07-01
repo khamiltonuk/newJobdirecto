@@ -55,25 +55,25 @@ export class PersonForm extends React.Component {
           <p className="formQuestions">Busca trabajo o ofrece servicios?</p>
           {(this.state.personData && this.state.personData.data) ||
             (!this.state.personData && (
-              <label htmlFor="seeksJob">
+              <label className="personFormLabels" htmlFor="seeksJob">
                 Busco trabajo
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="personStatus"
-                    value="seeksJob"
-                    onChange={this.handleChange}
-                  />
-                </span>
+                <input
+                  id="seeksJob"
+                  className="radio"
+                  type="radio"
+                  name="personStatus"
+                  value="seeksJob"
+                  onChange={this.handleChange}
+                />
               </label>
             ))}
           {(this.state.personData && this.state.personData.data) ||
             (!this.state.personData && (
-              <label htmlFor="offersService">
+              <label className="personFormLabels" htmlFor="offersService">
                 Ofrezco Servicios
                 <span>
                   <input
+                    id="offersService"
                     className="radio"
                     type="radio"
                     name="personStatus"
@@ -101,6 +101,7 @@ export class PersonForm extends React.Component {
           <p className="formQuestions"> Que experiencia tiene?</p>
           <textarea
             className="formInputs"
+            id="personExperience"
             type="text"
             name="personExperience"
             defaultValue={
@@ -149,6 +150,7 @@ export class PersonForm extends React.Component {
           <p className="formQuestions">Algo que desee agregar?</p>
           <textarea
             className="formInputs"
+            id="personExtraInfo"
             type="text"
             name="personExtraInfo"
             defaultValue={

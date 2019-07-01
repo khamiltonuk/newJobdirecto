@@ -186,9 +186,8 @@ app.post("/publishPerson", (req, res) => {
       req.body.personData.data.personStatus,
       req.body.personData.data.personSkill,
       req.body.personData.data.personExperience,
-
-      req.body.personData.data.personArea,
       req.body.personData.data.personSchedule,
+      req.body.personData.data.personArea,
       req.body.personData.data.personNumber,
       req.body.personData.data.personExtraInfo,
       req.session.userId
