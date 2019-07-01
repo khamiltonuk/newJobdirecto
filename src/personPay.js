@@ -23,20 +23,20 @@ export default class PersonPay extends React.Component {
     return (
       <div id="urgentCheckedContainer">
         <h1 id="UrgentCheckedTitle" className="heading-1">
-          Ahora puede poner un anuncio de BUSCO TRABAJO
+          Encuentre trabajo RAPIDO y SEGURO
         </h1>
         <br />
         <br />
         {/*<img id="urgentExample" src="personpay.png" />
          */}{" "}
         <p className="UrgentCheckedText">
-          Si desea diferenciarse del resto, ahora puede poner un anuncio naranja
-          en nuestra pagina por un precio de 10$!
+          Si busca trabajo, ahora puede poner un anuncio por 10$!
           <br />
           <br />
-          Su anuncio no sera borrado y se mantendra arriba en la lista por 48
-          horas y lo veran miles de personas para que pueda encontrar trabajo
-          con rapidez. <br />
+          <span className="paymenteHighlight">
+            Su anuncio no sera borrado
+          </span>{" "}
+          y se mantendra por encima de los anuncios gratis por 48 horas. <br />
           <br />
           <br />
         </p>

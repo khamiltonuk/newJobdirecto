@@ -26,6 +26,11 @@ body {
   height: 50px;
 }
 
+.paymenteHighlight {
+  border-bottom: 3px solid black;
+  padding-bottom: 3px;
+}
+
 .personName,
 .buscaTrabajo {
   border-bottom: 3px solid white;
