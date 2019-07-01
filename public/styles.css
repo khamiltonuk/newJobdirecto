@@ -325,6 +325,18 @@ button[type="submit"] {
   font-weight: bold;
   padding: 25px;
 }
+
+#personfinalpaybutton,
+.personFormButton {
+  color: white;
+  background: #b80f0a;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
 .btn-secondary {
   background: #fffdd0;
   color: #000;
@@ -630,6 +642,9 @@ label {
     height: 100px;
     font-size: 30px;
     font-weight: bold;
+  }
+
+  #personfinalpaybutton {
   }
 
   .allJobs {
