@@ -393,8 +393,8 @@ export class JobForm extends React.Component {
             onChange={this.handleChange}
           />
           <p className="formQuestions">Algo que desee agregar?</p>
-          <input
-            className="formInputs"
+          <textarea
+            className="formInputs extraInfo"
             type="text"
             name="extrainfo"
             defaultValue={

@@ -64,6 +64,7 @@ export class PersonForm extends React.Component {
                   name="personStatus"
                   value="seeksJob"
                   onChange={this.handleChange}
+                  required="required"
                 />
               </label>
             ))}
@@ -145,12 +146,12 @@ export class PersonForm extends React.Component {
                 ? this.state.personData.data.personNumber
                 : ""
             }
+            required="required"
             onChange={this.handleChange}
           />
           <p className="formQuestions">Algo que desee agregar?</p>
           <textarea
-            className="formInputs"
-            id="personExtraInfo"
+            className="formInputs extraInfo"
             type="text"
             name="personExtraInfo"
             defaultValue={

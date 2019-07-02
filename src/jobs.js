@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Modal from "./modal";
 import ModalPeople from "./modalPeople";
-
+import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
 import "moment/locale/es";
-import { LanguageContext } from "./languageContext";
 
 var ReactGA = require("react-ga");
 
@@ -108,9 +107,8 @@ export class Jobs extends React.Component {
         <h1 id="title" className="heading-1">
           JobDirecto
           <br />
-          <span id="subTitle">Trabajos en Nueva York</span>
+          <span id="subTitle">{this.context.title}</span>
         </h1>
-        {this.context.title}
         <div>
           <h1 />
         </div>
@@ -189,7 +187,10 @@ export class Jobs extends React.Component {
             })}
           {!this.state.userSelectionArea &&
             this.state.peopleData.data.map(data => {
-              if (this.urgentJobInterval(data.created_at) === true) {
+              if (
+                data.personstatus === "seeksJob" &&
+                this.urgentJobInterval(data.created_at) === true
+              ) {
                 return (
                   <div
                     onClick={e => this.handleClickModalPeople(data.id)}
@@ -199,6 +200,33 @@ export class Jobs extends React.Component {
                     <p>
                       <span className="personName">{data.personname}</span>
                       <span className="buscaTrabajo"> busca trabajo de </span>
+                      <span className="jobType"> {data.personskill} </span>
+                    </p>
+                    <div className="jobMoment">
+                      <Moment fromNow>{data.created_at}</Moment>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          {!this.state.userSelectionArea &&
+            this.state.peopleData.data.map(data => {
+              if (
+                data.personstatus === "offersService" &&
+                this.urgentJobInterval(data.created_at) === true
+              ) {
+                return (
+                  <div
+                    onClick={e => this.handleClickModalPeople(data.id)}
+                    className="peopleData"
+                    key={data.id}
+                  >
+                    <p>
+                      <span className="personName">{data.personname}</span>
+                      <span className="buscaTrabajo">
+                        {" "}
+                        ofrece servicios de{" "}
+                      </span>
                       <span className="jobType"> {data.personskill} </span>
                     </p>
                     <div className="jobMoment">
@@ -283,3 +311,5 @@ export class Jobs extends React.Component {
     );
   }
 }
+
+Jobs.contextType = LanguageContext;
