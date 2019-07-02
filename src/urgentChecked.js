@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import StripeButton from "./stripebutton.js";
+import { LanguageContext } from "./languageContext";
 
 export default class UrgentChecked extends React.Component {
   constructor(props) {
@@ -23,15 +24,13 @@ export default class UrgentChecked extends React.Component {
     return (
       <div id="urgentCheckedContainer">
         <h1 id="UrgentCheckedTitle" className="heading-1">
-          Usted a marcado anuncio azul
+          {this.context.jobPayPage.title}
         </h1>
         <img id="urgentExample" src="urgentExample.png" />
         <p className="UrgentCheckedText">
-          Los anuncios azules los ven muchas mas personas. <br />
+          {this.context.jobPayPage.text1} <br />
           <br />
-          Quienes usan anuncios de azules se diferencian del resto y consiguen
-          gente mas rapido y con experiencia. Cuestan tan solo 10 dolares (5
-          veces menos que en Craigslist).
+          {this.context.jobPayPage.text2}
           <br />
           <br />
         </p>
@@ -42,9 +41,11 @@ export default class UrgentChecked extends React.Component {
           id="UrgentCheckedButtonNO"
           className="btn-secondary"
         >
-          Quiero un anuncio gratis y común
+          {this.context.jobPayPage.buttonNO}
         </button>
       </div>
     );
   }
 }
+
+UrgentChecked.contextType = LanguageContext;

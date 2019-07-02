@@ -14,6 +14,16 @@ body {
   justify-content: center;
 }
 
+#dissapear {
+  color: white;
+}
+
+#translateButton {
+  width: 150px;
+  height: 80px;
+  font-size: 30px;
+}
+
 .urgentJobs {
   display: flex;
   flex-wrap: wrap;
@@ -323,7 +333,9 @@ td {
 .btn-primary,
 button[type="submit"] {
   color: white;
-  background: #0074d4;
+  /* background: #0074d4; */
+  background: #004f94;
+
   font-size: 50px;
   font-weight: bold;
   padding: 25px;
@@ -374,7 +386,7 @@ button {
   left: 0;
   position: absolute;
   color: white;
-  background: #0074d4;
+  background: #004f94;
   font-size: 40px;
   font-weight: bold;
   padding: 35px;

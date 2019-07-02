@@ -5,7 +5,7 @@ import Modal from "./modal";
 import ModalPeople from "./modalPeople";
 import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
-import "moment/locale/es";
+// import "moment/locale/es";
 
 var ReactGA = require("react-ga");
 
@@ -107,7 +107,7 @@ export class Jobs extends React.Component {
         <h1 id="title" className="heading-1">
           JobDirecto
           <br />
-          <span id="subTitle">{this.context.title}</span>
+          <span id="subTitle">{this.context.main.title}</span>
         </h1>
         <div>
           <h1 />
@@ -126,11 +126,15 @@ export class Jobs extends React.Component {
             <input
               id="iamlookingforstaff"
               type="submit"
-              value="Busco personal"
+              value={this.context.main.jobPostButton}
             />
           </Link>
           <Link to="/personForm">
-            <input id="iamlookingforjob" type="submit" value="Busco trabajo" />
+            <input
+              id="iamlookingforjob"
+              type="submit"
+              value={this.context.main.seeksJobButton}
+            />
           </Link>
 
           <div className="filtersbutton">
@@ -142,16 +146,18 @@ export class Jobs extends React.Component {
                   name="area"
                   onChange={this.handleChangeArea}
                 >
-                  <option value="">&#160;&#160;Todo NY</option>
+                  <option value="">
+                    &#160;&#160;{this.context.main.filterDefault}
+                  </option>
                   <option value="Manhattan">&#160;&#160;Manhattan</option>
                   <option value="Brooklyn">&#160;&#160;Brooklyn</option>
                   <option value="Queens">&#160;&#160;Queens</option>
-                  <option value="El Bronx">&#160;&#160;El Bronx</option>
+                  <option value="Bronx">&#160;&#160;Bronx</option>
                   <option value="Staten Island">
                     &#160;&#160;Staten Island
                   </option>
                   <option value="Otra area en NY">
-                    &#160;&#160;Otra area en NY
+                    &#160;&#160;{this.context.main.filterOtherArea}
                   </option>
                 </select>
               </form>
@@ -174,7 +180,9 @@ export class Jobs extends React.Component {
                   >
                     <p>
                       <span className="restName">{data.restname} </span>
-                      <span className="busca">busca </span>
+                      <span className="busca">
+                        {this.context.main.seeking}{" "}
+                      </span>
                       <span className="jobTypeUrgent">{data.jobtype}</span>
                     </p>
                     <p className="areainjobdata">{data.area}</p>
@@ -199,7 +207,10 @@ export class Jobs extends React.Component {
                   >
                     <p>
                       <span className="personName">{data.personname}</span>
-                      <span className="buscaTrabajo"> busca trabajo de </span>
+                      <span className="buscaTrabajo">
+                        {" "}
+                        {this.context.main.seeking2}{" "}
+                      </span>
                       <span className="jobType"> {data.personskill} </span>
                     </p>
                     <div className="jobMoment">
@@ -250,7 +261,10 @@ export class Jobs extends React.Component {
                     key={data.id}
                   >
                     <p>
-                      <span className="busca">Se busca </span>
+                      <span className="restName">{data.restname} </span>
+                      <span className="busca">
+                        {this.context.main.seeking}{" "}
+                      </span>
                       <span className="jobType">{data.jobtype}</span>
                     </p>
                     <p className="areainjobdata">{data.area}</p>
@@ -274,7 +288,9 @@ export class Jobs extends React.Component {
                     key={data.id}
                   >
                     <p>
-                      <span className="busca">Se busca </span>
+                      <span className="busca">
+                        {this.context.main.seeking3}{" "}
+                      </span>
                       <span className="jobType">{data.jobtype}</span>
                     </p>
                     <p className="areainjobdata">{data.area}</p>
@@ -295,7 +311,10 @@ export class Jobs extends React.Component {
                     key={data.id}
                   >
                     <p>
-                      <span className="busca"> Se busca </span>
+                      <span className="busca">
+                        {" "}
+                        {this.context.main.seeking3}{" "}
+                      </span>
                       <span className="jobType">{data.jobtype}</span>
                     </p>
                     <p className="areainjobdata">{data.area}</p>

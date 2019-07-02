@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 function StripeButton() {
   const stripe = Stripe("pk_live_5PjwBk9dSdW7htTKHQ3HKrTd");
@@ -44,3 +45,4 @@ function StripeButton() {
 }
 
 export default StripeButton;
+StripeButton.contextType = LanguageContext;

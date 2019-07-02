@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export class JobForm extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ export class JobForm extends React.Component {
           <h1 id="formTitle" className="heading-1">
             JobDirecto
           </h1>
-          <p className="formQuestions">Como se llama su negocio?</p>
+          <p className="formQuestions">{this.context.jobForm.question1}</p>
           <input
             className="formInputs"
             type="text"
@@ -74,7 +75,7 @@ export class JobForm extends React.Component {
             required="required"
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Que busca?</p>
+          <p className="formQuestions">{this.context.jobForm.question2}</p>
           <input
             className="formInputs"
             type="text"
@@ -87,7 +88,7 @@ export class JobForm extends React.Component {
             required="required"
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Cuanto paga?</p>
+          <p className="formQuestions">{this.context.jobForm.question3}</p>
           <input
             className="formInputs"
             type="text"
@@ -101,13 +102,13 @@ export class JobForm extends React.Component {
           />
           <br />
           <br />
-          <p className="formQuestions">Paga en cheque o cash?</p>
+          <p className="formQuestions">{this.context.jobForm.question4}</p>
           {this.state.jobData &&
             this.state.jobData.data &&
             this.state.jobData.data.typepay === "cash" && (
               <div className="typePay">
                 <label className="formQuestions" htmlFor="cash">
-                  Cash
+                  {this.context.jobForm.payType1}
                   <span>
                     <input
                       className="radio"
@@ -118,7 +119,7 @@ export class JobForm extends React.Component {
                       onChange={this.handleChange}
                     />
                   </span>
-                  Cheque
+                  {this.context.jobForm.payType2}
                   <span>
                     <input
                       className="radio"
@@ -128,7 +129,7 @@ export class JobForm extends React.Component {
                       onChange={this.handleChange}
                     />
                   </span>
-                  Cash y Cheque
+                  {this.context.jobForm.payType3}
                   <span>
                     <input
                       className="radio"
@@ -146,7 +147,7 @@ export class JobForm extends React.Component {
             this.state.jobData.data.typepay !== "cash") ||
             (!this.state.jobData && (
               <label htmlFor="cash">
-                Cash
+                {this.context.jobForm.payType1}
                 <span>
                   <input
                     className="radio"
@@ -162,7 +163,7 @@ export class JobForm extends React.Component {
             this.state.jobData.data &&
             this.state.jobData.data.typepay === "cheque" && (
               <label htmlFor="cash">
-                Cash
+                {this.context.jobForm.payType1}
                 <span>
                   <input
                     className="radio"
@@ -172,7 +173,7 @@ export class JobForm extends React.Component {
                     onChange={this.handleChange}
                   />
                 </span>
-                Cheque
+                {this.context.jobForm.payType2}
                 <span>
                   <input
                     className="radio"
@@ -183,7 +184,7 @@ export class JobForm extends React.Component {
                     onChange={this.handleChange}
                   />
                 </span>
-                Cash y Cheque
+                {this.context.jobForm.payType3}
                 <span>
                   <input
                     className="radio"
@@ -200,7 +201,7 @@ export class JobForm extends React.Component {
             this.state.jobData.data.typepay !== "cheque") ||
             (!this.state.jobData && (
               <label htmlFor="cheque">
-                Cheque
+                {this.context.jobForm.payType2}
                 <span>
                   <input
                     className="radio"
@@ -216,7 +217,7 @@ export class JobForm extends React.Component {
             this.state.jobData.data &&
             this.state.jobData.data.typepay === "Cash y Cheque" && (
               <label htmlFor="cash">
-                Cash
+                {this.context.jobForm.payType1}
                 <span>
                   <input
                     className="radio"
@@ -226,7 +227,7 @@ export class JobForm extends React.Component {
                     onChange={this.handleChange}
                   />
                 </span>
-                Cheque
+                {this.context.jobForm.payType2}
                 <span>
                   <input
                     className="radio"
@@ -236,7 +237,7 @@ export class JobForm extends React.Component {
                     onChange={this.handleChange}
                   />
                 </span>
-                Cash y Cheque
+                {this.context.jobForm.payType3}
                 <span>
                   <input
                     className="radio"
@@ -254,7 +255,7 @@ export class JobForm extends React.Component {
             this.state.jobData.data.typepay !== "Cash y Cheque") ||
             (!this.state.jobData && (
               <label htmlFor="Cash y Cheque">
-                Cash y Cheque
+                {this.context.jobForm.payType3}
                 <span>
                   <input
                     className="radio"
@@ -268,7 +269,7 @@ export class JobForm extends React.Component {
             ))}
           <br />
           <br />
-          <p className="formQuestions"> Cual es el horario?</p>
+          <p className="formQuestions"> {this.context.jobForm.question5}</p>
           <input
             className="formInputs"
             type="text"
@@ -280,7 +281,7 @@ export class JobForm extends React.Component {
             }
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Direccion del local:</p>
+          <p className="formQuestions">{this.context.jobForm.question6}</p>
           <input
             className="formInputs"
             type="text"
@@ -292,7 +293,7 @@ export class JobForm extends React.Component {
             }
             onChange={this.handleChange}
           />
-          <p className="formQuestions">En que area se encuentra?</p>
+          <p className="formQuestions">{this.context.jobForm.question7}</p>
           <select
             id="areaInput"
             className="formInputs"
@@ -331,11 +332,11 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "El Bronx"
+                this.state.jobData.data.area == "Bronx"
               }
-              value="El Bronx"
+              value="Bronx"
             >
-              El Bronx
+              Bronx
             </option>
             <option
               selected={
@@ -363,12 +364,12 @@ export class JobForm extends React.Component {
                 this.state.jobData.data &&
                 this.state.jobData.data.area == "Otra area en NY"
               }
-              value="Otra area en NY"
+              value={this.context.jobForm.filterOtherArea}
             >
               Otra area en NY
             </option>
           </select>
-          <p className="formQuestions">Numero de celular? (opcional)</p>
+          <p className="formQuestions">{this.context.jobForm.question8}</p>
           <input
             className="formInputs"
             type="text"
@@ -380,7 +381,7 @@ export class JobForm extends React.Component {
             }
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Por quien preguntar?</p>
+          <p className="formQuestions">{this.context.jobForm.question9}</p>
           <input
             className="formInputs"
             type="text"
@@ -392,7 +393,7 @@ export class JobForm extends React.Component {
             }
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Algo que desee agregar?</p>
+          <p className="formQuestions">{this.context.jobForm.question10}</p>
           <textarea
             className="formInputs extraInfo"
             type="text"
@@ -410,7 +411,7 @@ export class JobForm extends React.Component {
           <br />
           <div id="yesAndCheckbox">
             <label id="si" htmlFor="urgentCheckBox">
-              Quiero que mi anuncio sea azul (10$)
+              {this.context.jobForm.question11}
             </label>
             <br />
             <br />
@@ -438,7 +439,7 @@ export class JobForm extends React.Component {
             className="btn-primary"
             onClick={this.submission}
             type="submit"
-            value="Listo"
+            value={this.context.jobForm.jobFormButton}
           />
           <br />
           <br />
@@ -448,3 +449,5 @@ export class JobForm extends React.Component {
     );
   }
 }
+
+JobForm.contextType = LanguageContext;

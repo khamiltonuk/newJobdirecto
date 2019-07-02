@@ -42,7 +42,6 @@ export class App extends React.Component {
         <div>
           <LanguageContext.Provider value={this.state.languages}>
             <LanguageButton changeLanguage={this.toggleLanguage} />
-            <Route path="/jobform" component={JobForm} />
             <Route path="/urgentChecked" component={UrgentChecked} />
             <Route path="/loginorregister" component={LoginOrRegister} />
             <Route path="/register" component={Register} />
@@ -54,6 +53,8 @@ export class App extends React.Component {
             />
             <Route exact="exact" path="/" component={Jobs} />
             <Route exact="exact" path="/personForm" component={PersonForm} />
+            <Route exact="exact" path="/jobForm" component={JobForm} />
+
             <Route exact="exact" path="/personPay" component={PersonPay} />
             <Route
               exact="exact"

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export class JobConfirm extends React.Component {
   constructor(props) {
@@ -52,60 +53,76 @@ export class JobConfirm extends React.Component {
       <div className="jobConfirmPage">
         <form onSubmit={this.handleSubmit}>
           <h1 className="confirmTitle" className="heading-1">
-            Confirme la informacion es correcta:
+            {this.context.jobConfirm.title}
           </h1>
           <table>
             <tr>
-              <td className="jobDetailsText">Restaurante:</td>
+              <td className="jobDetailsText">{this.context.jobConfirm.name}</td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.restname}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Puesto:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.position}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.jobtype}
               </td>
             </tr>
 
             <tr>
-              <td className="jobDetailsText">Salario:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.payment}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.hourpay}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Paga en:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.payType}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.typepay}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Horario:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.schedule}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.schedule}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Direccion:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.address}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.address}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Numero:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.phone}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.phone}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Preguntar por:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.contact}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.contact}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Mas informacion:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.extraInfo}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.extrainfo}
               </td>
@@ -120,7 +137,7 @@ export class JobConfirm extends React.Component {
                 onClick={this.handleSubmit}
                 className="btn-primary"
                 type="submit"
-                value="Publicar"
+                value={this.context.jobConfirm.button}
               />
             </Link>
           </div>
@@ -129,3 +146,5 @@ export class JobConfirm extends React.Component {
     );
   }
 }
+
+JobConfirm.contextType = LanguageContext;
