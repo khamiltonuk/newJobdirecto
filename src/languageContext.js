@@ -26,7 +26,7 @@ export const languages = {
       question8: "Numero de celular? (opcional)",
       question9: "Por quien preguntar?",
       question10: "Algo que desee agregar?",
-      question11: "Quiero que mi anuncio sea azul (10$)",
+      question11: "Quiero que mi anuncio sea azul ($10)",
       jobFormButton: "Listo",
       payType1: "Cash",
       payType2: "Cheque",
@@ -66,7 +66,7 @@ export const languages = {
       text2:
         "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
       buttonNO: "Quiero un anuncio gratis y comun",
-      buttonYES: "Pagar 10$"
+      buttonYES: "Pagar $10"
     }
   },
 
@@ -95,7 +95,7 @@ export const languages = {
       question8: "Phone Number (optional)",
       question9: "Contact name",
       question10: "Something you'd like to add?",
-      question11: "I want my post to be on top (10$)",
+      question11: "I want my post to be on top ($10)",
       jobFormButton: "Finish",
       payType1: "Cash",
       payType2: "Check",
@@ -134,7 +134,7 @@ export const languages = {
       text2:
         "If you are looking for top staff as quickly as possible, this is what you need.",
       buttonNO: "I want a free and normal post",
-      buttonYES: "Pay 10$"
+      buttonYES: "Pay $10"
     }
   }
 };

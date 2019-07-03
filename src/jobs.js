@@ -5,7 +5,7 @@ import Modal from "./modal";
 import ModalPeople from "./modalPeople";
 import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
-// import "moment/locale/es";
+import "moment/locale/es";
 
 var ReactGA = require("react-ga");
 

@@ -30,7 +30,7 @@ export default class PersonPay extends React.Component {
         {/*<img id="urgentExample" src="personpay.png" />
          */}{" "}
         <p className="UrgentCheckedText">
-          Si busca trabajo, ahora puede poner un anuncio por 10$!
+          Si busca trabajo, ahora puede poner un anuncio por $10!
           <br />
           <br />
           <span className="paymenteHighlight">

@@ -35,7 +35,7 @@ function StripeButton2() {
         className="btn-primary"
         onClick={handleClick}
       >
-        Pagar 10$
+        Pagar $10
         <br />
       </button>
       <div>{error}</div>
