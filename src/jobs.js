@@ -236,7 +236,7 @@ export class Jobs extends React.Component {
                       <span className="personName">{data.personname}</span>
                       <span className="buscaTrabajo">
                         {" "}
-                        ofrece servicios de{" "}
+                        {this.context.main.seeking4}{" "}
                       </span>
                       <span className="jobType"> {data.personskill} </span>
                     </p>

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export default class Modal extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class Modal extends React.Component {
         <main className="modal">
           <table id="jobDetails">
             <tr>
-              <td className="jobDetailsText">Restaurante:</td>
+              <td className="jobDetailsText">{this.context.jobConfirm.name}</td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.restname}
               </td>
@@ -33,64 +34,71 @@ export default class Modal extends React.Component {
                 <i class="fa fa-close" />
               </button>
             </tr>
-            {this.state.jobData.data.jobtype !== "Otro" && (
-              <tr>
-                <td className="jobDetailsText">Puesto:</td>
-                <td className="jobDetailsText">
-                  {this.state.jobData.data.jobtype}
-                </td>
-              </tr>
-            )}
-            {this.state.jobData.data.jobtype === "Otro" && (
-              <tr>
-                <td className="jobDetailsText">Puesto:</td>
-                <td className="jobDetailsText">
-                  {this.state.jobData.data.otro_desc}
-                </td>
-              </tr>
-            )}
             <tr>
-              <td className="jobDetailsText">Salario:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.position}
+              </td>
+              <td className="jobDetailsText">
+                {this.state.jobData.data.jobtype}
+              </td>
+            </tr>
+            \
+            <tr>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.payment}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.hourpay}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Paga en:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.typePay}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.typepay}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Horario:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.schedule}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.schedule}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Direccion:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.address}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.address}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Area:</td>
+              <td className="jobDetailsText">{this.context.jobConfirm.area}</td>
               <td className="jobDetailsText">{this.state.jobData.data.area}</td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Numero:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.phone}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.phone}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Preguntar por:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.Contact}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.contact}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Mas informacion:</td>
+              <td className="jobDetailsText">
+                {this.context.jobConfirm.extraInfo}
+              </td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.extrainfo}
               </td>
@@ -101,3 +109,5 @@ export default class Modal extends React.Component {
     );
   }
 }
+
+Modal.contextType = LanguageContext;

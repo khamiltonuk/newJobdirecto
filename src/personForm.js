@@ -170,7 +170,7 @@ export class PersonForm extends React.Component {
           <br />
           <br />
           <input
-            className="personFormButton"
+            className="personButton"
             onClick={this.submission}
             type="submit"
             value="Listo"

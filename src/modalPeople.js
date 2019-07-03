@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export default class ModalPeople extends React.Component {
   constructor(props) {
@@ -25,7 +26,9 @@ export default class ModalPeople extends React.Component {
         <main className="modalPeople">
           <table id="jobDetails">
             <tr>
-              <td className="jobDetailsText">Nombre:</td>
+              <td className="jobDetailsText">
+                {this.context.personModal.name}
+              </td>
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personname}
               </td>
@@ -33,37 +36,63 @@ export default class ModalPeople extends React.Component {
                 <i class="fa fa-close" />
               </button>
             </tr>
+
+            {this.state.peopleData.data.personstatus === "seeksJob" && (
+              <tr>
+                {" "}
+                <td className="jobDetailsText">
+                  {this.context.personModal.status1}
+                </td>
+                <td className="jobDetailsText">
+                  {this.state.peopleData.data.personskill}
+                </td>
+              </tr>
+            )}
+
+            {this.state.peopleData.data.personstatus === "offersService" && (
+              <tr>
+                {" "}
+                <td className="jobDetailsText">
+                  {this.context.personModal.status2}
+                </td>
+                <td className="jobDetailsText">
+                  {this.state.peopleData.data.personskill}
+                </td>
+              </tr>
+            )}
+
             <tr>
               {" "}
-              <td className="jobDetailsText">Busca:</td>
               <td className="jobDetailsText">
-                {this.state.peopleData.data.personskill}
+                {this.context.personModal.experience}
               </td>
-            </tr>
-            <tr>
-              {" "}
-              <td className="jobDetailsText">Experiencia:</td>
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personexperience}
               </td>
             </tr>
             <tr>
               {" "}
-              <td className="jobDetailsText">Horario:</td>
+              <td className="jobDetailsText">
+                {this.context.personModal.schedule}
+              </td>
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personschedule}
               </td>
             </tr>
             <tr>
               {" "}
-              <td className="jobDetailsText">Area:</td>
+              <td className="jobDetailsText">
+                {this.context.personModal.area}
+              </td>
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personarea}
               </td>
             </tr>
             <tr>
               {" "}
-              <td className="jobDetailsText">Numero:</td>
+              <td className="jobDetailsText">
+                {this.context.personModal.phone}
+              </td>
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personnumber}
               </td>
@@ -71,7 +100,9 @@ export default class ModalPeople extends React.Component {
 
             <tr>
               {" "}
-              <td className="jobDetailsText">Extra:</td>
+              <td className="jobDetailsText">
+                {this.context.personModal.extraInfo}
+              </td>
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personextrainfo}
               </td>
@@ -82,3 +113,5 @@ export default class ModalPeople extends React.Component {
     );
   }
 }
+
+ModalPeople.contextType = LanguageContext;

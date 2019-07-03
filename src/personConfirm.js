@@ -100,7 +100,7 @@ export class PersonConfirm extends React.Component {
             <Link to="/">
               <input
                 onClick={this.handleSubmit}
-                className="btn-primary"
+                className="personButton"
                 type="submit"
                 value="Publicar"
               />

@@ -342,7 +342,7 @@ button[type="submit"] {
 }
 
 #personfinalpaybutton,
-.personFormButton {
+.personButton {
   color: white;
   background: #b80f0a;
   font-size: 50px;

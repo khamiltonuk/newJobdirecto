@@ -10,6 +10,7 @@ export const languages = {
       seeking: "busca",
       seeking2: "busca trabajo de",
       seeking3: "Se busca",
+      seeking4: "ofrece servicios de",
       filterDefault: "Todo Nueva York",
       filterOtherArea: "Otra area en Nueva York"
     },
@@ -35,16 +36,28 @@ export const languages = {
 
     jobConfirm: {
       title: "Su anuncio",
-      name: "Nombre de su negocio:",
+      name: "Nombre:",
       position: "Puesto:",
       payment: "Salario:",
       payType: "Paga en:",
       schedule: "Horario:",
       address: "Direccion:",
+      area: "Area:",
       phone: "Numero:",
       contact: "Preguntar por:",
       extraInfo: "Mas informacion:",
       button: "Publicar"
+    },
+
+    personModal: {
+      name: "Nombre:",
+      status1: "Busca:",
+      status2: "Servicios de:",
+      experience: "Experiencia:",
+      schedule: "Horario:",
+      area: "Area:",
+      phone: "Numero:",
+      extraInfo: "Mas info:"
     },
     jobPayPage: {
       title: "Usted a marcado anuncio azul",
@@ -66,6 +79,8 @@ export const languages = {
       seeking: "needs",
       seeking2: "is looking for a job as",
       seeking3: "Looking for",
+
+      seeking4: "offers services as",
       filterDefault: "All NY",
       filterOtherArea: "Other area in NY"
     },
@@ -89,17 +104,30 @@ export const languages = {
     },
     jobConfirm: {
       title: "Your post",
-      name: "Business name:",
+      name: "Name:",
       position: "Looking for:",
       payment: "Salary:",
       payType: "Pays in:",
       schedule: "Schedule:",
       address: "Address:",
+      area: "Area:",
       phone: "Number:",
       contact: "Ask for:",
       extraInfo: "More info:",
       button: "Publish"
     },
+
+    personModal: {
+      name: "Name:",
+      status1: "Looking to work as:",
+      status2: "Offers service of:",
+      experience: "Experience:",
+      schedule: "Schedule:",
+      area: "Area:",
+      phone: "Number:",
+      extraInfo: "More info:"
+    },
+
     jobPayPage: {
       title: "You chose TOP post",
       text1: "TOP posts are blue and stay on top of the list for 48 hours.",
