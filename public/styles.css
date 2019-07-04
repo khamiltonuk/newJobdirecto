@@ -14,6 +14,16 @@ body {
   justify-content: center;
 }
 
+.ghostButton {
+  opacity: 0.00000001;
+  background-color: white;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 25px;
+  transform: translate(-50%, 0px);
+  position: absolute;
+}
+
 #dissapear {
   color: white;
 }
@@ -285,13 +295,18 @@ td {
   width: 80px;
 }
 
-#urgentCheckedContainer {
-  margin: 60px;
+#urgentCheckedButtons {
   text-align: center;
+}
+
+#urgentCheckedContainer {
+  margin: auto;
+  max-width: 800px;
 }
 
 .UrgentCheckedText {
   font-size: 40px;
+  text-align: center;
 }
 
 #urgentExample {

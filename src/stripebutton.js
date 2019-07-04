@@ -4,7 +4,6 @@ import { LanguageContext } from "./languageContext";
 import { useContext } from "react";
 
 function StripeButton() {
-  // const { useContext } = React;
   const context = useContext(LanguageContext);
   const stripe = Stripe("pk_live_5PjwBk9dSdW7htTKHQ3HKrTd");
 
@@ -36,10 +35,10 @@ function StripeButton() {
     <div>
       <button
         id="UrgentCheckedButtonYES"
-        className="btn-primary"
+        className="ghostButton"
         onClick={handleClick}
       >
-        {this.context.main.name}
+        Pagar Pay
         <br />
       </button>
       <div>{error}</div>
@@ -48,4 +47,4 @@ function StripeButton() {
 }
 
 export default StripeButton;
-// StripeButton.contextType = LanguageContext;
+StripeButton.contextType = LanguageContext;
