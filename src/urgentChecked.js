@@ -36,7 +36,7 @@ export default class UrgentChecked extends React.Component {
           <StripeButton />
           <button
             onClick={this.cancelUrgency}
-            id="UrgentCheckedButtonNO"
+            id="UrgentCheckedButtonYES"
             className="btn-primary"
           >
             {this.context.jobPayPage.buttonYES}

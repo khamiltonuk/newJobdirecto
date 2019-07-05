@@ -596,7 +596,6 @@ label {
   }
 
   .btn-primary {
-    margin-left: 450px;
     padding: 15px;
   }
 
@@ -692,6 +691,9 @@ label {
     font-weight: bold;
   }
 
+  #UrgentCheckedButtonNO {
+    font-size: 20px;
+  }
   #personfinalpaybutton {
   }
 
@@ -716,5 +718,9 @@ label {
   .switch {
     width: 130px;
     height: 62px;
+  }
+
+  #iamlookingforjob {
+    margin-left: 400px;
   }
 }
