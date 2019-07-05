@@ -33,11 +33,7 @@ function StripeButton() {
 
   return (
     <div>
-      <button
-        id="UrgentCheckedButtonYES"
-        className="ghostButton"
-        onClick={handleClick}
-      >
+      <button id="ghostButton" className="btn-primary" onClick={handleClick}>
         Pagar Pay
         <br />
       </button>
