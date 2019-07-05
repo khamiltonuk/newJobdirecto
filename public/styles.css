@@ -587,17 +587,17 @@ label {
 
   #iamlookingforjob {
     margin-left: 450px;
+    padding: 25px;
+  }
+
+  #iamlookingforstaff {
+    padding: 25px;
   }
 
   .filter {
     position: absolute;
     left: 30px;
     font-size: 30px;
-  }
-
-  .allJobs {
-    margin-top: 100px;
-    justify-content: flex-start;
   }
 
   .jobType {
@@ -681,7 +681,7 @@ label {
   }
 
   .allJobs {
-    margin-top: 12%;
+    margin-top: 10%;
   }
 
   .filter {
