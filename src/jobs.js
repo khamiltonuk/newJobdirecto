@@ -124,6 +124,7 @@ export class Jobs extends React.Component {
         <div className="buttonsAndFilters">
           <Link to="/jobForm">
             <input
+              className="buttonOrFilter"
               id="iamlookingforstaff"
               type="submit"
               value={this.context.main.jobPostButton}
@@ -131,6 +132,7 @@ export class Jobs extends React.Component {
           </Link>
           <Link to="/personForm">
             <input
+              className="buttonOrFilter"
               id="iamlookingforjob"
               type="submit"
               value={this.context.main.seeksJobButton}
@@ -141,7 +143,7 @@ export class Jobs extends React.Component {
             <div className="filters">
               <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
                 <select
-                  className="filter"
+                  className="filter buttonOrFilter"
                   type="text"
                   name="area"
                   onChange={this.handleChangeArea}

@@ -6,7 +6,7 @@ import { LanguageContext } from "./languageContext";
 class LanguageButton extends React.Component {
   render() {
     return (
-      <div>
+      <div id="translateButtonContainer">
         <button id="translateButton" onClick={this.props.changeLanguage}>
           {this.context.currentLanguage === "español" ? "english" : "español"}
         </button>
