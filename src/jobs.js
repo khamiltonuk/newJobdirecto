@@ -138,33 +138,26 @@ export class Jobs extends React.Component {
               value={this.context.main.seeksJobButton}
             />
           </Link>
-
-          <div className="filtersbutton">
-            <div className="filters">
-              <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
-                <select
-                  className="filter buttonOrFilter"
-                  type="text"
-                  name="area"
-                  onChange={this.handleChangeArea}
-                >
-                  <option value="">
-                    &#160;&#160;{this.context.main.filterDefault}
-                  </option>
-                  <option value="Manhattan">&#160;&#160;Manhattan</option>
-                  <option value="Brooklyn">&#160;&#160;Brooklyn</option>
-                  <option value="Queens">&#160;&#160;Queens</option>
-                  <option value="Bronx">&#160;&#160;Bronx</option>
-                  <option value="Staten Island">
-                    &#160;&#160;Staten Island
-                  </option>
-                  <option value="Otra area en NY">
-                    &#160;&#160;{this.context.main.filterOtherArea}
-                  </option>
-                </select>
-              </form>
-            </div>
-          </div>
+          <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
+            <select
+              className="filter"
+              type="text"
+              name="area"
+              onChange={this.handleChangeArea}
+            >
+              <option value="">
+                &#160;&#160;{this.context.main.filterDefault}
+              </option>
+              <option value="Manhattan">&#160;&#160;Manhattan</option>
+              <option value="Brooklyn">&#160;&#160;Brooklyn</option>
+              <option value="Queens">&#160;&#160;Queens</option>
+              <option value="Bronx">&#160;&#160;Bronx</option>
+              <option value="Staten Island">&#160;&#160;Staten Island</option>
+              <option value="Otra area en NY">
+                &#160;&#160;{this.context.main.filterOtherArea}
+              </option>
+            </select>
+          </form>
         </div>
 
         <div className="allJobs">

@@ -397,6 +397,8 @@ button {
   float: left;
   margin-top: 60px;
   margin-left: 20px;
+  height: 50px;
+  border-radius: 6px;
 }
 
 #iamlookingforstaff {
@@ -434,21 +436,6 @@ button {
   font-size: 35px;
   text-align: center;
   margin-bottom: 60px;
-}
-
-/* #title {
-  text-align: center;
-  font-size: 55px;
-  margin-top: 100px;
-} */
-
-/* #subTitle {
-  font-size: 45px;
-} */
-
-.filter {
-  height: 50px;
-  border-radius: 6px;
 }
 
 .switch {
@@ -604,10 +591,11 @@ label {
   }
 
   .filter {
-    position: absolute;
-    left: 30px;
-    font-size: 30px;
-    padding: 15px;
+    position: relative;
+    font-size: 24px;
+    padding: 12px;
+    margin-top: 0;
+    margin-left: 80px;
   }
 
   .jobType {
@@ -722,5 +710,10 @@ label {
 
   #iamlookingforjob {
     margin-left: 400px;
+  }
+
+  .buttonsAndFilters {
+    display: flex;
+    flex-flow: row wrap;
   }
 }
