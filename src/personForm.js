@@ -101,8 +101,7 @@ export class PersonForm extends React.Component {
           />
           <p className="formQuestions"> Que experiencia tiene?</p>
           <textarea
-            className="formInputs"
-            id="personExperience"
+            className="formInputs bigInput"
             type="text"
             name="personExperience"
             defaultValue={
@@ -151,7 +150,7 @@ export class PersonForm extends React.Component {
           />
           <p className="formQuestions">Algo que desee agregar?</p>
           <textarea
-            className="formInputs extraInfo"
+            className="formInputs bigInput"
             type="text"
             name="personExtraInfo"
             defaultValue={

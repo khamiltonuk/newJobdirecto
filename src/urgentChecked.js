@@ -23,9 +23,7 @@ export default class UrgentChecked extends React.Component {
   render() {
     return (
       <div id="urgentCheckedContainer">
-        <h1 id="UrgentCheckedTitle" className="heading-1">
-          {this.context.jobPayPage.title}
-        </h1>
+        <h1 className="heading-1">{this.context.jobPayPage.title}</h1>
         <img id="urgentExample" src="urgentExample.png" />
         <p className="UrgentCheckedText">
           {this.context.jobPayPage.text1} <br />

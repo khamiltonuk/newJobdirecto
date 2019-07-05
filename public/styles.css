@@ -427,6 +427,7 @@ button {
   font-size: 50px;
   text-align: center;
   margin-bottom: 60px;
+  margin-top: 100px;
 }
 
 .heading-2 {
@@ -617,7 +618,7 @@ label {
   }
 
   .formInputs {
-    width: 40%;
+    width: 600px;
     height: 30px;
     font-size: 25px;
     margin-bottom: 20px;
@@ -654,7 +655,11 @@ label {
   }
 
   #urgentExample {
-    width: 550px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 40px;
   }
 
   #UrgentCheckedTitle {
@@ -687,5 +692,19 @@ label {
   .filter {
     height: 75px;
     border-radius: 6px;
+  }
+
+  .bigInput {
+    height: 150px;
+  }
+
+  .slider:before {
+    height: 55px;
+    width: 55px;
+  }
+
+  .switch {
+    width: 130px;
+    height: 62px;
   }
 }

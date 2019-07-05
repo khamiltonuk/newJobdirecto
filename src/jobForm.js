@@ -395,7 +395,7 @@ export class JobForm extends React.Component {
           />
           <p className="formQuestions">{this.context.jobForm.question10}</p>
           <textarea
-            className="formInputs extraInfo"
+            className="formInputs extraInfo bigInput"
             type="text"
             name="extrainfo"
             defaultValue={
