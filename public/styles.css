@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 200px;
 }
 
 #ghostButton {
@@ -424,10 +425,6 @@ button {
   margin-left: 650px;
 }
 
-.allJobs {
-  margin-top: 260px;
-}
-
 .heading-1 {
   font-size: 50px;
   text-align: center;
@@ -687,7 +684,7 @@ label {
   }
 
   .allJobs {
-    margin-top: 7%;
+    margin-top: 4%;
   }
 
   .filter {
