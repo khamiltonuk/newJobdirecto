@@ -40,14 +40,16 @@ export default class PersonPay extends React.Component {
           <br />
           <br />
         </p>
-        <StripeButton2 />
-        <button
-          onClick={this.cancelPay}
-          id="UrgentCheckedButtonNO"
-          className="btn-secondary"
-        >
-          Deseo seguir buscando sin pagar
-        </button>
+        <div className="personPayButtons">
+          <StripeButton2 />
+          <button
+            onClick={this.cancelPay}
+            id="UrgentCheckedButtonNO"
+            className="btn-secondary"
+          >
+            Deseo seguir buscando sin pagar
+          </button>
+        </div>
       </div>
     );
   }

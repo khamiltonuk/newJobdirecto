@@ -298,7 +298,8 @@ td {
   width: 80px;
 }
 
-#urgentCheckedButtons {
+#urgentCheckedButtons,
+.personPayButtons {
   text-align: center;
 }
 
@@ -669,9 +670,10 @@ label {
 
   #UrgentCheckedButtonYES,
   #UrgentCheckedButtonNO,
-  #ghostButton {
+  #ghostButton,
+  #personfinalpaybutton {
     width: 300px;
-    height: 85px;
+    height: 90px;
     font-size: 30px;
     font-weight: bold;
   }

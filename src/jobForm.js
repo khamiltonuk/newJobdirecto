@@ -6,9 +6,12 @@ import { LanguageContext } from "./languageContext";
 export class JobForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { addClass: false };
+    this.state = {
+      otherArea: ""
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.submission = this.submission.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +24,7 @@ export class JobForm extends React.Component {
         jobtype: result.data.data.jobtype,
         typepay: result.data.data.typepay,
         area: result.data.data.area,
+        otherArea: result.data.data.otherArea,
         hourpay: result.data.data.hourpay,
         schedule: result.data.data.schedule,
         address: result.data.data.address,
@@ -30,6 +34,15 @@ export class JobForm extends React.Component {
         urgent: result.data.data.urgent
       });
     });
+  }
+
+  submission() {
+    if (this.state.area === this.context.jobForm.filterOtherArea) {
+      this.setState({
+        area: this.state.otherArea,
+        otherArea: this.state.area
+      });
+    }
   }
 
   handleChange(event) {
@@ -366,9 +379,24 @@ export class JobForm extends React.Component {
               }
               value={this.context.jobForm.filterOtherArea}
             >
-              Otra area en NY
+              {this.context.jobForm.filterOtherArea}
             </option>
           </select>
+          {this.state.area === this.context.jobForm.filterOtherArea && (
+            <div>
+              <p className="formQuestions" style={{ color: "blue" }}>
+                <b>Cual es el nombre del area donde esta ubicado?</b>
+              </p>
+              <input
+                autoFocus
+                className="formInputs"
+                type="text"
+                name="otherArea"
+                required="required"
+                onChange={this.handleChange}
+              />
+            </div>
+          )}
           <p className="formQuestions">{this.context.jobForm.question8}</p>
           <input
             className="formInputs"
