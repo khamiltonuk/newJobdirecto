@@ -32,8 +32,8 @@ export default class ModalPeople extends React.Component {
               <td className="jobDetailsText">
                 {this.state.peopleData.data.personname}
               </td>
-              <button onClick={this.props.close} class="btn">
-                <i class="fa fa-close" />
+              <button onClick={this.props.close} className="btn">
+                <i className="fa fa-close" />
               </button>
             </tr>
 

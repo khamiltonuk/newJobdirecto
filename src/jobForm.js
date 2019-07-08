@@ -443,7 +443,7 @@ export class JobForm extends React.Component {
             </label>
             <br />
             <br />
-            <label class="switch">
+            <label className="switch">
               <input
                 id="urgentCheckBox"
                 type="checkbox"
@@ -456,7 +456,7 @@ export class JobForm extends React.Component {
                 onChange={this.handleChange}
                 onClick={this.makeUrgent}
               />
-              <span class="slider round" />
+              <span className="slider round" />
             </label>
           </div>{" "}
           <br />

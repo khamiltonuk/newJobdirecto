@@ -30,8 +30,8 @@ export default class Modal extends React.Component {
               <td className="jobDetailsText">
                 {this.state.jobData.data.restname}
               </td>
-              <button onClick={this.props.close} class="btn">
-                <i class="fa fa-close" />
+              <button onClick={this.props.close} className="btn">
+                <i className="fa fa-close" />
               </button>
             </tr>
             <tr>
