@@ -24,17 +24,16 @@ function StripeButton() {
         }
       });
 
-    console.log("someone wants to pay");
     event.preventDefault();
     axios.post("/wantsToPay").then(resp => {
-      console.log("yes pay");
     });
   };
 
   return (
     <div>
-      <button id="ghostButton" className="btn-primary" onClick={handleClick}>
-        Pagar Pay
+      <button     id="UrgentCheckedButtonYES"
+          className="btn-primary" onClick={handleClick}>
+        {context.jobPayPage.buttonYES}
         <br />
       </button>
       <div>{error}</div>
