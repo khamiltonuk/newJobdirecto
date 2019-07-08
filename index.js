@@ -97,23 +97,23 @@ app.get("/getPeople", function(req, res) {
   });
 });
 
-app.get("/loginorregister", async function(req, res) {
-  if (req.session.userId) {
-    res.redirect("/jobform");
-  } else {
-    return;
-  }
-});
-
-app.get("/jobform", async function(req, res) {
-  if (!req.session.userId) {
-    res.redirect("/loginorregister");
-  } else if (req.session.userId === undefined) {
-    res.redirect("/loginorregister");
-  } else {
-    res.sendFile(__dirname + "/index.html");
-  }
-});
+// app.get("/loginorregister", async function(req, res) {
+//   if (req.session.userId) {
+//     res.redirect("/jobform");
+//   } else {
+//     return;
+//   }
+// });
+//
+// app.get("/jobform", async function(req, res) {
+//   if (!req.session.userId) {
+//     res.redirect("/loginorregister");
+//   } else if (req.session.userId === undefined) {
+//     res.redirect("/loginorregister");
+//   } else {
+//     res.sendFile(__dirname + "/index.html");
+//   }
+// });
 
 app.post("/finalizeJob", (req, res) => {
   req.session.job = req.body;

@@ -88,7 +88,7 @@ export class PersonForm extends React.Component {
           <br />
           <p className="formQuestions"> De que?</p>
           <input
-            maxlength="30"
+            maxLength="30"
             className="formInputs"
             type="text"
             name="personSkill"

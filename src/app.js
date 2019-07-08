@@ -51,11 +51,10 @@ export class App extends React.Component {
               path="/job/:id"
               render={props => <JobDetails {...props} key={props.match.url} />}
             />
-            <Route exact="exact" path="/" component={Jobs} />
-            <Route exact="exact" path="/personForm" component={PersonForm} />
-            <Route exact="exact" path="/jobForm" component={JobForm} />
-
-            <Route exact="exact" path="/personPay" component={PersonPay} />
+            <Route exact path="/" component={Jobs} />
+            <Route path="/personForm" component={PersonForm} />
+            <Route path="/jobForm" component={JobForm} />
+            <Route  path="/personPay" component={PersonPay} />
             <Route
               exact="exact"
               path="/personConfirm"

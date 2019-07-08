@@ -30,15 +30,11 @@ export class Jobs extends React.Component {
 
   componentDidMount() {
     axios.get("/getPeople").then(result => {
-      this.setState({ peopleData: result.data }, () => {
-        console.log("look at this people state: ", this.state.peopleData.data);
-      });
+      this.setState({ peopleData: result.data });
     });
 
     axios.get("/getJobs").then(result => {
-      this.setState({ jobData: result.data }, () => {
-        console.log("look at this beautiful state: ", this.state.jobData.data);
-      });
+      this.setState({ jobData: result.data });
     });
   }
 

@@ -11,6 +11,7 @@ export class JobForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.submission = this.submission.bind(this);
   }
 
@@ -46,21 +47,27 @@ export class JobForm extends React.Component {
   }
 
   handleChange(event) {
+
     this.setState(
       {
         [event.target.name]: event.target.value
-      },
-      () => {
-        console.log(this.state);
       }
     );
   }
 
+  handleCheckboxChange() {
+      this.setState({
+          urgent: event.target.checked
+      },
+      () => {
+        console.log(this.state);
+      })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    console.log("state in job form: ", this.state);
     axios.post("/finalizeJob", this.state).then(resp => {
-      if (this.state.urgent === "true") {
+      if (this.state.urgent === true) {
         this.props.history.push("/urgentChecked");
       } else {
         this.props.history.push("/JobConfirm");
@@ -448,15 +455,11 @@ export class JobForm extends React.Component {
                 id="urgentCheckBox"
                 type="checkbox"
                 name="urgent"
-                defaultValue={
-                  this.state.jobData && this.state.jobData.data
-                    ? this.state.jobData.data.urgent
-                    : true
-                }
-                onChange={this.handleChange}
-                onClick={this.makeUrgent}
+                onChange={this.handleCheckboxChange}
+
+
               />
-              <span className="slider round" />
+              <span className="slider round"  />
             </label>
           </div>{" "}
           <br />
