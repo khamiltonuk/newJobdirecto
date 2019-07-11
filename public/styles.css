@@ -543,6 +543,15 @@ label {
     margin-top: 30px;
   }
 
+  #iamlookingforstaff {
+      padding: 25px;
+  }
+
+  #iamlookingforjob {
+    margin-left: 350px;
+    padding: 25px;
+  }
+
   .heading-2 {
     font-size: 25px;
   }
@@ -560,6 +569,10 @@ label {
   .personFormLabels {
     font-size: 22px;
   }
+
+.jobData {
+    line-height: 45px;
+}
 
   .modal {
     position: fixed;
@@ -580,7 +593,7 @@ label {
   .jobData,
   .urgentJobData,
   .peopleData {
-    width: 15.5%;
+    width: 13.5%;
     font-size: 20px;
   }
 
@@ -596,13 +609,7 @@ label {
     padding: 15px;
   }
 
-  .filter {
-    position: relative;
-    font-size: 24px;
-    padding: 12px;
-    margin-top: 0;
-    margin-left: 80px;
-  }
+
 
   .jobType {
     font-size: 25px;
@@ -689,9 +696,17 @@ label {
     margin-top: 4%;
   }
 
+
   .filter {
-    height: 75px;
-    border-radius: 6px;
+      height: 55px;
+      border-radius: 6px;
+
+    position: relative;
+    font-size: 20px;
+    padding: 12px;
+    margin-top: 0;
+    margin-left: 80px;
+    width: 250px;
   }
 
   .bigInput {
@@ -709,7 +724,8 @@ label {
   }
 
   #iamlookingforjob {
-    margin-left: 400px;
+    margin-left: 350px;
+    padding: 25px;
   }
 
   .buttonsAndFilters {

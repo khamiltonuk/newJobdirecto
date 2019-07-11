@@ -31,7 +31,8 @@ export const languages = {
       payType1: "Cash",
       payType2: "Cheque",
       payType3: "Cash y Cheque",
-      filterOtherArea: "Otra area en NY"
+      filterOtherArea: "Otra area en NY",
+      title: "Encuentre al mejor personal para su negocio"
     },
 
     jobConfirm: {
@@ -100,7 +101,9 @@ export const languages = {
       payType1: "Cash",
       payType2: "Check",
       payType3: "Cash and Check",
-      filterOtherArea: "Other area in NY"
+      filterOtherArea: "Other area in NY",
+      title: "Fill out the form and find staff in seconds"
+
     },
     jobConfirm: {
       title: "Your post",
