@@ -67,7 +67,8 @@ export const languages = {
       text2:
         "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
       buttonNO: "Quiero un anuncio gratis y comun",
-      buttonYES: "Pagar $10"
+      buttonYES: "Pagar $10",
+      contactInfo: "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a me@wilfredocasas.com"
     }
   },
 
@@ -137,7 +138,9 @@ export const languages = {
       text2:
         "If you are looking for top staff as quickly as possible, this is what you need.",
       buttonNO: "I want a free and normal post",
-      buttonYES: "Pay $10"
+      buttonYES: "Pay $10",
+      contactInfo: "If you have questions, suggestions or complains, please send an email to me@wilfredocasas.com"
+
     }
   }
 };

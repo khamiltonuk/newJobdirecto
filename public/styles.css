@@ -303,6 +303,12 @@ td {
   text-align: center;
 }
 
+.contactInfo {
+    margin-top: 100px;
+    margin-bottom: 100px;
+      font-style: italic;
+}
+
 #urgentCheckedContainer {
   margin: auto;
   max-width: 800px;
@@ -532,8 +538,7 @@ label {
   font-size: 22px;
 }
 
-#UrgentCheckedButtonYES,
-#ghostButton {
+#UrgentCheckedButtonYES {
   margin: 0;
 }
 
@@ -541,6 +546,10 @@ label {
   .heading-1 {
     font-size: 35px;
     margin-top: 30px;
+  }
+
+  .contactInfo {
+      margin-top: 40px;
   }
 
   #iamlookingforstaff {
@@ -679,14 +688,14 @@ label {
   #UrgentCheckedButtonNO,
   #ghostButton,
   #personfinalpaybutton {
-    width: 300px;
-    height: 90px;
-    font-size: 30px;
+    width: 200px;
+    height: 70px;
+    font-size: 26px;
     font-weight: bold;
   }
 
   #UrgentCheckedButtonNO {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   #personfinalpaybutton {

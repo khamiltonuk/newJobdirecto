@@ -42,6 +42,7 @@ export default class UrgentChecked extends React.Component {
           >
             {this.context.jobPayPage.buttonNO}
           </button>
+          <div className="contactInfo"><p>{this.context.jobPayPage.contactInfo}</p></div>
         </div>
       </div>
     );
