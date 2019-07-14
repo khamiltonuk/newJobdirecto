@@ -89,6 +89,32 @@ exports.publishPerson = function(
     });
 };
 
+
+exports.createFacebookUser = function(id, name, email, token
+ ) {
+  return db
+    .query(
+      `
+        INSERT INTO users
+        (id, name, email, token)
+        VALUES ($1, $2, $3, $4)
+        returning *;
+        `,
+      [
+id, name, email, token      ]
+    )
+    .then(function(results) {
+      return results.rows;
+    });
+};
+
+exports.getFacebookUser = function(id) {
+  return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
+    return results.rows[0];
+  });
+};
+
+
 exports.getJobInfo = function(id) {
   return db.query(`SELECT * FROM jobs WHERE id = $1`, [id]).then(results => {
     return results.rows[0];

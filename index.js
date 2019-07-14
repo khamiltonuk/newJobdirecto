@@ -4,6 +4,9 @@ const compression = require("compression");
 const database = require("./database.js");
 const cookieSession = require("cookie-session");
 const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
+const passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
+
 app.use(compression());
 app.use(express.static("public"));
 
@@ -25,11 +28,111 @@ app.use(
   })
 );
 
+// FUNCTION TO FIND OF CREATE USER
+// it needs to be asynchronous (i dont know why)
+// if facebook.id matches profile.id
+// if there is an error, return done with the error
+// if there is a user, return the user information
+// else, create a new user (in your database I guess?)
+
+
+// attempt
+// passport.use(new FacebookStrategy({
+//     clientID: 1227008554140703,
+//     clientSecret: "e508c9661b413e9a56d616350e80f201",
+//     callbackURL: "http://localhost:8080/facebook/callback"
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//       function(err, user) {
+//           if (facebook.id === profile.id) {
+//               return database.getFacebookUser(profile.id).then(user => {
+//           res.json({
+//             user
+//           });
+//       }
+//   )}
+//       if(err) throw err;
+//       else {
+//           return database.createFacebookUser(profile.id, profile.name, profile.email, profile.token).then(() => {
+//             res.json({
+//               success: true
+//             });
+//         })
+//       }
+//         }
+// }
+// ));
+
+// original function
+// passport.use(new FacebookStrategy({
+//     clientID: 1227008554140703,
+//     clientSecret: "e508c9661b413e9a56d616350e80f201",
+//     callbackURL: "http://localhost:8080/facebook/callback"
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//       console.log("Im happening");
+//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+//         console.log(profile.id);
+//       return cb(err, user);
+//     });
+//   }
+// ));
+
+
+// from tutorial using mongoose I think
+// function(accessToken, refreshToken, profile, done) {
+//   process.nextTick(function () {
+//     //Check whether the User exists or not using profile.id
+//     if(config.use_database) {
+//       pool.query("SELECT * from user_info where user_id="+profile.id, (err,rows) => {
+//         if(err) throw err;
+//         if(rows && rows.length === 0) {
+//             console.log("There is no such user, adding now");
+//             pool.query("INSERT into user_info(user_id,user_name) VALUES('"+profile.id+"','"+profile.username+"')");
+//         } else {
+//             console.log("User already exists in database");
+//         }
+//       });
+//     }
+//     return done(null, profile);
+//   });
+// }
+
+
+
+passport.serializeUser(function(user, done) {
+    console.log("serialize");
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    console.log("deserialize");
+
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.get('/loginFacebook',
+  passport.authenticate('facebook'));
+
+app.get('/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+      console.log("redirecting back");
+    res.redirect('/');
+  });
+
+// here ends passport code
+
 app.use(
   cookieSession({
     secret: `I'm always angry.`,
     maxAge: 1000 * 60 * 60 * 24 * 14
-    // httpOnly: true
   })
 );
 
@@ -201,50 +304,50 @@ app.post("/publishPerson", (req, res) => {
     });
 });
 
-app.post("/register", function(req, res) {
-  database
-    .hashPassword(req.body.password)
-    .then(hash => {
-      return database
-        .registerUser(req.body.email, hash)
-        .then(results => {
-          req.session.userId = results[0].id;
-          res.json({ success: true });
-        })
-        .catch(err => {
-          console.log(err);
-          res.json({ success: false });
-        });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+// app.post("/register", function(req, res) {
+//   database
+//     .hashPassword(req.body.password)
+//     .then(hash => {
+//       return database
+//         .registerUser(req.body.email, hash)
+//         .then(results => {
+//           req.session.userId = results[0].id;
+//           res.json({ success: true });
+//         })
+//         .catch(err => {
+//           console.log(err);
+//           res.json({ success: false });
+//         });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
-app.post("/login", (req, res) => {
-  database
-    .showHashPw(req.body.email)
-    .then(userPw => {
-      if (!userPw) {
-        res.json({ success: false });
-      } else {
-        return database.checkPassword(req.body.password, userPw);
-      }
-    })
-    .then(doesMatch => {
-      if (doesMatch) {
-        database.getLoginId(req.body.email).then(id => {
-          req.session.userId = id;
-          res.json({ success: true });
-        });
-      } else {
-        res.json({ success: false });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+// app.post("/login", (req, res) => {
+//   database
+//     .showHashPw(req.body.email)
+//     .then(userPw => {
+//       if (!userPw) {
+//         res.json({ success: false });
+//       } else {
+//         return database.checkPassword(req.body.password, userPw);
+//       }
+//     })
+//     .then(doesMatch => {
+//       if (doesMatch) {
+//         database.getLoginId(req.body.email).then(id => {
+//           req.session.userId = id;
+//           res.json({ success: true });
+//         });
+//       } else {
+//         res.json({ success: false });
+//       }
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
 app.get("*", function(req, res) {
   res.sendFile(__dirname + "/index.html");

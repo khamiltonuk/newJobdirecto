@@ -10,20 +10,27 @@ export default class Modal extends React.Component {
 
   componentDidMount() {
     axios.get("/getJobDetails/" + this.props.id).then(result => {
-      console.log("working details: ", result);
+      console.log("working details: ", result.data.data.urgent);
+      console.log("props: ", this.props);
+
       this.setState({
         jobData: result.data
       });
-    });
+  }, () => {
+      console.log(this.jobData);
+  });
   }
 
   render() {
+
     if (!this.state.jobData) {
       return null;
     }
     return (
+
       <div>
-        <main className="modal">
+      <main
+       className={this.state.jobData.data.urgent === "true" ? "urgentModal" : "modal"}>
           <table id="jobDetails">
             <tr>
               <td className="jobDetailsText">{this.context.jobConfirm.name}</td>

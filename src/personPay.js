@@ -49,7 +49,7 @@ export default class PersonPay extends React.Component {
           >
             Deseo seguir buscando sin pagar
           </button>
-          <div className="contactInfo"><p>Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a me@wilfredocasas.com</p></div>
+          <div className="contactInfo"><p>Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com</p></div>
 
         </div>
       </div>

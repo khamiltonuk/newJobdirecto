@@ -292,6 +292,8 @@ export class Jobs extends React.Component {
                 );
               }
             })}
+
+{/*            // normal posts here*/}
           {!this.state.userSelectionArea &&
             this.state.jobData.data.map(data => {
               if (data.urgent !== "true") {

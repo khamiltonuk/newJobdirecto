@@ -68,7 +68,7 @@ export const languages = {
         "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
       buttonNO: "Quiero un anuncio gratis y comun",
       buttonYES: "Pagar $10",
-      contactInfo: "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a me@wilfredocasas.com"
+      contactInfo: "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
     }
   },
 
@@ -139,7 +139,7 @@ export const languages = {
         "If you are looking for top staff as quickly as possible, this is what you need.",
       buttonNO: "I want a free and normal post",
       buttonYES: "Pay $10",
-      contactInfo: "If you have questions, suggestions or complains, please send an email to me@wilfredocasas.com"
+      contactInfo: "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
 
     }
   }

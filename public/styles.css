@@ -202,7 +202,7 @@ td {
   padding: 15px;
 }
 
-.modal {
+.urgentModal {
   transform: translate(-50%, -50%);
   position: fixed;
   z-index: 2;
@@ -213,6 +213,21 @@ td {
   top: 50%;
   left: 50%;
   color: white;
+  display: flex;
+  overflow: scroll;
+}
+
+.modal {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: 2;
+  background: white;
+  border-style: solid;
+  width: 93%;
+  height: 83%;
+  top: 50%;
+  left: 50%;
+  color: black;
   display: flex;
   overflow: scroll;
 }
