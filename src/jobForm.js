@@ -396,7 +396,7 @@ export class JobForm extends React.Component {
           {this.state.area === this.context.jobForm.filterOtherArea && (
             <div>
               <p className="formQuestions" style={{ color: "blue" }}>
-                <b>Cual es el nombre del area donde esta ubicado?</b>
+                <b>{this.context.jobForm.extraArea}</b>
               </p>
               <input
                 autoFocus

@@ -32,7 +32,8 @@ export const languages = {
       payType2: "Cheque",
       payType3: "Cash y Cheque",
       filterOtherArea: "Otra area en NY",
-      title: "Encuentre al mejor personal para su negocio"
+      title: "Encuentre al mejor personal para su negocio",
+      extraArea: "Cual es el nombre del area donde esta ubicado?"
     },
 
     jobConfirm: {
@@ -103,7 +104,9 @@ export const languages = {
       payType2: "Check",
       payType3: "Cash and Check",
       filterOtherArea: "Other area in NY",
-      title: "Fill out the form and find staff in seconds"
+      title: "Fill out the form and find staff in seconds",
+      extraArea: "What''s the name of the area?"
+
 
     },
     jobConfirm: {
