@@ -557,6 +557,10 @@ label {
   margin: 0;
 }
 
+.bigInput {
+  height: 200px;
+}
+
 @media (min-width: 1000px) {
   .heading-1 {
     font-size: 35px;
@@ -658,6 +662,10 @@ label {
     margin-bottom: 20px;
   }
 
+  .bigInput {
+    height: 150px;
+  }
+
   .radio {
     width: 2em;
     height: 2em;
@@ -733,9 +741,7 @@ label {
     width: 250px;
   }
 
-  .bigInput {
-    height: 150px;
-  }
+
 
   .slider:before {
     height: 55px;

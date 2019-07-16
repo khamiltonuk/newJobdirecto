@@ -20,10 +20,8 @@ export class Jobs extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleClickModalPeople = this.handleClickModalPeople.bind(this);
-
     this.hideModal = this.hideModal.bind(this);
     this.hideModalPeople = this.hideModalPeople.bind(this);
-
     this.urgentJobInterval = this.urgentJobInterval.bind(this);
     this.trackCreateJob = this.trackCreateJob.bind(this);
   }
@@ -36,6 +34,19 @@ export class Jobs extends React.Component {
     axios.get("/getJobs").then(result => {
       this.setState({ jobData: result.data });
     });
+
+    return axios ({
+        method: 'get',
+        url: '/user',
+        params: {},
+        withCredentials: true
+    }).then(result => {
+      this.setState({ user: result.data }, () => {
+          console.log("does this work?", result);
+      });
+
+    });
+
   }
 
   handleChangeArea(event) {

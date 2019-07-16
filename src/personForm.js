@@ -101,7 +101,7 @@ export class PersonForm extends React.Component {
           />
           <p className="formQuestions"> Que experiencia tiene?</p>
           <textarea
-          placeholder="Ponga detalles de lo que sabe hacer asi su anuncio sera mas atractivo y es mas probable que lo llamen"
+          placeholder="Ponga detalles de lo que sabe hacer"
             className="formInputs bigInput"
             type="text"
             name="personExperience"
