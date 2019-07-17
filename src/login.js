@@ -16,13 +16,10 @@ export default class Register extends React.Component {
 
   }
 
-
-
-
   render() {
     return (
       <div className="login-container">
-        <h1 className="heading-1">Login</h1>
+{/*        <h1 className="heading-1">Login</h1>
         {this.state.error && (
           <div className="error">Email and/or password is incorrect.</div>
         )}
@@ -38,8 +35,10 @@ export default class Register extends React.Component {
     <div>
         <input type="submit" value="Log In"/>
     </div>
-</form>
-<a href="/loginFacebook">Login with facebook</a>
+</form>*/}
+<h2>Porfavor registrese con su cuenta de facebook</h2>
+<p>Cuando cree una cuenta podra crear anuncios y borrarlos tambien</p>
+<button class="loginBtn loginBtn--facebook"><a id="facebookLoginLink" href="/loginFacebook" >Login with facebook</a></button>
       </div>
     );
   }

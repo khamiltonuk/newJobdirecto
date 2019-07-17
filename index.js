@@ -34,6 +34,13 @@ app.use(
     })
 );
 
+app.use(
+    cookieSession({
+        secret: `I'm always angry.`,
+        maxAge: 1000 * 60 * 60 * 24 * 14
+    })
+);
+
 // FUNCTION TO FIND OF CREATE USER
 // it needs to be asynchronous (i dont know why)
 // if facebook.id matches profile.id
@@ -53,13 +60,13 @@ passport.use(new FacebookStrategy({
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
             console.log("user here", user);
             done(null, user)
-
         })
     }
 ));
 
 passport.serializeUser(function(user, done) {
     console.log("serialize", user);
+    // console.log(req.session);
     done(null, user.id);
 });
 
@@ -78,15 +85,7 @@ app.use(passport.session());
 
 app.get('/user',
     (req, res) => {
-        console.log("session in user: ", req.session);
-        console.log("session in user: ", res.session);
-        console.log("session in user: ", req.cookieSession);
-        console.log("session in user: ", res.cookieSession);
-        console.log("session in user: ", res.cookies);
-        console.log("session in user: ", req.cookies);
-
-
-
+        console.log("session in user: ", req.session)
         res.json(req.user);
     });
 
@@ -104,12 +103,7 @@ app.get('/facebook/callback',
 
 // here ends passport code
 
-// app.use(
-//     cookieSession({
-//         secret: `I'm always angry.`,
-//         maxAge: 1000 * 60 * 60 * 24 * 14
-//     })
-// );
+
 
 app.get("/getJobInfo", function(req, res) {
     res.json({
@@ -175,154 +169,154 @@ app.get("/getPeople", function(req, res) {
     });
 });
 
-// app.get("/loginorregister", async function(req, res) {
-//   if (req.session.userId) {
-//     res.redirect("/jobform");
-//   } else {
-//     return;
-//   }
-// });
-//
-// app.get("/jobform", async function(req, res) {
-//   if (!req.session.userId) {
-//     res.redirect("/loginorregister");
-//   } else if (req.session.userId === undefined) {
-//     res.redirect("/loginorregister");
-//   } else {
-//     res.sendFile(__dirname + "/index.html");
-//   }
-// });
-//
-// app.post("/finalizeJob", (req, res) => {
-//     req.session.job = req.body;
-//     res.json({
-//         success: true
-//     });
-// });
-//
-// app.post("/finalizePerson", (req, res) => {
-//     req.session.personAd = req.body;
-//     res.json({
-//         success: true
-//     });
-// });
-//
-// app.post("/cancelUrgency", function(req, res) {
-//     // delete req.session.urgent;
-//     req.session.job.urgent = "false";
-//     res.json({
-//         success: true
-//     });
-// });
-//
-// app.post("/cancelPay", function(req, res) {
-//     // delete req.session.urgent;
-//     // req.session.per = "false";
-//     res.json({
-//         success: true
-//     });
-// });
-//
-// app.post("/wantsToPay", (req, res) => {
-//     return database.wantsToPay().then(() => {
-//         res.json({
-//             success: true
-//         });
-//     });
-// });
-//
-// app.post("/publishJob", (req, res) => {
-//     return database
-//         .publishJob(
-//             req.body.jobData.data.restname,
-//             req.body.jobData.data.jobtype,
-//             req.body.jobData.data.hourpay,
-//             req.body.jobData.data.typepay,
-//             req.body.jobData.data.schedule,
-//             req.body.jobData.data.contact,
-//             req.body.jobData.data.address,
-//             req.body.jobData.data.area,
-//             req.body.jobData.data.phone,
-//             req.body.jobData.data.extrainfo,
-//             req.body.jobData.data.urgent,
-//             req.session.userId
-//         )
-//         .then(() => {
-//             // req.session.jobId = results[0].id;
-//             req.session = null;
-//             res.json({
-//                 success: true
-//             });
-//         });
-// });
-//
-// app.post("/publishPerson", (req, res) => {
-//     console.log("hi dubbi");
-//     return database
-//         .publishPerson(
-//             req.body.personData.data.personName,
-//             req.body.personData.data.personStatus,
-//             req.body.personData.data.personSkill,
-//             req.body.personData.data.personExperience,
-//             req.body.personData.data.personSchedule,
-//             req.body.personData.data.personArea,
-//             req.body.personData.data.personNumber,
-//             req.body.personData.data.personExtraInfo,
-//             req.session.userId
-//         )
-//         .then(() => {
-//             // req.session.jobId = results[0].id;
-//             req.session = null;
-//             res.json({
-//                 success: true
-//             });
-//         });
-// });
+app.get("/loginorregister", async function(req, res) {
+  if (req.session.userId) {
+    res.redirect("/jobform");
+  } else {
+    return;
+  }
+});
 
-// app.post("/register", function(req, res) {
-//   database
-//     .hashPassword(req.body.password)
-//     .then(hash => {
-//       return database
-//         .registerUser(req.body.email, hash)
-//         .then(results => {
-//           req.session.userId = results[0].id;
-//           res.json({ success: true });
-//         })
-//         .catch(err => {
-//           console.log(err);
-//           res.json({ success: false });
-//         });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
+app.get("/jobform", async function(req, res) {
+  if (!req.session.userId) {
+    res.redirect("/loginorregister");
+  } else if (req.session.userId === undefined) {
+    res.redirect("/loginorregister");
+  } else {
+    res.sendFile(__dirname + "/index.html");
+  }
+});
 
-// app.post("/login", (req, res) => {
-//   database
-//     .showHashPw(req.body.email)
-//     .then(userPw => {
-//       if (!userPw) {
-//         res.json({ success: false });
-//       } else {
-//         return database.checkPassword(req.body.password, userPw);
-//       }
-//     })
-//     .then(doesMatch => {
-//       if (doesMatch) {
-//         database.getLoginId(req.body.email).then(id => {
-//           req.session.userId = id;
-//           res.json({ success: true });
-//         });
-//       } else {
-//         res.json({ success: false });
-//       }
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
+app.post("/finalizeJob", (req, res) => {
+    req.session.job = req.body;
+    res.json({
+        success: true
+    });
+});
+
+app.post("/finalizePerson", (req, res) => {
+    req.session.personAd = req.body;
+    res.json({
+        success: true
+    });
+});
+
+app.post("/cancelUrgency", function(req, res) {
+    // delete req.session.urgent;
+    req.session.job.urgent = "false";
+    res.json({
+        success: true
+    });
+});
+
+app.post("/cancelPay", function(req, res) {
+    // delete req.session.urgent;
+    // req.session.per = "false";
+    res.json({
+        success: true
+    });
+});
+
+app.post("/wantsToPay", (req, res) => {
+    return database.wantsToPay().then(() => {
+        res.json({
+            success: true
+        });
+    });
+});
+
+app.post("/publishJob", (req, res) => {
+    return database
+        .publishJob(
+            req.body.jobData.data.restname,
+            req.body.jobData.data.jobtype,
+            req.body.jobData.data.hourpay,
+            req.body.jobData.data.typepay,
+            req.body.jobData.data.schedule,
+            req.body.jobData.data.contact,
+            req.body.jobData.data.address,
+            req.body.jobData.data.area,
+            req.body.jobData.data.phone,
+            req.body.jobData.data.extrainfo,
+            req.body.jobData.data.urgent,
+            req.session.userId
+        )
+        .then(() => {
+            // req.session.jobId = results[0].id;
+            req.session = null;
+            res.json({
+                success: true
+            });
+        });
+});
+
+app.post("/publishPerson", (req, res) => {
+    console.log("hi dubbi");
+    return database
+        .publishPerson(
+            req.body.personData.data.personName,
+            req.body.personData.data.personStatus,
+            req.body.personData.data.personSkill,
+            req.body.personData.data.personExperience,
+            req.body.personData.data.personSchedule,
+            req.body.personData.data.personArea,
+            req.body.personData.data.personNumber,
+            req.body.personData.data.personExtraInfo,
+            req.session.userId
+        )
+        .then(() => {
+            // req.session.jobId = results[0].id;
+            req.session = null;
+            res.json({
+                success: true
+            });
+        });
+});
+
+app.post("/register", function(req, res) {
+  database
+    .hashPassword(req.body.password)
+    .then(hash => {
+      return database
+        .registerUser(req.body.email, hash)
+        .then(results => {
+          req.session.userId = results[0].id;
+          res.json({ success: true });
+        })
+        .catch(err => {
+          console.log(err);
+          res.json({ success: false });
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+app.post("/login", (req, res) => {
+  database
+    .showHashPw(req.body.email)
+    .then(userPw => {
+      if (!userPw) {
+        res.json({ success: false });
+      } else {
+        return database.checkPassword(req.body.password, userPw);
+      }
+    })
+    .then(doesMatch => {
+      if (doesMatch) {
+        database.getLoginId(req.body.email).then(id => {
+          req.session.userId = id;
+          res.json({ success: true });
+        });
+      } else {
+        res.json({ success: false });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.get("*", function(req, res) {
     res.sendFile(__dirname + "/index.html");

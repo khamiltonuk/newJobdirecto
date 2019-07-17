@@ -30,11 +30,9 @@ export class Jobs extends React.Component {
     axios.get("/getPeople").then(result => {
       this.setState({ peopleData: result.data });
     });
-
     axios.get("/getJobs").then(result => {
       this.setState({ jobData: result.data });
     });
-
     return axios ({
         method: 'get',
         url: '/user',
@@ -42,11 +40,10 @@ export class Jobs extends React.Component {
         withCredentials: true
     }).then(result => {
       this.setState({ user: result.data }, () => {
-          console.log("does this work?", result);
+          console.log("does this work?", result.data.name);
+          console.log("whats here", this.state);
       });
-
     });
-
   }
 
   handleChangeArea(event) {
@@ -57,7 +54,11 @@ export class Jobs extends React.Component {
   }
 
   handleSubmit(event) {
-    location.replace("/loginorregister");
+    if (this.state.user === "") {
+        this.props.history.push("/login")
+    } else {
+        this.props.history.push("/postType")
+    }
   }
 
   handleClick(event) {
@@ -106,7 +107,7 @@ export class Jobs extends React.Component {
 
   render() {
     let date = new Date();
-    if (!this.state.jobData || !this.state.peopleData) {
+    if (!this.state.jobData || !this.state.peopleData || !this.state.user) {
       return null;
     }
     return (
@@ -116,6 +117,8 @@ export class Jobs extends React.Component {
           <br />
           <span id="subTitle">{this.context.main.title}</span>
         </h1>
+         <Link to="/login"><button>Entrar a cuenta</button></Link>
+        <h3>Bienvenido seas {this.state.user.name} </h3>
         <div>
           <h1 />
         </div>
@@ -129,22 +132,15 @@ export class Jobs extends React.Component {
           />
         )}
         <div className="buttonsAndFilters">
-          <Link to="/jobForm">
-            <input
-              className="buttonOrFilter"
-              id="iamlookingforstaff"
-              type="submit"
-              value={this.context.main.jobPostButton}
-            />
-          </Link>
-          <Link to="/personForm">
+
             <input
               className="buttonOrFilter"
               id="iamlookingforjob"
               type="submit"
-              value={this.context.main.seeksJobButton}
+              value="Crear auncio"
+              onClick={this.handleSubmit}
             />
-          </Link>
+
           <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
             <select
               className="filter"

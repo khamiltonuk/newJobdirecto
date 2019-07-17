@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export class PersonForm extends React.Component {
+export class ServiceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { addClass: false };
@@ -36,10 +36,10 @@ export class PersonForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
           <h2 className="heading-1">
-            Solo para quienes buscan trabajo con urgencia
+            Si ofrece servicios ahora puede crear un anuncio de JobDirecto
           </h2>
           <br />
-          <p className="formQuestions">Cual es su nombre?</p>
+          <p className="formQuestions">Cual es su nombre o el de su compania?</p>
           <input
             className="formInputs"
             type="text"
@@ -52,10 +52,9 @@ export class PersonForm extends React.Component {
             required="required"
             onChange={this.handleChange}
           />
-
           <br />
           <br />
-          <p className="formQuestions"> Trabajo de que busca?</p>
+          <p className="formQuestions"> Que servicios ofrece?</p>
           <input
             maxLength="30"
             className="formInputs"
@@ -68,44 +67,7 @@ export class PersonForm extends React.Component {
             }
             onChange={this.handleChange}
           />
-          <p className="formQuestions"> Que experiencia tiene?</p>
-          <textarea
-          placeholder="Ponga detalles de lo que sabe hacer"
-            className="formInputs bigInput"
-            type="text"
-            name="personExperience"
-            defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personExperience
-                : ""
-            }
-            onChange={this.handleChange}
-          />
-          <p className="formQuestions">Tiene alguna zona de preferencia?</p>
-          <input
-            className="formInputs"
-            type="text"
-            name="personArea"
-            defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personArea
-                : ""
-            }
-            onChange={this.handleChange}
-          />
-          <p className="formQuestions">Tiene algun horario de preferencia?</p>
-          <input
-            className="formInputs"
-            type="text"
-            name="personSchedule"
-            defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personSchedule
-                : ""
-            }
-            onChange={this.handleChange}
-          />
-          <p className="formQuestions">Cual es su numero de telefono?</p>
+          <p className="formQuestions">Como ponerse en contacto con usted?</p>
           <input
             className="formInputs"
             type="text"
@@ -120,7 +82,7 @@ export class PersonForm extends React.Component {
           />
           <p className="formQuestions">Algo que desee agregar?</p>
           <textarea
-          placeholder="Porque deberian contratarlo? Ponga sus mejores cualidades aqui"
+          placeholder="Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios"
             className="formInputs bigInput"
             type="text"
             name="personExtraInfo"

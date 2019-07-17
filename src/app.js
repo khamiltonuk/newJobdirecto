@@ -3,6 +3,10 @@ import axios from "axios";
 import { JobConfirm } from "./jobConfirm.js";
 import { JobForm } from "./jobForm.js";
 import { PersonForm } from "./personForm.js";
+import { ServiceForm } from "./serviceForm.js";
+
+import { PostType } from "./postType.js";
+
 import PersonPay from "./personPay.js";
 import { PersonConfirm } from "./personConfirm.js";
 import { Jobs } from "./jobs.js";
@@ -53,8 +57,11 @@ export class App extends React.Component {
             />
             <Route exact path="/" component={Jobs} />
             <Route path="/personForm" component={PersonForm} />
+            <Route path="/serviceForm" component={ServiceForm} />
+
             <Route path="/jobForm" component={JobForm} />
-            <Route  path="/personPay" component={PersonPay} />
+            <Route  path="/personPay" component={PersonPay}/>
+            <Route  path="/postType" component={PostType} />
             <Route
               exact="exact"
               path="/personConfirm"
