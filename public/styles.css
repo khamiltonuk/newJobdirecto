@@ -8,12 +8,9 @@ body {
 }
 
 
+/* POSTS DATA START */
 
-
-
-
-
-.allJobs {
+.allPosts {
   margin-top: 90px;
   display: flex;
   flex-wrap: wrap;
@@ -21,15 +18,55 @@ body {
   margin-top: 200px;
 }
 
-#ghostButton {
-  opacity: 0.00000001;
+.postData {
+  width: 40.5%;
   background-color: white;
-  font-size: 50px;
-  font-weight: bold;
-  padding: 25px;
-  transform: translate(-50%, 0px);
-  position: absolute;
+  border-style: solid;
+  margin: 10px;
+  font-size: 40px;
+  padding: 30px;
+  line-height: 65px;
 }
+
+.posterGoal {
+  font-size: 55px;
+  color: black;
+  font-weight: 750;
+  word-break: break-word;
+}
+
+.postArea {
+  margin-top: 20px;
+}
+
+
+.posterName {
+  word-break: break-word;
+}
+
+.postConnector {
+  font-style: italic;
+}
+
+.paidPostConnector {
+    border-bottom: 3px solid black;
+    padding-bottom: 3px;
+}
+
+
+.postMoment {
+  font-size: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-style: oblique;
+}
+
+.paidPostData {
+    background-color: #fcd307
+}
+
+/* POSTS DATA FINISH */
 
 #dissapear {
   color: white;
@@ -43,76 +80,21 @@ body {
   position: absolute;
 }
 
-.urgentJobs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 130px;
-}
+
 
 .urgentCheckBox {
   width: 50px;
   height: 50px;
 }
 
-.paymenteHighlight {
+.textHighlight {
   border-bottom: 3px solid black;
   padding-bottom: 3px;
 }
 
-.buscaTrabajo {
-  border-bottom: 3px solid white;
-  padding-bottom: 3px;
-}
 
-.personName {
-  font-weight: bold;
-}
 
-.urgentJobData {
-  width: 40.5%;
-  background-color: #004f94;
-  border-style: solid;
-  border-width: 6px;
-  margin: 10px;
-  font-size: 40px;
-  line-height: 65px;
-  padding: 30px;
-  color: white;
-}
 
-.peopleData {
-  width: 40.5%;
-  background-color: #b80f0a;
-  border-style: solid;
-  border-width: 6px;
-  margin: 10px;
-  font-size: 40px;
-  padding: 30px;
-  color: white;
-  line-height: 65px;
-}
-
-.jobData {
-  width: 40.5%;
-  background-color: white;
-  border-style: solid;
-  margin: 10px;
-  font-size: 40px;
-  padding: 30px;
-  line-height: 65px;
-}
-
-.jobTypeUrgent {
-  font-size: 55px;
-  color: white;
-  font-weight: 750;
-  word-break: break-word;
-}
-
-.areainjobdata {
-  margin-top: 20px;
-}
 
 a:link,
 a:visited {
@@ -179,14 +161,6 @@ a:visited {
   margin-bottom: 30px;
 }
 
-#listo {
-  width: 50%;
-  height: 130px;
-  font-size: 50px;
-  background-color: dodgerblue;
-  color: white;
-  margin-top: 50px;
-}
 
 .jobConfirmPage {
   margin: 40px;
@@ -198,6 +172,69 @@ a:visited {
   justify-content: center;
   margin-top: 70px;
 }
+
+/* buttons mobile start*/
+
+/* #listo {
+  width: 50%;
+  height: 130px;
+  font-size: 50px;
+  background-color: dodgerblue;
+  color: white;
+  margin-top: 50px;
+} */
+
+.buttonBasic {
+  color: white;
+  background: dodgerblue;
+  background: rgb(26, 115, 232);
+  font-size: 50px;
+  font-weight: bold;
+  padding: 30px 40px 30px 40px;
+}
+
+#createPostButton {
+    
+}
+
+/* #urgentCheckedButtons,
+.personPayButtons {
+  text-align: center;
+} */
+/* .btn-secondary,
+.btn-primary,
+input[type="button"],
+button {
+  margin: 30px 30px 12px;
+  box-shadow: inset 0 0 0 1px rgba(50, 50, 93, 0.1),
+    0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+  border: 0;
+  border-radius: 6px;
+  transition: all 0.2s ease, box-shadow 0.08s ease-in;
+} */
+
+/* #iamlookingforstaff {
+  left: 0;
+  position: absolute;
+  color: white;
+  background: #004f94;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 35px;
+  margin-left: 30px;
+}
+
+#iamlookingforjob {
+  color: white;
+  background: #b80f0a;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 35px;
+  margin-left: 650px;
+}
+ */
+
+/* buttons mobile finish */
 
 .jobDetailsText {
   font-size: 45px;
@@ -253,13 +290,6 @@ td {
   overflow: scroll;
 }
 
-.jobMoment {
-  font-size: 30px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  font-style: oblique;
-}
 
 .login-container {
   text-align: center;
@@ -300,29 +330,12 @@ td {
   font-size: 40px;
 }
 
-.restName {
-  word-break: break-word;
-}
-
-.busca {
-  font-style: italic;
-}
-
-.jobType {
-  font-size: 45px;
-  font-weight: 900;
-  word-break: break-word;
-}
-
 .switch {
   height: 150px;
   width: 80px;
 }
 
-#urgentCheckedButtons,
-.personPayButtons {
-  text-align: center;
-}
+
 
 .contactInfo {
     margin-top: 100px;
@@ -379,46 +392,6 @@ td {
     Helvetica Neue, Ubuntu, sans-serif;
 }
 
-.btn-primary,
-button[type="submit"] {
-  color: white;
-  /* background: #0074d4; */
-  background: #004f94;
-
-  font-size: 50px;
-  font-weight: bold;
-  padding: 25px;
-}
-
-#personfinalpaybutton,
-.personButton {
-  color: white;
-  background: #b80f0a;
-  font-size: 50px;
-  font-weight: bold;
-  padding: 30px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-.btn-secondary {
-  background: #fffdd0;
-  color: #000;
-  font-size: 35px;
-  padding: 28px;
-}
-
-.btn-secondary,
-.btn-primary,
-input[type="button"],
-button {
-  margin: 30px 30px 12px;
-  box-shadow: inset 0 0 0 1px rgba(50, 50, 93, 0.1),
-    0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07);
-  border: 0;
-  border-radius: 6px;
-  transition: all 0.2s ease, box-shadow 0.08s ease-in;
-}
 
 .filter {
   height: 100px;
@@ -433,25 +406,6 @@ button {
   border-radius: 6px;
 }
 
-#iamlookingforstaff {
-  left: 0;
-  position: absolute;
-  color: white;
-  background: #004f94;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 35px;
-  margin-left: 30px;
-}
-
-#iamlookingforjob {
-  color: white;
-  background: #b80f0a;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 35px;
-  margin-left: 650px;
-}
 
 .heading-1 {
   font-size: 50px;
@@ -656,9 +610,6 @@ label {
     font-size: 22px;
   }
 
-.jobData {
-    line-height: 45px;
-}
 
   .modal {
     position: fixed;
@@ -676,17 +627,6 @@ label {
     margin-left: 5%;
   }
 
-  .jobData,
-  .urgentJobData,
-  .peopleData {
-    width: 13.5%;
-    font-size: 20px;
-  }
-
-  .urgentJobData {
-    line-height: 40px;
-  }
-
   .btn-primary {
     padding: 15px;
   }
@@ -697,13 +637,30 @@ label {
 
 
 
-  .jobType {
+  .posterGoal {
     font-size: 25px;
   }
 
-  .jobMoment {
+  .postMoment {
     font-size: 17px;
   }
+
+  .postData {
+      line-height: 45px;
+      width: 13.5%;
+      font-size: 20px;
+      line-height: 40px;
+  }
+
+  .allPosts {
+    margin-top: 4%;
+  }
+
+
+
+
+
+
 
   #createJob {
     font-size: 30px;
@@ -750,9 +707,6 @@ label {
     font-weight: bold;
   }
 
-  .jobTypeUrgent {
-    font-size: 35px;
-  }
 
   #UrgentCheckedTitle {
     font-size: 25px;
@@ -767,7 +721,6 @@ label {
 
   #UrgentCheckedButtonYES,
   #UrgentCheckedButtonNO,
-  #ghostButton,
   #personfinalpaybutton {
     width: 200px;
     height: 70px;
@@ -782,9 +735,7 @@ label {
   #personfinalpaybutton {
   }
 
-  .allJobs {
-    margin-top: 4%;
-  }
+
 
 
   .filter {

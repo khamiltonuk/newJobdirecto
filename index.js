@@ -89,6 +89,12 @@ app.get('/user',
         res.json(req.user);
     });
 
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+    console.log("logging outie");
+});
+
 app.get('/loginFacebook',
     passport.authenticate('facebook'));
 
@@ -114,6 +120,12 @@ app.get("/getJobInfo", function(req, res) {
 app.get("/getPersonInfo", function(req, res) {
     res.json({
         data: req.session.personAd
+    });
+});
+
+app.get("/getServiceInfo", function(req, res) {
+    res.json({
+        data: req.session.service
     });
 });
 
@@ -160,6 +172,16 @@ app.get("/getJobs", function(req, res) {
     });
 });
 
+app.get("/getServices", function(req, res) {
+    // req.session = null;
+    return database.getServices().then(data => {
+        console.log("jesus", data);
+        res.json({
+            data
+        });
+    });
+});
+
 app.get("/getPeople", function(req, res) {
     // req.session = null;
     return database.getPeople().then(data => {
@@ -170,21 +192,21 @@ app.get("/getPeople", function(req, res) {
 });
 
 app.get("/loginorregister", async function(req, res) {
-  if (req.session.userId) {
-    res.redirect("/jobform");
-  } else {
-    return;
-  }
+    if (req.session.userId) {
+        res.redirect("/jobform");
+    } else {
+        return;
+    }
 });
 
 app.get("/jobform", async function(req, res) {
-  if (!req.session.userId) {
-    res.redirect("/loginorregister");
-  } else if (req.session.userId === undefined) {
-    res.redirect("/loginorregister");
-  } else {
-    res.sendFile(__dirname + "/index.html");
-  }
+    if (!req.session.userId) {
+        res.redirect("/loginorregister");
+    } else if (req.session.userId === undefined) {
+        res.redirect("/loginorregister");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
 });
 
 app.post("/finalizeJob", (req, res) => {
@@ -196,6 +218,14 @@ app.post("/finalizeJob", (req, res) => {
 
 app.post("/finalizePerson", (req, res) => {
     req.session.personAd = req.body;
+    res.json({
+        success: true
+    });
+});
+
+app.post("/finalizeService", (req, res) => {
+    console.log("yes I am a ghost");
+    req.session.service = req.body;
     res.json({
         success: true
     });
@@ -251,7 +281,6 @@ app.post("/publishJob", (req, res) => {
 });
 
 app.post("/publishPerson", (req, res) => {
-    console.log("hi dubbi");
     return database
         .publishPerson(
             req.body.personData.data.personName,
@@ -273,49 +302,79 @@ app.post("/publishPerson", (req, res) => {
         });
 });
 
+
+app.post("/publishService", (req, res) => {
+    return database
+        .publishService(
+            req.body.serviceData.data.serviceOwner,
+            req.body.serviceData.data.serviceOffered,
+            req.body.serviceData.data.serviceAreas,
+            req.body.serviceData.data.serviceNumber,
+            req.body.serviceData.data.serviceExtraInfo,
+            req.session.serviceId
+        )
+        .then(() => {
+            // req.session.jobId = results[0].id;
+            req.session = null;
+            res.json({
+                success: true
+            });
+        });
+});
+
 app.post("/register", function(req, res) {
-  database
-    .hashPassword(req.body.password)
-    .then(hash => {
-      return database
-        .registerUser(req.body.email, hash)
-        .then(results => {
-          req.session.userId = results[0].id;
-          res.json({ success: true });
+    database
+        .hashPassword(req.body.password)
+        .then(hash => {
+            return database
+                .registerUser(req.body.email, hash)
+                .then(results => {
+                    req.session.userId = results[0].id;
+                    res.json({
+                        success: true
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.json({
+                        success: false
+                    });
+                });
         })
         .catch(err => {
-          console.log(err);
-          res.json({ success: false });
+            console.log(err);
         });
-    })
-    .catch(err => {
-      console.log(err);
-    });
 });
 
 app.post("/login", (req, res) => {
-  database
-    .showHashPw(req.body.email)
-    .then(userPw => {
-      if (!userPw) {
-        res.json({ success: false });
-      } else {
-        return database.checkPassword(req.body.password, userPw);
-      }
-    })
-    .then(doesMatch => {
-      if (doesMatch) {
-        database.getLoginId(req.body.email).then(id => {
-          req.session.userId = id;
-          res.json({ success: true });
+    database
+        .showHashPw(req.body.email)
+        .then(userPw => {
+            if (!userPw) {
+                res.json({
+                    success: false
+                });
+            } else {
+                return database.checkPassword(req.body.password, userPw);
+            }
+        })
+        .then(doesMatch => {
+            if (doesMatch) {
+                database.getLoginId(req.body.email).then(id => {
+                    req.session.userId = id;
+                    res.json({
+                        success: true
+                    });
+                });
+            } else {
+                res.json({
+                    success: false
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
         });
-      } else {
-        res.json({ success: false });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
 });
 
 app.get("*", function(req, res) {

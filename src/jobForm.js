@@ -68,7 +68,7 @@ export class JobForm extends React.Component {
     event.preventDefault();
     axios.post("/finalizeJob", this.state).then(resp => {
       if (this.state.urgent === true) {
-        this.props.history.push("/urgentChecked");
+        this.props.history.push("/jobPay");
       } else {
         this.props.history.push("/JobConfirm");
       }
@@ -470,8 +470,7 @@ export class JobForm extends React.Component {
           <br />
           <br />
           <input
-            id="listo"
-            className="btn-primary"
+            className="buttonBasic"
             onClick={this.submission}
             type="submit"
             value={this.context.jobForm.jobFormButton}

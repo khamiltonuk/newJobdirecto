@@ -75,7 +75,7 @@ export class PostType extends React.Component {
                 </span>
               </label>
               <input
-              
+              className="buttonBasic"
               type="submit"
               value="Siguiente"
               />

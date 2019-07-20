@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export class PersonConfirm extends React.Component {
+export class ServiceConfirm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,13 +13,13 @@ export class PersonConfirm extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("/getPersonInfo").then(result => {
+    axios.get("/getServiceInfo").then(result => {
       console.log("result data here: ", result.data);
       if (result.data.success == false) {
         return null;
       } else {
         this.setState({
-          personData: result.data
+          serviceData: result.data
         });
       }
     });
@@ -33,10 +33,10 @@ export class PersonConfirm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post("/publishPerson", this.state).then(resp => {
+    axios.post("/publishService", this.state).then(resp => {
       if (resp.data.success) {
         this.setState({
-          personData: ""
+          serviceData: ""
         });
         this.props.history.push("/");
       }
@@ -44,7 +44,7 @@ export class PersonConfirm extends React.Component {
   }
 
   render() {
-    if (!this.state.personData) {
+    if (!this.state.serviceData) {
       return null;
     }
 
@@ -56,40 +56,34 @@ export class PersonConfirm extends React.Component {
           </h1>
           <table>
             <tr>
-              <td className="jobDetailsText">Nombre:</td>
+              <td className="jobDetailsText">Nombre de su negocio:</td>
               <td className="jobDetailsText">
-                {this.state.personData.data.personName}
+                {this.state.serviceData.data.serviceOwner}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Busca de:</td>
+              <td className="jobDetailsText">Ofrece servicios de:</td>
               <td className="jobDetailsText">
-                {this.state.personData.data.personSkill}
+                {this.state.serviceData.data.serviceOffered}
+              </td>
+            </tr>
+            <tr>
+              <td className="jobDetailsText">Direccion:</td>
+              <td className="jobDetailsText">
+                {this.state.serviceData.data.serviceArea}
               </td>
             </tr>
 
             <tr>
-              <td className="jobDetailsText">Area de preferencia:</td>
-              <td className="jobDetailsText">
-                {this.state.personData.data.personArea}
-              </td>
-            </tr>
-            <tr>
-              <td className="jobDetailsText">Horario de preferencia:</td>
-              <td className="jobDetailsText">
-                {this.state.personData.data.personSchedule}
-              </td>
-            </tr>
-            <tr>
               <td className="jobDetailsText">Numero:</td>
               <td className="jobDetailsText">
-                {this.state.personData.data.personNumber}
+                {this.state.serviceData.data.serviceNumber}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Mas informacion:</td>
+              <td className="jobDetailsText">Informacion extra:</td>
               <td className="jobDetailsText">
-                {this.state.personData.data.personExtraInfo}
+                {this.state.serviceData.data.serviceExtraInfo}
               </td>
             </tr>
           </table>

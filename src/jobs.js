@@ -14,7 +14,8 @@ export class Jobs extends React.Component {
     super(props);
     this.state = {
       show: false,
-      showModalPeople: false
+      showModalPeople: false,
+      user: "true"
     };
     this.handleChangeArea = this.handleChangeArea.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,15 +25,29 @@ export class Jobs extends React.Component {
     this.hideModalPeople = this.hideModalPeople.bind(this);
     this.urgentJobInterval = this.urgentJobInterval.bind(this);
     this.trackCreateJob = this.trackCreateJob.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
   componentDidMount() {
+
     axios.get("/getPeople").then(result => {
-      this.setState({ peopleData: result.data });
+      this.setState({ peopleData: result.data }, () => {
+          console.log("people?: ", this.state);
+      });
     });
     axios.get("/getJobs").then(result => {
-      this.setState({ jobData: result.data });
+        this.setState({user: "somebody"})
+      this.setState({ jobData: result.data }, () => {
+          console.log("jobs?: ", this.state);
+      });
     });
+
+    axios.get("/getServices").then(result => {
+      this.setState({ serviceData: result.data }, () => {
+          console.log("service?: ", this.state);
+      });
+  });
+
     return axios ({
         method: 'get',
         url: '/user',
@@ -51,6 +66,23 @@ export class Jobs extends React.Component {
       [event.target.name]: event.target.value,
       userSelectionArea: event.target.value
     });
+  }
+
+  logOut() {
+      return axios ({
+          method: 'get',
+          url: '/logout',
+          params: {},
+          withCredentials: true
+      }).then(result => {
+          window.location.reload();
+    });
+
+
+      // axios.get("/logout").then(result => {
+      //     // this.props.history.push("/")
+      //
+      // });
   }
 
   handleSubmit(event) {
@@ -107,7 +139,8 @@ export class Jobs extends React.Component {
 
   render() {
     let date = new Date();
-    if (!this.state.jobData || !this.state.peopleData || !this.state.user) {
+    // si no pongo esto y estoy logeado, nada funciona, porque?
+    if (!this.state.jobData || !this.state.peopleData || !this.state.serviceData) {
       return null;
     }
     return (
@@ -117,8 +150,13 @@ export class Jobs extends React.Component {
           <br />
           <span id="subTitle">{this.context.main.title}</span>
         </h1>
+
+         <Link to="/login"><button>Crear cuenta</button></Link>
          <Link to="/login"><button>Entrar a cuenta</button></Link>
-        <h3>Bienvenido seas {this.state.user.name} </h3>
+         {this.state.user && <button onClick={this.logOut}
+>Log out</button>}
+
+        {this.state.user && <h3>Bienvenido seas {this.state.user.name} </h3>}
         <div>
           <h1 />
         </div>
@@ -134,8 +172,7 @@ export class Jobs extends React.Component {
         <div className="buttonsAndFilters">
 
             <input
-              className="buttonOrFilter"
-              id="iamlookingforjob"
+            class="buttonBasic"
               type="submit"
               value="Crear auncio"
               onClick={this.handleSubmit}
@@ -163,34 +200,121 @@ export class Jobs extends React.Component {
           </form>
         </div>
 
-        <div className="allJobs">
-          {!this.state.userSelectionArea &&
-            this.state.jobData.data.map(data => {
-              if (
-                data.urgent === "true" &&
-                this.urgentJobInterval(data.created_at) === true
-              ) {
-                return (
-                  <div
-                    onClick={e => this.handleClick(data.id)}
-                    className="urgentJobData"
-                    key={data.id}
-                  >
-                    <p>
-                      <span className="restName">{data.restname} </span>
-                      <span className="busca">
-                        {this.context.main.seeking}{" "}
-                      </span>
-                      <span className="jobTypeUrgent">{data.jobtype}</span>
-                    </p>
-                    <p className="areainjobdata">{data.area}</p>
-                    <div className="jobMoment">
-                      <Moment fromNow>{data.created_at}</Moment>
+
+        <div className="allPosts">
+
+            {/*urgent job posts here*/}
+            {!this.state.userSelectionArea &&
+              this.state.jobData.data.map(data => {
+                if (
+                  data.urgent === "true" &&
+                  this.urgentJobInterval(data.created_at) === true
+                ) {
+                  return (
+                    <div
+                      onClick={e => this.handleClick(data.id)}
+                      className="postData paidPostData"
+                      key={data.id}
+                    >
+                      <p>
+                        <span className="posterName">{data.restname} </span>
+                        <span className="postConnector paidPostConnector">
+                          {this.context.main.seeking}{" "}
+                        </span>
+                        <span className="posterGoal">{data.jobtype}</span>
+                      </p>
+                      <p className="postArea">{data.area}</p>
+                      <div className="postMoment">
+                        <Moment fromNow>{data.created_at}</Moment>
+                      </div>
                     </div>
-                  </div>
-                );
-              }
-            })}
+                  );
+                }
+              })}
+
+            {this.state.userSelectionArea &&
+              this.state.jobData.data.map(data => {
+                if (
+                  this.state.userSelectionArea === data.area &&
+                  data.urgent === "true" &&
+                  this.urgentJobInterval(data.created_at) === true
+                ) {
+                  return (
+                    <div
+                      onClick={e => this.handleClick(data.id)}
+                      className="postData paidPostData"
+                      key={data.id}
+                    >
+                      <p>
+                        <span className="posterName">{data.restname} </span>
+                        <span className="postConnector paidPostConnector">
+                          {this.context.main.seeking}{" "}
+                        </span>
+                        <span className="posterGoal">{data.jobtype}</span>
+                      </p>
+                      <p className="postArea">{data.area}</p>
+                      <div className="postMoment">
+                        <Moment fromNow>{data.created_at}</Moment>
+                      </div>
+                    </div>
+                  );
+                }
+              })}
+              {this.state.userSelectionArea &&
+                this.state.jobData.data.map(data => {
+                  if (
+                    this.state.userSelectionArea !== this.context.main.filterOtherArea &&
+                    data.urgent === "true" && data.area !== "Queens" && data.area !== "Bronx" && data.area !== "Brooklyn" && data.area !== "Manhattan" && data.area !== "Staten Island"
+                ) {
+                    return (
+                      <div
+                        onClick={e => this.handleClick(data.id)}
+                        className="postData"
+                        key={data.id}
+                      >
+                        <p>
+                          <span className="postConnector paidPostConnector">
+                            {this.context.main.seeking3}{" "}
+                          </span>
+                          <span className="posterGoal">{data.jobtype}</span>
+                        </p>
+                        <p className="postArea">{data.area}</p>
+                        <div className="postMoment">
+                          <Moment fromNow>{data.created_at}</Moment>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+
+
+              {/*someone promoting services*/}
+            {!this.state.userSelectionArea &&
+              this.state.serviceData.data.map(data => {
+               {
+                  return (
+                    <div
+                      onClick={e => this.handleClickModalService(data.id)}
+                      className="postData paidPostData"
+                      key={data.id}
+                    >
+                      <p>
+                        <span className="posterData">{data.serviceowner}</span>
+                        <span className="postConnector paidPostConnector">
+                          {" "}
+                          {this.context.main.seeking4}{" "}
+                        </span>
+                        <span className="posterGoal"> {data.serviceoffered} </span>
+                      </p>
+                      <div className="postMoment">
+                        <Moment fromNow>{data.created_at}</Moment>
+                      </div>
+                    </div>
+                  );
+                }
+              })}{" "}
+              {/*people seeking jobs*/}
+
           {!this.state.userSelectionArea &&
             this.state.peopleData.data.map(data => {
               if (
@@ -200,99 +324,18 @@ export class Jobs extends React.Component {
                 return (
                   <div
                     onClick={e => this.handleClickModalPeople(data.id)}
-                    className="peopleData"
+                    className="postData paidPostData"
                     key={data.id}
                   >
                     <p>
-                      <span className="personName">{data.personname}</span>
-                      <span className="buscaTrabajo">
+                      <span className="posterName">{data.personname}</span>
+                      <span className="postConnector paidPostConnector">
                         {" "}
                         {this.context.main.seeking2}{" "}
                       </span>
-                      <span className="jobType"> {data.personskill} </span>
+                      <span className="posterGoal"> {data.personskill} </span>
                     </p>
-                    <div className="jobMoment">
-                      <Moment fromNow>{data.created_at}</Moment>
-                    </div>
-                  </div>
-                );
-              }
-            })}
-          {!this.state.userSelectionArea &&
-            this.state.peopleData.data.map(data => {
-              if (
-                data.personstatus === "offersService" &&
-                this.urgentJobInterval(data.created_at) === true
-              ) {
-                return (
-                  <div
-                    onClick={e => this.handleClickModalPeople(data.id)}
-                    className="peopleData"
-                    key={data.id}
-                  >
-                    <p>
-                      <span className="personName">{data.personname}</span>
-                      <span className="buscaTrabajo">
-                        {" "}
-                        {this.context.main.seeking4}{" "}
-                      </span>
-                      <span className="jobType"> {data.personskill} </span>
-                    </p>
-                    <div className="jobMoment">
-                      <Moment fromNow>{data.created_at}</Moment>
-                    </div>
-                  </div>
-                );
-              }
-            })}{" "}
-          {this.state.userSelectionArea &&
-            this.state.jobData.data.map(data => {
-              if (
-                this.state.userSelectionArea === data.area &&
-                data.urgent === "true" &&
-                this.urgentJobInterval(data.created_at) === true
-              ) {
-                return (
-                  <div
-                    onClick={e => this.handleClick(data.id)}
-                    className="urgentJobData"
-                    key={data.id}
-                  >
-                    <p>
-                      <span className="restName">{data.restname} </span>
-                      <span className="busca">
-                        {this.context.main.seeking}{" "}
-                      </span>
-                      <span className="jobType">{data.jobtype}</span>
-                    </p>
-                    <p className="areainjobdata">{data.area}</p>
-                    <div className="jobMoment">
-                      <Moment fromNow>{data.created_at}</Moment>
-                    </div>
-                  </div>
-                );
-              }
-            })}
-          {this.state.userSelectionArea &&
-            this.state.jobData.data.map(data => {
-              if (
-                this.state.userSelectionArea === data.area &&
-                data.urgent !== "true"
-              ) {
-                return (
-                  <div
-                    onClick={e => this.handleClick(data.id)}
-                    className="jobData"
-                    key={data.id}
-                  >
-                    <p>
-                      <span className="busca">
-                        {this.context.main.seeking3}{" "}
-                      </span>
-                      <span className="jobType">{data.jobtype}</span>
-                    </p>
-                    <p className="areainjobdata">{data.area}</p>
-                    <div className="jobMoment">
+                    <div className="postMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
                   </div>
@@ -300,25 +343,79 @@ export class Jobs extends React.Component {
               }
             })}
 
-{/*            // normal posts here*/}
+
+
+{/*normal posts here*/}
+{this.state.userSelectionArea &&
+  this.state.jobData.data.map(data => {
+    if (
+      this.state.userSelectionArea === data.area &&
+      data.urgent !== "true"
+    ) {
+      return (
+        <div
+          onClick={e => this.handleClick(data.id)}
+          className="postData"
+          key={data.id}
+        >
+          <p>
+            <span className="postConnector">
+              {this.context.main.seeking3}{" "}
+            </span>
+            <span className="posterGoal">{data.jobtype}</span>
+          </p>
+          <p className="postArea">{data.area}</p>
+          <div className="postMoment">
+            <Moment fromNow>{data.created_at}</Moment>
+          </div>
+        </div>
+      );
+    }
+  })}
+  {this.state.userSelectionArea &&
+    this.state.jobData.data.map(data => {
+      if (
+        this.state.userSelectionArea !== this.context.main.filterOtherArea &&
+        data.urgent !== "true" && data.area !== "Queens" && data.area !== "Bronx" && data.area !== "Brooklyn" && data.area !== "Manhattan" && data.area !== "Staten Island"
+    ) {
+        return (
+          <div
+            onClick={e => this.handleClick(data.id)}
+            className="postData"
+            key={data.id}
+          >
+            <p>
+              <span className="postConnector">
+                {this.context.main.seeking3}{" "}
+              </span>
+              <span className="posterGoal">{data.jobtype}</span>
+            </p>
+            <p className="postArea">{data.area}</p>
+            <div className="postMoment">
+              <Moment fromNow>{data.created_at}</Moment>
+            </div>
+          </div>
+        );
+      }
+    })}
           {!this.state.userSelectionArea &&
             this.state.jobData.data.map(data => {
               if (data.urgent !== "true") {
                 return (
                   <div
                     onClick={e => this.handleClick(data.id)}
-                    className="jobData"
+                    className="postData"
                     key={data.id}
                   >
                     <p>
-                      <span className="busca">
+                      <span className="postConnector">
                         {" "}
                         {this.context.main.seeking3}{" "}
                       </span>
-                      <span className="jobType">{data.jobtype}</span>
+                      <span className="posterGoal">{data.jobtype}</span>
                     </p>
-                    <p className="areainjobdata">{data.area}</p>
-                    <div className="jobMoment">
+                    <p className="postArea">{data.area}</p>
+                    <div className="postMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
                   </div>

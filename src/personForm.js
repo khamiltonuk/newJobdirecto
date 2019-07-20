@@ -140,7 +140,7 @@ export class PersonForm extends React.Component {
           <br />
           <br />
           <input
-            className="personButton"
+            className="buttonBasic"
             type="submit"
             value="Listo"
           />

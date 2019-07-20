@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import StripeButton2 from "./stripebutton2.js";
 
-export default class PersonPay extends React.Component {
+export default class PrePay2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,10 +30,10 @@ export default class PersonPay extends React.Component {
         {/*<img id="urgentExample" src="personpay.png" />
          */}{" "}
         <p className="UrgentCheckedText">
-          Si busca trabajo, ahora puede poner un anuncio por $10!
+          Si busca trabajo u ofrece servicios, ahora puede poner un anuncio por $10!
           <br />
           <br />
-          <span className="paymenteHighlight">
+          <span className="textHighlight">
             Su anuncio no sera borrado
           </span>{" "}
           y se mantendra por encima de los anuncios gratis por 48 horas. <br />
@@ -44,8 +44,7 @@ export default class PersonPay extends React.Component {
           <StripeButton2 />
           <button
             onClick={this.cancelPay}
-            id="UrgentCheckedButtonNO"
-            className="btn-secondary"
+            className="buttonBasic"
           >
             Deseo seguir buscando sin pagar
           </button>

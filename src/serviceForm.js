@@ -16,23 +16,22 @@ export class ServiceForm extends React.Component {
         [event.target.name]: event.target.value
       },
       () => {
-        // console.log(this.state);
+        console.log(this.state);
       }
     );
   }
 
   handleSubmit(event) {
-    console.log("state in personForm", this.state);
+      console.log("are u a ghost");
     event.preventDefault();
-    console.log("state in job form: ", this.state);
-    axios.post("/finalizePerson", this.state).then(resp => {
+    axios.post("/finalizeService", this.state).then(resp => {
       this.props.history.push("/personPay");
     });
   }
 
   render() {
     return (
-      <div className="personForm">
+      <div className="serviceForm">
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
           <h2 className="heading-1">
@@ -43,10 +42,10 @@ export class ServiceForm extends React.Component {
           <input
             className="formInputs"
             type="text"
-            name="personName"
+            name="serviceOwner"
             defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personName
+              this.state.serviceData && this.state.serviceData.data
+                ? this.state.serviceData.data.serviceOwner
                 : ""
             }
             required="required"
@@ -59,25 +58,39 @@ export class ServiceForm extends React.Component {
             maxLength="30"
             className="formInputs"
             type="text"
-            name="personSkill"
+            name="serviceOffered"
             defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personSkill
+              this.state.serviceData && this.state.serviceData.data
+                ? this.state.serviceData.data.serviceOffered
+                : ""
+            }
+            required="required"
+            onChange={this.handleChange}
+          />
+          <p className="formQuestions">Cual es su direccion y en que areas opera?</p>
+          <input
+            className="formInputs"
+            type="text"
+            name="serviceArea"
+            defaultValue={
+              this.state.serviceData && this.state.serviceData.data
+                ? this.state.serviceData.data.serviceArea
                 : ""
             }
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Como ponerse en contacto con usted?</p>
+
+          <p className="formQuestions">A que numero pueden llamarlo?</p>
           <input
             className="formInputs"
             type="text"
-            name="personNumber"
+            name="serviceNumber"
             defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personNumber
+              this.state.serviceData && this.state.serviceData.data
+                ? this.state.serviceData.data.serviceNumber
                 : ""
             }
-            required="required"
+
             onChange={this.handleChange}
           />
           <p className="formQuestions">Algo que desee agregar?</p>
@@ -85,10 +98,10 @@ export class ServiceForm extends React.Component {
           placeholder="Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios"
             className="formInputs bigInput"
             type="text"
-            name="personExtraInfo"
+            name="serviceExtraInfo"
             defaultValue={
-              this.state.personData && this.state.personData.data
-                ? this.state.personData.data.personExtraInfo
+              this.state.serviceData && this.state.serviceData.data
+                ? this.state.serviceData.data.serviceExtraInfo
                 : ""
             }
             onChange={this.handleChange}
@@ -102,7 +115,7 @@ export class ServiceForm extends React.Component {
           <br />
           <br />
           <input
-            className="personButton"
+            className="buttonBasic"
             type="submit"
             value="Listo"
           />

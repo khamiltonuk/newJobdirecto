@@ -31,8 +31,8 @@ function StripeButton() {
 
   return (
     <div>
-      <button     id="UrgentCheckedButtonYES"
-          className="btn-primary" onClick={handleClick}>
+      <button     
+          className="buttonBasic" onClick={handleClick}>
         {context.jobPayPage.buttonYES}
         <br />
       </button>

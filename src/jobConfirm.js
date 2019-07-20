@@ -135,7 +135,7 @@ export class JobConfirm extends React.Component {
             <Link to="/">
               <input
                 onClick={this.handleSubmit}
-                className="btn-primary"
+                className="buttonBasic"
                 type="submit"
                 value={this.context.jobConfirm.button}
               />

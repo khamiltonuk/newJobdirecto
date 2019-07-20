@@ -90,6 +90,41 @@ exports.publishPerson = function(
 };
 
 
+exports.publishService = function(
+    serviceOwner,
+    serviceOffered,
+    serviceArea,
+    serviceNumber,
+    serviceExtraInfo
+) {
+    console.log("look person!");
+    return db
+        .query(
+            `
+        INSERT INTO services
+        (serviceOwner,
+        serviceOffered,
+        serviceArea,
+        serviceNumber,
+        serviceExtraInfo)
+        VALUES ($1, $2, $3, $4, $5)
+        returning *;
+        `,
+            [
+                serviceOwner,
+                serviceOffered,
+                serviceArea,
+                serviceNumber,
+                serviceExtraInfo            ]
+        )
+        .then(function(results) {
+            return results.rows;
+        });
+};
+
+
+
+
 exports.findOrCreateFacebookUser = function(id, name) {
     return exports.getFacebookUser(id).then(user => {
         if (user) {
@@ -159,6 +194,20 @@ exports.getJobs = function() {
         .query(
             `SELECT *
         FROM jobs
+        ORDER BY id DESC
+        LIMIT 100
+        ;`
+        )
+        .then(results => {
+            return results.rows;
+        });
+};
+
+exports.getServices = function() {
+    return db
+        .query(
+            `SELECT *
+        FROM services
         ORDER BY id DESC
         LIMIT 100
         ;`

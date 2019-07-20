@@ -31,8 +31,8 @@ function StripeButton2() {
   return (
     <div>
       <button
-        id="personfinalpaybutton"
-        className="btn-primary"
+
+        className="buttonBasic"
         onClick={handleClick}
       >
         Pagar $10

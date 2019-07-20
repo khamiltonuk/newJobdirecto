@@ -4,16 +4,15 @@ import { JobConfirm } from "./jobConfirm.js";
 import { JobForm } from "./jobForm.js";
 import { PersonForm } from "./personForm.js";
 import { ServiceForm } from "./serviceForm.js";
-
 import { PostType } from "./postType.js";
-
-import PersonPay from "./personPay.js";
+import PrePay2 from "./prePay2.js";
 import { PersonConfirm } from "./personConfirm.js";
+import { ServiceConfirm } from "./serviceConfirm.js";
 import { Jobs } from "./jobs.js";
 import LoginOrRegister from "./loginorregister.js";
 import Login from "./login.js";
 import Register from "./register.js";
-import UrgentChecked from "./urgentChecked.js";
+import PrePayJob from "./prePayJob.js";
 import { BrowserRouter, Route } from "react-router-dom";
 import ReactGA from "react-ga";
 import { LanguageContext, languages } from "./languageContext";
@@ -46,7 +45,7 @@ export class App extends React.Component {
         <div>
           <LanguageContext.Provider value={this.state.languages}>
             <LanguageButton changeLanguage={this.toggleLanguage} />
-            <Route path="/urgentChecked" component={UrgentChecked} />
+            <Route path="/prePayJob" component={PrePayJob} />
             <Route path="/loginorregister" component={LoginOrRegister} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
@@ -58,9 +57,10 @@ export class App extends React.Component {
             <Route exact path="/" component={Jobs} />
             <Route path="/personForm" component={PersonForm} />
             <Route path="/serviceForm" component={ServiceForm} />
+            <Route path="/serviceConfirm" component={ServiceConfirm} />
 
             <Route path="/jobForm" component={JobForm} />
-            <Route  path="/personPay" component={PersonPay}/>
+            <Route  path="/prepay2" component={PrePay2}/>
             <Route  path="/postType" component={PostType} />
             <Route
               exact="exact"

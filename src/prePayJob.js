@@ -4,7 +4,7 @@ import axios from "axios";
 import StripeButton from "./stripebutton.js";
 import { LanguageContext } from "./languageContext";
 
-export default class UrgentChecked extends React.Component {
+export default class PrePayJob extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -37,8 +37,8 @@ export default class UrgentChecked extends React.Component {
           <br />
           <button
             onClick={this.cancelUrgency}
-            id="UrgentCheckedButtonNO"
-            className="btn-secondary"
+
+            className="buttonBasic"
           >
             {this.context.jobPayPage.buttonNO}
           </button>
@@ -49,4 +49,4 @@ export default class UrgentChecked extends React.Component {
   }
 }
 
-UrgentChecked.contextType = LanguageContext;
+PrePayJob.contextType = LanguageContext;
