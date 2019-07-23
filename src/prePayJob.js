@@ -22,10 +22,10 @@ export default class PrePayJob extends React.Component {
 
   render() {
     return (
-      <div id="urgentCheckedContainer">
+      <div className="container">
         <h1 className="heading-1">{this.context.jobPayPage.title}</h1>
         <img id="urgentExample" src="urgentExample.png" />
-        <p className="UrgentCheckedText">
+        <p className="text">
           {this.context.jobPayPage.text1} <br />
           <br />
           {this.context.jobPayPage.text2}
@@ -33,12 +33,12 @@ export default class PrePayJob extends React.Component {
           <br />
         </p>
         <div id="urgentCheckedButtons">
-          <StripeButton />
+<StripeButton />
           <br />
           <button
             onClick={this.cancelUrgency}
 
-            className="buttonBasic"
+            className="buttonBasic buttonOpaque"
           >
             {this.context.jobPayPage.buttonNO}
           </button>

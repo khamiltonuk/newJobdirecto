@@ -124,9 +124,11 @@ app.get("/getPersonInfo", function(req, res) {
 });
 
 app.get("/getServiceInfo", function(req, res) {
+    console.log("area wold", req.session);
     res.json({
         data: req.session.service
     });
+
 });
 
 app.get("/getDate", function(req, res) {
@@ -145,6 +147,16 @@ app.get("/getJobDetails/:id", function(req, res) {
             data
         });
         req.session.restname = data.restname;
+    });
+});
+
+app.get("/getServiceDetails/:id", function(req, res) {
+    return database.getServiceInfo(req.params.id).then(data => {
+        console.log("hi fam", data);
+        res.json({
+            data
+        });
+        req.session.serviceOwner = data.serviceOwner;
     });
 });
 
@@ -224,7 +236,7 @@ app.post("/finalizePerson", (req, res) => {
 });
 
 app.post("/finalizeService", (req, res) => {
-    console.log("yes I am a ghost");
+    console.log("yes I am a ghost", req.body);
     req.session.service = req.body;
     res.json({
         success: true
@@ -308,7 +320,7 @@ app.post("/publishService", (req, res) => {
         .publishService(
             req.body.serviceData.data.serviceOwner,
             req.body.serviceData.data.serviceOffered,
-            req.body.serviceData.data.serviceAreas,
+            req.body.serviceData.data.serviceArea,
             req.body.serviceData.data.serviceNumber,
             req.body.serviceData.data.serviceExtraInfo,
             req.session.serviceId

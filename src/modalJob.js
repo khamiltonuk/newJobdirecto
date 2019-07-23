@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { LanguageContext } from "./languageContext";
 
-export default class Modal extends React.Component {
+export default class ModalJob extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -117,4 +117,4 @@ export default class Modal extends React.Component {
   }
 }
 
-Modal.contextType = LanguageContext;
+ModalJob.contextType = LanguageContext;

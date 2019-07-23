@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
+import { useContext } from "react";
+
 
 function StripeButton2() {
+    const context = useContext(LanguageContext);
+
   const stripe = Stripe("pk_live_5PjwBk9dSdW7htTKHQ3HKrTd");
 
   const [error, setError] = useState();
@@ -35,7 +40,8 @@ function StripeButton2() {
         className="buttonBasic"
         onClick={handleClick}
       >
-        Pagar $10
+      {context.prePay2.buttonPay}
+
         <br />
       </button>
       <div>{error}</div>
@@ -44,3 +50,4 @@ function StripeButton2() {
 }
 
 export default StripeButton2;
+StripeButton2.contextType = LanguageContext;

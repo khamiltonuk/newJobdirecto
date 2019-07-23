@@ -160,6 +160,13 @@ exports.getJobInfo = function(id) {
         return results.rows[0];
     });
 };
+exports.getServiceInfo = function(id) {
+    return db.query(`SELECT * FROM services WHERE id = $1`, [id]).then(results => {
+        console.log("area are u there", results);
+
+        return results.rows[0];
+    });
+};
 
 exports.getPeopleInfo = function(id) {
     return db

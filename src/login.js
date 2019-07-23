@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 
-export default class Register extends React.Component {
+
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -18,28 +20,15 @@ export default class Register extends React.Component {
 
   render() {
     return (
-      <div className="login-container">
-{/*        <h1 className="heading-1">Login</h1>
-        {this.state.error && (
-          <div className="error">Email and/or password is incorrect.</div>
-        )}
-        <form action="/login" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
-</form>*/}
-<h2>Porfavor registrese con su cuenta de facebook</h2>
-<p>Cuando cree una cuenta podra crear anuncios y borrarlos tambien</p>
-<button class="loginBtn loginBtn--facebook"><a id="facebookLoginLink" href="/loginFacebook" >Login with facebook</a></button>
-      </div>
+      <div className="container">
+
+<h2 className="heading-1">{this.context.login.title}</h2>
+<p className="text">{this.context.login.text}</p>
+<div className="facebookContainer">
+<button   ><a id="facebook-button" href="/loginFacebook" >{this.context.login.button}</a></button>
+    </div>  </div>
     );
   }
 }
+
+Login.contextType = LanguageContext;

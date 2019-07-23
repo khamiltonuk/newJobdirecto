@@ -8,11 +8,11 @@ class LanguageButton extends React.Component {
     return (
       <div id="translateButtonContainer">
         <button id="translateButton" onClick={this.props.changeLanguage}>
-          {this.context.currentLanguage === "español" ? "english" : "español"}
+          {this.context.currentLanguage === "Español" ? "English" : "Español"}
         </button>
         <div id="dissapear">
           {" "}
-          {this.context.currentLanguage === "español"
+          {this.context.currentLanguage === "Español"
             ? moment.locale("es")
             : moment.locale("en")}
         </div>

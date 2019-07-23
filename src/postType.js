@@ -1,4 +1,6 @@
 import React from "react";
+import { LanguageContext } from "./languageContext";
+
 import { Link } from "react-router-dom";
 
 export class PostType extends React.Component {
@@ -34,14 +36,15 @@ export class PostType extends React.Component {
 
   render() {
     return (
-      <div className="personForm">
+      <div className="container">
         <form onSubmit={this.handleSubmit}>
-          <h1 className="heading-1">Que busca?</h1>
-              <label className="personFormLabels" htmlFor="seeksJob">
-                Busco personal
+          <h1 className="heading-1">{this.context.postType.title}</h1>
+          <div className="postTypeOptions">
+              <label className="text" htmlFor="seeksPeople">
+                {this.context.postType.seeksPeople}
                 <input
+                  className="radio postTypeButton"
                   id="seeksPeople"
-                  className="radio"
                   type="radio"
                   name="posterStatus"
                   value="seeksPeople"
@@ -49,11 +52,14 @@ export class PostType extends React.Component {
                   required="required"
                 />
               </label>
-                <label className="personFormLabels" htmlFor="seeksJob">
-                  Busco trabajo
+</div>
+              <div className="postTypeOptions">
+
+                <label className="text" htmlFor="seeksJob">
+                  {this.context.postType.seeksJob}
                   <input
-                    id="seeksJob"
-                    className="radio"
+                  id="seeksJob"
+                    className="radio postTypeButton"
                     type="radio"
                     name="posterStatus"
                     value="seeksJob"
@@ -61,26 +67,34 @@ export class PostType extends React.Component {
                     required="required"
                   />
                 </label>
-              <label className="personFormLabels" htmlFor="offersService">
-                Ofrezco Servicios
+                </div>
+
+                <div className="postTypeOptions">
+
+              <label className="text" htmlFor="offersService">
+                {this.context.postType.offersService}
                 <span>
                   <input
-                    id="offersService"
-                    className="radio"
+id="offersService"
+                    className="radio postTypeButton"
                     type="radio"
                     name="posterStatus"
                     value="offersService"
                     onChange={this.handleChange}
+                    required="required"
                   />
                 </span>
               </label>
+              </div>
               <input
               className="buttonBasic"
               type="submit"
-              value="Siguiente"
+              value={this.context.postType.button}
               />
               </form>
               </div>
     );
   }
 }
+
+PostType.contextType = LanguageContext;

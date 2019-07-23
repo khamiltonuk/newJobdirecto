@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Modal from "./modal";
+import ModalJob from "./modalJob";
 import ModalPeople from "./modalPeople";
+import ModalService from "./modalService";
+
 import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
 import "moment/locale/es";
@@ -13,16 +15,19 @@ export class Jobs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
+      showModalJob: false,
       showModalPeople: false,
+      showModalService: false,
+
       user: "true"
     };
     this.handleChangeArea = this.handleChangeArea.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClickModalPeople = this.handleClickModalPeople.bind(this);
-    this.hideModal = this.hideModal.bind(this);
+    this.showModalPeople = this.showModalPeople.bind(this);
+    this.showModalService = this.showModalService.bind(this);
+    this.hideModalJob = this.hideModalJob.bind(this);
     this.hideModalPeople = this.hideModalPeople.bind(this);
+    this.hideModalService = this.hideModalService.bind(this);
     this.urgentJobInterval = this.urgentJobInterval.bind(this);
     this.trackCreateJob = this.trackCreateJob.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -36,7 +41,6 @@ export class Jobs extends React.Component {
       });
     });
     axios.get("/getJobs").then(result => {
-        this.setState({user: "somebody"})
       this.setState({ jobData: result.data }, () => {
           console.log("jobs?: ", this.state);
       });
@@ -78,11 +82,6 @@ export class Jobs extends React.Component {
           window.location.reload();
     });
 
-
-      // axios.get("/logout").then(result => {
-      //     // this.props.history.push("/")
-      //
-      // });
   }
 
   handleSubmit(event) {
@@ -93,26 +92,39 @@ export class Jobs extends React.Component {
     }
   }
 
-  handleClick(event) {
+  showModalJob(event) {
+      console.log("yay");
     this.setState({
-      show: true,
+      showModalJob: true,
       selectedJobId: event
     });
   }
 
-  handleClickModalPeople(event) {
+  showModalPeople(event) {
     this.setState({
       showModalPeople: true,
       selectedPersonId: event
     });
   }
 
-  hideModal() {
-    this.setState({ show: false });
+  showModalService(event) {
+      console.log("yayos");
+    this.setState({
+      showModalService: true,
+      selectedServiceId: event
+    });
+  }
+
+  hideModalJob() {
+    this.setState({ showModalJob: false });
   }
 
   hideModalPeople() {
     this.setState({ showModalPeople: false });
+  }
+
+  hideModalService() {
+    this.setState({ showModalService: false });
   }
 
   trackCreateJob(event) {
@@ -148,20 +160,17 @@ export class Jobs extends React.Component {
         <h1 id="title" className="heading-1">
           JobDirecto
           <br />
-          <span id="subTitle">{this.context.main.title}</span>
+          <span className="heading-1">{this.context.main.title}</span>
         </h1>
 
-         <Link to="/login"><button>Crear cuenta</button></Link>
-         <Link to="/login"><button>Entrar a cuenta</button></Link>
-         {this.state.user && <button onClick={this.logOut}
->Log out</button>}
+         {!this.state.user &&<Link to="/login"><p className="buttonsAuth">{this.context.main.login}</p></Link>}
+         {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 
-        {this.state.user && <h3>Bienvenido seas {this.state.user.name} </h3>}
         <div>
           <h1 />
         </div>
-        {this.state.show && (
-          <Modal id={this.state.selectedJobId} close={this.hideModal} />
+        {this.state.showModalJob && (
+          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} />
         )}
         {this.state.showModalPeople && (
           <ModalPeople
@@ -169,15 +178,24 @@ export class Jobs extends React.Component {
             close={this.hideModalPeople}
           />
         )}
+        {this.state.showModalService && (
+          <ModalService
+            id={this.state.selectedServiceId}
+            close={this.hideModalService}
+          />
+        )}
         <div className="buttonsAndFilters">
-
+        <div className="buttonAndWelcome">
             <input
+            id="buttonCreatePost"
             class="buttonBasic"
               type="submit"
-              value="Crear auncio"
+              value={this.context.main.createPost}
               onClick={this.handleSubmit}
             />
+   {this.state.user && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.name} </h3>}
 
+</div>
           <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
             <select
               className="filter"
@@ -212,7 +230,7 @@ export class Jobs extends React.Component {
                 ) {
                   return (
                     <div
-                      onClick={e => this.handleClick(data.id)}
+                      onClick={e => this.showModalJob(data.id)}
                       className="postData paidPostData"
                       key={data.id}
                     >
@@ -241,7 +259,7 @@ export class Jobs extends React.Component {
                 ) {
                   return (
                     <div
-                      onClick={e => this.handleClick(data.id)}
+                      onClick={e => this.showModalJob(data.id)}
                       className="postData paidPostData"
                       key={data.id}
                     >
@@ -268,7 +286,7 @@ export class Jobs extends React.Component {
                 ) {
                     return (
                       <div
-                        onClick={e => this.handleClick(data.id)}
+                        onClick={e => this.showModalJob(data.id)}
                         className="postData"
                         key={data.id}
                       >
@@ -294,7 +312,7 @@ export class Jobs extends React.Component {
                {
                   return (
                     <div
-                      onClick={e => this.handleClickModalService(data.id)}
+                      onClick={e => this.showModalService(data.id)}
                       className="postData paidPostData"
                       key={data.id}
                     >
@@ -318,12 +336,12 @@ export class Jobs extends React.Component {
           {!this.state.userSelectionArea &&
             this.state.peopleData.data.map(data => {
               if (
-                data.personstatus === "seeksJob" &&
+
                 this.urgentJobInterval(data.created_at) === true
               ) {
                 return (
                   <div
-                    onClick={e => this.handleClickModalPeople(data.id)}
+                    onClick={e => this.showModalPeople(data.id)}
                     className="postData paidPostData"
                     key={data.id}
                   >
@@ -354,7 +372,7 @@ export class Jobs extends React.Component {
     ) {
       return (
         <div
-          onClick={e => this.handleClick(data.id)}
+          onClick={e => this.showModalJob(data.id)}
           className="postData"
           key={data.id}
         >
@@ -380,7 +398,7 @@ export class Jobs extends React.Component {
     ) {
         return (
           <div
-            onClick={e => this.handleClick(data.id)}
+            onClick={e => this.showModalJob(data.id)}
             className="postData"
             key={data.id}
           >
@@ -403,7 +421,7 @@ export class Jobs extends React.Component {
               if (data.urgent !== "true") {
                 return (
                   <div
-                    onClick={e => this.handleClick(data.id)}
+                    onClick={e => this.showModalJob(data.id)}
                     className="postData"
                     key={data.id}
                   >

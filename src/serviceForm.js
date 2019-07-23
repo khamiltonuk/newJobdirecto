@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
+
 
 export class ServiceForm extends React.Component {
   constructor(props) {
@@ -22,10 +24,10 @@ export class ServiceForm extends React.Component {
   }
 
   handleSubmit(event) {
-      console.log("are u a ghost");
+      console.log("are u a ghost", this.state);
     event.preventDefault();
     axios.post("/finalizeService", this.state).then(resp => {
-      this.props.history.push("/personPay");
+      this.props.history.push("/prePay2");
     });
   }
 
@@ -34,11 +36,8 @@ export class ServiceForm extends React.Component {
       <div className="serviceForm">
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
-          <h2 className="heading-1">
-            Si ofrece servicios ahora puede crear un anuncio de JobDirecto
-          </h2>
           <br />
-          <p className="formQuestions">Cual es su nombre o el de su compania?</p>
+          <p className="formQuestions">{this.context.serviceForm.serviceOwner}</p>
           <input
             className="formInputs"
             type="text"
@@ -53,10 +52,10 @@ export class ServiceForm extends React.Component {
           />
           <br />
           <br />
-          <p className="formQuestions"> Que servicios ofrece?</p>
+          <p className="formQuestions"> {this.context.serviceForm.serviceOffered}</p>
           <input
             maxLength="30"
-            className="formInputs"
+            className="formInputs bigInput"
             type="text"
             name="serviceOffered"
             defaultValue={
@@ -67,24 +66,15 @@ export class ServiceForm extends React.Component {
             required="required"
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Cual es su direccion y en que areas opera?</p>
-          <input
-            className="formInputs"
-            type="text"
-            name="serviceArea"
-            defaultValue={
-              this.state.serviceData && this.state.serviceData.data
-                ? this.state.serviceData.data.serviceArea
-                : ""
-            }
-            onChange={this.handleChange}
-          />
 
-          <p className="formQuestions">A que numero pueden llamarlo?</p>
+
+
+          <p className="formQuestions">{this.context.serviceForm.serviceNumber}</p>
           <input
             className="formInputs"
             type="text"
             name="serviceNumber"
+            required="required"
             defaultValue={
               this.state.serviceData && this.state.serviceData.data
                 ? this.state.serviceData.data.serviceNumber
@@ -93,9 +83,9 @@ export class ServiceForm extends React.Component {
 
             onChange={this.handleChange}
           />
-          <p className="formQuestions">Algo que desee agregar?</p>
+          <p className="formQuestions">{this.context.serviceForm.serviceExtraInfo}</p>
           <textarea
-          placeholder="Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios"
+          placeholder={this.context.serviceForm.placeholder}
             className="formInputs bigInput"
             type="text"
             name="serviceExtraInfo"
@@ -117,7 +107,7 @@ export class ServiceForm extends React.Component {
           <input
             className="buttonBasic"
             type="submit"
-            value="Listo"
+            value={this.context.serviceForm.button}
           />
           <br />
           <br />
@@ -127,3 +117,5 @@ export class ServiceForm extends React.Component {
     );
   }
 }
+
+ServiceForm.contextType = LanguageContext;

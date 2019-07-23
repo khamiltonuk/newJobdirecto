@@ -5,6 +5,7 @@
 
 body {
   width: 100vw;
+
 }
 
 
@@ -63,7 +64,7 @@ body {
 }
 
 .paidPostData {
-    background-color: #fcd307
+    background-color: #ddf516;
 }
 
 /* POSTS DATA FINISH */
@@ -72,13 +73,6 @@ body {
   color: white;
 }
 
-#translateButton {
-  width: 150px;
-  height: 80px;
-  font-size: 30px;
-  float: left;
-  position: absolute;
-}
 
 
 
@@ -167,6 +161,19 @@ a:visited {
   padding: 20px;
 }
 
+.buttonAndWelcome {
+    display: flex;
+    flex-direction: row;
+}
+
+#welcomeText {
+    right: 60px;
+    position: absolute;
+    text-align: right;
+    word-break: break-word;
+    font-weight: 300;
+}
+
 .confirmButtons {
   display: flex;
   justify-content: center;
@@ -174,15 +181,6 @@ a:visited {
 }
 
 /* buttons mobile start*/
-
-/* #listo {
-  width: 50%;
-  height: 130px;
-  font-size: 50px;
-  background-color: dodgerblue;
-  color: white;
-  margin-top: 50px;
-} */
 
 .buttonBasic {
   color: white;
@@ -193,46 +191,39 @@ a:visited {
   padding: 30px 40px 30px 40px;
 }
 
-#createPostButton {
-    
+.buttonOpaque {
+    background-color: cornsilk;
+    font-size: 42px;
+    font-weight: normal;
+    color: black;
 }
 
-/* #urgentCheckedButtons,
-.personPayButtons {
-  text-align: center;
-} */
-/* .btn-secondary,
-.btn-primary,
-input[type="button"],
-button {
-  margin: 30px 30px 12px;
-  box-shadow: inset 0 0 0 1px rgba(50, 50, 93, 0.1),
-    0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07);
-  border: 0;
-  border-radius: 6px;
-  transition: all 0.2s ease, box-shadow 0.08s ease-in;
-} */
+#buttonCreatePost {
+    margin-left: 30px;
+}
 
-/* #iamlookingforstaff {
-  left: 0;
+.buttonsAuth {
+    float: right;
+    right: 25px;
+    top:25px;
+    position: absolute;
+    font-size: 35px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(26, 115, 232);
+}
+
+
+#translateButton {
+  width: 150px;
+  height: 80px;
+  font-size: 30px;
+  float: left;
   position: absolute;
-  color: white;
-  background: #004f94;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 35px;
-  margin-left: 30px;
+  background-color: white;
+  border-color: black;
+  margin: 30px 30px 12px
 }
-
-#iamlookingforjob {
-  color: white;
-  background: #b80f0a;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 35px;
-  margin-left: 650px;
-}
- */
 
 /* buttons mobile finish */
 
@@ -249,7 +240,6 @@ td {
   transform: translate(-50%, -50%);
   position: fixed;
   z-index: 2;
-  background: #004f94;
   border-style: solid;
   width: 93%;
   height: 83%;
@@ -279,7 +269,6 @@ td {
   transform: translate(-50%, -50%);
   position: fixed;
   z-index: 2;
-  background: #b80f0a;
   border-style: solid;
   width: 93%;
   height: 83%;
@@ -290,9 +279,22 @@ td {
   overflow: scroll;
 }
 
+.modalPeople, .urgentModal {
+    background-color: #ddf516;
+    color: black;
+}
 
-.login-container {
+
+.container {
   text-align: center;
+    margin: auto;
+    max-width: 800px;
+    padding-top: 140px;
+
+}
+
+.postTypeContainer {
+    text-align: left;
 }
 
 .login-centering {
@@ -343,12 +345,8 @@ td {
       font-style: italic;
 }
 
-#urgentCheckedContainer {
-  margin: auto;
-  max-width: 800px;
-}
 
-.UrgentCheckedText {
+.text {
   font-size: 40px;
   text-align: center;
 }
@@ -384,13 +382,6 @@ td {
   margin-bottom: 40px;
 }
 
-#formTitle,
-#title {
-  color: #303030;
-  font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Ubuntu, sans-serif;
-}
 
 
 .filter {
@@ -398,20 +389,26 @@ td {
   width: 300px;
   font-size: 30px;
   margin: 12px;
-  background-color: #f1f1f1;
+  background-color: white;
+  border-color: black;
   float: left;
   margin-top: 60px;
-  margin-left: 20px;
+  margin-left: 30px;
   height: 50px;
   border-radius: 6px;
 }
 
 
+
 .heading-1 {
   font-size: 50px;
   text-align: center;
-  margin-bottom: 60px;
-  margin-top: 100px;
+  margin-bottom: 80px;
+  margin-top: 150px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+ Helvetica Neue, Ubuntu, sans-serif;
+ color: #303030;
+ font-weight: 500;
 }
 
 .heading-2 {
@@ -495,6 +492,12 @@ label {
     Helvetica Neue, Ubuntu, sans-serif;
 }
 
+.postTypeOptions {
+    display: flex;
+    flex-direction: column;
+    margin: 70px;
+}
+
 .personFormLabels {
   font-size: 17px;
 }
@@ -520,58 +523,34 @@ label {
 .bigInput {
   height: 200px;
 }
-
-/* Facebook */
-#facebookLoginLink {
-    color:white
+.facebookContainer {
+    margin-top: 120px;
 }
 
-.loginBtn--facebook {
-  background-color: #4C69BA;
-  background-image: linear-gradient(#4C69BA, #3B55A0);
-  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-  text-shadow: 0 -1px 0 #354C8C;
+#facebook-button {
+  color: #fff;
+  font-size: 40px;
+  text-decoration: none;
+  padding: 45px 80px;
+  background-image:-webkit-linear-gradient(#3b5998, #314b83);
+  display: inline-block;
+  border-radius: 5px;
+  border: solid 1px #283e6b;
+  box-shadow: inset 0px 1px rgba(255,255,255,0.2);
+  text-shadow: 0px 1px rgba(0,0,0,0.4);
+  font-weight: bold;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.3s;
+  &:hover {
+  background-image:-webkit-linear-gradient(#4466ac, #34518e);
 }
-.loginBtn--facebook:before {
-  border-right: #364e92 1px solid;
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+ &:active {
+    box-shadow: inset 0px 5px 15px rgba(0,0,0,0.3), 0px 1px rgba(255,255,255,0.2);
 }
-.loginBtn--facebook:hover,
-.loginBtn--facebook:focus {
-  background-color: #5B7BD5;
-  background-image: linear-gradient(#5B7BD5, #4864B1);
 }
-
-.loginBtn {
-  box-sizing: border-box;
-  position: relative;
-  /* width: 13em;  - apply for fixed size */
-  margin: 0.2em;
-  padding: 0 15px 0 46px;
-  border: none;
-  text-align: left;
-  line-height: 34px;
-  white-space: nowrap;
-  border-radius: 0.2em;
-  font-size: 16px;
-  color: #FFF;
-}
-.loginBtn:before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 34px;
-  height: 100%;
-}
-.loginBtn:focus {
-  outline: none;
-}
-.loginBtn:active {
-  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
-}
-
 
 @media (min-width: 1000px) {
   .heading-1 {
@@ -579,22 +558,32 @@ label {
     margin-top: 30px;
   }
 
+    .buttonBasic {
+      padding: 15px;
+      width: 250px;
+      height: 70px;
+      font-size: 26px;
+      font-weight: bold;
+      font-size: 30px;
+    }
+    .buttonOpaque {
+        font-weight: normal;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+
+    #buttonCreatePost {
+        margin-left: 90px;
+    }
+
+
+
+
   .contactInfo {
       margin-top: 40px;
   }
 
-  #iamlookingforstaff {
-      padding: 25px;
-  }
-
-  #iamlookingforjob {
-    margin-left: 350px;
-    padding: 25px;
-  }
-
-  .heading-2 {
-    font-size: 25px;
-  }
 
   #areaInput {
     height: 50px;
@@ -619,20 +608,12 @@ label {
   }
 
   .jobForm,
-  .personForm {
+  .personForm, .serviceForm {
     margin: 0 auto;
     max-width: 8000px;
     width: 100%;
     padding: 10px;
     margin-left: 5%;
-  }
-
-  .btn-primary {
-    padding: 15px;
-  }
-
-  .btn-secondary {
-    padding: 15px;
   }
 
 
@@ -661,10 +642,6 @@ label {
 
 
 
-
-  #createJob {
-    font-size: 30px;
-  }
 
   .formQuestions {
     font-size: 27px;
@@ -708,33 +685,15 @@ label {
   }
 
 
-  #UrgentCheckedTitle {
-    font-size: 25px;
-  }
-  #urgentCheckedContainer {
+
+
+  #container     {
     text-align: left;
   }
 
-  .UrgentCheckedText {
+  .text {
     font-size: 24px;
   }
-
-  #UrgentCheckedButtonYES,
-  #UrgentCheckedButtonNO,
-  #personfinalpaybutton {
-    width: 200px;
-    height: 70px;
-    font-size: 26px;
-    font-weight: bold;
-  }
-
-  #UrgentCheckedButtonNO {
-    font-size: 16px;
-  }
-
-  #personfinalpaybutton {
-  }
-
 
 
 
@@ -762,10 +721,6 @@ label {
     height: 62px;
   }
 
-  #iamlookingforjob {
-    margin-left: 350px;
-    padding: 25px;
-  }
 
   .buttonsAndFilters {
     display: flex;

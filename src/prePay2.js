@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import StripeButton2 from "./stripebutton2.js";
+import { LanguageContext } from "./languageContext";
+
 
 export default class PrePay2 extends React.Component {
   constructor(props) {
@@ -21,37 +23,39 @@ export default class PrePay2 extends React.Component {
 
   render() {
     return (
-      <div id="urgentCheckedContainer">
-        <h1 id="UrgentCheckedTitle" className="heading-1">
-          Encuentre trabajo RAPIDO y SEGURO
-        </h1>
+      <div className="container">
         <br />
         <br />
         {/*<img id="urgentExample" src="personpay.png" />
          */}{" "}
-        <p className="UrgentCheckedText">
-          Si busca trabajo u ofrece servicios, ahora puede poner un anuncio por $10!
+        <p className="text">
+        {this.context.prePay2.text1}
+
           <br />
           <br />
           <span className="textHighlight">
-            Su anuncio no sera borrado
+          {this.context.prePay2.text2}
+
           </span>{" "}
-          y se mantendra por encima de los anuncios gratis por 48 horas. <br />
+          {this.context.prePay2.text3}
+           <br />
           <br />
           <br />
         </p>
         <div className="personPayButtons">
-          <StripeButton2 />
+        <StripeButton2/>
           <button
             onClick={this.cancelPay}
-            className="buttonBasic"
+            className="buttonBasic buttonOpaque"
           >
-            Deseo seguir buscando sin pagar
+            {this.context.prePay2.button}
           </button>
-          <div className="contactInfo"><p>Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com</p></div>
+          <div className="contactInfo"><p>{this.context.prePay2.contact}</p></div>
 
         </div>
       </div>
     );
   }
 }
+
+PrePay2.contextType = LanguageContext;

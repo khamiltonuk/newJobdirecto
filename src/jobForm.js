@@ -51,7 +51,9 @@ export class JobForm extends React.Component {
     this.setState(
       {
         [event.target.name]: event.target.value
-      }
+    }, () => {
+        console.log(this.state);
+    }
     );
   }
 
@@ -68,7 +70,7 @@ export class JobForm extends React.Component {
     event.preventDefault();
     axios.post("/finalizeJob", this.state).then(resp => {
       if (this.state.urgent === true) {
-        this.props.history.push("/jobPay");
+        this.props.history.push("/prePayJob");
       } else {
         this.props.history.push("/JobConfirm");
       }
@@ -127,170 +129,44 @@ export class JobForm extends React.Component {
           <br />
           <br />
           <p className="formQuestions">{this.context.jobForm.question4}</p>
-          {this.state.jobData &&
-            this.state.jobData.data &&
-            this.state.jobData.data.typepay === "cash" && (
-              <div className="typePay">
-                <label className="formQuestions" htmlFor="cash">
-                  {this.context.jobForm.payType1}
-                  <span>
-                    <input
-                      className="radio"
-                      type="radio"
-                      name="typepay"
-                      value="cash"
-                      defaultChecked="defaultChecked"
-                      onChange={this.handleChange}
-                    />
-                  </span>
+              <label className="text" htmlFor="Cash">
+                {this.context.jobForm.payType1}
+                <input
+                  className="radio"
+                  id="Cash"
+                  type="radio"
+                  name="typepay"
+                  value={this.context.jobForm.payType1}
+                  onChange={this.handleChange}
+                />
+              </label>
+
+                <label className="text" htmlFor="Check">
                   {this.context.jobForm.payType2}
-                  <span>
-                    <input
-                      className="radio"
-                      type="radio"
-                      name="typepay"
-                      value="cheque"
-                      onChange={this.handleChange}
-                    />
-                  </span>
-                  {this.context.jobForm.payType3}
-                  <span>
-                    <input
-                      className="radio"
-                      type="radio"
-                      name="typepay"
-                      value="Cash y Cheque"
-                      onChange={this.handleChange}
-                    />
-                  </span>
+                  <input
+                  id="Check"
+                    className="radio "
+                    type="radio"
+                    name="typepay"
+                    value={this.context.jobForm.payType2}
+                    onChange={this.handleChange}
+                  />
                 </label>
-              </div>
-            )}
-          {(this.state.jobData &&
-            this.state.jobData.data &&
-            this.state.jobData.data.typepay !== "cash") ||
-            (!this.state.jobData && (
-              <label htmlFor="cash">
-                {this.context.jobForm.payType1}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cash"
-                    onChange={this.handleChange}
-                  />
-                </span>
-              </label>
-            ))}
-          {this.state.jobData &&
-            this.state.jobData.data &&
-            this.state.jobData.data.typepay === "cheque" && (
-              <label htmlFor="cash">
-                {this.context.jobForm.payType1}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cash"
-                    onChange={this.handleChange}
-                  />
-                </span>
-                {this.context.jobForm.payType2}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cheque"
-                    defaultChecked="defaultChecked"
-                    onChange={this.handleChange}
-                  />
-                </span>
+
+
+              <label className="text" htmlFor="CashAndCheck">
                 {this.context.jobForm.payType3}
                 <span>
                   <input
+id="offersService"
                     className="radio"
                     type="radio"
                     name="typepay"
-                    value="Cash y Cheque"
+                    value={this.context.jobForm.payType3}
                     onChange={this.handleChange}
                   />
                 </span>
               </label>
-            )}
-          {(this.state.jobData &&
-            this.state.jobData.data &&
-            this.state.jobData.data.typepay !== "cheque") ||
-            (!this.state.jobData && (
-              <label htmlFor="cheque">
-                {this.context.jobForm.payType2}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cheque"
-                    onChange={this.handleChange}
-                  />
-                </span>
-              </label>
-            ))}
-          {this.state.jobData &&
-            this.state.jobData.data &&
-            this.state.jobData.data.typepay === "Cash y Cheque" && (
-              <label htmlFor="cash">
-                {this.context.jobForm.payType1}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cash"
-                    onChange={this.handleChange}
-                  />
-                </span>
-                {this.context.jobForm.payType2}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="cheque"
-                    onChange={this.handleChange}
-                  />
-                </span>
-                {this.context.jobForm.payType3}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="Cash y Cheque"
-                    defaultChecked="defaultChecked"
-                    onChange={this.handleChange}
-                  />
-                </span>
-              </label>
-            )}
-          {(this.state.jobData &&
-            this.state.jobData.data &&
-            this.state.jobData.data.typepay !== "Cash y Cheque") ||
-            (!this.state.jobData && (
-              <label htmlFor="Cash y Cheque">
-                {this.context.jobForm.payType3}
-                <span>
-                  <input
-                    className="radio"
-                    type="radio"
-                    name="typepay"
-                    value="Cash y Cheque"
-                    onChange={this.handleChange}
-                  />
-                </span>
-              </label>
-            ))}
           <br />
           <br />
           <p className="formQuestions"> {this.context.jobForm.question5}</p>

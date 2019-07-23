@@ -26,7 +26,7 @@ export class PersonForm extends React.Component {
     event.preventDefault();
     console.log("state in job form: ", this.state);
     axios.post("/finalizePerson", this.state).then(resp => {
-      this.props.history.push("/personPay");
+      this.props.history.push("/prePay2");
     });
   }
 
@@ -35,10 +35,7 @@ export class PersonForm extends React.Component {
       <div className="personForm">
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
-          <h2 className="heading-1">
-            Solo para quienes buscan trabajo con urgencia
-          </h2>
-          <br />
+                  <br />
           <p className="formQuestions">Cual es su nombre?</p>
           <input
             className="formInputs"

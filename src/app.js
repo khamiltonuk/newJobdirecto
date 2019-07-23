@@ -9,9 +9,7 @@ import PrePay2 from "./prePay2.js";
 import { PersonConfirm } from "./personConfirm.js";
 import { ServiceConfirm } from "./serviceConfirm.js";
 import { Jobs } from "./jobs.js";
-import LoginOrRegister from "./loginorregister.js";
 import Login from "./login.js";
-import Register from "./register.js";
 import PrePayJob from "./prePayJob.js";
 import { BrowserRouter, Route } from "react-router-dom";
 import ReactGA from "react-ga";
@@ -46,8 +44,6 @@ export class App extends React.Component {
           <LanguageContext.Provider value={this.state.languages}>
             <LanguageButton changeLanguage={this.toggleLanguage} />
             <Route path="/prePayJob" component={PrePayJob} />
-            <Route path="/loginorregister" component={LoginOrRegister} />
-            <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/jobConfirm" component={JobConfirm} />
             <Route

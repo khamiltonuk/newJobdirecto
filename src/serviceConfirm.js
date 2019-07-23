@@ -68,7 +68,7 @@ export class ServiceConfirm extends React.Component {
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Direccion:</td>
+              <td className="jobDetailsText">Area:</td>
               <td className="jobDetailsText">
                 {this.state.serviceData.data.serviceArea}
               </td>
