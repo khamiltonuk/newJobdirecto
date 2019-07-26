@@ -111,6 +111,8 @@ export class ServiceForm extends React.Component {
           />
           <br />
           <br />
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
+          
           <br />
         </form>
       </div>

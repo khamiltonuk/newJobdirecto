@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
+
 
 export class ServiceConfirm extends React.Component {
   constructor(props) {
@@ -52,36 +54,31 @@ export class ServiceConfirm extends React.Component {
       <div className="jobConfirmPage">
         <form onSubmit={this.handleSubmit}>
           <h1 className="confirmTitle" className="heading-1">
-            Su anuncio esta listo para ser publicado:
+            {this.context.serviceConfirm.title}
           </h1>
           <table>
             <tr>
-              <td className="jobDetailsText">Nombre de su negocio:</td>
+              <td className="jobDetailsText">{this.context.serviceConfirm.serviceOwner}</td>
               <td className="jobDetailsText">
                 {this.state.serviceData.data.serviceOwner}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Ofrece servicios de:</td>
+              <td className="jobDetailsText">{this.context.serviceConfirm.serviceOffered}</td>
               <td className="jobDetailsText">
                 {this.state.serviceData.data.serviceOffered}
               </td>
             </tr>
-            <tr>
-              <td className="jobDetailsText">Area:</td>
-              <td className="jobDetailsText">
-                {this.state.serviceData.data.serviceArea}
-              </td>
-            </tr>
+
 
             <tr>
-              <td className="jobDetailsText">Numero:</td>
+              <td className="jobDetailsText">{this.context.serviceConfirm.serviceNumber}</td>
               <td className="jobDetailsText">
                 {this.state.serviceData.data.serviceNumber}
               </td>
             </tr>
             <tr>
-              <td className="jobDetailsText">Informacion extra:</td>
+              <td className="jobDetailsText">{this.context.serviceConfirm.serviceExtraInfo}</td>
               <td className="jobDetailsText">
                 {this.state.serviceData.data.serviceExtraInfo}
               </td>
@@ -100,8 +97,11 @@ export class ServiceConfirm extends React.Component {
               />
             </Link>
           </div>
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
+          
         </form>
       </div>
     );
   }
 }
+ServiceConfirm.contextType = LanguageContext;

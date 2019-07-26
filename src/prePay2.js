@@ -50,7 +50,7 @@ export default class PrePay2 extends React.Component {
           >
             {this.context.prePay2.button}
           </button>
-          <div className="contactInfo"><p>{this.context.prePay2.contact}</p></div>
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
 
         </div>
       </div>

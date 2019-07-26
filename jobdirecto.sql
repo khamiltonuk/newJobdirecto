@@ -23,6 +23,24 @@ PRIMARY KEY (id)
 
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
+    facebookId VARCHAR(300),
+    restName VARCHAR(300),
+    jobType VARCHAR(255),
+    hourPay VARCHAR(255),
+    typePay VARCHAR(255) ,
+    schedule VARCHAR(255),
+    contact VARCHAR(255) ,
+    address VARCHAR(255),
+    phone VARCHAR(255),
+    area VARCHAR(255),
+    extrainfo VARCHAR(255),
+    urgent VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE deletedJobs(
+    id SERIAL PRIMARY KEY,
+    facebookId VARCHAR(300),
     restName VARCHAR(300),
     jobType VARCHAR(255),
     hourPay VARCHAR(255),

@@ -56,22 +56,17 @@ passport.use(new FacebookStrategy({
         callbackURL: "http://localhost:8080/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
-            console.log("user here", user);
             done(null, user)
         })
     }
 ));
 
 passport.serializeUser(function(user, done) {
-    console.log("serialize", user);
-    // console.log(req.session);
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    console.log("deserialize");
 
     return database.getFacebookUser(id).then(user => {
         done(null, user);
@@ -85,14 +80,12 @@ app.use(passport.session());
 
 app.get('/user',
     (req, res) => {
-        console.log("session in user: ", req.session)
         res.json(req.user);
     });
 
 app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
-    console.log("logging outie");
 });
 
 app.get('/loginFacebook',
@@ -103,7 +96,6 @@ app.get('/facebook/callback',
         failureRedirect: '/login'
     }),
     function(req, res) {
-        console.log("redirecting back");
         res.redirect('/');
     });
 
@@ -124,7 +116,6 @@ app.get("/getPersonInfo", function(req, res) {
 });
 
 app.get("/getServiceInfo", function(req, res) {
-    console.log("area wold", req.session);
     res.json({
         data: req.session.service
     });
@@ -152,7 +143,6 @@ app.get("/getJobDetails/:id", function(req, res) {
 
 app.get("/getServiceDetails/:id", function(req, res) {
     return database.getServiceInfo(req.params.id).then(data => {
-        console.log("hi fam", data);
         res.json({
             data
         });
@@ -187,7 +177,6 @@ app.get("/getJobs", function(req, res) {
 app.get("/getServices", function(req, res) {
     // req.session = null;
     return database.getServices().then(data => {
-        console.log("jesus", data);
         res.json({
             data
         });
@@ -236,7 +225,6 @@ app.post("/finalizePerson", (req, res) => {
 });
 
 app.post("/finalizeService", (req, res) => {
-    console.log("yes I am a ghost", req.body);
     req.session.service = req.body;
     res.json({
         success: true
@@ -268,8 +256,10 @@ app.post("/wantsToPay", (req, res) => {
 });
 
 app.post("/publishJob", (req, res) => {
+    console.log("are u even here?", req.user.id);
     return database
         .publishJob(
+            req.user.id,
             req.body.jobData.data.restname,
             req.body.jobData.data.jobtype,
             req.body.jobData.data.hourpay,
@@ -314,7 +304,6 @@ app.post("/publishPerson", (req, res) => {
         });
 });
 
-
 app.post("/publishService", (req, res) => {
     return database
         .publishService(
@@ -333,6 +322,17 @@ app.post("/publishService", (req, res) => {
             });
         });
 });
+
+app.get("/deletePost/:id", function(req, res) {
+    console.log("am I even here");
+    return database.deletePost(req.params.id).then(data => {
+        res.json({
+            data
+        });
+        req.session.restname = data.restname;
+    });
+});
+
 
 app.post("/register", function(req, res) {
     database

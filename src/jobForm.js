@@ -353,6 +353,8 @@ id="offersService"
           />
           <br />
           <br />
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
+          
           <br />
         </form>
       </div>

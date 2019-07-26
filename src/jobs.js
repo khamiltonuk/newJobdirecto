@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ModalJob from "./modalJob";
 import ModalPeople from "./modalPeople";
+import DeleteModal from "./deleteModal";
 import ModalService from "./modalService";
-
 import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
 import "moment/locale/es";
@@ -18,8 +18,8 @@ export class Jobs extends React.Component {
       showModalJob: false,
       showModalPeople: false,
       showModalService: false,
-
-      user: "true"
+      user: "true",
+      showDeleteModal: false
     };
     this.handleChangeArea = this.handleChangeArea.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,26 +29,26 @@ export class Jobs extends React.Component {
     this.hideModalPeople = this.hideModalPeople.bind(this);
     this.hideModalService = this.hideModalService.bind(this);
     this.urgentJobInterval = this.urgentJobInterval.bind(this);
-    this.trackCreateJob = this.trackCreateJob.bind(this);
+    this.trackCreatecloseJob = this.trackCreateJob.bind(this);
+    this.showDeleteModal = this.showDeleteModal.bind(this);
+    this.hideDeleteModal = this.hideDeleteModal.bind(this);
+    // this.deletePost = this.deletePost.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
   componentDidMount() {
-
     axios.get("/getPeople").then(result => {
       this.setState({ peopleData: result.data }, () => {
-          console.log("people?: ", this.state);
       });
     });
     axios.get("/getJobs").then(result => {
+        console.log("appear!");
       this.setState({ jobData: result.data }, () => {
-          console.log("jobs?: ", this.state);
-      });
+      console.log(this.state.jobData.data[0].facebookid);
+  });
     });
-
     axios.get("/getServices").then(result => {
       this.setState({ serviceData: result.data }, () => {
-          console.log("service?: ", this.state);
       });
   });
 
@@ -59,8 +59,7 @@ export class Jobs extends React.Component {
         withCredentials: true
     }).then(result => {
       this.setState({ user: result.data }, () => {
-          console.log("does this work?", result.data.name);
-          console.log("whats here", this.state);
+          console.log("user user were u at", this.state.user.id);
       });
     });
   }
@@ -84,6 +83,7 @@ export class Jobs extends React.Component {
 
   }
 
+
   handleSubmit(event) {
     if (this.state.user === "") {
         this.props.history.push("/login")
@@ -93,13 +93,36 @@ export class Jobs extends React.Component {
   }
 
   showModalJob(event) {
-      console.log("yay");
+      console.log("idid0", event);
+
     this.setState({
       showModalJob: true,
       selectedJobId: event
     });
   }
 
+  showDeleteModal(event, id) {
+      console.log("idid", id);
+      event.stopPropagation();
+    this.setState({
+      showDeleteModal: true,
+      selectedJobId: id
+    });
+  }
+
+/*
+  deletePost(event) {
+      console.log("just delete it pls", event.selectedJobId);
+      this.setState({
+    }, () => {
+        console.log("it is done", this.state.selectedJobId);
+    });
+      axios.get("/deletePost").then(result => {
+
+      });
+
+  }
+*/
   showModalPeople(event) {
     this.setState({
       showModalPeople: true,
@@ -108,7 +131,6 @@ export class Jobs extends React.Component {
   }
 
   showModalService(event) {
-      console.log("yayos");
     this.setState({
       showModalService: true,
       selectedServiceId: event
@@ -117,6 +139,13 @@ export class Jobs extends React.Component {
 
   hideModalJob() {
     this.setState({ showModalJob: false });
+  }
+
+  hideDeleteModal() {
+      console.log("hi");
+    this.setState({ showDeleteModal: false }, () => {
+        console.log("ciao");
+    });
   }
 
   hideModalPeople() {
@@ -171,6 +200,9 @@ export class Jobs extends React.Component {
         </div>
         {this.state.showModalJob && (
           <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} />
+        )}
+        {this.state.showDeleteModal && (
+          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} />
         )}
         {this.state.showModalPeople && (
           <ModalPeople
@@ -420,23 +452,31 @@ export class Jobs extends React.Component {
             this.state.jobData.data.map(data => {
               if (data.urgent !== "true") {
                 return (
+
                   <div
                     onClick={e => this.showModalJob(data.id)}
                     className="postData"
                     key={data.id}
                   >
-                    <p>
+                  <div className="flexContainer">
+                      <p>
                       <span className="postConnector">
                         {" "}
                         {this.context.main.seeking3}{" "}
                       </span>
                       <span className="posterGoal">{data.jobtype}</span>
                     </p>
+                    {data.facebookid === this.state.user.id &&
+                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                        <i className="fa fa-close" />
+                        </button>}
+                      </div>
                     <p className="postArea">{data.area}</p>
                     <div className="postMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
                   </div>
+
                 );
               }
             })}

@@ -14,6 +14,7 @@ const db = spicedPg(dbUrl);
 var bcrypt = require("bcryptjs");
 
 exports.publishJob = function(
+    facebookId,
     restname,
     jobtype,
     hourpay,
@@ -31,11 +32,11 @@ exports.publishJob = function(
         .query(
             `
         INSERT INTO jobs
-        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+        (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
         returning *;
         `,
-            [
+            [facebookId,
                 restname,
                 jobtype,
                 hourpay,
@@ -115,7 +116,8 @@ exports.publishService = function(
                 serviceOffered,
                 serviceArea,
                 serviceNumber,
-                serviceExtraInfo            ]
+                serviceExtraInfo
+            ]
         )
         .then(function(results) {
             return results.rows;
@@ -130,21 +132,21 @@ exports.findOrCreateFacebookUser = function(id, name) {
         if (user) {
             return user;
         }
-            return db
-                .query(
-                    `
+        return db
+            .query(
+                `
                   INSERT INTO users
                   (id, name)
                   VALUES ($1, $2)
                   returning *;
                   `,
-                    [
-                        id, name
-                    ]
-                )
-                .then(function(results) {
-                    return results.rows;
-                });
+                [
+                    id, name
+                ]
+            )
+            .then(function(results) {
+                return results.rows;
+            });
     })
 };
 
@@ -160,6 +162,24 @@ exports.getJobInfo = function(id) {
         return results.rows[0];
     });
 };
+
+exports.deletePost = function(id) {
+    return db.query(`INSERT INTO deletedjobs
+    SELECT (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
+    FROM jobs
+    WHERE id = $1;`, [id]).then(results => {
+        console.log("succesfull transfer");
+        return results.rows[0];
+    });
+};
+
+// INSERT INTO deletedPosts
+// SELECT (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
+// FROM jobs
+// WHERE id = $1;
+
+
+
 exports.getServiceInfo = function(id) {
     return db.query(`SELECT * FROM services WHERE id = $1`, [id]).then(results => {
         console.log("area are u there", results);

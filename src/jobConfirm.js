@@ -15,7 +15,6 @@ export class JobConfirm extends React.Component {
 
   componentDidMount() {
     axios.get("/getJobInfo").then(result => {
-      console.log("result data here: ", result.data);
       if (result.data.success == false) {
         return null;
       } else {
@@ -141,6 +140,8 @@ export class JobConfirm extends React.Component {
               />
             </Link>
           </div>
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
+          
         </form>
       </div>
     );

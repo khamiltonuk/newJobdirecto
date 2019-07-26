@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LanguageContext } from "./languageContext";
+
 
 export class PersonConfirm extends React.Component {
   constructor(props) {
@@ -106,8 +108,12 @@ export class PersonConfirm extends React.Component {
               />
             </Link>
           </div>
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
+
         </form>
       </div>
     );
   }
 }
+
+PersonConfirm.contextType = LanguageContext;

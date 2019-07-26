@@ -261,8 +261,41 @@ td {
   top: 50%;
   left: 50%;
   color: black;
-  display: flex;
   overflow: scroll;
+}
+
+
+
+.deleteModal {
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 2;
+    width: 50%;
+    height: 50%;
+    background: coral;
+    border-style: solid;
+    top: 50%;
+    left: 50%;
+    display: flex;
+}
+
+.deleteButtons {
+    flex-direction: row;
+}
+
+.flexContainer {
+    display: flex;
+}
+
+.deletePostButton {
+    /* position: relative; */
+    margin-left:  30%;
+    width: 75px;
+    height: 75px;
+    font-size: 50px;
+    color: white;
+    background-color: rgb(26, 115, 232);
+
 }
 
 .modalPeople {
@@ -553,6 +586,19 @@ label {
 }
 
 @media (min-width: 1000px) {
+
+    /* .deletePostButton {
+        margin-left: 175px;
+width: 45px;
+margin-top: -20px;
+height: 45px;
+font-size: 30px;
+    } */
+#facebook-button {
+    font-size: 28px;
+    padding: 35px 50px;
+}
+
   .heading-1 {
     font-size: 35px;
     margin-top: 30px;

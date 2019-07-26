@@ -42,7 +42,7 @@ export default class PrePayJob extends React.Component {
           >
             {this.context.jobPayPage.buttonNO}
           </button>
-          <div className="contactInfo"><p>{this.context.jobPayPage.contactInfo}</p></div>
+          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
         </div>
       </div>
     );

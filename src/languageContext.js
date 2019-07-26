@@ -78,14 +78,17 @@ export const languages = {
             text2: "Su anuncio no sera borrado",
             text3: "y se mantendra por encima de los anuncios gratis por 48 horas.",
             button: "Gracias ya no deseo",
-                contact: "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com",
-                buttonPay: "Pagar $10"
+            buttonPay: "Pagar $10"
+        },
+        contactInfo: {
+            contactInfo: "Si tiene preguntas, quejas o sugerencias, porfavor envia un correo a wilfredo@jobdirecto.com"
+
         },
         serviceModal: {
-            name: "Cual es su nombre o el de su compania?",
-            serviceOffered: "Que servicios ofrece?",
-            serviceNumber: "A que numero pueden llamarlo?",
-            serviceExtraInfo: "Desea agregar mas informacion?"
+            name: "Nombre:",
+            serviceOffered: "Servicio que ofrece:",
+            serviceNumber: "Numero:",
+            serviceExtraInfo: "Mas info:"
         },
         jobPayPage: {
             title: "Usted a marcado anuncio TOP",
@@ -93,7 +96,15 @@ export const languages = {
             text2: "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
             buttonNO: "Quiero un anuncio gratis y comun",
             buttonYES: "Pagar $10",
-            contactInfo: "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
+        },
+        serviceConfirm: {
+            title: "Su anuncio esta listo para ser publicado:",
+            serviceOwner: "Nombre: ",
+            serviceOffered: "Servicio que ofrece: ",
+            area: "Area: ",
+            serviceNumber: "Numero:",
+            serviceExtraInfo: "Mas info:",
+            button: "Publicar anuncio"
         },
         serviceForm: {
             serviceOwner: "Cual es su nombre o el de su compania?",
@@ -121,8 +132,8 @@ export const languages = {
         },
 
         serviceForm: {
-            serviceOwner: "What is your business name?",
-            serviceOffered: "What services do you provide?",
+            serviceOwner: "What is the name of your business?",
+            serviceOffered: "What services do you offer?",
             serviceNumber: "How can people reach out to you?",
             serviceExtraInfo: "Any other info you'd like to add?",
             button: "Finish",
@@ -160,6 +171,9 @@ export const languages = {
             title: "Fill out the form and find staff in seconds",
             extraArea: "What''s the name of the area?"
         },
+        contactInfo: {
+            contactInfo: "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
+        },
         jobConfirm: {
             title: "Your post",
             name: "Name:",
@@ -174,12 +188,20 @@ export const languages = {
             extraInfo: "More info:",
             button: "Publish"
         },
+        serviceConfirm: {
+            title: "Your post is ready to be published:",
+            serviceOwner: "Name: ",
+            serviceOffered: "Service: ",
+            area: "Area: ",
+            serviceNumber: "Phone Number:",
+            serviceExtraInfo: "Extra Info:",
+            button: "Publish Post"
+        },
         prePay2: {
             text1: "Posts to promote services cost $10",
             text2: "Your post will stay on top of the page for 48 hours",
             text3: "and it will have a different color.",
             button: "No thanks",
-            contact: "If you got questions, suggestions or complaints, please reach out to wilfredo@jobdirecto.com",
             buttonPay: "Pay $10"
 
         },
@@ -195,10 +217,10 @@ export const languages = {
             extraInfo: "More info:"
         },
         serviceModal: {
-            name: "What is the name of your company (or your name)?",
-            serviceOffered: "Which services are you offering?",
-            serviceNumber: "How can customers reach out to you?",
-            serviceExtraInfo: "Any extra info you'd like to add?"
+            name: "Name:",
+            serviceOffered: "Service:",
+            serviceNumber: "Number:",
+            serviceExtraInfo: "Extra info:"
         },
         jobPayPage: {
             title: "You chose TOP post",
@@ -206,7 +228,6 @@ export const languages = {
             text2: "If you are looking for top staff as quickly as possible, this is what you need.",
             buttonNO: "I want a free and normal post",
             buttonYES: "Pay $10",
-            contactInfo: "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
         }
     }
 };
