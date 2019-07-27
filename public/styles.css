@@ -6,12 +6,14 @@
 body {
   width: 100vw;
 
+
 }
 
 
 /* POSTS DATA START */
 
 .allPosts {
+
   margin-top: 90px;
   display: flex;
   flex-wrap: wrap;
@@ -40,7 +42,6 @@ body {
   margin-top: 20px;
 }
 
-
 .posterName {
   word-break: break-word;
 }
@@ -53,7 +54,6 @@ body {
     border-bottom: 3px solid black;
     padding-bottom: 3px;
 }
-
 
 .postMoment {
   font-size: 30px;
@@ -110,16 +110,18 @@ a:visited {
   font-size: 100px;
 }
 
-.btn {
+.modalButton {
   background-color: #f1f1f1;
   border: none;
+  z-index: 4;
   color: black;
   margin-right: 20px;
   font-size: 76px;
   cursor: pointer;
+  position: fixed;
   right: 0;
-  top: 0;
-  position: absolute;
+  top: 6%;
+  width: 100px;
 }
 
 .formInputs {
@@ -239,7 +241,7 @@ td {
 .urgentModal {
   transform: translate(-50%, -50%);
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   border-style: solid;
   width: 93%;
   height: 83%;
@@ -253,44 +255,65 @@ td {
 .modal {
   transform: translate(-50%, -50%);
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   background: white;
   border-style: solid;
-  width: 93%;
-  height: 83%;
+  width: 95%;
+  height: 85%;
   top: 50%;
   left: 50%;
   color: black;
   overflow: scroll;
 }
 
+.backgroundBlock {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+}
 
 
 .deleteModal {
     transform: translate(-50%, -50%);
     position: fixed;
-    z-index: 2;
-    width: 50%;
-    height: 50%;
-    background: coral;
+    z-index: 3;
+    width: 70%;
+    height: 25%;
+    background: lightblue;
     border-style: solid;
     top: 50%;
     left: 50%;
     display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    text-align: center;
+    padding: 40px;
 }
 
 .deleteButtons {
     flex-direction: row;
 }
 
-.flexContainer {
-    display: flex;
+.deleteButton {
+    width: 170px;
+height: 120px;
+margin: 40px;
+font-size: 50px;
 }
+
+/* .flexContainer {
+    display: flex;
+} */
 
 .deletePostButton {
     /* position: relative; */
-    margin-left:  30%;
     width: 75px;
+    float: right;
     height: 75px;
     font-size: 50px;
     color: white;
@@ -301,7 +324,7 @@ td {
 .modalPeople {
   transform: translate(-50%, -50%);
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   border-style: solid;
   width: 93%;
   height: 83%;
@@ -376,6 +399,7 @@ td {
     margin-top: 100px;
     margin-bottom: 100px;
       font-style: italic;
+      font-size: 21px;
 }
 
 
@@ -585,6 +609,8 @@ label {
 }
 }
 
+
+
 @media (min-width: 1000px) {
 
     /* .deletePostButton {
@@ -648,8 +674,8 @@ font-size: 30px;
 
   .modal {
     position: fixed;
-    width: 93%;
-    height: 92%;
+    width: 95%;
+    height: 85%;
     overflow: scroll;
   }
 
@@ -681,6 +707,7 @@ font-size: 30px;
 
   .allPosts {
     margin-top: 4%;
+
   }
 
 
@@ -772,4 +799,7 @@ font-size: 30px;
     display: flex;
     flex-flow: row wrap;
   }
+  .itAll {
+  }
+
 }

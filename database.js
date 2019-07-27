@@ -56,6 +56,7 @@ exports.publishJob = function(
 };
 
 exports.publishPerson = function(
+    facebookId,
     personName,
     personStatus,
     personSkill,
@@ -70,11 +71,11 @@ exports.publishPerson = function(
         .query(
             `
         INSERT INTO personas
-        (personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        (facebookId, personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
         returning *;
         `,
-            [
+            [facebookId,
                 personName,
                 personStatus,
                 personSkill,
@@ -92,27 +93,27 @@ exports.publishPerson = function(
 
 
 exports.publishService = function(
-    serviceOwner,
+    facebookId, serviceOwner,
     serviceOffered,
     serviceArea,
     serviceNumber,
     serviceExtraInfo
 ) {
-    console.log("look person!");
+    console.log("look person!", facebookId);
     return db
         .query(
             `
         INSERT INTO services
-        (serviceOwner,
+        (facebookId, serviceOwner,
         serviceOffered,
         serviceArea,
         serviceNumber,
         serviceExtraInfo)
-        VALUES ($1, $2, $3, $4, $5)
+        VALUES ($1, $2, $3, $4, $5, $6)
         returning *;
         `,
             [
-                serviceOwner,
+                facebookId, serviceOwner,
                 serviceOffered,
                 serviceArea,
                 serviceNumber,
@@ -163,20 +164,32 @@ exports.getJobInfo = function(id) {
     });
 };
 
+// exports.deletePost = function(id) {
+//     return db.query(`INSERT INTO deletedjobs
+//     SELECT *
+//     FROM jobs
+//     WHERE id = $1;
+//
+//     DELETE FROM jobs WHERE id = $1;`, [id]).then(results => {
+//         console.log("succesfull transfer");
+//         return results.rows[0];
+//     });
+// };
+
+
 exports.deletePost = function(id) {
-    return db.query(`INSERT INTO deletedjobs
-    SELECT (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
-    FROM jobs
-    WHERE id = $1;`, [id]).then(results => {
-        console.log("succesfull transfer");
-        return results.rows[0];
-    });
+    return db.multi(`INSERT INTO deletedjobs
+        SELECT *
+        FROM jobs
+        WHERE id = $1;DELETE FROM jobs WHERE id = $1`, [id])
+        .then(results => {
+            console.log("succesfull transfer");
+        });
 };
 
-// INSERT INTO deletedPosts
-// SELECT (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
-// FROM jobs
-// WHERE id = $1;
+
+
+
 
 
 

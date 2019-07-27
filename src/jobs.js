@@ -15,6 +15,7 @@ export class Jobs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        addClass: false,
       showModalJob: false,
       showModalPeople: false,
       showModalService: false,
@@ -82,6 +83,10 @@ export class Jobs extends React.Component {
     });
 
   }
+
+  lockScroll() {
+     this.setState({ addClass: !this.state.addClass });
+   }
 
 
   handleSubmit(event) {
@@ -179,13 +184,14 @@ export class Jobs extends React.Component {
   }
 
   render() {
+      let bodyClass = ["bodyClass"];
     let date = new Date();
     // si no pongo esto y estoy logeado, nada funciona, porque?
     if (!this.state.jobData || !this.state.peopleData || !this.state.serviceData) {
       return null;
     }
     return (
-      <div className="bg">
+      <div  className="itAll">
         <h1 id="title" className="heading-1">
           JobDirecto
           <br />
@@ -266,6 +272,12 @@ export class Jobs extends React.Component {
                       className="postData paidPostData"
                       key={data.id}
                     >
+                    <div className="flexContainer">
+
+                    {data.facebookid === this.state.user.id &&
+                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                        <i className="fa fa-close" />
+                        </button>}
                       <p>
                         <span className="posterName">{data.restname} </span>
                         <span className="postConnector paidPostConnector">
@@ -273,6 +285,8 @@ export class Jobs extends React.Component {
                         </span>
                         <span className="posterGoal">{data.jobtype}</span>
                       </p>
+                          </div>
+
                       <p className="postArea">{data.area}</p>
                       <div className="postMoment">
                         <Moment fromNow>{data.created_at}</Moment>
@@ -295,13 +309,21 @@ export class Jobs extends React.Component {
                       className="postData paidPostData"
                       key={data.id}
                     >
+                    <div className="flexContainer">
+                    {data.facebookid === this.state.user.id &&
+                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                        <i className="fa fa-close" />
+                        </button>}
+                        </div>
                       <p>
+
                         <span className="posterName">{data.restname} </span>
                         <span className="postConnector paidPostConnector">
                           {this.context.main.seeking}{" "}
                         </span>
                         <span className="posterGoal">{data.jobtype}</span>
                       </p>
+
                       <p className="postArea">{data.area}</p>
                       <div className="postMoment">
                         <Moment fromNow>{data.created_at}</Moment>
@@ -322,12 +344,20 @@ export class Jobs extends React.Component {
                         className="postData"
                         key={data.id}
                       >
+                      <div className="flexContainer">
+
+                      {data.facebookid === this.state.user.id &&
+                          <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                          <i className="fa fa-close" />
+                          </button>}
+                          </div>
                         <p>
                           <span className="postConnector paidPostConnector">
                             {this.context.main.seeking3}{" "}
                           </span>
                           <span className="posterGoal">{data.jobtype}</span>
                         </p>
+
                         <p className="postArea">{data.area}</p>
                         <div className="postMoment">
                           <Moment fromNow>{data.created_at}</Moment>
@@ -348,6 +378,13 @@ export class Jobs extends React.Component {
                       className="postData paidPostData"
                       key={data.id}
                     >
+                    <div className="flexContainer">
+
+                    {data.facebookid === this.state.user.id &&
+                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                        <i className="fa fa-close" />
+                        </button>}
+                        </div>
                       <p>
                         <span className="posterData">{data.serviceowner}</span>
                         <span className="postConnector paidPostConnector">
@@ -356,6 +393,7 @@ export class Jobs extends React.Component {
                         </span>
                         <span className="posterGoal"> {data.serviceoffered} </span>
                       </p>
+
                       <div className="postMoment">
                         <Moment fromNow>{data.created_at}</Moment>
                       </div>
@@ -377,6 +415,12 @@ export class Jobs extends React.Component {
                     className="postData paidPostData"
                     key={data.id}
                   >
+                  <div className="flexContainer">
+
+                  {data.facebookid === this.state.user.id &&
+                      <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                      <i className="fa fa-close" />
+                      </button>}
                     <p>
                       <span className="posterName">{data.personname}</span>
                       <span className="postConnector paidPostConnector">
@@ -385,6 +429,8 @@ export class Jobs extends React.Component {
                       </span>
                       <span className="posterGoal"> {data.personskill} </span>
                     </p>
+                        </div>
+
                     <div className="postMoment">
                       <Moment fromNow>{data.created_at}</Moment>
                     </div>
@@ -408,12 +454,20 @@ export class Jobs extends React.Component {
           className="postData"
           key={data.id}
         >
+        <div className="flexContainer">
+
+        {data.facebookid === this.state.user.id &&
+            <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+            <i className="fa fa-close" />
+            </button>}
           <p>
             <span className="postConnector">
               {this.context.main.seeking3}{" "}
             </span>
             <span className="posterGoal">{data.jobtype}</span>
           </p>
+              </div>
+
           <p className="postArea">{data.area}</p>
           <div className="postMoment">
             <Moment fromNow>{data.created_at}</Moment>
@@ -434,12 +488,20 @@ export class Jobs extends React.Component {
             className="postData"
             key={data.id}
           >
+          <div className="flexContainer">
+          {data.facebookid === this.state.user.id &&
+              <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+              <i className="fa fa-close" />
+              </button>}
             <p>
               <span className="postConnector">
                 {this.context.main.seeking3}{" "}
               </span>
               <span className="posterGoal">{data.jobtype}</span>
             </p>
+
+                </div>
+
             <p className="postArea">{data.area}</p>
             <div className="postMoment">
               <Moment fromNow>{data.created_at}</Moment>
@@ -459,6 +521,11 @@ export class Jobs extends React.Component {
                     key={data.id}
                   >
                   <div className="flexContainer">
+                  {data.facebookid === this.state.user.id &&
+                      <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                      <i className="fa fa-close" />
+                      </button>}
+
                       <p>
                       <span className="postConnector">
                         {" "}
@@ -466,11 +533,7 @@ export class Jobs extends React.Component {
                       </span>
                       <span className="posterGoal">{data.jobtype}</span>
                     </p>
-                    {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
-                        <i className="fa fa-close" />
-                        </button>}
-                      </div>
+                                          </div>
                     <p className="postArea">{data.area}</p>
                     <div className="postMoment">
                       <Moment fromNow>{data.created_at}</Moment>

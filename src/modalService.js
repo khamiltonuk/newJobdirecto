@@ -25,6 +25,11 @@ export default class ModalService extends React.Component {
     }
     return (
       <div>
+      <div className="backgroundBlock">
+      </div>
+      <button onClick={this.props.close} className="modalButton">
+        <i className="fa fa-close" />
+      </button>
         <main className="modalPeople">
           <table id="jobDetails">
             <tr>
@@ -34,9 +39,6 @@ export default class ModalService extends React.Component {
               <td className="jobDetailsText">
                 {this.state.serviceData.data.serviceowner}
               </td>
-              <button onClick={this.props.close} className="btn">
-                <i className="fa fa-close" />
-              </button>
             </tr>
 
               <tr>

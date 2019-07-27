@@ -256,7 +256,6 @@ app.post("/wantsToPay", (req, res) => {
 });
 
 app.post("/publishJob", (req, res) => {
-    console.log("are u even here?", req.user.id);
     return database
         .publishJob(
             req.user.id,
@@ -274,8 +273,6 @@ app.post("/publishJob", (req, res) => {
             req.session.userId
         )
         .then(() => {
-            // req.session.jobId = results[0].id;
-            req.session = null;
             res.json({
                 success: true
             });
@@ -284,7 +281,8 @@ app.post("/publishJob", (req, res) => {
 
 app.post("/publishPerson", (req, res) => {
     return database
-        .publishPerson(
+        .publishPerson(            
+            req.user.id,
             req.body.personData.data.personName,
             req.body.personData.data.personStatus,
             req.body.personData.data.personSkill,
@@ -296,8 +294,6 @@ app.post("/publishPerson", (req, res) => {
             req.session.userId
         )
         .then(() => {
-            // req.session.jobId = results[0].id;
-            req.session = null;
             res.json({
                 success: true
             });
@@ -305,8 +301,10 @@ app.post("/publishPerson", (req, res) => {
 });
 
 app.post("/publishService", (req, res) => {
+    console.log("fb in service", req.user.id);
     return database
         .publishService(
+            req.user.id,
             req.body.serviceData.data.serviceOwner,
             req.body.serviceData.data.serviceOffered,
             req.body.serviceData.data.serviceArea,
@@ -315,8 +313,6 @@ app.post("/publishService", (req, res) => {
             req.session.serviceId
         )
         .then(() => {
-            // req.session.jobId = results[0].id;
-            req.session = null;
             res.json({
                 success: true
             });
@@ -332,6 +328,14 @@ app.get("/deletePost/:id", function(req, res) {
         req.session.restname = data.restname;
     });
 });
+
+
+
+
+
+
+
+
 
 
 app.post("/register", function(req, res) {

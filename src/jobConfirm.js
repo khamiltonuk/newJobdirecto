@@ -141,7 +141,7 @@ export class JobConfirm extends React.Component {
             </Link>
           </div>
           <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
-          
+
         </form>
       </div>
     );

@@ -17,15 +17,22 @@ axios.get("/deletePost/" + this.props.id).then(result => {
 
   render() {
       return (
+<div>
+          <div className="backgroundBlock">
+          </div>
+
       <div className="deleteModal">
-<h1>are you sure you want to delete this post?</h1>
+
+<h1>Are you sure you want to delete this post?</h1><br />
 <div className="deleteButtons">
 
-<button onClick={this.props.delete} onClick={this.props.close}>Yes</button>
-<button onClick={this.props.close}>No</button>
+<button className="deleteButton buttonOpaque" onClick={this.props.delete} onClick={this.props.close}>Yes</button>
+<button className="deleteButton buttonOpaque" onClick={this.props.close}>No</button>
 </div>
 
       </div>
+      </div>
+
     );
   }
 }

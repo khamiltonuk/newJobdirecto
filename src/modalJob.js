@@ -29,18 +29,22 @@ export default class ModalJob extends React.Component {
     return (
 
       <div>
+      <div className="backgroundBlock">
+      </div>
+      <button onClick={this.props.close} className="modalButton">
+        <i className="fa fa-close" />
+      </button>
+
       <main
        className={this.state.jobData.data.urgent === "true" ? "urgentModal" : "modal"}>
+
           <table id="jobDetails">
             <tr>
               <td className="jobDetailsText">{this.context.jobConfirm.name}</td>
               <td className="jobDetailsText">
                 {this.state.jobData.data.restname}
               </td>
-              <button onClick={this.props.close} className="btn">
-                <i className="fa fa-close" />
-              </button>
-            </tr>
+             </tr>
             <tr>
               <td className="jobDetailsText">
                 {this.context.jobConfirm.position}

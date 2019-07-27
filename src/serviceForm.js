@@ -33,7 +33,7 @@ export class ServiceForm extends React.Component {
 
   render() {
     return (
-      <div className="serviceForm">
+      <div className="personForm">
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
           <br />
@@ -112,7 +112,7 @@ export class ServiceForm extends React.Component {
           <br />
           <br />
           <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
-          
+
           <br />
         </form>
       </div>

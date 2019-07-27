@@ -13,6 +13,12 @@ CREATE TABLE services(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE personas
+ADD facebookid VARCHAR(300);
+
+ALTER TABLE services
+ADD facebookid VARCHAR(300);
+
 
 CREATE TABLE users(
 id VARCHAR(100),
