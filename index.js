@@ -281,7 +281,7 @@ app.post("/publishJob", (req, res) => {
 
 app.post("/publishPerson", (req, res) => {
     return database
-        .publishPerson(            
+        .publishPerson(
             req.user.id,
             req.body.personData.data.personName,
             req.body.personData.data.personStatus,
@@ -401,4 +401,4 @@ app.get("*", function(req, res) {
 //   res.redirect("https://" + req.headers.host + req.url);
 // });
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 5000);
