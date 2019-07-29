@@ -18,23 +18,24 @@ export class JobForm extends React.Component {
   componentDidMount() {
     axios.get("/jobform");
 
-    axios.get("/getJobforCorrect").then(result => {
-      this.setState({
-        jobData: result.data,
-        restname: result.data.data.restname,
-        jobtype: result.data.data.jobtype,
-        typepay: result.data.data.typepay,
-        area: result.data.data.area,
-        otherArea: result.data.data.otherArea,
-        hourpay: result.data.data.hourpay,
-        schedule: result.data.data.schedule,
-        address: result.data.data.address,
-        phone: result.data.data.phone,
-        contact: result.data.data.contact,
-        extrainfo: result.data.data.extrainfo,
-        urgent: result.data.data.urgent
-      });
-    });
+    // axios.get("/getJobforCorrect").then(result => {
+    //   this.setState({
+    //     jobData: result.data,
+    //     restname: result.data.data.restname,
+    //     jobtype: result.data.data.jobtype,
+    //     typepay: result.data.data.typepay,
+    //     area: result.data.data.area,
+    //     otherArea: result.data.data.otherArea,
+    //     hourpay: result.data.data.hourpay,
+    //     schedule: result.data.data.schedule,
+    //     address: result.data.data.address,
+    //     phone: result.data.data.phone,
+    //     contact: result.data.data.contact,
+    //     extrainfo: result.data.data.extrainfo,
+    //     urgent: result.data.data.urgent,
+    //
+    //   });
+    // });
   }
 
   submission() {
@@ -354,7 +355,7 @@ id="offersService"
           <br />
           <br />
           <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
-          
+
           <br />
         </form>
       </div>

@@ -16,6 +16,10 @@ export const languages = {
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido"
         },
+
+        deleteModal: {
+            title: "Desea eliminar este anuncio?"
+        },
         login: {
             title: "Porfavor ingrese a su cuenta para continuar",
             text: "Luego de iniciar sesion podra crear anuncios y borrarlos cuando ya no los necesite",
@@ -188,6 +192,10 @@ export const languages = {
             extraInfo: "More info:",
             button: "Publish"
         },
+        deleteModal: {
+            title: "Do you want to delete this post?"
+        },
+
         serviceConfirm: {
             title: "Your post is ready to be published:",
             serviceOwner: "Name: ",

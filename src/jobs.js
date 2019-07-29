@@ -33,7 +33,7 @@ export class Jobs extends React.Component {
     this.trackCreatecloseJob = this.trackCreateJob.bind(this);
     this.showDeleteModal = this.showDeleteModal.bind(this);
     this.hideDeleteModal = this.hideDeleteModal.bind(this);
-    // this.deletePost = this.deletePost.bind(this);
+
     this.logOut = this.logOut.bind(this);
   }
 
@@ -45,7 +45,7 @@ export class Jobs extends React.Component {
     axios.get("/getJobs").then(result => {
         console.log("appear!");
       this.setState({ jobData: result.data }, () => {
-      console.log(this.state.jobData.data[0].facebookid);
+      console.log(this.state);
   });
     });
     axios.get("/getServices").then(result => {
@@ -106,8 +106,7 @@ export class Jobs extends React.Component {
     });
   }
 
-  showDeleteModal(event, id) {
-      console.log("idid", id);
+  showDeleteModal(event, id, data) {
       event.stopPropagation();
     this.setState({
       showDeleteModal: true,
@@ -208,7 +207,7 @@ export class Jobs extends React.Component {
           <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} />
         )}
         {this.state.showDeleteModal && (
-          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} />
+          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} allState={this.state} />
         )}
         {this.state.showModalPeople && (
           <ModalPeople
@@ -522,7 +521,7 @@ export class Jobs extends React.Component {
                   >
                   <div className="flexContainer">
                   {data.facebookid === this.state.user.id &&
-                      <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                      <button  onClick={ event => this.showDeleteModal(event, data.id, data) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
 

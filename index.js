@@ -102,7 +102,6 @@ app.get('/facebook/callback',
 // here ends passport code
 
 
-
 app.get("/getJobInfo", function(req, res) {
     res.json({
         data: req.session.job
@@ -256,6 +255,7 @@ app.post("/wantsToPay", (req, res) => {
 });
 
 app.post("/publishJob", (req, res) => {
+    req.session.job = null;
     return database
         .publishJob(
             req.user.id,
@@ -273,6 +273,7 @@ app.post("/publishJob", (req, res) => {
             req.session.userId
         )
         .then(() => {
+            console.log("just published job whats in session: ",req.session);
             res.json({
                 success: true
             });
@@ -280,6 +281,8 @@ app.post("/publishJob", (req, res) => {
 });
 
 app.post("/publishPerson", (req, res) => {
+    req.session.personAd = null;
+
     return database
         .publishPerson(
             req.user.id,
@@ -301,6 +304,8 @@ app.post("/publishPerson", (req, res) => {
 });
 
 app.post("/publishService", (req, res) => {
+    req.session.service = null;
+
     console.log("fb in service", req.user.id);
     return database
         .publishService(
@@ -319,13 +324,36 @@ app.post("/publishService", (req, res) => {
         });
 });
 
-app.get("/deletePost/:id", function(req, res) {
-    console.log("am I even here");
-    return database.deletePost(req.params.id).then(data => {
+app.get("/deleteJob/:id", function(req, res) {
+    console.log("delte job in index", req.session);
+
+    return database.deleteJob(req.params.id).then(data => {
         res.json({
             data
         });
         req.session.restname = data.restname;
+    });
+});
+
+
+app.get("/deletePersonPost/:id", function(req, res) {
+    console.log("delte personpost in index", req.session);
+
+    return database.deletePersonPost(req.params.id).then(data => {
+        res.json({
+            data
+        });
+        req.session.personName = data.personName;
+    });
+});
+
+app.get("/deleteService/:id", function(req, res) {
+    console.log("delte service in index", req.session);
+    return database.deleteService(req.params.id).then(data => {
+        res.json({
+            data
+        });
+        req.session.serviceOwner = data.serviceOwner;
     });
 });
 
@@ -401,4 +429,4 @@ app.get("*", function(req, res) {
 //   res.redirect("https://" + req.headers.host + req.url);
 // });
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 8080);

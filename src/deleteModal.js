@@ -6,13 +6,21 @@ export default class DeleteModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.deleteJob = this.deleteJob.bind(this);
+
   }
 
   componentDidMount() {
-console.log("am i here too?", this.props.id);
-axios.get("/deletePost/" + this.props.id).then(result => {
+console.log("what props is here?", this.props);
 
-});
+}
+
+deleteJob() {
+    console.log("toystory");
+    axios.get("/deleteJob/" + this.props.id).then(result => {
+
+    });
+    this.props.close()
 }
 
   render() {
@@ -23,10 +31,10 @@ axios.get("/deletePost/" + this.props.id).then(result => {
 
       <div className="deleteModal">
 
-<h1>Are you sure you want to delete this post?</h1><br />
+<h1 className="heading-1 deleteModalTitle">{this.context.deleteModal.title}</h1><br />
 <div className="deleteButtons">
 
-<button className="deleteButton buttonOpaque" onClick={this.props.delete} onClick={this.props.close}>Yes</button>
+<button className="deleteButton buttonOpaque" onClick={this.deleteJob}>Yes</button>
 <button className="deleteButton buttonOpaque" onClick={this.props.close}>No</button>
 </div>
 

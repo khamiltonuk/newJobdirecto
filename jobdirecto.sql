@@ -16,6 +16,10 @@ CREATE TABLE services(
 ALTER TABLE personas
 ADD facebookid VARCHAR(300);
 
+ALTER TABLE personas
+ADD postType VARCHAR(300);
+
+
 ALTER TABLE services
 ADD facebookid VARCHAR(300);
 
@@ -41,6 +45,7 @@ CREATE TABLE jobs(
     area VARCHAR(255),
     extrainfo VARCHAR(255),
     urgent VARCHAR(255),
+    postType VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

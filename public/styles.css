@@ -27,7 +27,7 @@ body {
   border-style: solid;
   margin: 10px;
   font-size: 40px;
-  padding: 30px;
+  padding: 20px;
   line-height: 65px;
 }
 
@@ -283,7 +283,7 @@ td {
     position: fixed;
     z-index: 3;
     width: 70%;
-    height: 25%;
+    height: 20%;
     background: lightblue;
     border-style: solid;
     top: 50%;
@@ -304,6 +304,7 @@ td {
 height: 120px;
 margin: 40px;
 font-size: 50px;
+
 }
 
 /* .flexContainer {
@@ -316,6 +317,7 @@ font-size: 50px;
     float: right;
     height: 75px;
     font-size: 50px;
+    margin-left: 10px;
     color: white;
     background-color: rgb(26, 115, 232);
 
@@ -610,16 +612,18 @@ label {
 }
 
 
+.deleteModalTitle {
+    margin: 0;
+}
+
 
 @media (min-width: 1000px) {
 
-    /* .deletePostButton {
-        margin-left: 175px;
-width: 45px;
-margin-top: -20px;
-height: 45px;
-font-size: 30px;
-    } */
+    .deletePostButton {
+width: 55px;
+height: 55px;
+font-size: 40px;
+    }
 #facebook-button {
     font-size: 28px;
     padding: 35px 50px;
@@ -642,6 +646,16 @@ font-size: 30px;
         font-weight: normal;
         font-size: 18px;
         margin-top: 20px;
+    }
+
+    .deleteButton {
+        font-size: 28px;
+        width: 120px;
+        height: 90px;
+    }
+
+    .deleteModal {
+        height: 30%;
     }
 
 

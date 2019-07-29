@@ -32,8 +32,8 @@ exports.publishJob = function(
         .query(
             `
         INSERT INTO jobs
-        (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         returning *;
         `,
             [facebookId,
@@ -47,7 +47,7 @@ exports.publishJob = function(
                 area,
                 phone,
                 extrainfo,
-                urgent
+                urgent, "job"
             ]
         )
         .then(function(results) {
@@ -71,8 +71,8 @@ exports.publishPerson = function(
         .query(
             `
         INSERT INTO personas
-        (facebookId, personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        (facebookId, personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         returning *;
         `,
             [facebookId,
@@ -83,7 +83,7 @@ exports.publishPerson = function(
                 personSchedule,
                 personArea,
                 personNumber,
-                personExtraInfo
+                personExtraInfo, "person"
             ]
         )
         .then(function(results) {
@@ -108,8 +108,8 @@ exports.publishService = function(
         serviceOffered,
         serviceArea,
         serviceNumber,
-        serviceExtraInfo)
-        VALUES ($1, $2, $3, $4, $5, $6)
+        serviceExtraInfo, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         returning *;
         `,
             [
@@ -117,7 +117,7 @@ exports.publishService = function(
                 serviceOffered,
                 serviceArea,
                 serviceNumber,
-                serviceExtraInfo
+                serviceExtraInfo, "service"
             ]
         )
         .then(function(results) {
@@ -170,22 +170,37 @@ exports.getJobInfo = function(id) {
 //     FROM jobs
 //     WHERE id = $1;
 //
-//     DELETE FROM jobs WHERE id = $1;`, [id]).then(results => {
+// `, [id]).then(results => {
 //         console.log("succesfull transfer");
-//         return results.rows[0];
 //     });
 // };
 
-
-exports.deletePost = function(id) {
-    return db.multi(`INSERT INTO deletedjobs
-        SELECT *
-        FROM jobs
-        WHERE id = $1;DELETE FROM jobs WHERE id = $1`, [id])
-        .then(results => {
-            console.log("succesfull transfer");
-        });
+exports.deleteJob = function(id) {
+    return db.query(`
+    DELETE FROM jobs WHERE id = $1;`, [id]).then(results => {
+        console.log("succesfull transfer");
+    });
 };
+
+exports.deleteService = function(id) {
+    return db.query(`
+    DELETE FROM services WHERE id = $1;`, [id]).then(results => {
+        console.log("succesfull transfer");
+    });
+};
+
+exports.deletePersonPost = function(id) {
+    return db.query(`
+    DELETE FROM personas WHERE id = $1;`, [id]).then(results => {
+        console.log("succesfull transfer");
+    });
+};
+
+
+
+// exports.deletePost = function(id) {
+//     db.any('select moveJob($1)', [id]);
+// };
 
 
 
