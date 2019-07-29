@@ -1,11 +1,9 @@
 const spicedPg = require("spiced-pg");
-let secrets;
 let dbUrl;
-if (process.env.NODE_ENV === "production") {
-    secrets = process.env;
+if (process.env.DATABASE_URL !== undefined) {
     dbUrl = secrets.DATABASE_URL;
 } else {
-    secrets = require("./secrets.json");
+    let secrets = require("./secrets.json");
     dbUrl = `postgres:${secrets.dbUser}:${
     secrets.dbPassword
   }@localhost:5433/jobdirecto`;

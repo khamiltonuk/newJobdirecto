@@ -6,8 +6,16 @@ const cookieSession = require("cookie-session");
 const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
 const passport = require('passport')
 const cors = require('cors');
-const secrets = require("./secrets.json")
 FacebookStrategy = require('passport-facebook').Strategy;
+let fbSecret;
+if (process.env.FACEBOOK_SECRET !== undefined) {
+    fbSecret = secrets.DATABASE_URL;
+} else {
+    let secrets = require("./secrets.json");
+    fbSecret = secrets.facebookSecret;
+}
+
+
 
 app.use(cors({
     credentials: true,
