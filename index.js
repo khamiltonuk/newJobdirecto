@@ -60,7 +60,7 @@ app.use(
 
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
-        clientSecret: secrets.facebookSecret,
+        clientSecret: fbSecret.facebookSecret,
         callbackURL: "http://localhost:8080/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
