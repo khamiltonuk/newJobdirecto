@@ -9,9 +9,7 @@ const cors = require('cors');
 FacebookStrategy = require('passport-facebook').Strategy;
 let fbSecret;
 if (process.env.FACEBOOK_SECRET !== undefined) {
-    let secrets = require("./secrets.json");
-
-    fbSecret = secrets.DATABASE_URL;
+    fbSecret = process.env.FACEBOOK_SECRET;
 } else {
     let secrets = require("./secrets.json");
     fbSecret = secrets.facebookSecret;
