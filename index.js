@@ -61,7 +61,7 @@ app.use(
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret.facebookSecret,
-        callbackURL: "/facebook/callback"
+        callbackURL: "/facebook/callback/"
     },
     function(accessToken, refreshToken, profile, done) {
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
