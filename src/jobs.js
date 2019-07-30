@@ -33,25 +33,28 @@ export class Jobs extends React.Component {
     this.trackCreatecloseJob = this.trackCreateJob.bind(this);
     this.showDeleteModal = this.showDeleteModal.bind(this);
     this.hideDeleteModal = this.hideDeleteModal.bind(this);
+    this.getJobs = this.getJobs.bind(this);
+    this.getPeople = this.getPeople.bind(this);
+    this.getServices = this.getServices.bind(this);
 
     this.logOut = this.logOut.bind(this);
   }
 
+
+
+
+
   componentDidMount() {
-    axios.get("/getPeople").then(result => {
-      this.setState({ peopleData: result.data }, () => {
-      });
-    });
-    axios.get("/getJobs").then(result => {
-        console.log("appear!");
-      this.setState({ jobData: result.data }, () => {
-      console.log(this.state);
-  });
-    });
-    axios.get("/getServices").then(result => {
-      this.setState({ serviceData: result.data }, () => {
-      });
-  });
+
+this.getJobs();
+this.getPeople();
+this.getServices();
+
+
+
+
+
+
 
     return axios ({
         method: 'get',
@@ -72,6 +75,31 @@ export class Jobs extends React.Component {
     });
   }
 
+
+  getJobs() {
+      axios.get("/getJobs").then(result => {
+        this.setState({ jobData: result.data }, () => {
+        console.log(this.state);
+     });
+     });
+  }
+
+getPeople() {
+    axios.get("/getPeople").then(result => {
+      this.setState({ peopleData: result.data }, () => {
+      });
+  });
+
+}
+
+getServices() {
+
+        axios.get("/getServices").then(result => {
+          this.setState({ serviceData: result.data }, () => {
+          });
+      });
+}
+
   logOut() {
       return axios ({
           method: 'get',
@@ -87,6 +115,7 @@ export class Jobs extends React.Component {
   lockScroll() {
      this.setState({ addClass: !this.state.addClass });
    }
+
 
 
   handleSubmit(event) {
@@ -112,7 +141,7 @@ export class Jobs extends React.Component {
     this.setState({
       showDeleteModal: true,
       selectedJobId: id,
-      postType: postType
+      posttype: posttype
     });
   }
 
@@ -209,7 +238,7 @@ export class Jobs extends React.Component {
           <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} />
         )}
         {this.state.showDeleteModal && (
-          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} postType={this.state.postType}/>
+          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} getServices={this.getServices}/>
         )}
         {this.state.showModalPeople && (
           <ModalPeople
@@ -276,7 +305,7 @@ export class Jobs extends React.Component {
                     <div className="flexContainer">
 
                     {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.postType) } className="deletePostButton">
+                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                         <i className="fa fa-close" />
                         </button>
                 }
@@ -351,7 +380,7 @@ export class Jobs extends React.Component {
                       <div className="flexContainer">
 
                       {data.facebookid === this.state.user.id &&
-                          <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                          <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                           <i className="fa fa-close" />
                           </button>}
                           </div>
@@ -385,7 +414,7 @@ export class Jobs extends React.Component {
                     <div className="flexContainer">
 
                     {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                         <i className="fa fa-close" />
                         </button>}
                         </div>
@@ -422,7 +451,7 @@ export class Jobs extends React.Component {
                   <div className="flexContainer">
 
                   {data.facebookid === this.state.user.id &&
-                      <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
                     <p>
@@ -461,7 +490,7 @@ export class Jobs extends React.Component {
         <div className="flexContainer">
 
         {data.facebookid === this.state.user.id &&
-            <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+            <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
             <i className="fa fa-close" />
             </button>}
           <p>
@@ -494,7 +523,7 @@ export class Jobs extends React.Component {
           >
           <div className="flexContainer">
           {data.facebookid === this.state.user.id &&
-              <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+              <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
               <i className="fa fa-close" />
               </button>}
             <p>
