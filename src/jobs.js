@@ -106,11 +106,11 @@ export class Jobs extends React.Component {
     });
   }
 
-  showDeleteModal(event, id, data) {
+  showDeleteModal(event, id, postType) {
       event.stopPropagation();
     this.setState({
       showDeleteModal: true,
-      selectedJobId: id
+      selectedJobId: id,
     });
   }
 
@@ -207,7 +207,7 @@ export class Jobs extends React.Component {
           <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} />
         )}
         {this.state.showDeleteModal && (
-          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} allState={this.state} />
+          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} postType={this.state.postType}/>
         )}
         {this.state.showModalPeople && (
           <ModalPeople
@@ -521,7 +521,7 @@ export class Jobs extends React.Component {
                   >
                   <div className="flexContainer">
                   {data.facebookid === this.state.user.id &&
-                      <button  onClick={ event => this.showDeleteModal(event, data.id, data) } className="deletePostButton">
+                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.postType) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
 

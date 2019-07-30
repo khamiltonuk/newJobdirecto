@@ -12,7 +12,7 @@ if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
 } else {
     let secrets = require("./secrets.json");
-    fbSecret = secrets.facebookSecret;
+    fbSecret = secrets;
 }
 
 
@@ -57,11 +57,11 @@ app.use(
 // else, create a new user (in your database I guess?)
 
 // attempt
-
+// https://staging-jobdirecto.herokuapp.com
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret.facebookSecret,
-        callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
+        callbackURL: "/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
