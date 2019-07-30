@@ -12,13 +12,10 @@ export default class DeleteModal extends React.Component {
 
   componentDidMount() {
 console.log("what props is here?", this.props);
-
 }
 
 deleteJob() {
-    console.log("toystory");
     axios.get("/deleteJob/" + this.props.id).then(result => {
-
     });
     this.props.close()
 }
@@ -28,16 +25,12 @@ deleteJob() {
 <div>
           <div className="backgroundBlock">
           </div>
-
       <div className="deleteModal">
-
 <h1 className="heading-1 deleteModalTitle">{this.context.deleteModal.title}</h1><br />
 <div className="deleteButtons">
-
 <button className="deleteButton buttonOpaque" onClick={this.deleteJob}>Yes</button>
 <button className="deleteButton buttonOpaque" onClick={this.props.close}>No</button>
 </div>
-
       </div>
       </div>
 
