@@ -10,12 +10,17 @@ FacebookStrategy = require('passport-facebook').Strategy;
 let fbSecret;
 if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
+
 } else {
     let secrets = require("./secrets.json");
-    fbSecret = secrets;
+    fbSecret = secrets.facebookSecret;
 }
 
-
+// if (process.env.CALLBACK !== undefined) {
+//     callback = process.env.CALLBACK
+// } else if () {
+//     callback = "http://localhost:8080/facebook/callback"
+// }
 
 app.use(cors({
     credentials: true,
@@ -59,37 +64,36 @@ app.use(
 // attempt
 // https://staging-jobdirecto.herokuapp.com
 
-
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
-        // callbackURL: "http://localhost:8080/facebook/callback"
-        callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
-
-
+        callbackURL: "http://localhost:8080/facebook/callback"
+        // callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
+            console.log("profile: ", profile);
+            console.log("user.id: ", user.id);
+            console.log("accessToken: ", accessToken);
+            console.log("refreshToken: ", refreshToken);
+            console.log("done: ", done);
             done(null, user)
         })
     }
 ));
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(user, done) {
 
-    return database.getFacebookUser(id).then(user => {
         done(null, user);
-    });
 });
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-// nazarhussain@gmail.com
 
 app.get('/user',
     (req, res) => {
