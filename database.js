@@ -127,10 +127,13 @@ exports.publishService = function(
 
 
 exports.findOrCreateFacebookUser = function(id, name) {
+    console.log("find or create in database", id, name);
     return exports.getFacebookUser(id).then(user => {
         if (user) {
+            console.log("user is here all good guys");
             return user;
         }
+        console.log("user is not here");
         return db
             .query(
                 `
@@ -150,10 +153,20 @@ exports.findOrCreateFacebookUser = function(id, name) {
 };
 
 exports.getFacebookUser = function(id) {
+    console.log("id is here in database (getfbUser)", id);
     return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
+        console.log("is user appearing here?", results.rows);
         return results.rows[0];
     });
 };
+
+// exports.getFacebookUser2 = function(id) {
+//     console.log("id is here in database (getfbUser)", id);
+//     return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
+//         console.log("is user appearing here?", results.rows);
+//         return results.rows[0];
+//     });
+// };
 
 
 exports.getJobInfo = function(id) {

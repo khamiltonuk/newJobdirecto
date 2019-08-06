@@ -29,7 +29,7 @@ export default class ModalJob extends React.Component {
     return (
 
       <div>
-      <div className="backgroundBlock">
+      <div onClick={this.props.close} className="backgroundBlock">
       </div>
       <button onClick={this.props.close} className="modalButton">
         <i className="fa fa-close" />

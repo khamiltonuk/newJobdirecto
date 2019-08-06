@@ -13,7 +13,7 @@ if (process.env.FACEBOOK_SECRET !== undefined) {
 
 } else {
     let secrets = require("./secrets.json");
-    fbSecret = secrets.facebookSecret;
+    fbSecret = `${secrets.facebookSecret}`;
 }
 
 // if (process.env.CALLBACK !== undefined) {
@@ -67,28 +67,36 @@ app.use(
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
-        // callbackURL: "http://localhost:8080/facebook/callback"
-        callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
+        callbackURL: "http://localhost:8080/facebook/callback"
+        // callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
-            console.log("profile: ", profile);
-            console.log("user.id: ", user.id);
-            console.log("accessToken: ", accessToken);
-            console.log("refreshToken: ", refreshToken);
-            console.log("done: ", done);
-            done(null, user)
+            // console.log("profile: ", profile);
+            // console.log("user in the strategy: ", user);
+            // console.log("profile in the strategy: ", profile);
+
+            // console.log("accessToken: ", accessToken);
+            // console.log("refreshToken: ", refreshToken);
+            // console.log("done: ", done);
+            // console.log("strategy running");
+            // console.log("user in fbstrategy", user);
+            done(null, profile)
         })
     }
 ));
 
+// console logs these user and user ids in the different functions, see wat happens
 passport.serializeUser(function(user, done) {
+    console.log("serialize user running");
+    console.log("user in serialize", user);
     done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-
-        done(null, user);
+passport.deserializeUser(function(obj, done) {
+console.log("deserialize running");
+console.log("obj in deserialize", obj);
+        done(null, obj);
 });
 
 app.use(passport.initialize());

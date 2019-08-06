@@ -173,6 +173,7 @@ getServices() {
   }
 
   hideModalJob() {
+      console.log("close pls");
     this.setState({ showModalJob: false });
   }
 
@@ -261,7 +262,7 @@ getServices() {
               value={this.context.main.createPost}
               onClick={this.handleSubmit}
             />
-   {this.state.user && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.name} </h3>}
+   {this.state.user && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.displayName} </h3>}
 
 </div>
           <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>

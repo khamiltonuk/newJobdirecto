@@ -42,7 +42,7 @@ deleteService() {
   render() {
       return (
 <div>
-          <div className="backgroundBlock">
+          <div onClick={this.props.close} className="backgroundBlock">
           </div>
       <div className="deleteModal">
 <h1 className="heading-1 deleteModalTitle">{this.context.deleteModal.title}</h1><br />
