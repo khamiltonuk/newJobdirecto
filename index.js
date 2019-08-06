@@ -16,12 +16,6 @@ if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = `${secrets.facebookSecret}`;
 }
 
-// if (process.env.CALLBACK !== undefined) {
-//     callback = process.env.CALLBACK
-// } else if () {
-//     callback = "http://localhost:8080/facebook/callback"
-// }
-
 app.use(cors({
     credentials: true,
     origin: '*'
@@ -68,21 +62,12 @@ passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
         // callbackURL: "http://localhost:8080/facebook/callback"
-        // callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
         callbackURL: process.env.CALLBACK_URL
 
     },
     function(accessToken, refreshToken, profile, done) {
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
-            // console.log("profile: ", profile);
-            // console.log("user in the strategy: ", user);
-            // console.log("profile in the strategy: ", profile);
 
-            // console.log("accessToken: ", accessToken);
-            // console.log("refreshToken: ", refreshToken);
-            // console.log("done: ", done);
-            // console.log("strategy running");
-            // console.log("user in fbstrategy", user);
             done(null, profile)
         })
     }
@@ -90,14 +75,10 @@ passport.use(new FacebookStrategy({
 
 // console logs these user and user ids in the different functions, see wat happens
 passport.serializeUser(function(user, done) {
-    console.log("serialize user running");
-    console.log("user in serialize", user);
     done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-console.log("deserialize running");
-console.log("obj in deserialize", obj);
         done(null, obj);
 });
 
