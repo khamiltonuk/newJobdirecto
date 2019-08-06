@@ -67,9 +67,9 @@ app.use(
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
-        // callbackURL: "http://localhost:8080/facebook/callback"
+        callbackURL: "http://localhost:8080/facebook/callback"
         // callbackURL: "https://staging-jobdirecto.herokuapp.com/facebook/callback"
-        callbackURL: process.env.CALLBACK_URL
+        // callbackURL: process.env.CALLBACK_URL
 
     },
     function(accessToken, refreshToken, profile, done) {

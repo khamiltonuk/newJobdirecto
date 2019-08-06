@@ -13,15 +13,25 @@ CREATE TABLE services(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ALTER TABLE personas
--- ADD facebookid VARCHAR(300);
---
--- ALTER TABLE personas
--- ADD postType VARCHAR(300);
---
---
--- ALTER TABLE services
--- ADD facebookid VARCHAR(300);
+ALTER TABLE jobs
+ADD facebookid VARCHAR(300);
+
+ALTER TABLE jobs
+ADD postType VARCHAR(300);
+
+
+ALTER TABLE personas
+ADD facebookid VARCHAR(300);
+
+ALTER TABLE personas
+ADD postType VARCHAR(300);
+
+ALTER TABLE services
+ADD postType VARCHAR(300);
+
+
+ALTER TABLE services
+ADD facebookid VARCHAR(300);
 
 
 CREATE TABLE users(
