@@ -317,7 +317,7 @@ getServices() {
                         <span className="postConnector paidPostConnector">
                           {this.context.main.seeking}{" "}
                         </span>
-                        <span className="posterGoal">{data.jobtype}</span>
+                        <span className="posterGoal paidPosterGoal">{data.jobtype}</span>
                       </p>
                           </div>
 
@@ -355,7 +355,7 @@ getServices() {
                         <span className="postConnector paidPostConnector">
                           {this.context.main.seeking}{" "}
                         </span>
-                        <span className="posterGoal">{data.jobtype}</span>
+                        <span className="posterGoal paidPosterGoal">{data.jobtype}</span>
                       </p>
 
                       <p className="postArea">{data.area}</p>
@@ -425,7 +425,7 @@ getServices() {
                           {" "}
                           {this.context.main.seeking4}{" "}
                         </span>
-                        <span className="posterGoal"> {data.serviceoffered} </span>
+                        <span className="posterGoal paidPosterGoal"> {data.serviceoffered} </span>
                       </p>
 
                       <div className="postMoment">
@@ -461,7 +461,7 @@ getServices() {
                         {" "}
                         {this.context.main.seeking2}{" "}
                       </span>
-                      <span className="posterGoal"> {data.personskill} </span>
+                      <span className="posterGoal paidPosterGoal"> {data.personskill} </span>
                     </p>
                         </div>
 

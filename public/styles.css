@@ -32,10 +32,13 @@ body {
 }
 
 .posterGoal {
-  font-size: 55px;
   color: black;
   font-weight: 750;
   word-break: break-word;
+}
+
+.paidPosterGoal {
+    font-size: 50px;
 }
 
 .postArea {
@@ -64,7 +67,7 @@ body {
 }
 
 .paidPostData {
-    background-color: #fce205;
+    background-color: #ddf516;
 }
 
 /* POSTS DATA FINISH */

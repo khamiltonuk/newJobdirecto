@@ -8,12 +8,20 @@ const passport = require('passport')
 const cors = require('cors');
 FacebookStrategy = require('passport-facebook').Strategy;
 let fbSecret;
+let callback_URL;
+
 if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
 
 } else {
     let secrets = require("./secrets.json");
     fbSecret = `${secrets.facebookSecret}`;
+}
+
+if (process.env.CALLBACK_URL === undefined) {
+    let callback_URL = process.env.CALLBACK_URL;
+} else {
+    let callback_URL = "http://localhost:8080/facebook/callback"
 }
 
 app.use(cors({
@@ -48,26 +56,17 @@ app.use(
     })
 );
 
-// FUNCTION TO FIND OF CREATE USER
-// it needs to be asynchronous (i dont know why)
-// if facebook.id matches profile.id
-// if there is an error, return done with the error
-// if there is a user, return the user information
-// else, create a new user (in your database I guess?)
 
-// attempt
-// https://staging-jobdirecto.herokuapp.com
 
 passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
         // callbackURL: "http://localhost:8080/facebook/callback"
-        callbackURL: process.env.CALLBACK_URL
+        callbackURL: callback_URL
 
     },
     function(accessToken, refreshToken, profile, done) {
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
-
             done(null, profile)
         })
     }
