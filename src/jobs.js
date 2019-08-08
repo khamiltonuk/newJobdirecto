@@ -230,7 +230,7 @@ getServices() {
           <span className="heading-1">{this.context.main.title}</span>
         </h1>
 
-         {!this.state.user &&<Link to="/login"><p className="buttonsAuth">{this.context.main.login}</p></Link>}
+    {/*     {!this.state.user &&<Link to="/login"><p className="buttonsAuth">{this.context.main.login}</p></Link>}*/}
          {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 
         <div>
