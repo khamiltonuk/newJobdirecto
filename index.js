@@ -62,10 +62,12 @@ passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
         // callbackURL: "http://localhost:8080/facebook/callback"
-        callbackURL: callback_URL
+        callbackURL: "https://www.jobdirecto.com/facebook/callback"
 
     },
     function(accessToken, refreshToken, profile, done) {
+        console.log("accessToken", accessToken);
+        console.log("refreshToken", refreshToken);
         return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
             done(null, profile)
         })

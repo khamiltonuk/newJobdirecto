@@ -25,7 +25,6 @@ exports.publishJob = function(
     extrainfo,
     urgent
 ) {
-    console.log("look Job");
     return db
         .query(
             `
@@ -64,7 +63,7 @@ exports.publishPerson = function(
     personNumber,
     personExtraInfo
 ) {
-    console.log("look person!");
+
     return db
         .query(
             `
@@ -97,7 +96,6 @@ exports.publishService = function(
     serviceNumber,
     serviceExtraInfo
 ) {
-    console.log("look person!", facebookId);
     return db
         .query(
             `
@@ -127,13 +125,10 @@ exports.publishService = function(
 
 
 exports.findOrCreateFacebookUser = function(id, name) {
-    console.log("find or create in database", id, name);
     return exports.getFacebookUser(id).then(user => {
         if (user) {
-            console.log("user is here all good guys");
             return user;
         }
-        console.log("user is not here");
         return db
             .query(
                 `
@@ -153,20 +148,12 @@ exports.findOrCreateFacebookUser = function(id, name) {
 };
 
 exports.getFacebookUser = function(id) {
-    console.log("id is here in database (getfbUser)", id);
     return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
-        console.log("is user appearing here?", results.rows);
         return results.rows[0];
     });
 };
 
-// exports.getFacebookUser2 = function(id) {
-//     console.log("id is here in database (getfbUser)", id);
-//     return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
-//         console.log("is user appearing here?", results.rows);
-//         return results.rows[0];
-//     });
-// };
+
 
 
 exports.getJobInfo = function(id) {
@@ -175,35 +162,22 @@ exports.getJobInfo = function(id) {
     });
 };
 
-// exports.deletePost = function(id) {
-//     return db.query(`INSERT INTO deletedjobs
-//     SELECT *
-//     FROM jobs
-//     WHERE id = $1;
-//
-// `, [id]).then(results => {
-//         console.log("succesfull transfer");
-//     });
-// };
 
 exports.deleteJob = function(id) {
     return db.query(`
     DELETE FROM jobs WHERE id = $1;`, [id]).then(results => {
-        console.log("succesfull transfer");
     });
 };
 
 exports.deleteService = function(id) {
     return db.query(`
     DELETE FROM services WHERE id = $1;`, [id]).then(results => {
-        console.log("succesfull transfer");
     });
 };
 
 exports.deletePersonPost = function(id) {
     return db.query(`
     DELETE FROM personas WHERE id = $1;`, [id]).then(results => {
-        console.log("succesfull transfer");
     });
 };
 
@@ -221,8 +195,6 @@ exports.deletePersonPost = function(id) {
 
 exports.getServiceInfo = function(id) {
     return db.query(`SELECT * FROM services WHERE id = $1`, [id]).then(results => {
-        console.log("area are u there", results);
-
         return results.rows[0];
     });
 };
@@ -231,7 +203,6 @@ exports.getPeopleInfo = function(id) {
     return db
         .query(`SELECT * FROM personas WHERE id = $1`, [id])
         .then(results => {
-            console.log("is experience here", results);
             return results.rows[0];
         });
 };
