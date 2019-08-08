@@ -265,7 +265,7 @@ app.post("/publishJob", (req, res) => {
     req.session.job = null;
     return database
         .publishJob(
-            // req.user.id,
+            123,
             req.body.jobData.data.restname,
             req.body.jobData.data.jobtype,
             req.body.jobData.data.hourpay,
@@ -293,6 +293,7 @@ app.post("/publishPerson", (req, res) => {
     return database
         .publishPerson(
             // req.user.id,
+            123,
             req.body.personData.data.personName,
             req.body.personData.data.personStatus,
             req.body.personData.data.personSkill,
@@ -317,6 +318,7 @@ app.post("/publishService", (req, res) => {
     return database
         .publishService(
             // req.user.id,
+            123,
             req.body.serviceData.data.serviceOwner,
             req.body.serviceData.data.serviceOffered,
             req.body.serviceData.data.serviceArea,
