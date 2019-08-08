@@ -119,11 +119,12 @@ getServices() {
 
 
   handleSubmit(event) {
-    if (this.state.user === "") {
-        this.props.history.push("/login")
-    } else {
-        this.props.history.push("/postType")
-    }
+    // if (this.state.user === "") {
+    //     this.props.history.push("/login")
+    // } else {
+    //     this.props.history.push("/postType")
+    // }
+    this.props.history.push("/postType")
   }
 
   showModalJob(event) {
