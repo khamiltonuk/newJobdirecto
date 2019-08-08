@@ -12,17 +12,13 @@ let callback_URL;
 
 if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
-
+    callback_URL = process.env.CALLBACK_URL;
 } else {
     let secrets = require("./secrets.json");
     fbSecret = `${secrets.facebookSecret}`;
+    callback_URL = "http://localhost:8080/facebook/callback"
 }
 
-if (process.env.CALLBACK_URL === undefined) {
-    let callback_URL = process.env.CALLBACK_URL;
-} else {
-    let callback_URL = "http://localhost:8080/facebook/callback"
-}
 
 app.use(cors({
     credentials: true,
@@ -62,7 +58,8 @@ passport.use(new FacebookStrategy({
         clientID: 1227008554140703,
         clientSecret: fbSecret,
         // callbackURL: "http://localhost:8080/facebook/callback"
-        callbackURL: "https://www.jobdirecto.com/facebook/callback"
+        // callbackURL: "https://www.jobdirecto.com/facebook/callback"
+        callbackURL: callback_URL
 
     },
     function(accessToken, refreshToken, profile, done) {
