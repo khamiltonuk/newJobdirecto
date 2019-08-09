@@ -19,6 +19,9 @@ ADD facebookid VARCHAR(300);
 ALTER TABLE jobs
 ADD postType VARCHAR(300);
 
+ALTER TABLE users
+ADD postCounter SMALLINT;
+
 
 ALTER TABLE personas
 ADD facebookid VARCHAR(300);

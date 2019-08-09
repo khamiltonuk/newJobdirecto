@@ -4,7 +4,7 @@ import { LanguageContext } from "./languageContext";
 
 
 
-export default class Login extends React.Component {
+export default class LoginFacebook extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -31,4 +31,4 @@ export default class Login extends React.Component {
   }
 }
 
-Login.contextType = LanguageContext;
+LoginFacebook.contextType = LanguageContext;

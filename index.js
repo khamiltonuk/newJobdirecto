@@ -60,7 +60,6 @@ passport.use(new FacebookStrategy({
         // callbackURL: "http://localhost:8080/facebook/callback"
         // callbackURL: "https://www.jobdirecto.com/facebook/callback"
         callbackURL: callback_URL
-
     },
     function(accessToken, refreshToken, profile, done) {
         console.log("accessToken", accessToken);
@@ -70,6 +69,8 @@ passport.use(new FacebookStrategy({
         })
     }
 ));
+
+
 
 // console logs these user and user ids in the different functions, see wat happens
 passport.serializeUser(function(user, done) {
@@ -96,6 +97,7 @@ app.get('/logout', function(req, res) {
 
 app.get('/loginFacebook',
     passport.authenticate('facebook'));
+
 
 app.get('/facebook/callback',
     passport.authenticate('facebook', {
