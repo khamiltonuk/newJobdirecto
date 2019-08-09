@@ -63,7 +63,6 @@ this.getServices();
         withCredentials: true
     }).then(result => {
       this.setState({ user: result.data }, () => {
-          console.log("user user were u at", this.state.user.id);
       });
     });
   }
@@ -79,7 +78,6 @@ this.getServices();
   getJobs() {
       axios.get("/getJobs").then(result => {
         this.setState({ jobData: result.data }, () => {
-        console.log(this.state);
      });
      });
   }
@@ -127,7 +125,7 @@ getServices() {
   }
 
   showModalJob(event) {
-      console.log("idid0", event);
+      document.body.classList.add('lockBackground')
 
     this.setState({
       showModalJob: true,
@@ -136,7 +134,7 @@ getServices() {
   }
 
   showDeleteModal(event, id, posttype) {
-      console.log("typo what", posttype);
+        document.body.classList.add('lockBackground')
       event.stopPropagation();
     this.setState({
       showDeleteModal: true,
@@ -145,20 +143,9 @@ getServices() {
     });
   }
 
-/*
-  deletePost(event) {
-      console.log("just delete it pls", event.selectedJobId);
-      this.setState({
-    }, () => {
-        console.log("it is done", this.state.selectedJobId);
-    });
-      axios.get("/deletePost").then(result => {
 
-      });
-
-  }
-*/
   showModalPeople(event) {
+        document.body.classList.add('lockBackground')
     this.setState({
       showModalPeople: true,
       selectedPersonId: event
@@ -166,6 +153,7 @@ getServices() {
   }
 
   showModalService(event) {
+        document.body.classList.add('lockBackground')
     this.setState({
       showModalService: true,
       selectedServiceId: event
@@ -173,22 +161,33 @@ getServices() {
   }
 
   hideModalJob() {
-      console.log("close pls");
+      document.body.classList.remove('lockBackground')
+
     this.setState({ showModalJob: false });
   }
 
   hideDeleteModal() {
-      console.log("hi");
+
+      document.body.classList.remove('lockBackground')
+
+
     this.setState({ showDeleteModal: false }, () => {
-        console.log("ciao");
     });
   }
 
   hideModalPeople() {
+
+      document.body.classList.remove('lockBackground')
+
+
     this.setState({ showModalPeople: false });
   }
 
   hideModalService() {
+
+      document.body.classList.remove('lockBackground')
+
+
     this.setState({ showModalService: false });
   }
 

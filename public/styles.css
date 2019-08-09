@@ -6,9 +6,15 @@
 body {
   width: 100vw;
 
-
 }
 
+.lockBackground {
+overflow: hidden;
+}
+
+.releaseBackground {
+overflow: scroll;
+}
 
 /* POSTS DATA START */
 
