@@ -20,7 +20,10 @@ ALTER TABLE jobs
 ADD postType VARCHAR(300);
 
 ALTER TABLE users
-ADD postCounter SMALLINT;
+ADD postCounter SMALLINT SET DEFAULT 2;
+
+ALTER TABLE users ALTER COLUMN postcounter SET DEFAULT 2;
+
 
 
 ALTER TABLE personas
