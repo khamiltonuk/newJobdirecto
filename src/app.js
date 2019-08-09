@@ -45,7 +45,7 @@ export class App extends React.Component {
           <LanguageContext.Provider value={this.state.languages}>
             <LanguageButton changeLanguage={this.toggleLanguage} />
             <Route path="/prePayJob" component={PrePayJob} />
-            <Route path="/loginFacebook" component={LoginFacebook} />
+            <Route path="/login" component={LoginFacebook} />
 
             <Route path="/jobConfirm" component={JobConfirm} />
             <Route
