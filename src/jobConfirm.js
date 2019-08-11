@@ -32,15 +32,23 @@ export class JobConfirm extends React.Component {
   }
 
   handleSubmit(event) {
+      console.log("aliens");
     event.preventDefault();
     axios.post("/publishJob", this.state).then(resp => {
+        console.log("common");
       if (resp.data.success) {
+          console.log("success?");
         this.setState({
           jobData: ""
         });
         this.props.history.push("/");
       }
-    });
+  });
+
+  axios.post("/minusCounter").then(resp => {
+      console.log("/minus meow");
+          });
+          
   }
 
   render() {

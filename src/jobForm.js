@@ -325,7 +325,7 @@ id="offersService"
           {/**/}
           <br />
           <br />
-          <div id="yesAndCheckbox">
+    {/*    <div id="yesAndCheckbox">
             <label id="si" htmlFor="urgentCheckBox">
               {this.context.jobForm.question11}
             </label>
@@ -343,6 +343,7 @@ id="offersService"
               <span className="slider round"  />
             </label>
           </div>{" "}
+          */}
           <br />
           <br />
           <br />

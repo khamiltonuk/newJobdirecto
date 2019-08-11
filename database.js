@@ -52,6 +52,12 @@ exports.publishJob = function(
         });
 };
 
+
+exports.minusCounter = function(facebookId) {
+    console.log("got fb id?", facebookId);
+    return db.query(`UPDATE users SET postcounter = postcounter - 1 WHERE id = ($1);`, [facebookId])
+}
+
 exports.publishPerson = function(
     facebookId,
     personName,

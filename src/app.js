@@ -46,7 +46,6 @@ export class App extends React.Component {
             <LanguageButton changeLanguage={this.toggleLanguage} />
             <Route path="/prePayJob" component={PrePayJob} />
             <Route path="/login" component={LoginFacebook} />
-
             <Route path="/jobConfirm" component={JobConfirm} />
             <Route
               path="/job/:id"
@@ -56,7 +55,6 @@ export class App extends React.Component {
             <Route path="/personForm" component={PersonForm} />
             <Route path="/serviceForm" component={ServiceForm} />
             <Route path="/serviceConfirm" component={ServiceConfirm} />
-
             <Route path="/jobForm" component={JobForm} />
             <Route  path="/prepay2" component={PrePay2}/>
             <Route  path="/postType" component={PostType} />

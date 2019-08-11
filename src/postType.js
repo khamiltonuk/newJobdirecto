@@ -71,20 +71,7 @@ export class PostType extends React.Component {
 
                 <div className="postTypeOptions">
 
-              <label className="text" htmlFor="offersService">
-                {this.context.postType.offersService}
-                <span>
-                  <input
-id="offersService"
-                    className="radio postTypeButton"
-                    type="radio"
-                    name="posterStatus"
-                    value="offersService"
-                    onChange={this.handleChange}
-                    required="required"
-                  />
-                </span>
-              </label>
+
               </div>
               <input
               className="buttonBasic"

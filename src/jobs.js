@@ -36,35 +36,22 @@ export class Jobs extends React.Component {
     this.getJobs = this.getJobs.bind(this);
     this.getPeople = this.getPeople.bind(this);
     this.getServices = this.getServices.bind(this);
-
     this.logOut = this.logOut.bind(this);
   }
 
-
-
-
-
   componentDidMount() {
-
-this.getJobs();
-this.getPeople();
-this.getServices();
-
-
-
-
-
-
-
-    return axios ({
-        method: 'get',
-        url: '/user',
-        params: {},
-        withCredentials: true
-    }).then(result => {
-      this.setState({ user: result.data }, () => {
-      });
-    });
+    this.getJobs();
+    this.getPeople();
+    this.getServices();
+        return axios ({
+            method: 'get',
+            url: '/user',
+            params: {},
+            withCredentials: true
+        }).then(result => {
+          this.setState({ user: result.data }, () => {
+          });
+        });
   }
 
   handleChangeArea(event) {
@@ -78,6 +65,7 @@ this.getServices();
   getJobs() {
       axios.get("/getJobs").then(result => {
         this.setState({ jobData: result.data }, () => {
+            console.log("all active jobs", result.data);
      });
      });
   }
@@ -117,11 +105,12 @@ getServices() {
 
 
   handleSubmit(event) {
-    if (this.state.user === "") {
-        this.props.history.push("/login")
-    } else {
-        this.props.history.push("/postType")
-    }
+    // if (this.state.user === "") {
+    //     this.props.history.push("/login")
+    // } else {
+    //     this.props.history.push("/postType")
+    // }
+    this.props.history.push("/postType")
   }
 
   showModalJob(event) {
@@ -227,10 +216,10 @@ getServices() {
           <br />
           <span className="heading-1">{this.context.main.title}</span>
         </h1>
-
-    {/*     {!this.state.user &&<Link to="/login"><p className="buttonsAuth">{this.context.main.login}</p></Link>}*/}
+{/*     {!this.state.user &&<Link to="/login"><p className="buttonsAuth">{this.context.main.login}</p></Link>}
          {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
-
+         */}
+             
         <div>
           <h1 />
         </div>

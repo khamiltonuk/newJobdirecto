@@ -46,7 +46,7 @@ export default class PrePay2 extends React.Component {
         <StripeButton2/>
           <button
             onClick={this.cancelPay}
-            className="buttonBasic buttonOpaque"
+            className="buttonBasic buttonOpaque prePay"
           >
             {this.context.prePay2.button}
           </button>

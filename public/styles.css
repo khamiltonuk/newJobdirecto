@@ -209,6 +209,10 @@ a:visited {
     color: black;
 }
 
+.prePay {
+    margin-top: 50px;
+}
+
 #buttonCreatePost {
     margin-left: 30px;
 }

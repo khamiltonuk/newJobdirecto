@@ -148,6 +148,7 @@ app.get("/getJobDetails/:id", function(req, res) {
     });
 });
 
+
 app.get("/getServiceDetails/:id", function(req, res) {
     return database.getServiceInfo(req.params.id).then(data => {
         res.json({
@@ -266,7 +267,8 @@ app.post("/publishJob", (req, res) => {
     req.session.job = null;
     return database
         .publishJob(
-            req.user.id,
+            // req.user.id,
+            123,
             req.body.jobData.data.restname,
             req.body.jobData.data.jobtype,
             req.body.jobData.data.hourpay,
@@ -281,7 +283,19 @@ app.post("/publishJob", (req, res) => {
             req.session.userId
         )
         .then(() => {
-            console.log("just published job whats in session: ",req.session);
+            res.json({
+                success: true
+            });
+        });
+});
+
+app.post("/minusCounter", (req, res) => {
+    console.log("meow in index.js");
+    return database
+        .minusCounter(
+            req.user.id
+        )
+        .then(() => {
             res.json({
                 success: true
             });
