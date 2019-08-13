@@ -85,10 +85,7 @@ export class JobForm extends React.Component {
           <h1 id="formTitle" className="heading-1">
             JobDirecto
           </h1>
-{/*         <h2 className="heading-1">
-      {this.context.jobForm.title}
-          </h2>
-*/}
+
           <p className="formQuestions">{this.context.jobForm.question1}</p>
           <input
             className="formInputs"
@@ -325,7 +322,7 @@ id="offersService"
           {/**/}
           <br />
           <br />
-    {/*    <div id="yesAndCheckbox">
+    <div id="yesAndCheckbox">
             <label id="si" htmlFor="urgentCheckBox">
               {this.context.jobForm.question11}
             </label>
@@ -343,7 +340,7 @@ id="offersService"
               <span className="slider round"  />
             </label>
           </div>{" "}
-          */}
+        
           <br />
           <br />
           <br />

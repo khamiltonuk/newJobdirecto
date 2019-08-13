@@ -48,7 +48,7 @@ export class JobConfirm extends React.Component {
   axios.post("/minusCounter").then(resp => {
       console.log("/minus meow");
           });
-          
+
   }
 
   render() {
@@ -62,6 +62,8 @@ export class JobConfirm extends React.Component {
           <h1 className="confirmTitle" className="heading-1">
             {this.context.jobConfirm.title}
           </h1>
+
+
           <table>
             <tr>
               <td className="jobDetailsText">{this.context.jobConfirm.name}</td>
@@ -135,14 +137,18 @@ export class JobConfirm extends React.Component {
               </td>
             </tr>
           </table>
+
+
           <div className="confirmButtons">
             {/*  <Link to="/jobForm">
               <input className="btn-secondary" type="submit" value="Corregir" />
             </Link>*/}
+
+
             <Link to="/">
               <input
                 onClick={this.handleSubmit}
-                className="buttonBasic"
+                className="buttonBasic buttonOpaque"
                 type="submit"
                 value={this.context.jobConfirm.button}
               />

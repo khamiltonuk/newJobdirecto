@@ -265,10 +265,35 @@ app.post("/wantsToPay", (req, res) => {
 
 app.post("/publishJob", (req, res) => {
     req.session.job = null;
+
+    if (req.user === undefined) {
+        console.log("troll");
+        return database
+            .publishJobNoUser(
+
+                req.body.jobData.data.restname,
+                req.body.jobData.data.jobtype,
+                req.body.jobData.data.hourpay,
+                req.body.jobData.data.typepay,
+                req.body.jobData.data.schedule,
+                req.body.jobData.data.contact,
+                req.body.jobData.data.address,
+                req.body.jobData.data.area,
+                req.body.jobData.data.phone,
+                req.body.jobData.data.extrainfo,
+                req.body.jobData.data.urgent,
+                req.session.userId
+            )
+            .then(() => {
+                res.json({
+                    success: true
+                });
+            });
+    }
     return database
         .publishJob(
-            // req.user.id,
-            123,
+
+            req.user.id,
             req.body.jobData.data.restname,
             req.body.jobData.data.jobtype,
             req.body.jobData.data.hourpay,
@@ -289,18 +314,18 @@ app.post("/publishJob", (req, res) => {
         });
 });
 
-app.post("/minusCounter", (req, res) => {
-    console.log("meow in index.js");
-    return database
-        .minusCounter(
-            req.user.id
-        )
-        .then(() => {
-            res.json({
-                success: true
-            });
-        });
-});
+// app.post("/minusCounter", (req, res) => {
+//     console.log("meow in index.js");
+//     return database
+//         .minusCounter(
+//             req.user.id
+//         )
+//         .then(() => {
+//             res.json({
+//                 success: true
+//             });
+//         });
+// });
 
 app.post("/publishPerson", (req, res) => {
     req.session.personAd = null;

@@ -52,6 +52,46 @@ exports.publishJob = function(
         });
 };
 
+exports.publishJobNoUser = function(
+    restname,
+    jobtype,
+    hourpay,
+    typepay,
+    schedule,
+    contact,
+    address,
+    area,
+    phone,
+    extrainfo,
+    urgent
+) {
+    return db
+        .query(
+            `
+        INSERT INTO jobs
+        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        returning *;
+        `,
+            [
+                restname,
+                jobtype,
+                hourpay,
+                typepay,
+                schedule,
+                contact,
+                address,
+                area,
+                phone,
+                extrainfo,
+                urgent, "job"
+            ]
+        )
+        .then(function(results) {
+            return results.rows;
+        });
+};
+
 
 exports.minusCounter = function(facebookId) {
     console.log("got fb id?", facebookId);

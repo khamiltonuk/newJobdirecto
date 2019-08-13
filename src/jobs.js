@@ -113,12 +113,14 @@ getServices() {
     this.props.history.push("/postType")
   }
 
-  showModalJob(event) {
+  showModalJob(event, facebookid) {
       document.body.classList.add('lockBackground')
 
     this.setState({
       showModalJob: true,
-      selectedJobId: event
+      selectedJobId: event,
+      facebookid: facebookid
+
     });
   }
 
@@ -128,7 +130,7 @@ getServices() {
     this.setState({
       showDeleteModal: true,
       selectedJobId: id,
-      posttype: posttype
+      posttype: posttype,
     });
   }
 
@@ -206,7 +208,7 @@ getServices() {
       let bodyClass = ["bodyClass"];
     let date = new Date();
     // si no pongo esto y estoy logeado, nada funciona, porque?
-    if (!this.state.jobData || !this.state.peopleData || !this.state.serviceData) {
+    if (!this.state.jobData || !this.state.peopleData) {
       return null;
     }
     return (
@@ -215,16 +217,17 @@ getServices() {
           JobDirecto
           <br />
           <span className="heading-1">{this.context.main.title}</span>
+
         </h1>
-{/*     {!this.state.user &&<Link to="/login"><p className="buttonsAuth">{this.context.main.login}</p></Link>}
+    {!this.state.user &&<Link to="/login"><div className="buttonsAuth" ><img  className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
          {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
-         */}
-             
+
+
         <div>
           <h1 />
         </div>
         {this.state.showModalJob && (
-          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} />
+          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid}/>
         )}
         {this.state.showDeleteModal && (
           <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} getServices={this.getServices}/>
@@ -235,12 +238,7 @@ getServices() {
             close={this.hideModalPeople}
           />
         )}
-        {this.state.showModalService && (
-          <ModalService
-            id={this.state.selectedServiceId}
-            close={this.hideModalService}
-          />
-        )}
+
         <div className="buttonsAndFilters">
         <div className="buttonAndWelcome">
             <input
@@ -284,20 +282,27 @@ getServices() {
                 if (
                   data.urgent === "true" &&
                   this.urgentJobInterval(data.created_at) === true
+
                 ) {
                   return (
                     <div
-                      onClick={e => this.showModalJob(data.id)}
+                      onClick={e => this.showModalJob(data.id, data.facebookid)}
                       className="postData paidPostData"
                       key={data.id}
                     >
                     <div className="flexContainer">
-
+<div className="postIcons">
                     {data.facebookid === this.state.user.id &&
                         <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                         <i className="fa fa-close" />
                         </button>
                 }
+
+            	     {data.facebookid !== null &&           <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>
+}
+
+
+</div>
 
 
                       <p>
@@ -311,7 +316,7 @@ getServices() {
 
                       <p className="postArea">{data.area}</p>
                       <div className="postMoment">
-                        <Moment fromNow>{data.created_at}</Moment>
+                        <Moment className="postMomentChild" fromNow>{data.created_at}</Moment>
                       </div>
                     </div>
                   );
@@ -327,7 +332,7 @@ getServices() {
                 ) {
                   return (
                     <div
-                      onClick={e => this.showModalJob(data.id)}
+                      onClick={e => this.showModalJob(data.id, data.facebookid)}
                       className="postData paidPostData"
                       key={data.id}
                     >
@@ -362,7 +367,7 @@ getServices() {
                 ) {
                     return (
                       <div
-                        onClick={e => this.showModalJob(data.id)}
+                        onClick={e => this.showModalJob(data.id, data.facebookid)}
                         className="postData"
                         key={data.id}
                       >
@@ -390,39 +395,6 @@ getServices() {
                 })}
 
 
-              {/*someone promoting services*/}
-            {!this.state.userSelectionArea &&
-              this.state.serviceData.data.map(data => {
-               {
-                  return (
-                    <div
-                      onClick={e => this.showModalService(data.id)}
-                      className="postData paidPostData"
-                      key={data.id}
-                    >
-                    <div className="flexContainer">
-
-                    {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
-                        <i className="fa fa-close" />
-                        </button>}
-                        </div>
-                      <p>
-                        <span className="posterData">{data.serviceowner}</span>
-                        <span className="postConnector paidPostConnector">
-                          {" "}
-                          {this.context.main.seeking4}{" "}
-                        </span>
-                        <span className="posterGoal paidPosterGoal"> {data.serviceoffered} </span>
-                      </p>
-
-                      <div className="postMoment">
-                        <Moment fromNow>{data.created_at}</Moment>
-                      </div>
-                    </div>
-                  );
-                }
-              })}{" "}
               {/*people seeking jobs*/}
 
           {!this.state.userSelectionArea &&
@@ -472,7 +444,7 @@ getServices() {
     ) {
       return (
         <div
-          onClick={e => this.showModalJob(data.id)}
+          onClick={e => this.showModalJob(data.id, data.facebookid)}
           className="postData"
           key={data.id}
         >
@@ -506,7 +478,7 @@ getServices() {
     ) {
         return (
           <div
-            onClick={e => this.showModalJob(data.id)}
+            onClick={e => this.showModalJob(data.id, data.facebookid)}
             className="postData"
             key={data.id}
           >
@@ -534,20 +506,22 @@ getServices() {
     })}
           {!this.state.userSelectionArea &&
             this.state.jobData.data.map(data => {
-              if (data.urgent !== "true") {
+              if (data.urgent !== "true" ) {
                 return (
 
                   <div
-                    onClick={e => this.showModalJob(data.id)}
+                    onClick={e => this.showModalJob(data.id, data.facebookid)}
                     className="postData"
                     key={data.id}
                   >
                   <div className="flexContainer">
+                  <div className="postIcons">
                   {data.facebookid === this.state.user.id &&
                       <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
-
+{data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+</div>
                       <p>
                       <span className="postConnector">
                         {" "}
@@ -558,7 +532,7 @@ getServices() {
                                           </div>
                     <p className="postArea">{data.area}</p>
                     <div className="postMoment">
-                      <Moment fromNow>{data.created_at}</Moment>
+                      <Moment className="postMomentChild" fromNow>{data.created_at}</Moment>
                     </div>
                   </div>
 

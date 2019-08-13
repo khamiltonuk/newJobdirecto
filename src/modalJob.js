@@ -113,8 +113,21 @@ export default class ModalJob extends React.Component {
               <td className="jobDetailsText">
                 {this.state.jobData.data.extrainfo}
               </td>
+            <br />
+            <br />
+
             </tr>
           </table>
+
+          {this.props.facebookid !== null &&
+                      <div className="modalStarDiv">
+                          <img className="star" src="star.png"/>
+                          <p className="toolTipModalText">{this.context.main.tooltip}</p>
+                       </div>
+               }
+
+          <br />
+          <br />
         </main>
       </div>
     );

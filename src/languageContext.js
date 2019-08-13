@@ -14,8 +14,12 @@ export const languages = {
             filterOtherArea: "Otra area en Nueva York",
             login: "Ingresar a mi cuenta",
             logout: "Salir de mi cuenta",
-            welcome: "Bienvenido"
+            welcome: "Bienvenido",
+            tooltip:
+                "El creador de este anuncio es un usuario verificado."
+
         },
+
 
         deleteModal: {
             title: "Desea eliminar este anuncio?"
@@ -132,7 +136,8 @@ export const languages = {
             filterOtherArea: "Other area in NY",
             login: "Login",
             logout: "Logout",
-            welcome: "Welcome"
+            welcome: "Welcome",
+                    tooltip: "The author of this post is a verified user."
         },
 
         serviceForm: {
@@ -213,6 +218,8 @@ export const languages = {
             buttonPay: "Pay $10"
 
         },
+
+
 
         personModal: {
             name: "Name:",
