@@ -16,7 +16,7 @@ export class JobForm extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("/jobform");
+    // axios.get("/jobform");
 
     // axios.get("/getJobforCorrect").then(result => {
     //   this.setState({
@@ -340,7 +340,7 @@ id="offersService"
               <span className="slider round"  />
             </label>
           </div>{" "}
-        
+
           <br />
           <br />
           <br />

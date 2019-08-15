@@ -10,6 +10,7 @@ function StripeButton() {
   const [error, setError] = useState();
 
   const handleClick = () => {
+      console.log("I'm in stripe look");
     stripe
       .redirectToCheckout({
         items: [{ sku: "sku_FAe7tbPK29byHW", quantity: 1 }],
@@ -31,7 +32,7 @@ function StripeButton() {
 
   return (
     <div>
-      <button     
+      <button
           className="buttonBasic" onClick={handleClick}>
         {context.jobPayPage.buttonYES}
         <br />

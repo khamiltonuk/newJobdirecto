@@ -200,26 +200,15 @@ app.get("/getPeople", function(req, res) {
     });
 });
 
-app.get("/loginorregister", async function(req, res) {
-    if (req.session.userId) {
-        res.redirect("/jobform");
-    } else {
-        return;
-    }
-});
 
-app.get("/jobform", async function(req, res) {
-    if (!req.session.userId) {
-        res.redirect("/loginorregister");
-    } else if (req.session.userId === undefined) {
-        res.redirect("/loginorregister");
-    } else {
-        res.sendFile(__dirname + "/index.html");
-    }
-});
+
 
 app.post("/finalizeJob", (req, res) => {
+    console.log("job cookie 0", req.session.job);
+
     req.session.job = req.body;
+    console.log("job cookie", req.session.job);
+
     res.json({
         success: true
     });
