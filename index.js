@@ -4,9 +4,9 @@ const compression = require("compression");
 const database = require("./database.js");
 const cookieSession = require("cookie-session");
 const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
-const passport = require('passport')
-const cors = require('cors');
-FacebookStrategy = require('passport-facebook').Strategy;
+const passport = require("passport");
+const cors = require("cors");
+FacebookStrategy = require("passport-facebook").Strategy;
 let fbSecret;
 let callback_URL;
 
@@ -16,14 +16,15 @@ if (process.env.FACEBOOK_SECRET !== undefined) {
 } else {
     let secrets = require("./secrets.json");
     fbSecret = `${secrets.facebookSecret}`;
-    callback_URL = "http://localhost:8080/facebook/callback"
+    callback_URL = "http://localhost:8080/facebook/callback";
 }
 
-
-app.use(cors({
-    credentials: true,
-    origin: '*'
-}))
+app.use(
+    cors({
+        credentials: true,
+        origin: "*"
+    })
+);
 app.use(compression());
 app.use(express.static("public"));
 
@@ -52,25 +53,26 @@ app.use(
     })
 );
 
-
-
-passport.use(new FacebookStrategy({
-        clientID: 1227008554140703,
-        clientSecret: fbSecret,
-        // callbackURL: "http://localhost:8080/facebook/callback"
-        // callbackURL: "https://www.jobdirecto.com/facebook/callback"
-        callbackURL: callback_URL
-    },
-    function(accessToken, refreshToken, profile, done) {
-        console.log("accessToken", accessToken);
-        console.log("refreshToken", refreshToken);
-        return database.findOrCreateFacebookUser(profile.id, profile.displayName).then((user) => {
-            done(null, profile)
-        })
-    }
-));
-
-
+passport.use(
+    new FacebookStrategy(
+        {
+            clientID: 1227008554140703,
+            clientSecret: fbSecret,
+            // callbackURL: "http://localhost:8080/facebook/callback"
+            // callbackURL: "https://www.jobdirecto.com/facebook/callback"
+            callbackURL: callback_URL
+        },
+        function(accessToken, refreshToken, profile, done) {
+            console.log("accessToken", accessToken);
+            console.log("refreshToken", refreshToken);
+            return database
+                .findOrCreateFacebookUser(profile.id, profile.displayName)
+                .then(user => {
+                    done(null, profile);
+                });
+        }
+    )
+);
 
 // console logs these user and user ids in the different functions, see wat happens
 passport.serializeUser(function(user, done) {
@@ -78,37 +80,34 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(obj, done) {
-        done(null, obj);
+    done(null, obj);
 });
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-app.get('/user',
-    (req, res) => {
-        res.json(req.user);
-    });
-
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
+app.get("/user", (req, res) => {
+    res.json(req.user);
 });
 
-app.get('/loginFacebook',
-    passport.authenticate('facebook'));
+app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+});
 
+app.get("/loginFacebook", passport.authenticate("facebook"));
 
-app.get('/facebook/callback',
-    passport.authenticate('facebook', {
-        failureRedirect: '/login'
+app.get(
+    "/facebook/callback",
+    passport.authenticate("facebook", {
+        failureRedirect: "/login"
     }),
     function(req, res) {
-        res.redirect('/');
-    });
+        res.redirect("/");
+    }
+);
 
 // here ends passport code
-
 
 app.get("/getJobInfo", function(req, res) {
     res.json({
@@ -126,7 +125,6 @@ app.get("/getServiceInfo", function(req, res) {
     res.json({
         data: req.session.service
     });
-
 });
 
 app.get("/getDate", function(req, res) {
@@ -147,7 +145,6 @@ app.get("/getJobDetails/:id", function(req, res) {
         req.session.restname = data.restname;
     });
 });
-
 
 app.get("/getServiceDetails/:id", function(req, res) {
     return database.getServiceInfo(req.params.id).then(data => {
@@ -199,9 +196,6 @@ app.get("/getPeople", function(req, res) {
         });
     });
 });
-
-
-
 
 app.post("/finalizeJob", (req, res) => {
     console.log("job cookie 0", req.session.job);
@@ -259,7 +253,6 @@ app.post("/publishJob", (req, res) => {
         console.log("troll");
         return database
             .publishJobNoUser(
-
                 req.body.jobData.data.restname,
                 req.body.jobData.data.jobtype,
                 req.body.jobData.data.hourpay,
@@ -281,7 +274,6 @@ app.post("/publishJob", (req, res) => {
     }
     return database
         .publishJob(
-
             req.user.id,
             req.body.jobData.data.restname,
             req.body.jobData.data.jobtype,
@@ -318,7 +310,25 @@ app.post("/publishJob", (req, res) => {
 
 app.post("/publishPerson", (req, res) => {
     req.session.personAd = null;
-
+    if (req.user === undefined) {
+        return database
+            .publishPersonNoUser(
+                req.body.personData.data.personName,
+                req.body.personData.data.personStatus,
+                req.body.personData.data.personSkill,
+                req.body.personData.data.personExperience,
+                req.body.personData.data.personSchedule,
+                req.body.personData.data.personArea,
+                req.body.personData.data.personNumber,
+                req.body.personData.data.personExtraInfo,
+                req.session.userId
+            )
+            .then(() => {
+                res.json({
+                    success: true
+                });
+            });
+    }
     return database
         .publishPerson(
             req.user.id,
@@ -339,26 +349,26 @@ app.post("/publishPerson", (req, res) => {
         });
 });
 
-app.post("/publishService", (req, res) => {
-    req.session.service = null;
+// app.post("/publishService", (req, res) => {
+//     req.session.service = null;
 
-    console.log("fb in service", req.user.id);
-    return database
-        .publishService(
-            req.user.id,
-            req.body.serviceData.data.serviceOwner,
-            req.body.serviceData.data.serviceOffered,
-            req.body.serviceData.data.serviceArea,
-            req.body.serviceData.data.serviceNumber,
-            req.body.serviceData.data.serviceExtraInfo,
-            req.session.serviceId
-        )
-        .then(() => {
-            res.json({
-                success: true
-            });
-        });
-});
+//     console.log("fb in service", req.user.id);
+//     return database
+//         .publishService(
+//             req.user.id,
+//             req.body.serviceData.data.serviceOwner,
+//             req.body.serviceData.data.serviceOffered,
+//             req.body.serviceData.data.serviceArea,
+//             req.body.serviceData.data.serviceNumber,
+//             req.body.serviceData.data.serviceExtraInfo,
+//             req.session.serviceId
+//         )
+//         .then(() => {
+//             res.json({
+//                 success: true
+//             });
+//         });
+// });
 
 app.get("/deleteJob/:id", function(req, res) {
     console.log("delte job in index", req.session);
@@ -370,7 +380,6 @@ app.get("/deleteJob/:id", function(req, res) {
         req.session.restname = data.restname;
     });
 });
-
 
 app.get("/deletePersonPost/:id", function(req, res) {
     console.log("delte personpost in index", req.session);
@@ -392,15 +401,6 @@ app.get("/deleteService/:id", function(req, res) {
         req.session.serviceOwner = data.serviceOwner;
     });
 });
-
-
-
-
-
-
-
-
-
 
 app.post("/register", function(req, res) {
     database

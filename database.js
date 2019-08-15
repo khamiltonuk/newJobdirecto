@@ -5,8 +5,8 @@ if (process.env.DATABASE_URL !== undefined) {
 } else {
     let secrets = require("./secrets.json");
     dbUrl = `postgres:${secrets.dbUser}:${
-    secrets.dbPassword
-  }@localhost:5433/jobdirecto`;
+        secrets.dbPassword
+    }@localhost:5433/jobdirecto`;
 }
 const db = spicedPg(dbUrl);
 var bcrypt = require("bcryptjs");
@@ -33,7 +33,8 @@ exports.publishJob = function(
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         returning *;
         `,
-            [facebookId,
+            [
+                facebookId,
                 restname,
                 jobtype,
                 hourpay,
@@ -44,7 +45,8 @@ exports.publishJob = function(
                 area,
                 phone,
                 extrainfo,
-                urgent, "job"
+                urgent,
+                "job"
             ]
         )
         .then(function(results) {
@@ -84,7 +86,8 @@ exports.publishJobNoUser = function(
                 area,
                 phone,
                 extrainfo,
-                urgent, "job"
+                urgent,
+                "job"
             ]
         )
         .then(function(results) {
@@ -92,11 +95,13 @@ exports.publishJobNoUser = function(
         });
 };
 
-
 exports.minusCounter = function(facebookId) {
     console.log("got fb id?", facebookId);
-    return db.query(`UPDATE users SET postcounter = postcounter - 1 WHERE id = ($1);`, [facebookId])
-}
+    return db.query(
+        `UPDATE users SET postcounter = postcounter - 1 WHERE id = ($1);`,
+        [facebookId]
+    );
+};
 
 exports.publishPerson = function(
     facebookId,
@@ -109,7 +114,6 @@ exports.publishPerson = function(
     personNumber,
     personExtraInfo
 ) {
-
     return db
         .query(
             `
@@ -118,7 +122,8 @@ exports.publishPerson = function(
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         returning *;
         `,
-            [facebookId,
+            [
+                facebookId,
                 personName,
                 personStatus,
                 personSkill,
@@ -126,7 +131,8 @@ exports.publishPerson = function(
                 personSchedule,
                 personArea,
                 personNumber,
-                personExtraInfo, "person"
+                personExtraInfo,
+                "person"
             ]
         )
         .then(function(results) {
@@ -134,9 +140,44 @@ exports.publishPerson = function(
         });
 };
 
+exports.publishPersonNoUser = function(
+    personName,
+    personStatus,
+    personSkill,
+    personExperience,
+    personSchedule,
+    personArea,
+    personNumber,
+    personExtraInfo
+) {
+    return db
+        .query(
+            `
+        INSERT INTO personas
+        ( personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        returning *;
+        `,
+            [
+                personName,
+                personStatus,
+                personSkill,
+                personExperience,
+                personSchedule,
+                personArea,
+                personNumber,
+                personExtraInfo,
+                "person"
+            ]
+        )
+        .then(function(results) {
+            return results.rows;
+        });
+};
 
 exports.publishService = function(
-    facebookId, serviceOwner,
+    facebookId,
+    serviceOwner,
     serviceOffered,
     serviceArea,
     serviceNumber,
@@ -155,20 +196,19 @@ exports.publishService = function(
         returning *;
         `,
             [
-                facebookId, serviceOwner,
+                facebookId,
+                serviceOwner,
                 serviceOffered,
                 serviceArea,
                 serviceNumber,
-                serviceExtraInfo, "service"
+                serviceExtraInfo,
+                "service"
             ]
         )
         .then(function(results) {
             return results.rows;
         });
 };
-
-
-
 
 exports.findOrCreateFacebookUser = function(id, name) {
     return exports.getFacebookUser(id).then(user => {
@@ -183,14 +223,12 @@ exports.findOrCreateFacebookUser = function(id, name) {
                   VALUES ($1, $2)
                   returning *;
                   `,
-                [
-                    id, name
-                ]
+                [id, name]
             )
             .then(function(results) {
                 return results.rows;
             });
-    })
+    });
 };
 
 exports.getFacebookUser = function(id) {
@@ -199,50 +237,52 @@ exports.getFacebookUser = function(id) {
     });
 };
 
-
-
-
 exports.getJobInfo = function(id) {
     return db.query(`SELECT * FROM jobs WHERE id = $1`, [id]).then(results => {
         return results.rows[0];
     });
 };
 
-
 exports.deleteJob = function(id) {
-    return db.query(`
-    DELETE FROM jobs WHERE id = $1;`, [id]).then(results => {
-    });
+    return db
+        .query(
+            `
+    DELETE FROM jobs WHERE id = $1;`,
+            [id]
+        )
+        .then(results => {});
 };
 
 exports.deleteService = function(id) {
-    return db.query(`
-    DELETE FROM services WHERE id = $1;`, [id]).then(results => {
-    });
+    return db
+        .query(
+            `
+    DELETE FROM services WHERE id = $1;`,
+            [id]
+        )
+        .then(results => {});
 };
 
 exports.deletePersonPost = function(id) {
-    return db.query(`
-    DELETE FROM personas WHERE id = $1;`, [id]).then(results => {
-    });
+    return db
+        .query(
+            `
+    DELETE FROM personas WHERE id = $1;`,
+            [id]
+        )
+        .then(results => {});
 };
-
-
 
 // exports.deletePost = function(id) {
 //     db.any('select moveJob($1)', [id]);
 // };
 
-
-
-
-
-
-
 exports.getServiceInfo = function(id) {
-    return db.query(`SELECT * FROM services WHERE id = $1`, [id]).then(results => {
-        return results.rows[0];
-    });
+    return db
+        .query(`SELECT * FROM services WHERE id = $1`, [id])
+        .then(results => {
+            return results.rows[0];
+        });
 };
 
 exports.getPeopleInfo = function(id) {
@@ -343,16 +383,17 @@ exports.checkPassword = function(
     hashedPasswordFromDatabase
 ) {
     return new Promise(function(resolve, reject) {
-        bcrypt.compare(textEnteredInLoginForm, hashedPasswordFromDatabase, function(
-            err,
-            doesMatch
-        ) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(doesMatch);
+        bcrypt.compare(
+            textEnteredInLoginForm,
+            hashedPasswordFromDatabase,
+            function(err, doesMatch) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doesMatch);
+                }
             }
-        });
+        );
     });
 };
 
