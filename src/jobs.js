@@ -298,8 +298,7 @@ getServices() {
                         </button>
                 }
 
-            	     {data.facebookid !== null &&           <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>
-}
+            	     {data.facebookid !== null &&           <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
 
 
 </div>
@@ -337,10 +336,13 @@ getServices() {
                       key={data.id}
                     >
                     <div className="flexContainer">
+                    <div className="postIcons">
                     {data.facebookid === this.state.user.id &&
                         <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
                         <i className="fa fa-close" />
                         </button>}
+                        {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+                     </div>
                         </div>
                       <p>
 
@@ -372,12 +374,14 @@ getServices() {
                         key={data.id}
                       >
                       <div className="flexContainer">
-
+                      <div className="postIcons">
                       {data.facebookid === this.state.user.id &&
                           <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                           <i className="fa fa-close" />
                           </button>}
+                          {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
                           </div>
+                        </div>
                         <p>
                           <span className="postConnector paidPostConnector">
                             {this.context.main.seeking3}{" "}
@@ -410,11 +414,13 @@ getServices() {
                     key={data.id}
                   >
                   <div className="flexContainer">
-
+                  <div className="postIcons">
                   {data.facebookid === this.state.user.id &&
                       <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
+                      {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+                  </div>
                     <p>
                       <span className="posterName">{data.personname}</span>
                       <span className="postConnector paidPostConnector">
@@ -449,11 +455,14 @@ getServices() {
           key={data.id}
         >
         <div className="flexContainer">
-
+        <div className="postIcons">
         {data.facebookid === this.state.user.id &&
             <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
             <i className="fa fa-close" />
             </button>}
+   
+            {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+         </div>
           <p>
             <span className="postConnector">
               {this.context.main.seeking3}{" "}
@@ -483,10 +492,13 @@ getServices() {
             key={data.id}
           >
           <div className="flexContainer">
+          <div className="postIcons">
           {data.facebookid === this.state.user.id &&
               <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
               <i className="fa fa-close" />
               </button>}
+              {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+          </div>
             <p>
               <span className="postConnector">
                 {this.context.main.seeking3}{" "}
@@ -504,6 +516,7 @@ getServices() {
         );
       }
     })}
+
           {!this.state.userSelectionArea &&
             this.state.jobData.data.map(data => {
               if (data.urgent !== "true" ) {
