@@ -20,6 +20,15 @@ ALTER TABLE jobs
 ADD postType VARCHAR(300);
 
 ALTER TABLE users
+ADD premium VARCHAR(300);
+
+UPDATE users
+SET premium = true;
+
+
+
+
+ALTER TABLE users
 ADD postCounter SMALLINT SET DEFAULT 2;
 
 ALTER TABLE users ALTER COLUMN postcounter SET DEFAULT 2;

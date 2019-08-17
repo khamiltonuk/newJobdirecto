@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ModalJob from "./modalJob";
 import ModalPeople from "./modalPeople";
-import DeleteModal from "./deleteModal";
-import ModalService from "./modalService";
+import DeleteModal from "./deleteModal.js";
+import PremiumModal from "./premiumModal.js";
 import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
 import "moment/locale/es";
-
 var ReactGA = require("react-ga");
 
 export class Jobs extends React.Component {
@@ -17,32 +16,32 @@ export class Jobs extends React.Component {
     this.state = {
         addClass: false,
       showModalJob: false,
+      showPremiumModal: false,
       showModalPeople: false,
-      showModalService: false,
       user: "true",
       showDeleteModal: false
     };
     this.handleChangeArea = this.handleChangeArea.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showModalPeople = this.showModalPeople.bind(this);
-    this.showModalService = this.showModalService.bind(this);
     this.hideModalJob = this.hideModalJob.bind(this);
     this.hideModalPeople = this.hideModalPeople.bind(this);
-    this.hideModalService = this.hideModalService.bind(this);
     this.urgentJobInterval = this.urgentJobInterval.bind(this);
     this.trackCreatecloseJob = this.trackCreateJob.bind(this);
     this.showDeleteModal = this.showDeleteModal.bind(this);
     this.hideDeleteModal = this.hideDeleteModal.bind(this);
+    this.hidePremiumModal = this.hidePremiumModal.bind(this);
     this.getJobs = this.getJobs.bind(this);
+    this.getUserStatus = this.getUserStatus.bind(this);
     this.getPeople = this.getPeople.bind(this);
-    this.getServices = this.getServices.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.showPremium = this.showPremium.bind(this);
   }
 
   componentDidMount() {
     this.getJobs();
     this.getPeople();
-    this.getServices();
+    this.getUserStatus();
         return axios ({
             method: 'get',
             url: '/user',
@@ -50,6 +49,7 @@ export class Jobs extends React.Component {
             withCredentials: true
         }).then(result => {
           this.setState({ user: result.data }, () => {
+            console.log("state in didmount?", this.state)
           });
         });
   }
@@ -70,6 +70,14 @@ export class Jobs extends React.Component {
      });
   }
 
+  getUserStatus() {
+    axios.get("/getUserStatus").then(result => {
+      this.setState({ userStatus: result.data }, () => {
+          console.log("this should be the user status", result.data.data)
+   });
+   });
+}
+
 getPeople() {
     axios.get("/getPeople").then(result => {
       this.setState({ peopleData: result.data }, () => {
@@ -78,13 +86,6 @@ getPeople() {
 
 }
 
-getServices() {
-
-        axios.get("/getServices").then(result => {
-          this.setState({ serviceData: result.data }, () => {
-          });
-      });
-}
 
   logOut() {
       return axios ({
@@ -105,11 +106,6 @@ getServices() {
 
 
   handleSubmit(event) {
-    // if (this.state.user === "") {
-    //     this.props.history.push("/login")
-    // } else {
-    //     this.props.history.push("/postType")
-    // }
     this.props.history.push("/postType")
   }
 
@@ -124,13 +120,25 @@ getServices() {
     });
   }
 
-  showDeleteModal(event, id, posttype) {
+  showPremium() {
+    document.body.classList.add('lockBackground')
+
+    console.log("oh im in jobs now Im outside")
+    this.setState({
+      showPremiumModal: true,
+    });
+  }
+
+
+  showDeleteModal(event, id, posttype, userstatus) {
+    console.log("showdeletemodal", id, posttype, userstatus)
         document.body.classList.add('lockBackground')
       event.stopPropagation();
     this.setState({
       showDeleteModal: true,
       selectedJobId: id,
       posttype: posttype,
+      userstatus: userstatus
     });
   }
 
@@ -143,28 +151,22 @@ getServices() {
     });
   }
 
-  showModalService(event) {
-        document.body.classList.add('lockBackground')
-    this.setState({
-      showModalService: true,
-      selectedServiceId: event
-    });
-  }
-
   hideModalJob() {
       document.body.classList.remove('lockBackground')
-
     this.setState({ showModalJob: false });
   }
 
   hideDeleteModal() {
-
       document.body.classList.remove('lockBackground')
-
-
     this.setState({ showDeleteModal: false }, () => {
     });
   }
+
+  hidePremiumModal() {
+    document.body.classList.remove('lockBackground')
+  this.setState({ showPremiumModal: false }, () => {
+  });
+}
 
   hideModalPeople() {
 
@@ -172,14 +174,6 @@ getServices() {
 
 
     this.setState({ showModalPeople: false });
-  }
-
-  hideModalService() {
-
-      document.body.classList.remove('lockBackground')
-
-
-    this.setState({ showModalService: false });
   }
 
   trackCreateJob(event) {
@@ -229,9 +223,13 @@ getServices() {
         {this.state.showModalJob && (
           <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid}/>
         )}
-        {this.state.showDeleteModal && (
-          <DeleteModal id={this.state.selectedJobId} close={this.hideDeleteModal} delete={this.deletePost} postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} getServices={this.getServices}/>
+        {this.state.showDeleteModal && this.state.userStatus && (
+          <DeleteModal id={this.state.selectedJobId} userstatus={this.state.userStatus.data} close={this.hideDeleteModal} showPremium={this.showPremium} delete={this.deletePost}  postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} />
         )}
+        {this.state.showPremiumModal && this.state.userStatus &&(
+          <PremiumModal  close={this.hidePremiumModal}/>
+        )}
+
         {this.state.showModalPeople && (
           <ModalPeople
             id={this.state.selectedPersonId}
@@ -275,7 +273,6 @@ getServices() {
 
 
         <div className="allPosts">
-
             {/*urgent job posts here*/}
             {!this.state.userSelectionArea &&
               this.state.jobData.data.map(data => {
@@ -293,12 +290,12 @@ getServices() {
                     <div className="flexContainer">
 <div className="postIcons">
                     {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
+                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
                         <i className="fa fa-close" />
                         </button>
                 }
 
-            	     {data.facebookid !== null &&           <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+            	     {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
 
 
 </div>
@@ -376,7 +373,7 @@ getServices() {
                       <div className="flexContainer">
                       <div className="postIcons">
                       {data.facebookid === this.state.user.id &&
-                          <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
+                          <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
                           <i className="fa fa-close" />
                           </button>}
                           {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
@@ -416,7 +413,7 @@ getServices() {
                   <div className="flexContainer">
                   <div className="postIcons">
                   {data.facebookid === this.state.user.id &&
-                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
+                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
                       {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
@@ -457,7 +454,7 @@ getServices() {
         <div className="flexContainer">
         <div className="postIcons">
         {data.facebookid === this.state.user.id &&
-            <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
+            <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
             <i className="fa fa-close" />
             </button>}
    
@@ -494,7 +491,7 @@ getServices() {
           <div className="flexContainer">
           <div className="postIcons">
           {data.facebookid === this.state.user.id &&
-              <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
+              <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
               <i className="fa fa-close" />
               </button>}
               {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
@@ -530,7 +527,7 @@ getServices() {
                   <div className="flexContainer">
                   <div className="postIcons">
                   {data.facebookid === this.state.user.id &&
-                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype) } className="deletePostButton">
+                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
 {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}

@@ -95,14 +95,6 @@ exports.publishJobNoUser = function(
         });
 };
 
-exports.minusCounter = function(facebookId) {
-    console.log("got fb id?", facebookId);
-    return db.query(
-        `UPDATE users SET postcounter = postcounter - 1 WHERE id = ($1);`,
-        [facebookId]
-    );
-};
-
 exports.publishPerson = function(
     facebookId,
     personName,
@@ -175,41 +167,6 @@ exports.publishPersonNoUser = function(
         });
 };
 
-exports.publishService = function(
-    facebookId,
-    serviceOwner,
-    serviceOffered,
-    serviceArea,
-    serviceNumber,
-    serviceExtraInfo
-) {
-    return db
-        .query(
-            `
-        INSERT INTO services
-        (facebookId, serviceOwner,
-        serviceOffered,
-        serviceArea,
-        serviceNumber,
-        serviceExtraInfo, postType)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
-        returning *;
-        `,
-            [
-                facebookId,
-                serviceOwner,
-                serviceOffered,
-                serviceArea,
-                serviceNumber,
-                serviceExtraInfo,
-                "service"
-            ]
-        )
-        .then(function(results) {
-            return results.rows;
-        });
-};
-
 exports.findOrCreateFacebookUser = function(id, name) {
     return exports.getFacebookUser(id).then(user => {
         if (user) {
@@ -235,6 +192,18 @@ exports.getFacebookUser = function(id) {
     return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
         return results.rows[0];
     });
+};
+
+exports.getUserStatus = function(facebookId) {
+    console.log("I got here", facebookId);
+
+    return db
+        .query(`SELECT premium FROM users WHERE id = $1`, [facebookId])
+        .then(results => {
+            console.log("should get user status: ", results.rows[0].premium);
+
+            return results.rows[0].premium;
+        });
 };
 
 exports.getJobInfo = function(id) {
@@ -368,49 +337,6 @@ exports.hashPassword = function(plainTextPassword) {
             });
         });
     });
-};
-
-exports.showHashPw = function(email) {
-    return db
-        .query(`SELECT password FROM users WHERE email = $1`, [email])
-        .then(function(result) {
-            return result.rows[0] && result.rows[0].password;
-        });
-};
-
-exports.checkPassword = function(
-    textEnteredInLoginForm,
-    hashedPasswordFromDatabase
-) {
-    return new Promise(function(resolve, reject) {
-        bcrypt.compare(
-            textEnteredInLoginForm,
-            hashedPasswordFromDatabase,
-            function(err, doesMatch) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(doesMatch);
-                }
-            }
-        );
-    });
-};
-
-exports.registerUser = function(email, hashedpw) {
-    return db
-        .query(
-            `
-        INSERT INTO users
-        (email, password)
-        VALUES ($1, $2)
-        RETURNING *;
-        `,
-            [email, hashedpw]
-        )
-        .then(function(results) {
-            return results.rows;
-        });
 };
 
 exports.cancelUrgency = function() {
