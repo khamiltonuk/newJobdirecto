@@ -353,7 +353,6 @@ app.get("/deleteJob/:id", function(req, res) {
         res.json({
             data
         });
-        req.session.restname = data.restname;
     });
 });
 
@@ -364,7 +363,6 @@ app.get("/deletePersonPost/:id", function(req, res) {
         res.json({
             data
         });
-        req.session.personName = data.personName;
     });
 });
 

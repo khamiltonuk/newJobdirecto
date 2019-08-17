@@ -222,37 +222,15 @@ exports.deleteJob = function(id) {
         .then(results => {});
 };
 
-exports.deleteService = function(id) {
-    return db
-        .query(
-            `
-    DELETE FROM services WHERE id = $1;`,
-            [id]
-        )
-        .then(results => {});
-};
-
 exports.deletePersonPost = function(id) {
     return db
-        .query(
-            `
-    DELETE FROM personas WHERE id = $1;`,
-            [id]
-        )
+        .query(`DELETE FROM personas WHERE id = $1;`, [id])
         .then(results => {});
 };
 
 // exports.deletePost = function(id) {
 //     db.any('select moveJob($1)', [id]);
 // };
-
-exports.getServiceInfo = function(id) {
-    return db
-        .query(`SELECT * FROM services WHERE id = $1`, [id])
-        .then(results => {
-            return results.rows[0];
-        });
-};
 
 exports.getPeopleInfo = function(id) {
     return db

@@ -53,6 +53,21 @@ export default class DeleteModal extends React.Component {
                     </h1>
                     <br />
                     <div className="deleteButtons">
+                        {this.props.postType === "person" && (
+                            <button
+                                className="deleteButton buttonOpaque"
+                                onClick={this.deletePersonPost}>
+                                Yes
+                            </button>
+                        )}
+                        {this.props.postType === "job" && (
+                            <button
+                                className="deleteButton buttonOpaque"
+                                onClick={this.deleteJob}>
+                                Yes
+                            </button>
+                        )}
+                        {/* 
                         {this.props.userstatus == "true" &&
                             this.props.postType === "job" && (
                                 <button
@@ -86,7 +101,7 @@ export default class DeleteModal extends React.Component {
                                     Yes
                                 </button>
                             )}
-
+*/}
                         <button
                             className="deleteButton buttonOpaque"
                             onClick={this.props.close}>
