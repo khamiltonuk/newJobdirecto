@@ -194,14 +194,20 @@ exports.getFacebookUser = function(id) {
     });
 };
 
+exports.setPremium = function(id) {
+    return db
+        .query(`UPDATE users SET premium = true WHERE id = $1`, [id])
+        .then(results => {
+            return results.rows[0];
+        });
+};
+
 exports.getUserStatus = function(facebookId) {
     console.log("I got here", facebookId);
-
     return db
         .query(`SELECT premium FROM users WHERE id = $1`, [facebookId])
         .then(results => {
             console.log("should get user status: ", results.rows[0].premium);
-
             return results.rows[0].premium;
         });
 };

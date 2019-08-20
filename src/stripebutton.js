@@ -5,7 +5,11 @@ import { useContext } from "react";
 
 function StripeButton() {
     const context = useContext(LanguageContext);
-    const stripe = Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");
+    /*real one*/
+    /* const stripe = Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");*/
+
+    /*test one*/
+    const stripe = Stripe("pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3");
 
     const [error, setError] = useState();
 
@@ -13,10 +17,16 @@ function StripeButton() {
         console.log("I'm in stripe look");
         stripe
             .redirectToCheckout({
-                items: [{ sku: "sku_FdasqwNe7sxEJj", quantity: 1 }],
+                /*real one*/
+                /* items: [{ sku: "sku_FdasqwNe7sxEJj", quantity: 1 }],*/
+                /*test one*/
+                items: [{ sku: "sku_Fdr59otEvaL6b7", quantity: 1 }],
+
                 successUrl:
                     window.location.protocol +
-                    "//www.jobdirecto.com/jobConfirm",
+                    /* "//www.jobdirecto.com/jobConfirm",*/
+                    "//localhost:8080/jobConfirm",
+
                 cancelUrl:
                     window.location.protocol +
                     "//www.jobdirecto.com/StripeButton"

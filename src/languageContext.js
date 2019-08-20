@@ -12,21 +12,20 @@ export const languages = {
             seeking4: "ofrece servicios de",
             filterDefault: "Todo Nueva York",
             filterOtherArea: "Otra area en Nueva York",
-            login: "Ingresar a mi cuenta",
+            login: "Verificar mi cuenta",
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido",
-            tooltip:
-                "El creador de este anuncio es un usuario verificado."
-
+            tooltip: "El creador de este anuncio es un usuario verificado.",
+            premium: "You are a premium user!"
         },
-
 
         deleteModal: {
             title: "Desea eliminar este anuncio?"
         },
         login: {
             title: "Porfavor ingrese a su cuenta para continuar",
-            text: "Luego de iniciar sesion podra crear anuncios y borrarlos cuando ya no los necesite",
+            text:
+                "Luego de iniciar sesion podra crear anuncios y borrarlos cuando ya no los necesite",
             button: "Iniciar Sesión con Facebook"
         },
         postType: {
@@ -47,7 +46,8 @@ export const languages = {
             question8: "Numero de celular? (opcional)",
             question9: "Por quien preguntar?",
             question10: "Algo que desee agregar?",
-            question11: "Quiero que mi anuncio tenga color y este por encima del resto (esto cuesta $10)",
+            question11:
+                "Quiero que mi anuncio tenga color y este por encima del resto (esto cuesta $10)",
             jobFormButton: "Listo",
             payType1: "Cash",
             payType2: "Cheque",
@@ -79,18 +79,19 @@ export const languages = {
             area: "Area:",
             phone: "Numero:",
             extraInfo: "Mas info:"
-
         },
-        prePay2: {
-            text1: "Los anuncios para buscar trabajo u ofrecer servicios tienen un costo de 10 dolares",
+        PrePayPerson: {
+            text1:
+                "Los anuncios para buscar trabajo u ofrecer servicios tienen un costo de 10 dolares",
             text2: "Su anuncio no sera borrado",
-            text3: "y se mantendra por encima de los anuncios gratis por 48 horas.",
+            text3:
+                "y se mantendra por encima de los anuncios gratis por 48 horas.",
             button: "Gracias ya no deseo",
             buttonPay: "Pagar $10"
         },
         contactInfo: {
-            contactInfo: "Si tiene preguntas, quejas o sugerencias, porfavor envia un correo a wilfredo@jobdirecto.com"
-
+            contactInfo:
+                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
         },
         serviceModal: {
             name: "Nombre:",
@@ -100,10 +101,12 @@ export const languages = {
         },
         jobPayPage: {
             title: "Usted a marcado anuncio TOP",
-            text1: "Los anuncios TOP son de otro color y se mantienen al top de la lista por 48 horas.",
-            text2: "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
+            text1:
+                "Los anuncios TOP son de otro color y se mantienen al top de la lista por 48 horas.",
+            text2:
+                "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
             buttonNO: "Quiero un anuncio gratis y comun",
-            buttonYES: "Pagar $10",
+            buttonYES: "Pagar $10"
         },
         serviceConfirm: {
             title: "Su anuncio esta listo para ser publicado:",
@@ -120,7 +123,8 @@ export const languages = {
             serviceNumber: "A que numero pueden llamarlo?",
             serviceExtraInfo: "Algo que desee agregar?",
             button: "Listo",
-            placeholder: "Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios"
+            placeholder:
+                "Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios"
         }
     },
     english: {
@@ -134,10 +138,11 @@ export const languages = {
             seeking4: "offers services as",
             filterDefault: "All NY",
             filterOtherArea: "Other area in NY",
-            login: "Login",
+            login: "Verify my account",
             logout: "Logout",
             welcome: "Welcome",
-                    tooltip: "The author of this post is a verified user."
+            tooltip: "The author of this post is a verified user.",
+            premium: "You are a premium user!"
         },
 
         serviceForm: {
@@ -146,11 +151,13 @@ export const languages = {
             serviceNumber: "How can people reach out to you?",
             serviceExtraInfo: "Any other info you'd like to add?",
             button: "Finish",
-            placeholder: "Please add here any info that helps you sell your services better"
+            placeholder:
+                "Please add here any info that helps you sell your services better"
         },
         login: {
             title: "Please login to continue",
-            text: "After logging in with you will be able to create posts and delete them when you don't need them anymore",
+            text:
+                "After logging in with you will be able to create posts and delete them when you don't need them anymore",
             button: "Login with Facebook"
         },
         postType: {
@@ -171,7 +178,8 @@ export const languages = {
             question8: "Phone Number (optional)",
             question9: "Contact name",
             question10: "Something you'd like to add?",
-            question11: "I want my post to be on top of the list (this costs $10)",
+            question11:
+                "I want my post to be on top of the list (this costs $10)",
             jobFormButton: "Finish",
             payType1: "Cash",
             payType2: "Check",
@@ -181,7 +189,8 @@ export const languages = {
             extraArea: "What''s the name of the area?"
         },
         contactInfo: {
-            contactInfo: "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
+            contactInfo:
+                "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
         },
         jobConfirm: {
             title: "Your post",
@@ -210,16 +219,13 @@ export const languages = {
             serviceExtraInfo: "Extra Info:",
             button: "Publish Post"
         },
-        prePay2: {
+        PrePayPerson: {
             text1: "Posts to promote services cost $10",
             text2: "Your post will stay on top of the page for 48 hours",
             text3: "and it will have a different color.",
             button: "No thanks",
             buttonPay: "Pay $10"
-
         },
-
-
 
         personModal: {
             name: "Name:",
@@ -239,10 +245,12 @@ export const languages = {
         },
         jobPayPage: {
             title: "You chose TOP post",
-            text1: "TOP posts are of a different color and stay on top of the list for 48 hours.",
-            text2: "If you are looking for top staff as quickly as possible, this is what you need.",
+            text1:
+                "TOP posts are of a different color and stay on top of the list for 48 hours.",
+            text2:
+                "If you are looking for top staff as quickly as possible, this is what you need.",
             buttonNO: "I want a free and normal post",
-            buttonYES: "Pay $10",
+            buttonYES: "Pay $10"
         }
     }
 };

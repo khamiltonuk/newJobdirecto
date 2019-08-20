@@ -27,7 +27,7 @@ export class ServiceForm extends React.Component {
       console.log("are u a ghost", this.state);
     event.preventDefault();
     axios.post("/finalizeService", this.state).then(resp => {
-      this.props.history.push("/prePay2");
+      this.props.history.push("/PrePayPerson");
     });
   }
 

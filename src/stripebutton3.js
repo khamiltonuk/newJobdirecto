@@ -3,20 +3,30 @@ import axios from "axios";
 import { LanguageContext } from "./languageContext";
 import { useContext } from "react";
 
-function StripeButton2() {
+function StripeButton3() {
     const context = useContext(LanguageContext);
+    /*real one*/
+    /* const stripe = Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");*/
+    /*test one*/
+    // const stripe = Stripe("pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3");
 
-    const stripe = Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");
+    const stripe =
+        window.location.hostname == "localhost"
+            ? Stripe("pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3")
+            : Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");
 
     const [error, setError] = useState();
 
     const handleClick = () => {
         stripe
             .redirectToCheckout({
-                items: [{ sku: "sku_Fdanz5rW5EBFPX", quantity: 1 }],
+                // the real one
+                // items: [{ plan: "plan_Fer31qkbJx0UYm", quantity: 1 }],
+                //test one
+                items: [{ plan: "plan_FerG4ShuM9GS8D", quantity: 1 }],
                 successUrl:
-                    window.location.protocol +
-                    "//www.jobdirecto.com/personConfirm",
+                    window.location.protocol + "//localhost:8080/premiumSet",
+                /*  "//www.jobdirecto.com/premiumSet",*/
                 cancelUrl:
                     window.location.protocol +
                     "//www.jobdirecto.com/StripeButton"
@@ -46,5 +56,5 @@ function StripeButton2() {
     );
 }
 
-export default StripeButton2;
-StripeButton2.contextType = LanguageContext;
+export default StripeButton3;
+StripeButton3.contextType = LanguageContext;

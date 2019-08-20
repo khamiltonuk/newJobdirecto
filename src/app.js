@@ -3,11 +3,12 @@ import axios from "axios";
 import { JobConfirm } from "./jobConfirm.js";
 import { JobForm } from "./jobForm.js";
 import { PersonForm } from "./personForm.js";
-import { ServiceForm } from "./serviceForm.js";
+import PremiumBuy from "./premiumBuy.js";
+import PremiumSet from "./premiumSet.js";
+
 import { PostType } from "./postType.js";
-import PrePay2 from "./prePay2.js";
+import PrePayPerson from "./prePayPerson.js";
 import { PersonConfirm } from "./personConfirm.js";
-import { ServiceConfirm } from "./serviceConfirm.js";
 import { Jobs } from "./jobs.js";
 import LoginFacebook from "./loginFacebook.js";
 import PrePayJob from "./prePayJob.js";
@@ -44,6 +45,9 @@ export class App extends React.Component {
                     <LanguageContext.Provider value={this.state.languages}>
                         <LanguageButton changeLanguage={this.toggleLanguage} />
                         <Route path="/prePayJob" component={PrePayJob} />
+                        <Route path="/premiumBuy" component={PremiumBuy} />
+                        <Route path="/premiumSet" component={PremiumSet} />
+
                         <Route path="/login" component={LoginFacebook} />
                         <Route path="/jobConfirm" component={JobConfirm} />
                         <Route
@@ -54,13 +58,9 @@ export class App extends React.Component {
                         />
                         <Route exact path="/" component={Jobs} />
                         <Route path="/personForm" component={PersonForm} />
-                        <Route path="/serviceForm" component={ServiceForm} />
-                        <Route
-                            path="/serviceConfirm"
-                            component={ServiceConfirm}
-                        />
+
                         <Route path="/jobForm" component={JobForm} />
-                        <Route path="/prepay2" component={PrePay2} />
+                        <Route path="/prepayPerson" component={PrePayPerson} />
                         <Route path="/postType" component={PostType} />
                         <Route
                             exact="exact"

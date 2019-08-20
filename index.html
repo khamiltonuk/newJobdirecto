@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <title>JobDirecto</title>
+        <link rel="stylesheet" type="text/css" href="/styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
 
-<head>
-    <title>JobDirecto</title>
-    <link rel="stylesheet" type="text/css" href="/styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-</head>
+    <body>
+        <main></main>
+    </body>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-129656531-1"
+    ></script>
 
-<body>
-    <main></main>
-</body>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129656531-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-<script>
-    window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+        gtag("config", "UA-129656531-1");
+    </script>
+    <!-- Load Stripe.js on your website. -->
+    <script src="https://js.stripe.com/v3"></script>
 
-    gtag("config", "UA-129656531-1");
-</script>
+    <script src="/bundle.js"></script>
 
-<script src="/bundle.js"></script>
-
-<!-- Load Stripe.js on your website. -->
-<script src="https://js.stripe.com/v3"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 </html>

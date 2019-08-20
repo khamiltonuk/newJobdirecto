@@ -350,6 +350,8 @@ id="offersService"
             type="submit"
             value={this.context.jobForm.jobFormButton}
           />
+
+          <p className="text"> Si desea cerrar este post cuando ya haya encontrado a quien busca, primero debe <Link className="callToLogin" to="/login">crear una cuenta</Link></p>
           <br />
           <br />
           <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>

@@ -366,6 +366,15 @@ app.get("/deletePersonPost/:id", function(req, res) {
     });
 });
 
+app.post("/setPremium", function(req, res) {
+    console.log("set premium in index js", req.user.id);
+    return database.setPremium(req.user.id).then(data => {
+        res.json({
+            data
+        });
+    });
+});
+
 app.get("/deleteService/:id", function(req, res) {
     console.log("delte service in index", req.session);
     return database.deleteService(req.params.id).then(data => {
@@ -380,8 +389,8 @@ app.get("*", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-// app.get("*", function(req, res) {
-//   res.redirect("https://" + req.headers.host + req.url);
-// });
+app.get("*", function(req, res) {
+    res.redirect("https://" + req.headers.host + req.url);
+});
 
 app.listen(process.env.PORT || 8080);

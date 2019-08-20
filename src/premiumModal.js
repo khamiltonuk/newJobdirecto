@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { LanguageContext } from "./languageContext";
 
@@ -8,14 +9,17 @@ export default class PremiumModal extends React.Component {
             <div>
                 <div onClick={this.props.close} className="backgroundBlock" />
                 <div className="deleteModal">
-                    <h1 className="heading-1 deleteModalTitle">
-                        Please buy a premium acc :)
-                    </h1>
-                    <button
-                        className="deleteButton buttonOpaque"
-                        onClick={this.props.close}>
-                        No
+                    <button onClick={this.props.close} className="modalButton">
+                        <i className="fa fa-close" />
                     </button>
+                    <h1 className="heading-1 deleteModalTitle">
+                        Solo los usuarios premium pueden cerrar sus anuncios :)
+                    </h1>
+                    <Link to="/premiumBuy">
+                        <button className="buttonBasic buttonPremium">
+                            Comprar cuenta premium
+                        </button>{" "}
+                    </Link>
                 </div>
             </div>
         );

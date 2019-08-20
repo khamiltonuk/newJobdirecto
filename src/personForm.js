@@ -28,7 +28,7 @@ export class PersonForm extends React.Component {
     event.preventDefault();
     console.log("state in job form: ", this.state);
     axios.post("/finalizePerson", this.state).then(resp => {
-      this.props.history.push("/prePay2");
+      this.props.history.push("/PrePayPerson");
     });
   }
 

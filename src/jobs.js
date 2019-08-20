@@ -40,6 +40,7 @@ export class Jobs extends React.Component {
 
   componentDidMount() {
     this.getJobs();
+
     this.getPeople();
     this.getUserStatus();
         return axios ({
@@ -49,7 +50,6 @@ export class Jobs extends React.Component {
             withCredentials: true
         }).then(result => {
           this.setState({ user: result.data }, () => {
-            console.log("state in didmount?", this.state)
           });
         });
   }
@@ -71,9 +71,11 @@ export class Jobs extends React.Component {
   }
 
   getUserStatus() {
+    console.log("getuser status called")
     axios.get("/getUserStatus").then(result => {
+      console.log("where my state at", this.state)
       this.setState({ userStatus: result.data }, () => {
-          console.log("this should be the user status", result.data.data)
+          console.log("user status in getUserStatus(): ", this.state.userStatus.data)
    });
    });
 }
@@ -83,7 +85,6 @@ getPeople() {
       this.setState({ peopleData: result.data }, () => {
       });
   });
-
 }
 
 
@@ -138,10 +139,8 @@ getPeople() {
       showDeleteModal: true,
       selectedJobId: id,
       posttype: posttype,
-      userstatus: userstatus
     });
   }
-
 
   showModalPeople(event) {
         document.body.classList.add('lockBackground')
@@ -216,7 +215,6 @@ getPeople() {
     {!this.state.user &&<Link to="/login"><div className="buttonsAuth" ><img  className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
          {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 
-
         <div>
           <h1 />
         </div>
@@ -246,7 +244,11 @@ getPeople() {
               value={this.context.main.createPost}
               onClick={this.handleSubmit}
             />
-   {this.state.user && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.displayName} </h3>}
+   {this.state.user && this.state.userStatus && this.state.userStatus.data && this.state.userStatus.data !== "true"&& <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.displayName} </h3>}
+{this.state.user && this.state.userStatus && this.state.userStatus.data && this.state.userStatus.data == "true" && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.displayName} <br />{this.context.main.premium}</h3>}
+
+{/**/}
+
 
 </div>
           <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
@@ -290,7 +292,7 @@ getPeople() {
                     <div className="flexContainer">
 <div className="postIcons">
                     {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
+                        <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton deletePaidButton">
                         <i className="fa fa-close" />
                         </button>
                 }
@@ -335,7 +337,7 @@ getPeople() {
                     <div className="flexContainer">
                     <div className="postIcons">
                     {data.facebookid === this.state.user.id &&
-                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton">
+                        <button  onClick={ event => this.showDeleteModal(event, data.id) } className="deletePostButton deletePaidButton">
                         <i className="fa fa-close" />
                         </button>}
                         {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
@@ -373,7 +375,7 @@ getPeople() {
                       <div className="flexContainer">
                       <div className="postIcons">
                       {data.facebookid === this.state.user.id &&
-                          <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
+                          <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton deletePaidButton">
                           <i className="fa fa-close" />
                           </button>}
                           {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
@@ -413,7 +415,7 @@ getPeople() {
                   <div className="flexContainer">
                   <div className="postIcons">
                   {data.facebookid === this.state.user.id &&
-                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
+                      <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton deletePaidButton">
                       <i className="fa fa-close" />
                       </button>}
                       {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
