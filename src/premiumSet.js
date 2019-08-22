@@ -51,7 +51,7 @@ export default class PremiumSet extends React.Component {
                 <div className="PrePayPersonButtons">
                     <button
                         onClick={this.setPremium}
-                        className="buttonBasic prePay">
+                        className="buttonBasic buttonPremium">
                         {this.context.premiumSet.activate}
                     </button>
                     <div className="contactInfo">
