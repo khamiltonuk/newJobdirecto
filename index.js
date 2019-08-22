@@ -9,7 +9,6 @@ const cors = require("cors");
 FacebookStrategy = require("passport-facebook").Strategy;
 let fbSecret;
 let callback_URL;
-
 if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
     callback_URL = process.env.CALLBACK_URL;

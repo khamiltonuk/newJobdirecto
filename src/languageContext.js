@@ -18,9 +18,14 @@ export const languages = {
             tooltip: "El creador de este anuncio es un usuario verificado.",
             premium: "You are a premium user!"
         },
-
+        premiumModal: {
+            title: "Solo los usuarios premium pueden cerrar sus anuncios :)",
+            deny: "Otro dia",
+            buyPremium: "Comprar cuenta premium ($5)"
+        },
         deleteModal: {
-            title: "Desea eliminar este anuncio?"
+            title: "Desea eliminar este anuncio?",
+            yes: "Si"
         },
         login: {
             title: "Porfavor ingrese a su cuenta para continuar",
@@ -47,14 +52,18 @@ export const languages = {
             question9: "Por quien preguntar?",
             question10: "Algo que desee agregar?",
             question11:
-                "Quiero que mi anuncio tenga color y este por encima del resto (esto cuesta $10)",
+                "Desea que su anuncio tenga color y este por encima del resto? Esto cuesta $10.",
             jobFormButton: "Listo",
             payType1: "Cash",
             payType2: "Cheque",
             payType3: "Cash y Cheque",
             filterOtherArea: "Otra area en NY",
             title: "Encuentre al mejor personal para su negocio",
-            extraArea: "Cual es el nombre del area donde esta ubicado?"
+            extraArea: "Cual es el nombre del area donde esta ubicado?",
+            specialAnswer: "Si, quiero que mi anuncio sea especial",
+            verifyCall1:
+                "Si desea cerrar este post cuando ya haya encontrado a quien busca, el primer paso es",
+            verifyCall2: "verificarse usando Facebook"
         },
         jobConfirm: {
             title: "Su anuncio",
@@ -92,6 +101,10 @@ export const languages = {
         contactInfo: {
             contactInfo:
                 "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
+        },
+        premiumSet: {
+            title: "Gracias por con confiar en JobDirecto!",
+            activate: "Activar cuenta premium"
         },
         serviceModal: {
             name: "Nombre:",
@@ -154,6 +167,16 @@ export const languages = {
             placeholder:
                 "Please add here any info that helps you sell your services better"
         },
+        premiumSet: {
+            title: "Thanks for trusting JobDirecto!",
+            activate: "Activate premium now"
+        },
+        premiumModal: {
+            title: "Only premium users can close their posts :)",
+            deny: "Nevermind",
+            buyPremium: "Get premium account ($5)"
+        },
+
         login: {
             title: "Please login to continue",
             text:
@@ -179,14 +202,18 @@ export const languages = {
             question9: "Contact name",
             question10: "Something you'd like to add?",
             question11:
-                "I want my post to be on top of the list (this costs $10)",
+                "Would you like this post to have color and be on top of the rest? This costs $10.",
             jobFormButton: "Finish",
             payType1: "Cash",
             payType2: "Check",
             payType3: "Cash and Check",
             filterOtherArea: "Other area in NY",
             title: "Fill out the form and find staff in seconds",
-            extraArea: "What''s the name of the area?"
+            extraArea: "What''s the name of the area?",
+            specialAnswer: "Yes, I want my post to be special",
+            verifyCall1:
+                "If you'd like to delete your post once you don't need it anymore, first you have to",
+            verifyCall2: "verify your account"
         },
         contactInfo: {
             contactInfo:
@@ -207,7 +234,8 @@ export const languages = {
             button: "Publish"
         },
         deleteModal: {
-            title: "Do you want to delete this post?"
+            title: "Do you want to delete this post?",
+            yes: "Yes"
         },
 
         serviceConfirm: {

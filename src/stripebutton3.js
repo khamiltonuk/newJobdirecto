@@ -2,34 +2,35 @@ import React, { useState } from "react";
 import axios from "axios";
 import { LanguageContext } from "./languageContext";
 import { useContext } from "react";
+import { fail } from "assert";
 
 function StripeButton3() {
-    const context = useContext(LanguageContext);
-    /*real one*/
-    /* const stripe = Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");*/
-    /*test one*/
-    // const stripe = Stripe("pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3");
+    let stripeKey, itemArray, successUrl, failUrl;
 
-    const stripe =
-        window.location.hostname == "localhost"
-            ? Stripe("pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3")
-            : Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");
+    if (window.location.hostname == "localhost") {
+        stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
+        itemArray = "plan_FerG4ShuM9GS8D";
+        successUrl = "//localhost:8080/premiumSet";
+        failUrl = "//localhost:8080/StripeButton";
+    } else {
+        stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
+        itemArray = "plan_Fer31qkbJx0UYm";
+        successUrl = "//www.jobdirecto.com/premiumSet";
+        failUrl = "//www.jobdirecto.com/StripeButton";
+    }
+
+    const context = useContext(LanguageContext);
+
+    const stripe = Stripe(stripeKey);
 
     const [error, setError] = useState();
 
     const handleClick = () => {
         stripe
             .redirectToCheckout({
-                // the real one
-                // items: [{ plan: "plan_Fer31qkbJx0UYm", quantity: 1 }],
-                //test one
-                items: [{ plan: "plan_FerG4ShuM9GS8D", quantity: 1 }],
-                successUrl:
-                    window.location.protocol + "//localhost:8080/premiumSet",
-                /*  "//www.jobdirecto.com/premiumSet",*/
-                cancelUrl:
-                    window.location.protocol +
-                    "//www.jobdirecto.com/StripeButton"
+                items: [{ plan: itemArray, quantity: 1 }],
+                successUrl: window.location.protocol + successUrl,
+                cancelUrl: window.location.protocol + failUrl
             })
             .then(result => {
                 if (result.error) {
@@ -46,9 +47,8 @@ function StripeButton3() {
 
     return (
         <div>
-            <button className="buttonBasic" onClick={handleClick}>
-                {context.PrePayPerson.buttonPay}
-
+            <button className="buttonBasic buttonPremium" onClick={handleClick}>
+                {context.premiumModal.buyPremium}
                 <br />
             </button>
             <div>{error}</div>

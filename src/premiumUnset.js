@@ -3,14 +3,13 @@ import axios from "axios";
 
 import { LanguageContext } from "./languageContext";
 
-export default class PremiumSet extends React.Component {
+export default class PremiumUnSet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
         this.setPremium = this.setPremium.bind(this);
         this.getUserStatus = this.getUserStatus.bind(this);
     }
-    //haz que el id aparezca aqui, el fb id
 
     componentDidMount() {
         this.getUserStatus();
@@ -32,9 +31,9 @@ export default class PremiumSet extends React.Component {
     }
 
     setPremium() {
-        if (this.state.userStatus !== true) {
+        if (this.state.userStatus == "true") {
             console.log("well let's make him premium");
-            axios.post("/setPremium").then(result => {
+            axios.post("/unsetPremium").then(result => {
                 this.props.history.push("/");
             });
         }
@@ -45,14 +44,14 @@ export default class PremiumSet extends React.Component {
             <div className="container">
                 <p className="text">
                     {" "}
-                    {this.context.premiumSet.title}
+                    Gracias por con confiar en JobDirecto!
                     <br />
                 </p>
                 <div className="PrePayPersonButtons">
                     <button
                         onClick={this.setPremium}
                         className="buttonBasic prePay">
-                        {this.context.premiumSet.activate}
+                        Activar cuenta premium
                     </button>
                     <div className="contactInfo">
                         <p className="contactInfo">

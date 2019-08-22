@@ -53,58 +53,42 @@ export default class DeleteModal extends React.Component {
                     </h1>
                     <br />
                     <div className="deleteButtons">
-                        {/*{this.props.postType === "person" && (
-                            <button
-                                className="deleteButton buttonOpaque"
-                                onClick={this.deletePersonPost}>
-                                Yes
-                            </button>
-                        )}
-                        {this.props.postType === "job" && (
-                            <button
-                                className="deleteButton buttonOpaque"
-                                onClick={this.deleteJob}>
-                                Yes
-                            </button>
-                        )}
-                         */}
-
                         {this.props.userstatus == "true" &&
                             this.props.postType === "job" && (
                                 <button
-                                    className="deleteButton buttonOpaque"
+                                    className="deleteButton "
                                     onClick={this.deleteJob}>
-                                    Yes
+                                    {this.context.deleteModal.yes}
                                 </button>
                             )}
                         {this.props.userstatus == "true" &&
                             this.props.postType === "person" && (
                                 <button
-                                    className="deleteButton buttonOpaque"
+                                    className="deleteButton "
                                     onClick={this.deletePersonPost}>
-                                    Yes
+                                    {this.context.deleteModal.yes}
                                 </button>
                             )}
 
                         {this.props.userstatus !== "true" &&
                             this.props.postType === "job" && (
                                 <button
-                                    className="deleteButton buttonOpaque"
+                                    className="deleteButton "
                                     onClick={this.goPremium}>
-                                    Yes
+                                    {this.context.deleteModal.yes}
                                 </button>
                             )}
                         {this.props.userstatus !== "true" &&
                             this.props.postType === "person" && (
                                 <button
-                                    className="deleteButton buttonOpaque"
+                                    className="deleteButton "
                                     onClick={this.goPremium}>
-                                    Yes
+                                    {this.context.deleteModal.yes}
                                 </button>
                             )}
 
                         <button
-                            className="deleteButton buttonOpaque"
+                            className="deleteButton "
                             onClick={this.props.close}>
                             No
                         </button>

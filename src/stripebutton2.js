@@ -4,22 +4,32 @@ import { LanguageContext } from "./languageContext";
 import { useContext } from "react";
 
 function StripeButton2() {
+    let stripeKey, itemArray, successUrl, failUrl;
+
+    if (window.location.hostname == "localhost") {
+        stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
+        itemArray = "sku_Fdr59otEvaL6b7";
+        successUrl = "//localhost:8080/personConfirm";
+        failUrl = "//localhost:8080/StripeButton";
+    } else {
+        stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
+        itemArray = "sku_Fdanz5rW5EBFPX";
+        successUrl = "//www.jobdirecto.com/personConfirm";
+        failUrl = "//www.jobdirecto.com/StripeButton";
+    }
+
     const context = useContext(LanguageContext);
 
-    const stripe = Stripe("pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ");
+    const stripe = Stripe(stripeKey);
 
     const [error, setError] = useState();
 
     const handleClick = () => {
         stripe
             .redirectToCheckout({
-                items: [{ sku: "sku_Fdanz5rW5EBFPX", quantity: 1 }],
-                successUrl:
-                    window.location.protocol +
-                    "//www.jobdirecto.com/personConfirm",
-                cancelUrl:
-                    window.location.protocol +
-                    "//www.jobdirecto.com/StripeButton"
+                items: [{ sku: itemArray, quantity: 1 }],
+                successUrl: window.location.protocol + successUrl,
+                cancelUrl: window.location.protocol + failUrl
             })
             .then(result => {
                 if (result.error) {
