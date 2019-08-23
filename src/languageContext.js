@@ -62,8 +62,8 @@ export const languages = {
             extraArea: "Cual es el nombre del area donde esta ubicado?",
             specialAnswer: "Si, quiero que mi anuncio sea especial",
             verifyCall1:
-                "Si desea cerrar este post cuando ya haya encontrado a quien busca, el primer paso es",
-            verifyCall2: "verificarse usando Facebook"
+                "Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
+            verifyCall2: "crear una cuenta."
         },
         jobConfirm: {
             title: "Su anuncio",
@@ -212,8 +212,8 @@ export const languages = {
             extraArea: "What''s the name of the area?",
             specialAnswer: "Yes, I want my post to be special",
             verifyCall1:
-                "If you'd like to delete your post once you don't need it anymore, first you have to",
-            verifyCall2: "verify your account"
+                "If you'd like to delete your posts when you don't need them anymore, please",
+            verifyCall2: "sign up first"
         },
         contactInfo: {
             contactInfo:

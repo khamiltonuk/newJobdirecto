@@ -28,7 +28,10 @@ SET premium = true;
 ALTER TABLE users
 UPDATE premium VARCHAR(300) SET DEFAULT false;
 
-ALTER premium SET DEFAULT : ALTER TABLE users ALTER premium SET DEFAULT false;
+ALTER TABLE users ALTER premium SET DEFAULT false;
+
+ALTER TABLE users ALTER COLUMN premium SET DEFAULT false;
+
 
 ALTER TABLE users
 ADD postCounter SMALLINT SET DEFAULT 2;
