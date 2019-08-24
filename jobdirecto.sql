@@ -13,10 +13,10 @@ CREATE TABLE services(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE jobs
+ALTER TABLE personas2
 ADD facebookid VARCHAR(300);
 
-ALTER TABLE jobs
+ALTER TABLE personas2
 ADD postType VARCHAR(300);
 
 ALTER TABLE users
@@ -86,6 +86,25 @@ CREATE TABLE jobs(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE jobs2(
+    id SERIAL PRIMARY KEY,
+    facebookId VARCHAR(300),
+    restName VARCHAR(300),
+    jobType VARCHAR(255),
+    hourPay VARCHAR(255),
+    typePay VARCHAR(255) ,
+    schedule VARCHAR(255),
+    contact VARCHAR(255) ,
+    address VARCHAR(255),
+    phone VARCHAR(255),
+    area VARCHAR(255),
+    extrainfo VARCHAR(255),
+    urgent VARCHAR(255),
+    postType VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 CREATE TABLE deletedJobs(
     id SERIAL PRIMARY KEY,
     facebookId VARCHAR(300),
@@ -114,6 +133,21 @@ CREATE TABLE personas(
     personArea VARCHAR(300),
     personNumber VARCHAR(300),
     personExtraInfo VARCHAR(1300),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE personas2(
+    id SERIAL PRIMARY KEY,
+    personName VARCHAR(300),
+    personStatus VARCHAR(300),
+    personSkill VARCHAR(300),
+    personExperience VARCHAR(1300),
+    personSchedule VARCHAR(1300),
+    personArea VARCHAR(300),
+    personNumber VARCHAR(300),
+    personExtraInfo VARCHAR(1300),
+facebookid VARCHAR(300),
+postType VARCHAR(300),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

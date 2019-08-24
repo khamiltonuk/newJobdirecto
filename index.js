@@ -206,17 +206,6 @@ app.get("/getPeople", function(req, res) {
     });
 });
 
-app.post("/finalizeJob", (req, res) => {
-    console.log("job cookie 0", req.session.job);
-
-    req.session.job = req.body;
-    console.log("job cookie", req.session.job);
-
-    res.json({
-        success: true
-    });
-});
-
 app.post("/finalizePerson", (req, res) => {
     req.session.personAd = req.body;
     console.log("req body in finalize: ", req.body);
@@ -288,6 +277,53 @@ app.post("/wantsToPay", (req, res) => {
             success: true
         });
     });
+});
+
+app.post("/finalizeJob", (req, res) => {
+    req.session.job = req.body;
+    if (req.user === undefined) {
+        return database
+            .publishJobNoUser2(
+                req.body.restname,
+                req.body.jobtype,
+                req.body.hourpay,
+                req.body.typepay,
+                req.body.schedule,
+                req.body.contact,
+                req.body.address,
+                req.body.area,
+                req.body.phone,
+                req.body.extrainfo,
+                req.body.urgent,
+                req.session.userId
+            )
+            .then(() => {
+                res.json({
+                    success: true
+                });
+            });
+    }
+    return database
+        .publishJob2(
+            req.user.id,
+            req.body.restname,
+            req.body.jobtype,
+            req.body.hourpay,
+            req.body.typepay,
+            req.body.schedule,
+            req.body.contact,
+            req.body.address,
+            req.body.area,
+            req.body.phone,
+            req.body.extrainfo,
+            req.body.urgent,
+            req.session.userId
+        )
+        .then(() => {
+            res.json({
+                success: true
+            });
+        });
 });
 
 app.post("/publishJob", (req, res) => {

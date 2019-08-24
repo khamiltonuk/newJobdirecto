@@ -93,6 +93,90 @@ exports.publishJobNoUser = function(
         });
 };
 
+exports.publishJob2 = function(
+    facebookId,
+    restname,
+    jobtype,
+    hourpay,
+    typepay,
+    schedule,
+    contact,
+    address,
+    area,
+    phone,
+    extrainfo,
+    urgent
+) {
+    return db
+        .query(
+            `
+        INSERT INTO jobs2
+        (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        returning *;
+        `,
+            [
+                facebookId,
+                restname,
+                jobtype,
+                hourpay,
+                typepay,
+                schedule,
+                contact,
+                address,
+                area,
+                phone,
+                extrainfo,
+                urgent,
+                "job"
+            ]
+        )
+        .then(function(results) {
+            return results.rows;
+        });
+};
+
+exports.publishJobNoUser2 = function(
+    restname,
+    jobtype,
+    hourpay,
+    typepay,
+    schedule,
+    contact,
+    address,
+    area,
+    phone,
+    extrainfo,
+    urgent
+) {
+    return db
+        .query(
+            `
+        INSERT INTO jobs2
+        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        returning *;
+        `,
+            [
+                restname,
+                jobtype,
+                hourpay,
+                typepay,
+                schedule,
+                contact,
+                address,
+                area,
+                phone,
+                extrainfo,
+                urgent,
+                "job"
+            ]
+        )
+        .then(function(results) {
+            return results.rows;
+        });
+};
+
 exports.publishPerson = function(
     facebookId,
     personName,
