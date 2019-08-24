@@ -219,9 +219,44 @@ app.post("/finalizeJob", (req, res) => {
 
 app.post("/finalizePerson", (req, res) => {
     req.session.personAd = req.body;
-    res.json({
-        success: true
-    });
+    console.log("req body in finalize: ", req.body);
+    if (req.user === undefined) {
+        return database
+            .publishPersonNoUser2(
+                req.body.personName,
+                req.body.personStatus,
+                req.body.personSkill,
+                req.body.personExperience,
+                req.body.personSchedule,
+                req.body.personArea,
+                req.body.personNumber,
+                req.body.personExtraInfo,
+                req.session.userId
+            )
+            .then(() => {
+                res.json({
+                    success: true
+                });
+            });
+    }
+    return database
+        .publishPerson2(
+            req.user.id,
+            req.body.personName,
+            req.body.personStatus,
+            req.body.personSkill,
+            req.body.personExperience,
+            req.body.personSchedule,
+            req.body.personArea,
+            req.body.personNumber,
+            req.body.personExtraInfo,
+            req.session.userId
+        )
+        .then(() => {
+            res.json({
+                success: true
+            });
+        });
 });
 
 app.post("/finalizeService", (req, res) => {
@@ -259,7 +294,6 @@ app.post("/publishJob", (req, res) => {
     req.session.job = null;
 
     if (req.user === undefined) {
-        console.log("troll");
         return database
             .publishJobNoUser(
                 req.body.jobData.data.restname,
@@ -306,6 +340,8 @@ app.post("/publishJob", (req, res) => {
 
 app.post("/publishPerson", (req, res) => {
     req.session.personAd = null;
+    console.log("req body in finalize: ", req.body);
+
     if (req.user === undefined) {
         return database
             .publishPersonNoUser(
