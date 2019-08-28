@@ -357,7 +357,6 @@ exports.setPremium = function(id) {
 };
 
 exports.getUserStatus = function(facebookId) {
-    console.log("I got here", facebookId);
     return db
         .query(`SELECT premium FROM users WHERE id = $1`, [facebookId])
         .then(results => {
@@ -370,6 +369,34 @@ exports.getJobInfo = function(id) {
     return db.query(`SELECT * FROM jobs WHERE id = $1`, [id]).then(results => {
         return results.rows[0];
     });
+};
+
+exports.reportPost = function(id, clickerid) {
+    console.log("an apple a day");
+    return db
+        .query(
+            `UPDATE jobs SET whoreported = array_append(whoreported, $2) WHERE id = $1;
+        ;`,
+            [id, clickerid]
+        )
+        .then(function(results) {
+            console.log(results.rows);
+            return results.rows;
+        });
+};
+
+exports.whoHasReported = function(id) {
+    console.log("gimme that array");
+    return db
+        .query(
+            `SELECT whoreported FROM jobs WHERE id = $1;
+        ;`,
+            [id]
+        )
+        .then(function(results) {
+            console.log(results.rows);
+            return results.rows;
+        });
 };
 
 exports.deleteJob = function(id) {

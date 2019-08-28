@@ -750,6 +750,38 @@ label {
     border-color: black;
 }
 
+.redFlagDiv {
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+.redFlag {
+    width: 75px;
+    height: 75px;
+}
+
+.reportDiv {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: black;
+    border: solid black;
+}
+
+.reportButton {
+    margin-top: 30px;
+}
+.reportText {
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+}
+
+.redReportText {
+    font-size: 50px;
+    color: red;
+}
+
 @media (min-width: 1000px) {
     .prePayPics {
         width: 28%;

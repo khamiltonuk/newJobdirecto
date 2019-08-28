@@ -30,7 +30,7 @@ export const languages = {
         login: {
             title: "Porfavor ingrese a su cuenta para continuar",
             text:
-                "Luego de iniciar sesion podra crear anuncios y borrarlos cuando ya no los necesite",
+                "Luego de iniciar sesion podra hacer nuevas cosas, como reportar anuncios indebidos o borrar sus anuncios cuando ya no los necesite (cuenta premium)",
             button: "Iniciar Sesión con Facebook"
         },
         postType: {
@@ -79,6 +79,14 @@ export const languages = {
             extraInfo: "Mas informacion:",
             button: "Publicar"
         },
+        modalJob: {
+            reportedAlready:
+                "Usted ya ha reportado este anuncio. Si 10 personas reportan el mismo anuncio, le daremos bandera roja",
+            thanksForReporting:
+                "Gracias por reportar este anuncio. Si 10 personas reportan el mismo anuncio, le daremos bandera roja",
+            pleaseLogin: "Para poder reportar un anuncio, primero debe",
+            pleaseLogin2: "crear una cuenta JobDirecto"
+        },
         personModal: {
             name: "Nombre:",
             status1: "Busca:",
@@ -91,10 +99,10 @@ export const languages = {
         },
         PrePayPerson: {
             text1:
-                "Los anuncios para buscar trabajo u ofrecer servicios tienen un costo de 10 dolares",
+                "Los anuncios para buscar trabajo tienen un costo de 10 dolares",
             text2: "Su anuncio no sera borrado",
             text3:
-                "y se mantendra por encima de los anuncios gratis por 48 horas.",
+                "y se mantendra al top de la lista de anuncios por 48 horas.",
             button: "Gracias ya no deseo",
             buttonPay: "Pagar $10"
         },
@@ -157,6 +165,12 @@ export const languages = {
             tooltip: "The author of this post is a verified user.",
             premium: "You are a premium user!"
         },
+        modalJob: {
+            reportedAlready: "You already reported this post.",
+            thanksForReporting: "Thanks for reporting this post",
+            pleaseLogin: "To report a post, first you must",
+            pleaseLogin2: "create an account"
+        },
 
         serviceForm: {
             serviceOwner: "What is the name of your business?",
@@ -180,7 +194,7 @@ export const languages = {
         login: {
             title: "Please login to continue",
             text:
-                "After logging in with you will be able to create posts and delete them when you don't need them anymore",
+                "After logging in with you will be able to do new things, such a report posts or delete your posts when you don't need them anymore (premium account)",
             button: "Login with Facebook"
         },
         postType: {

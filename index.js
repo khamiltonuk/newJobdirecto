@@ -145,6 +145,23 @@ app.get("/getJobDetails/:id", function(req, res) {
     });
 });
 
+app.get("/whoHasReported/:id", function(req, res) {
+    return database.whoHasReported(req.params.id).then(data => {
+        res.json({
+            data
+        });
+    });
+});
+
+app.post("/reportPost/:id", function(req, res) {
+    console.log("got here applepie", req.user.id);
+    return database.reportPost(req.params.id, req.user.id).then(data => {
+        res.json({
+            data
+        });
+    });
+});
+
 app.get("/getServiceDetails/:id", function(req, res) {
     return database.getServiceInfo(req.params.id).then(data => {
         res.json({

@@ -40,7 +40,6 @@ export class Jobs extends React.Component {
 
   componentDidMount() {
     this.getJobs();
-
     this.getPeople();
     this.getUserStatus();
         return axios ({
@@ -49,7 +48,7 @@ export class Jobs extends React.Component {
             params: {},
             withCredentials: true
         }).then(result => {
-          this.setState({ user: result.data }, () => {
+          this.setState({ user: result.data }, () => {console.log(this.state.user.id)
           });
         });
   }
@@ -73,7 +72,7 @@ export class Jobs extends React.Component {
   getUserStatus() {
     console.log("getuser status called")
     axios.get("/getUserStatus").then(result => {
-      console.log("where my state at", this.state)
+      console.log("where my state at", this.state.jobData.data[0].whoreported.length)
       this.setState({ userStatus: result.data }, () => {
           console.log("user status in getUserStatus(): ", this.state.userStatus.data)
    });
@@ -103,8 +102,6 @@ getPeople() {
   lockScroll() {
      this.setState({ addClass: !this.state.addClass });
    }
-
-
 
   handleSubmit(event) {
     this.props.history.push("/postType")
@@ -168,10 +165,7 @@ getPeople() {
 }
 
   hideModalPeople() {
-
       document.body.classList.remove('lockBackground')
-
-
     this.setState({ showModalPeople: false });
   }
 
@@ -219,7 +213,7 @@ getPeople() {
           <h1 />
         </div>
         {this.state.showModalJob && (
-          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid}/>
+          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid} clickerid={this.state.user.id}/>
         )}
         {this.state.showDeleteModal && this.state.userStatus && (
           <DeleteModal id={this.state.selectedJobId} userstatus={this.state.userStatus.data} close={this.hideDeleteModal} showPremium={this.showPremium} delete={this.deletePost}  postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} />
@@ -528,6 +522,7 @@ getPeople() {
                   >
                   <div className="flexContainer">
                   <div className="postIcons">
+                    {data.whoreported && data.whoreported.length && data.whoreported.length > 10 && <p>red flaggy</p>}
                   {data.facebookid === this.state.user.id &&
                       <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
                       <i className="fa fa-close" />
