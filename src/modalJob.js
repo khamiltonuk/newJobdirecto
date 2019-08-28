@@ -12,12 +12,18 @@ export default class ModalJob extends React.Component {
             thanksForReporting: false
         };
         this.reportPost = this.reportPost.bind(this);
+        this.getJobDetails = this.getJobDetails.bind(this);
+
         // this.whoHasReported = this.whoHasReported.bind(this);
     }
 
     componentDidMount() {
+        this.getJobDetails();
         // this.whoHasReported();
         console.log("my props in didmount: ", this.props);
+    }
+
+    getJobDetails() {
         axios.get("/getJobDetails/" + this.props.id).then(
             result => {
                 this.setState({
@@ -49,7 +55,8 @@ export default class ModalJob extends React.Component {
         ) {
             console.log("u can't report again man");
             this.setState({
-                reportedAlready: true
+                reportedAlready: true,
+                thanksForReporting: false
             });
         } else {
             console.log("oh actually u can report");
@@ -59,6 +66,7 @@ export default class ModalJob extends React.Component {
                 this.setState({
                     thanksForReporting: true
                 });
+                this.getJobDetails();
             });
         }
     }

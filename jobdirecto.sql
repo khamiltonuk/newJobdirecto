@@ -32,8 +32,7 @@ ALTER TABLE users ALTER premium SET DEFAULT false;
 
 ALTER TABLE users ALTER COLUMN premium SET DEFAULT false;
 
-ALTER TABLE jobs ALTER COLUMN whoReported TYPE bigint[];
-
+ALTER TABLE jobs ADD COLUMN whoReported bigint[];
 
 ALTER TABLE users
 ADD postCounter SMALLINT SET DEFAULT 2;
