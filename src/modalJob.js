@@ -222,38 +222,42 @@ export default class ModalJob extends React.Component {
                             reportelo
                         </p>
                     </div>
-                    <button className="reportButton" onClick={this.reportPost}>
-                        <div className="reportDiv">
-                            <p className="text reportText">Reportar</p>
-                            <img src="flag.png" className="redFlag" />
-                        </div>
-                    </button>
-                    {this.state.thanksForReporting == true && (
-                        <p className="redReportText">
-                            {this.context.modalJob.thanksForReporting}
-                        </p>
-                    )}
-                    {this.state.pleaseLogin == true && (
-                        <div>
+                    <div className="reportContainer">
+                        <button
+                            className="reportButton"
+                            onClick={this.reportPost}>
+                            <div className="reportDiv">
+                                <p className="text reportText">Reportar</p>
+                                <img src="flag.png" className="redFlag" />
+                            </div>
+                        </button>
+                        {this.state.thanksForReporting == true && (
                             <p className="redReportText">
-                                {this.context.modalJob.pleaseLogin}{" "}
+                                {this.context.modalJob.thanksForReporting}
                             </p>
-                            <Link className="callToLogin" to="/login">
-                                {this.context.modalJob.pleaseLogin2}
-                                &nbsp;
-                                <img
-                                    className="star starJobForm"
-                                    src="star.png"
-                                />
-                            </Link>
-                        </div>
-                    )}
+                        )}
+                        {this.state.pleaseLogin == true && (
+                            <div>
+                                <p className="redReportText">
+                                    {this.context.modalJob.pleaseLogin}{" "}
+                                </p>
+                                <Link className="callToLogin" to="/login">
+                                    {this.context.modalJob.pleaseLogin2}
+                                    &nbsp;
+                                    <img
+                                        className="star starJobForm"
+                                        src="star.png"
+                                    />
+                                </Link>
+                            </div>
+                        )}
 
-                    {this.state.reportedAlready == true && (
-                        <p className="redReportText">
-                            {this.context.modalJob.reportedAlready}
-                        </p>
-                    )}
+                        {this.state.reportedAlready == true && (
+                            <p className="redReportText">
+                                {this.context.modalJob.reportedAlready}
+                            </p>
+                        )}
+                    </div>
                     <br />
                     <br />
                 </main>
