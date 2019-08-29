@@ -20,11 +20,11 @@ export default class ModalJob extends React.Component {
     componentDidMount() {
         this.whoHasReported();
         this.getJobDetails();
-        console.log(
-            "my props in didmount: ",
-            this.props.whoReported.data.find(x => x.id === this.props.id)
-                .whoreported.length
-        );
+        // console.log(
+        //     "my props in didmount: ",
+        //     this.props.whoReported.data.find(x => x.id === this.props.id)
+        //         .whoreported.length
+        // );
         console.log("id of this job", this.props.id);
         console.log("state in didmount: ", this.state);
     }
@@ -200,15 +200,22 @@ export default class ModalJob extends React.Component {
                             </p>
                         </div>
                     )}
-                    {this.props.whoReported.data.find(
-                        x => x.id === this.props.id
-                    ).whoreported.length > 10 && (
-                        <div className="modalFlagDiv">
-                            {" "}
-                            <img className="flag" src="flag.png" />
-                            <p className="text">{this.context.main.tooltip2}</p>
-                        </div>
-                    )}
+                    {this.props.whoReported &&
+                        this.props.whoReported.data &&
+                        this.props.whoReported.data.find(
+                            x => x.id === this.props.id
+                        ).whoreported &&
+                        this.props.whoReported.data.find(
+                            x => x.id === this.props.id
+                        ).whoreported.length > 10 && (
+                            <div className="modalFlagDiv">
+                                {" "}
+                                <img className="flag" src="flag.png" />
+                                <p className="text">
+                                    {this.context.main.tooltip2}
+                                </p>
+                            </div>
+                        )}
                     <div className="redFlagDiv">
                         <p className="text">
                             Si cree que este anuncio es indebido, porfavor
