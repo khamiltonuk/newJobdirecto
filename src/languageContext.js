@@ -16,6 +16,9 @@ export const languages = {
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido",
             tooltip: "El creador de este anuncio es un usuario verificado.",
+            tooltip2:
+                "Este anuncio ha sido reportado por distintos usuarios. Cuidado!",
+
             premium: "You are a premium user!"
         },
         premiumModal: {
@@ -163,6 +166,9 @@ export const languages = {
             logout: "Logout",
             welcome: "Welcome",
             tooltip: "The author of this post is a verified user.",
+            tooltip2:
+                "This post has been reported by different users. Be careful!",
+
             premium: "You are a premium user!"
         },
         modalJob: {

@@ -147,6 +147,7 @@ app.get("/getJobDetails/:id", function(req, res) {
 
 app.get("/whoHasReported/:id", function(req, res) {
     return database.whoHasReported(req.params.id).then(data => {
+        console.log("data where u", data);
         res.json({
             data
         });

@@ -9,18 +9,35 @@ export default class ModalJob extends React.Component {
         this.state = {
             pleaseLogin: false,
             reportedAlready: false,
-            thanksForReporting: false
+            thanksForReporting: false,
+            whoHasReported: ""
         };
         this.reportPost = this.reportPost.bind(this);
         this.getJobDetails = this.getJobDetails.bind(this);
-
-        // this.whoHasReported = this.whoHasReported.bind(this);
+        this.whoHasReported = this.whoHasReported.bind(this);
     }
 
     componentDidMount() {
+        this.whoHasReported();
         this.getJobDetails();
-        // this.whoHasReported();
-        console.log("my props in didmount: ", this.props);
+        console.log(
+            "my props in didmount: ",
+            this.props.whoReported.data.find(x => x.id === this.props.id)
+                .whoreported.length
+        );
+        console.log("id of this job", this.props.id);
+        console.log("state in didmount: ", this.state);
+    }
+
+    whoHasReported() {
+        axios.get("/whoHasReported/" + this.props.id).then(results => {
+            console.log("resulti", results);
+            results => {
+                this.setState({
+                    whoHasReported: "blah"
+                });
+            };
+        });
     }
 
     getJobDetails() {
@@ -31,7 +48,7 @@ export default class ModalJob extends React.Component {
                 });
             },
             () => {
-                // console.log(this.jobData);
+                // console.log("state in"this.state);
             }
         );
     }
@@ -71,20 +88,11 @@ export default class ModalJob extends React.Component {
         }
     }
 
-    // whoHasReported() {
-    //     axios.get("/whoHasReported/" + this.props.id).then(results => {
-    //         results => {
-    //             this.setState({
-    //                 whoHasReported: results.data.data
-    //             });
-    //         };
-    //     });
-    // }
-
     render() {
         if (!this.state.jobData) {
             return null;
         }
+        console.log("state in render", this.state);
         return (
             <div>
                 <div
@@ -93,7 +101,6 @@ export default class ModalJob extends React.Component {
                 <button onClick={this.props.close} className="modalButton">
                     <i className="fa fa-close" />
                 </button>
-
                 <main
                     className={
                         this.state.jobData.data.urgent === "true"
@@ -193,6 +200,15 @@ export default class ModalJob extends React.Component {
                             </p>
                         </div>
                     )}
+                    {this.props.whoReported.data.find(
+                        x => x.id === this.props.id
+                    ).whoreported.length > 10 && (
+                        <div className="modalFlagDiv">
+                            {" "}
+                            <img className="flag" src="flag.png" />
+                            <p className="text">{this.context.main.tooltip2}</p>
+                        </div>
+                    )}
                     <div className="redFlagDiv">
                         <p className="text">
                             Si cree que este anuncio es indebido, porfavor
@@ -200,8 +216,8 @@ export default class ModalJob extends React.Component {
                         </p>
                     </div>
                     <button className="reportButton" onClick={this.reportPost}>
-                        <div className="reportDiv ">
-                            <p className="text reportText">Reportar</p>{" "}
+                        <div className="reportDiv">
+                            <p className="text reportText">Reportar</p>
                             <img src="flag.png" className="redFlag" />
                         </div>
                     </button>
@@ -225,7 +241,7 @@ export default class ModalJob extends React.Component {
                             </Link>
                         </div>
                     )}
-                    )}
+
                     {this.state.reportedAlready == true && (
                         <p className="redReportText">
                             {this.context.modalJob.reportedAlready}

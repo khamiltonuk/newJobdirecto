@@ -782,6 +782,17 @@ label {
     color: red;
 }
 
+.flag {
+    width: 80px;
+    height: 80px;
+}
+
+.modalFlagDiv {
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+}
+
 @media (min-width: 1000px) {
     .prePayPics {
         width: 28%;

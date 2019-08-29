@@ -213,7 +213,7 @@ getPeople() {
           <h1 />
         </div>
         {this.state.showModalJob && (
-          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid} clickerid={this.state.user.id}/>
+          <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid} clickerid={this.state.user.id} whoReported={this.state.jobData}/>
         )}
         {this.state.showDeleteModal && this.state.userStatus && (
           <DeleteModal id={this.state.selectedJobId} userstatus={this.state.userStatus.data} close={this.hideDeleteModal} showPremium={this.showPremium} delete={this.deletePost}  postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} />
@@ -522,12 +522,13 @@ getPeople() {
                   >
                   <div className="flexContainer">
                   <div className="postIcons">
-                    {data.whoreported && data.whoreported.length && data.whoreported.length > 10 && <p>red flaggy</p>}
                   {data.facebookid === this.state.user.id &&
                       <button  onClick={ event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data) } className="deletePostButton">
                       <i className="fa fa-close" />
                       </button>}
 {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
+                    {data.whoreported && data.whoreported.length && data.whoreported.length > 10 &&<div data-tooltip={this.context.main.tooltip2}> <img className="flag" src="flag.png"/></div>}
+
 </div>
                       <p>
                       <span className="postConnector">
