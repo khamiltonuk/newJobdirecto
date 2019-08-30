@@ -101,12 +101,24 @@ export default class ModalJob extends React.Component {
                 <button onClick={this.props.close} className="modalButton">
                     <i className="fa fa-close" />
                 </button>
+
                 <main
                     className={
                         this.state.jobData.data.urgent === "true"
                             ? "urgentModal"
                             : "modal"
                     }>
+                    <h1 id="title" className="heading-1">
+                        JobDirecto
+                        <br />
+                        <span className="heading-1">
+                            {this.context.main.title}
+                        </span>
+                        <br />
+                        <span className="heading-1 website">
+                            (www.jobdirecto.com)
+                        </span>
+                    </h1>
                     <table id="jobDetails">
                         <tr>
                             <td className="jobDetailsText">

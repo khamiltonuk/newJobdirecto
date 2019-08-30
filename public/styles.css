@@ -798,6 +798,10 @@ label {
     display: flex;
 }
 
+.website {
+    font-size: 20px;
+}
+
 @media (min-width: 1000px) {
     .prePayPics {
         width: 28%;
