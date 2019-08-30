@@ -66,7 +66,8 @@ export const languages = {
             specialAnswer: "Si, quiero que mi anuncio sea especial",
             verifyCall1:
                 "Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
-            verifyCall2: "crear una cuenta."
+            verifyCall2: "crear una cuenta.",
+            linkReferral: "Para ver mas trabajos, entre a www.jobdirecto.com"
         },
         jobConfirm: {
             title: "Su anuncio",
@@ -233,7 +234,8 @@ export const languages = {
             specialAnswer: "Yes, I want my post to be special",
             verifyCall1:
                 "If you'd like to delete your posts when you don't need them anymore, please",
-            verifyCall2: "sign up first"
+            verifyCall2: "sign up first",
+            linkReferral: "For more jobs, please go to www.jobdirecto.com"
         },
         contactInfo: {
             contactInfo:

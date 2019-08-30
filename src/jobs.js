@@ -60,7 +60,6 @@ export class Jobs extends React.Component {
     });
   }
 
-
   getJobs() {
       axios.get("/getJobs").then(result => {
         this.setState({ jobData: result.data }, () => {
@@ -72,7 +71,7 @@ export class Jobs extends React.Component {
   getUserStatus() {
     console.log("getuser status called")
     axios.get("/getUserStatus").then(result => {
-      console.log("where my state at", this.state.jobData.data[0].whoreported.length)
+      // console.log("where my state at", this.state.jobData.data[0].whoreported.length)
       this.setState({ userStatus: result.data }, () => {
           console.log("user status in getUserStatus(): ", this.state.userStatus.data)
    });
@@ -206,6 +205,8 @@ getPeople() {
           <span className="heading-1">{this.context.main.title}</span>
 
         </h1>
+        <p className="text">Gracias a los embajadores JobDirecto en Nueva York: El Kora Cesar</p>
+
     {!this.state.user &&<Link to="/login"><div className="buttonsAuth" ><img  className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
          {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 

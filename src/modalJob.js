@@ -109,14 +109,8 @@ export default class ModalJob extends React.Component {
                             : "modal"
                     }>
                     <h1 id="title" className="heading-1">
-                        JobDirecto
-                        <br />
-                        <span className="heading-1">
-                            {this.context.main.title}
-                        </span>
-                        <br />
                         <span className="heading-1 website">
-                            (www.jobdirecto.com)
+                            ({this.context.jobForm.linkReferral})
                         </span>
                     </h1>
                     <table id="jobDetails">
