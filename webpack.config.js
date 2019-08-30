@@ -8,6 +8,7 @@ const autoprefixer = require("autoprefixer");
 const TerserPlugin = require('terser-webpack-plugin');
 const exec = require('child_process').exec;
 const fs = require('fs');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 let entryPoints = {
@@ -67,6 +68,17 @@ const config = {
                     }
                 ]
             },
+            {
+                test: /(.*)(\/static\/.*)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: './',
+                        }
+                    }
+                ]
+            },
         ]
     },
     devServer: {
@@ -118,6 +130,10 @@ const config = {
             chunkFilename: "[chunkhash].css",
             orderWarning: false,
         }),
+        new CopyWebpackPlugin([
+            // copies to {output}/static
+            { from: './src/static', to: './' }
+        ]),
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: [
