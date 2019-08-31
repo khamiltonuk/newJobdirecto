@@ -86,9 +86,8 @@ const config = {
         host: "0.0.0.0",
         port: 6543,
         proxy: { //config proxy for work with backend
-            '/api.....': {
-                target: 'http://localhost:3000',
-                pathRewrite: {'^/api' : ''}
+            '/': {
+                target: 'http://localhost:8081',
             }
         }
     },

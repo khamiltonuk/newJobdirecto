@@ -6,7 +6,8 @@
     "scripts": {
         "start": "mode=prod webpack --config webpack.config.js",
         "start:dev": "webpack --config webpack.config.js",
-        "dev": "npm run serve",
+        "dev": "concurrently --kill-others \"npm run serve\" \"npm run server-node\"",
+        "server-node":"node server/index.js",
         "serve": "webpack-dev-server --config webpack.config.js",
         "serve:prod": "mode=prod webpack-dev-server --config webpack.config.js"
     },
@@ -37,6 +38,7 @@
         "body-parser": "^1.19.0",
         "clean-webpack-plugin": "2.0.2",
         "compression": "^1.7.4",
+        "concurrently": "^4.1.2",
         "connect-ensure-login": "^0.1.1",
         "cookie-parser": "^1.4.4",
         "cookie-session": "^2.0.0-alpha.2",
@@ -50,6 +52,7 @@
         "file-loader": "4.0.0",
         "html-webpack-plugin": "4.0.0-beta.5",
         "http-proxy-middleware": "^0.19.1",
+        "json-loader": "^0.5.7",
         "knox": "^0.9.2",
         "mini-css-extract-plugin": "0.7.0",
         "moment": "^2.24.0",
