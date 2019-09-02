@@ -67,7 +67,7 @@ export const languages = {
             verifyCall1:
                 "Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
             verifyCall2: "crear una cuenta.",
-            linkReferral: "Para ver mas trabajos, entre a www.jobdirecto.com"
+            linkReferral: "Todos los trabajos en www.jobdirecto.com"
         },
         jobConfirm: {
             title: "Su anuncio",
