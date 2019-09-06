@@ -8,7 +8,7 @@ export const languages = {
             createPost: "Crear anuncio",
             seeking: "busca",
             seeking2: "busca trabajo de",
-            seeking3: "Se busca",
+            seeking3: "busca",
             seeking4: "ofrece servicios de",
             filterDefault: "Todo Nueva York",
             filterOtherArea: "Otra area en Nueva York",
@@ -16,6 +16,8 @@ export const languages = {
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido",
             tooltip: "El creador de este anuncio es un usuario verificado.",
+            ambassador: "Embajador JobDirecto en Nueva York: El Kora Cesar",
+
             tooltip2:
                 "Este anuncio ha sido reportado por distintos usuarios. Cuidado!",
 
@@ -65,7 +67,7 @@ export const languages = {
             extraArea: "Cual es el nombre del area donde esta ubicado?",
             specialAnswer: "Si, quiero que mi anuncio sea especial",
             verifyCall1:
-                "Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
+                "Tip: Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
             verifyCall2: "crear una cuenta.",
             linkReferral: "Todos los trabajos en www.jobdirecto.com"
         },
@@ -159,7 +161,7 @@ export const languages = {
             createPost: "New Post",
             seeking: "needs",
             seeking2: "is looking for a job as",
-            seeking3: "Looking for",
+            seeking3: "is looking for a",
             seeking4: "offers services as",
             filterDefault: "All NY",
             filterOtherArea: "Other area in NY",
@@ -170,7 +172,8 @@ export const languages = {
             tooltip2:
                 "This post has been reported by different users. Be careful!",
 
-            premium: "You are a premium user!"
+            premium: "You are a premium user!",
+            ambassador: "JobDirecto ambassador in NY: El Kora Cesar"
         },
         modalJob: {
             reportedAlready: "You already reported this post.",
@@ -233,7 +236,7 @@ export const languages = {
             extraArea: "What''s the name of the area?",
             specialAnswer: "Yes, I want my post to be special",
             verifyCall1:
-                "If you'd like to delete your posts when you don't need them anymore, please",
+                "Tip: If you'd like to delete your posts when you don't need them anymore, please",
             verifyCall2: "sign up first",
             linkReferral: "For more jobs, please go to www.jobdirecto.com"
         },

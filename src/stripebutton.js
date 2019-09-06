@@ -5,7 +5,6 @@ import { useContext } from "react";
 
 function StripeButton() {
     let stripeKey, itemArray, successUrl, failUrl;
-
     if (window.location.hostname == "localhost") {
         stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
         itemArray = "sku_Fdr59otEvaL6b7";
@@ -17,10 +16,9 @@ function StripeButton() {
         successUrl = "//www.jobdirecto.com/jobConfirm";
         failUrl = "//www.jobdirecto.com/StripeButton";
     }
+
     const context = useContext(LanguageContext);
-
     const stripe = Stripe(stripeKey);
-
     const [error, setError] = useState();
 
     const handleClick = () => {

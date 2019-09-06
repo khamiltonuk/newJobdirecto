@@ -15,27 +15,7 @@ export class JobForm extends React.Component {
         this.submission = this.submission.bind(this);
     }
 
-    componentDidMount() {
-        // axios.get("/jobform");
-        // axios.get("/getJobforCorrect").then(result => {
-        //   this.setState({
-        //     jobData: result.data,
-        //     restname: result.data.data.restname,
-        //     jobtype: result.data.data.jobtype,
-        //     typepay: result.data.data.typepay,
-        //     area: result.data.data.area,
-        //     otherArea: result.data.data.otherArea,
-        //     hourpay: result.data.data.hourpay,
-        //     schedule: result.data.data.schedule,
-        //     address: result.data.data.address,
-        //     phone: result.data.data.phone,
-        //     contact: result.data.data.contact,
-        //     extrainfo: result.data.data.extrainfo,
-        //     urgent: result.data.data.urgent,
-        //
-        //   });
-        // });
-    }
+    componentDidMount() {}
 
     submission() {
         if (this.state.area === this.context.jobForm.filterOtherArea) {
@@ -86,6 +66,18 @@ export class JobForm extends React.Component {
                     <h1 id="formTitle" className="heading-1">
                         JobDirecto
                     </h1>
+                    <p className="text verifyCall">
+                        {" "}
+                        {this.context.jobForm.verifyCall1}{" "}
+                        <Link className="callToLogin" to="/login">
+                            {this.context.jobForm.verifyCall2}
+                            &nbsp;
+                            <img
+                                className="star starJobForm"
+                                src="star.png"
+                            />{" "}
+                        </Link>
+                    </p>
                     <p className="formQuestions">
                         {this.context.jobForm.question1}
                     </p>
@@ -366,18 +358,6 @@ export class JobForm extends React.Component {
                         type="submit"
                         value={this.context.jobForm.jobFormButton}
                     />
-                    <p className="text verifyCall">
-                        {" "}
-                        {this.context.jobForm.verifyCall1}{" "}
-                        <Link className="callToLogin" to="/login">
-                            {this.context.jobForm.verifyCall2}
-                            &nbsp;
-                            <img
-                                className="star starJobForm"
-                                src="star.png"
-                            />{" "}
-                        </Link>
-                    </p>
                     <br />
                     <br />
                     <br />

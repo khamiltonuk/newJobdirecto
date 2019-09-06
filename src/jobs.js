@@ -205,7 +205,7 @@ getPeople() {
           <span className="heading-1">{this.context.main.title}</span>
 
         </h1>
-        <p className="ambassadorText">Embajador JobDirecto en Nueva York: El Kora Cesar</p>
+        <p className="ambassadorText">{this.context.main.ambassador}</p>
 
 {/**/}     
     {!this.state.user &&<Link to="/login"><div className="buttonsAuth" ><img  className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
@@ -379,6 +379,8 @@ getPeople() {
                           </div>
                         </div>
                         <p>
+          <span className="postConnector">{data.restname}</span>{" "}
+
                           <span className="postConnector paidPostConnector">
                             {this.context.main.seeking3}{" "}
                           </span>
@@ -460,6 +462,7 @@ getPeople() {
             {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
          </div>
           <p>
+          <span className="postConnector">{data.restname}</span>{" "}
             <span className="postConnector">
               {this.context.main.seeking3}{" "}
             </span>
@@ -496,6 +499,8 @@ getPeople() {
               {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img  className="star" src="star.png" /></div>}
           </div>
             <p>
+          <span className="postConnector">{data.restname}</span>{" "}
+              
               <span className="postConnector">
                 {this.context.main.seeking3}{" "}
               </span>
@@ -534,6 +539,8 @@ getPeople() {
 
 </div>
                       <p>
+          <span className="postConnector">{data.restname}</span>{" "}
+
                       <span className="postConnector">
                         {" "}
                         {this.context.main.seeking3}{" "}
