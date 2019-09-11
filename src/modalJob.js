@@ -213,7 +213,7 @@ export default class ModalJob extends React.Component {
                         ).whoreported &&
                         this.props.whoReported.data.find(
                             x => x.id === this.props.id
-                        ).whoreported.length > 10 && (
+                        ).whoreported.length > 5 && (
                             <div className="modalFlagDiv">
                                 {" "}
                                 <img className="flag" src="flag.png" />
@@ -224,8 +224,7 @@ export default class ModalJob extends React.Component {
                         )}
                     <div className="redFlagDiv">
                         <p className="text">
-                            Si cree que este anuncio es indebido, porfavor
-                            reportelo
+                            {this.context.modalJob.pleaseReport}
                         </p>
                     </div>
                     <div className="reportContainer">
@@ -233,7 +232,9 @@ export default class ModalJob extends React.Component {
                             className="reportButton"
                             onClick={this.reportPost}>
                             <div className="reportDiv">
-                                <p className="text reportText">Reportar</p>
+                                <p className="text reportText">
+                                    {this.context.modalJob.report}
+                                </p>
                                 <img src="flag.png" className="redFlag" />
                             </div>
                         </button>

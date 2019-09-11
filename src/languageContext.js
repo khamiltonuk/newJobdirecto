@@ -91,7 +91,10 @@ export const languages = {
             thanksForReporting:
                 "Gracias por reportar este anuncio. Si 10 personas reportan el mismo anuncio, le daremos bandera roja",
             pleaseLogin: "Para poder reportar un anuncio, primero debe",
-            pleaseLogin2: "crear una cuenta JobDirecto"
+            pleaseLogin2: "crear una cuenta JobDirecto",
+            report: "Reportar",
+            pleaseReport:
+                "Si cree que este anuncio es indebido, porfavor reportelo."
         },
         personModal: {
             name: "Nombre:",
@@ -179,7 +182,10 @@ export const languages = {
             reportedAlready: "You already reported this post.",
             thanksForReporting: "Thanks for reporting this post",
             pleaseLogin: "To report a post, first you must",
-            pleaseLogin2: "create an account"
+            pleaseLogin2: "create an account",
+            report: "Report",
+            pleaseReport:
+                "If you think this ad is inadequate, please report it."
         },
 
         serviceForm: {
