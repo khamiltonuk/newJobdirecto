@@ -16,7 +16,8 @@ export const languages = {
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido",
             tooltip: "El creador de este anuncio es un usuario verificado.",
-            ambassador: "Embajador JobDirecto en Nueva York: El Kora Cesar",
+            ambassador:
+                "Embajadores JobDirecto en NY: El Kora Cesar y Oscar Figueroa",
 
             tooltip2:
                 "Este anuncio ha sido reportado por distintos usuarios. Cuidado!",
