@@ -1,33 +1,33 @@
-import React from "react";
-import axios from "axios";
+import React from 'react'
+import axios from 'axios'
 
 export default class Register extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.error;
+    super(props)
+    this.state = {}
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.error
   }
 
   handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+    this.setState({ [evt.target.name]: evt.target.value })
   }
 
   handleSubmit(evt) {
-    evt.preventDefault();
+    evt.preventDefault()
     axios
-      .post("/register", this.state)
+      .post('/register', this.state)
       .then(data => {
         if (data.data.success) {
-          location.replace("/jobform");
+          location.replace('/jobform')
         } else {
-          this.setState({ error: true });
+          this.setState({ error: true })
         }
       })
       .catch(err => {
-        console.log(err);
-      });
+        console.log(err)
+      })
   }
 
   render() {
@@ -65,17 +65,17 @@ export default class Register extends React.Component {
             onChange={this.handleChange}
           />
           <p className="ta">
-            By clicking Sign Up, you agree to our{" "}
+            By clicking Sign Up, you agree to our{' '}
             <span className="fakelink">Terms</span>. Learn how we collect, use
-            and share your data in our{" "}
+            and share your data in our{' '}
             <span className="underline-link">Data Policy</span> and how we use
-            cookies and similar technology in our{" "}
+            cookies and similar technology in our{' '}
             <span className="underline-link">Cookies Policy</span>.
           </p>
           <br />
           <button className="submitbutton">Sign Up</button>
         </form>
       </div>
-    );
+    )
   }
 }

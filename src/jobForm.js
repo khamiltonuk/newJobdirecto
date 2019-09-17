@@ -1,18 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { LanguageContext } from "./languageContext";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { LanguageContext } from './languageContext'
 
 export class JobForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      otherArea: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.submission = this.submission.bind(this);
+      otherArea: '',
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
+    this.submission = this.submission.bind(this)
   }
 
   componentDidMount() {}
@@ -21,42 +21,42 @@ export class JobForm extends React.Component {
     if (this.state.area === this.context.jobForm.filterOtherArea) {
       this.setState({
         area: this.state.otherArea,
-        otherArea: this.state.area
-      });
+        otherArea: this.state.area,
+      })
     }
   }
 
   handleChange(event) {
     this.setState(
       {
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
       },
       () => {
-        console.log(this.state);
+        console.log(this.state)
       }
-    );
+    )
   }
 
   handleCheckboxChange(event) {
     this.setState(
       {
-        urgent: event.target.checked
+        urgent: event.target.checked,
       },
       () => {
-        console.log(this.state);
+        console.log(this.state)
       }
-    );
+    )
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    axios.post("/finalizeJob", this.state).then(resp => {
+    event.preventDefault()
+    axios.post('/finalizeJob', this.state).then(resp => {
       if (this.state.urgent === true) {
-        this.props.history.push("/prePayJob");
+        this.props.history.push('/prePayJob')
       } else {
-        this.props.history.push("/JobConfirm");
+        this.props.history.push('/JobConfirm')
       }
-    });
+    })
   }
 
   render() {
@@ -67,12 +67,12 @@ export class JobForm extends React.Component {
             JobDirecto
           </h1>
           <p className="text verifyCall">
-            {" "}
-            {this.context.jobForm.verifyCall1}{" "}
+            {' '}
+            {this.context.jobForm.verifyCall1}{' '}
             <Link className="callToLogin" to="/login">
               {this.context.jobForm.verifyCall2}
               &nbsp;
-              <img className="star starJobForm" alt="" src="star.png" />{" "}
+              <img className="star starJobForm" alt="" src="star.png" />{' '}
             </Link>
           </p>
           <p className="formQuestions">{this.context.jobForm.question1}</p>
@@ -83,7 +83,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.restname
-                : ""
+                : ''
             }
             required="required"
             onChange={this.handleChange}
@@ -96,7 +96,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.jobtype
-                : ""
+                : ''
             }
             required="required"
             onChange={this.handleChange}
@@ -109,7 +109,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.hourpay
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -161,7 +161,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.schedule
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -173,7 +173,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.address
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -186,7 +186,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.area
-                : ""
+                : ''
             }
             required="required"
             onChange={this.handleChange}
@@ -196,7 +196,7 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "Manhattan"
+                this.state.jobData.data.area == 'Manhattan'
               }
               value="Manhattan"
             >
@@ -206,7 +206,7 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "Brooklyn"
+                this.state.jobData.data.area == 'Brooklyn'
               }
               value="Brooklyn"
             >
@@ -216,7 +216,7 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "Bronx"
+                this.state.jobData.data.area == 'Bronx'
               }
               value="Bronx"
             >
@@ -226,7 +226,7 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "Queens"
+                this.state.jobData.data.area == 'Queens'
               }
               value="Queens"
             >
@@ -236,7 +236,7 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "Staten Island"
+                this.state.jobData.data.area == 'Staten Island'
               }
               value="Staten Island"
             >
@@ -246,7 +246,7 @@ export class JobForm extends React.Component {
               selected={
                 this.state.jobData &&
                 this.state.jobData.data &&
-                this.state.jobData.data.area == "Otra area en NY"
+                this.state.jobData.data.area == 'Otra area en NY'
               }
               value={this.context.jobForm.filterOtherArea}
             >
@@ -255,7 +255,7 @@ export class JobForm extends React.Component {
           </select>
           {this.state.area === this.context.jobForm.filterOtherArea && (
             <div>
-              <p className="formQuestions" style={{ color: "blue" }}>
+              <p className="formQuestions" style={{ color: 'blue' }}>
                 <b>{this.context.jobForm.extraArea}</b>
               </p>
               <input
@@ -276,7 +276,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.phone
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -288,7 +288,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.contact
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -300,7 +300,7 @@ export class JobForm extends React.Component {
             defaultValue={
               this.state.jobData && this.state.jobData.data
                 ? this.state.jobData.data.extrainfo
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -316,7 +316,7 @@ export class JobForm extends React.Component {
           <label>
             <div id="yesAndCheckbox">
               <p className="text" id="si">
-                {" "}
+                {' '}
                 {this.context.jobForm.specialAnswer}
               </p>
               <input
@@ -325,9 +325,9 @@ export class JobForm extends React.Component {
                 name="urgent"
                 onChange={this.handleCheckboxChange}
               />
-            </div>{" "}
+            </div>{' '}
             <span />
-          </label>{" "}
+          </label>{' '}
           <br />
           <br />
           <br />
@@ -342,8 +342,8 @@ export class JobForm extends React.Component {
           <br />
         </form>
       </div>
-    );
+    )
   }
 }
 
-JobForm.contextType = LanguageContext;
+JobForm.contextType = LanguageContext

@@ -1,31 +1,31 @@
-import React from "react";
-import axios from "axios";
-import { LanguageContext } from "./languageContext";
+import React from 'react'
+import axios from 'axios'
+import { LanguageContext } from './languageContext'
 
 export class ServiceForm extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { addClass: false };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.state = { addClass: false }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
     this.setState(
       {
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
       },
       () => {
-        console.log(this.state);
+        console.log(this.state)
       }
-    );
+    )
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    axios.post("/finalizeService", this.state).then(resp => {
-      this.props.history.push("/PrePayPerson");
-    });
+    event.preventDefault()
+    axios.post('/finalizeService', this.state).then(resp => {
+      this.props.history.push('/PrePayPerson')
+    })
   }
 
   render() {
@@ -44,7 +44,7 @@ export class ServiceForm extends React.Component {
             defaultValue={
               this.state.serviceData && this.state.serviceData.data
                 ? this.state.serviceData.data.serviceOwner
-                : ""
+                : ''
             }
             required="required"
             onChange={this.handleChange}
@@ -52,7 +52,7 @@ export class ServiceForm extends React.Component {
           <br />
           <br />
           <p className="formQuestions">
-            {" "}
+            {' '}
             {this.context.serviceForm.serviceOffered}
           </p>
           <input
@@ -63,7 +63,7 @@ export class ServiceForm extends React.Component {
             defaultValue={
               this.state.serviceData && this.state.serviceData.data
                 ? this.state.serviceData.data.serviceOffered
-                : ""
+                : ''
             }
             required="required"
             onChange={this.handleChange}
@@ -80,7 +80,7 @@ export class ServiceForm extends React.Component {
             defaultValue={
               this.state.serviceData && this.state.serviceData.data
                 ? this.state.serviceData.data.serviceNumber
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -95,7 +95,7 @@ export class ServiceForm extends React.Component {
             defaultValue={
               this.state.serviceData && this.state.serviceData.data
                 ? this.state.serviceData.data.serviceExtraInfo
-                : ""
+                : ''
             }
             onChange={this.handleChange}
           />
@@ -121,8 +121,8 @@ export class ServiceForm extends React.Component {
           <br />
         </form>
       </div>
-    );
+    )
   }
 }
 
-ServiceForm.contextType = LanguageContext;
+ServiceForm.contextType = LanguageContext
