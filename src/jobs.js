@@ -207,7 +207,7 @@ getPeople() {
         </h1>
         <p className="ambassadorText">{this.context.main.ambassador}</p>
 
-{/**/}     
+     
     {!this.state.user &&<Link to="/login"><div className="buttonsAuth" ><img  className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
          {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 
@@ -235,7 +235,7 @@ getPeople() {
         <div className="buttonAndWelcome">
             <input
             id="buttonCreatePost"
-            class="buttonBasic"
+            className="buttonBasic"
               type="submit"
               value={this.context.main.createPost}
               onClick={this.handleSubmit}

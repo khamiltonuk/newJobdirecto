@@ -1,5 +1,5 @@
-import React, { contextType } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+
 import { JobConfirm } from "./jobConfirm.js";
 import { JobForm } from "./jobForm.js";
 import { PersonForm } from "./personForm.js";
@@ -18,58 +18,45 @@ import { LanguageContext, languages } from "./languageContext";
 import LanguageButton from "./languageButton";
 
 function initializeReactGA() {
-    ReactGA.initialize("UA-129656531-1");
-    ReactGA.pageview("/homepage");
+  ReactGA.initialize("UA-129656531-1");
+  ReactGA.pageview("/homepage");
 }
 
-export class App extends React.Component {
-    constructor(props) {
-        super(props);
+function App() {
+  const { english, spanish } = languages;
+  const [currentLanguage, setLanguage] = useState(spanish);
 
-        this.state = {
-            languages: languages.spanish
-        };
-        this.toggleLanguage = () => {
-            this.setState(state => ({
-                languages:
-                    state.languages === languages.spanish
-                        ? languages.english
-                        : languages.spanish
-            }));
-        };
-    }
-    render() {
-        return (
-            <BrowserRouter>
-                <div>
-                    <LanguageContext.Provider value={this.state.languages}>
-                        <LanguageButton changeLanguage={this.toggleLanguage} />
-                        <Route path="/prePayJob" component={PrePayJob} />
-                        <Route path="/premiumBuy" component={PremiumBuy} />
-                        <Route path="/premiumSet" component={PremiumSet} />
+  function toggleLanguage() {
+    setLanguage(
+      currentLanguage.currentLanguage === "Español" ? english : spanish
+    );
+  }
 
-                        <Route path="/login" component={LoginFacebook} />
-                        <Route path="/jobConfirm" component={JobConfirm} />
-                        <Route
-                            path="/job/:id"
-                            render={props => (
-                                <JobDetails {...props} key={props.match.url} />
-                            )}
-                        />
-                        <Route exact path="/" component={Jobs} />
-                        <Route path="/personForm" component={PersonForm} />
-
-                        <Route path="/jobForm" component={JobForm} />
-                        <Route path="/prepayPerson" component={PrePayPerson} />
-                        <Route path="/postType" component={PostType} />
-                        <Route
-                            exact="exact"
-                            path="/personConfirm"
-                            component={PersonConfirm}
-                        />
-                    </LanguageContext.Provider>
-                </div>
-            </BrowserRouter>
-        );
-    }
+  return (
+    <BrowserRouter>
+      <LanguageContext.Provider value={currentLanguage}>
+        <LanguageButton
+          changeLanguage={toggleLanguage}
+          currentLanguage={currentLanguage.currentLanguage}
+        />
+        <Route path="/prePayJob" component={PrePayJob} />
+        <Route path="/premiumBuy" component={PremiumBuy} />
+        <Route path="/premiumSet" component={PremiumSet} />
+        <Route path="/login" component={LoginFacebook} />
+        <Route path="/jobConfirm" component={JobConfirm} />
+        <Route
+          path="/job/:id"
+          render={props => <JobDetails {...props} key={props.match.url} />}
+        />
+        <Route exact path="/" component={Jobs} />
+        <Route path="/personForm" component={PersonForm} />
+        <Route path="/jobForm" component={JobForm} />
+        <Route path="/prepayPerson" component={PrePayPerson} />
+        <Route path="/postType" component={PostType} />
+        <Route exact path="/personConfirm" component={PersonConfirm} />
+      </LanguageContext.Provider>
+    </BrowserRouter>
+  );
 }
+
+export default App;
