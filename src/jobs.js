@@ -19,7 +19,7 @@ export class Jobs extends React.Component {
             showPremiumModal: false,
             showModalPeople: false,
             user: "true",
-            showDeleteModal: false,
+            showDeleteModal: false
         };
         this.handleChangeArea = this.handleChangeArea.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +46,7 @@ export class Jobs extends React.Component {
             method: "get",
             url: "/user",
             params: {},
-            withCredentials: true,
+            withCredentials: true
         }).then(result => {
             this.setState({ user: result.data }, () => {
                 console.log(this.state.user.id);
@@ -57,7 +57,7 @@ export class Jobs extends React.Component {
     handleChangeArea(event) {
         this.setState({
             [event.target.name]: event.target.value,
-            userSelectionArea: event.target.value,
+            userSelectionArea: event.target.value
         });
     }
 
@@ -93,7 +93,7 @@ export class Jobs extends React.Component {
             method: "get",
             url: "/logout",
             params: {},
-            withCredentials: true,
+            withCredentials: true
         }).then(result => {
             window.location.reload();
         });
@@ -113,7 +113,7 @@ export class Jobs extends React.Component {
         this.setState({
             showModalJob: true,
             selectedJobId: event,
-            facebookid: facebookid,
+            facebookid: facebookid
         });
     }
 
@@ -122,7 +122,7 @@ export class Jobs extends React.Component {
 
         console.log("oh im in jobs now Im outside");
         this.setState({
-            showPremiumModal: true,
+            showPremiumModal: true
         });
     }
 
@@ -133,7 +133,7 @@ export class Jobs extends React.Component {
         this.setState({
             showDeleteModal: true,
             selectedJobId: id,
-            posttype: posttype,
+            posttype: posttype
         });
     }
 
@@ -141,7 +141,7 @@ export class Jobs extends React.Component {
         document.body.classList.add("lockBackground");
         this.setState({
             showModalPeople: true,
-            selectedPersonId: event,
+            selectedPersonId: event
         });
     }
 
@@ -169,7 +169,7 @@ export class Jobs extends React.Component {
         ga("send", "event", {
             eventCategory: "button",
             eventAction: "createJob",
-            eventLabel: event.target.href,
+            eventLabel: event.target.href
         });
     }
 

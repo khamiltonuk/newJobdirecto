@@ -28,7 +28,7 @@ function StripeButton() {
 
                 successUrl: window.location.protocol + successUrl,
 
-                cancelUrl: window.location.protocol + failUrl,
+                cancelUrl: window.location.protocol + failUrl
             })
             .then(result => {
                 if (result.error) {

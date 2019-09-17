@@ -7,7 +7,7 @@ export class PersonConfirm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "",
+            value: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +20,7 @@ export class PersonConfirm extends React.Component {
                 return null;
             } else {
                 this.setState({
-                    personData: result.data,
+                    personData: result.data
                 });
             }
         });
@@ -28,7 +28,7 @@ export class PersonConfirm extends React.Component {
 
     handleChange(event) {
         this.setState({
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         });
     }
 
@@ -37,7 +37,7 @@ export class PersonConfirm extends React.Component {
         axios.post("/publishPerson", this.state).then(resp => {
             if (resp.data.success) {
                 this.setState({
-                    personData: "",
+                    personData: ""
                 });
                 this.props.history.push("/");
             }

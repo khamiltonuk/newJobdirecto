@@ -26,14 +26,14 @@ export class App extends React.Component {
         super(props);
 
         this.state = {
-            languages: languages.spanish,
+            languages: languages.spanish
         };
         this.toggleLanguage = () => {
             this.setState(state => ({
                 languages:
                     state.languages === languages.spanish
                         ? languages.english
-                        : languages.spanish,
+                        : languages.spanish
             }));
         };
     }

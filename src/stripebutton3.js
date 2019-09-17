@@ -29,7 +29,7 @@ function StripeButton3() {
             .redirectToCheckout({
                 items: [{ plan: itemArray, quantity: 1 }],
                 successUrl: window.location.protocol + successUrl,
-                cancelUrl: window.location.protocol + failUrl,
+                cancelUrl: window.location.protocol + failUrl
             })
             .then(result => {
                 if (result.error) {

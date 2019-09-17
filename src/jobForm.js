@@ -7,7 +7,7 @@ export class JobForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            otherArea: "",
+            otherArea: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +21,7 @@ export class JobForm extends React.Component {
         if (this.state.area === this.context.jobForm.filterOtherArea) {
             this.setState({
                 area: this.state.otherArea,
-                otherArea: this.state.area,
+                otherArea: this.state.area
             });
         }
     }
@@ -29,7 +29,7 @@ export class JobForm extends React.Component {
     handleChange(event) {
         this.setState(
             {
-                [event.target.name]: event.target.value,
+                [event.target.name]: event.target.value
             },
             () => {
                 console.log(this.state);
@@ -40,7 +40,7 @@ export class JobForm extends React.Component {
     handleCheckboxChange(event) {
         this.setState(
             {
-                urgent: event.target.checked,
+                urgent: event.target.checked
             },
             () => {
                 console.log(this.state);

@@ -10,7 +10,7 @@ export default class ModalJob extends React.Component {
             pleaseLogin: false,
             reportedAlready: false,
             thanksForReporting: false,
-            whoHasReported: "",
+            whoHasReported: ""
         };
         this.reportPost = this.reportPost.bind(this);
         this.getJobDetails = this.getJobDetails.bind(this);
@@ -34,7 +34,7 @@ export default class ModalJob extends React.Component {
             console.log("resulti", results);
             results => {
                 this.setState({
-                    whoHasReported: "blah",
+                    whoHasReported: "blah"
                 });
             };
         });
@@ -44,7 +44,7 @@ export default class ModalJob extends React.Component {
         axios.get("/getJobDetails/" + this.props.id).then(
             result => {
                 this.setState({
-                    jobData: result.data,
+                    jobData: result.data
                 });
             },
             () => {
@@ -57,7 +57,7 @@ export default class ModalJob extends React.Component {
         if (!this.props.clickerid) {
             console.log("log in firstllty and mostly");
             this.setState({
-                pleaseLogin: true,
+                pleaseLogin: true
             });
             return;
         }
@@ -73,7 +73,7 @@ export default class ModalJob extends React.Component {
             console.log("u can't report again man");
             this.setState({
                 reportedAlready: true,
-                thanksForReporting: false,
+                thanksForReporting: false
             });
         } else {
             console.log("oh actually u can report");
@@ -81,7 +81,7 @@ export default class ModalJob extends React.Component {
             axios.post("/reportPost/" + this.props.id).then(result => {
                 console.log("good stuff");
                 this.setState({
-                    thanksForReporting: true,
+                    thanksForReporting: true
                 });
                 this.getJobDetails();
             });

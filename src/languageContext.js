@@ -21,29 +21,29 @@ export const languages = {
             tooltip2:
                 "Este anuncio ha sido reportado por distintos usuarios. Cuidado!",
 
-            premium: "You are a premium user!",
+            premium: "You are a premium user!"
         },
         premiumModal: {
             title: "Solo los usuarios premium pueden cerrar sus anuncios :)",
             deny: "Otro dia",
-            buyPremium: "Comprar cuenta premium ($5)",
+            buyPremium: "Comprar cuenta premium ($5)"
         },
         deleteModal: {
             title: "Desea eliminar este anuncio?",
-            yes: "Si",
+            yes: "Si"
         },
         login: {
             title: "Porfavor ingrese a su cuenta para continuar",
             text:
                 "Luego de iniciar sesion podra hacer nuevas cosas, como reportar anuncios indebidos o borrar sus anuncios cuando ya no los necesite (cuenta premium)",
-            button: "Iniciar Sesión con Facebook",
+            button: "Iniciar Sesión con Facebook"
         },
         postType: {
             title: "Que busca?",
             seeksJob: "Busco Trabajo",
             seeksPeople: "Busco Personal",
             offersService: "Ofrezco Servicios",
-            button: "Siguiente",
+            button: "Siguiente"
         },
         jobForm: {
             question1: "Como se llama su negocio?",
@@ -69,7 +69,7 @@ export const languages = {
             verifyCall1:
                 "Tip: Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
             verifyCall2: "crear una cuenta.",
-            linkReferral: "Todos los trabajos en www.jobdirecto.com",
+            linkReferral: "Todos los trabajos en www.jobdirecto.com"
         },
         jobConfirm: {
             title: "Su anuncio",
@@ -83,7 +83,7 @@ export const languages = {
             phone: "Numero:",
             contact: "Preguntar por:",
             extraInfo: "Mas informacion:",
-            button: "Publicar",
+            button: "Publicar"
         },
         modalJob: {
             reportedAlready:
@@ -94,7 +94,7 @@ export const languages = {
             pleaseLogin2: "crear una cuenta JobDirecto",
             report: "Reportar",
             pleaseReport:
-                "Si cree que este anuncio es indebido, porfavor reportelo.",
+                "Si cree que este anuncio es indebido, porfavor reportelo."
         },
         personModal: {
             name: "Nombre:",
@@ -104,7 +104,7 @@ export const languages = {
             schedule: "Horario:",
             area: "Area:",
             phone: "Numero:",
-            extraInfo: "Mas info:",
+            extraInfo: "Mas info:"
         },
         PrePayPerson: {
             text1:
@@ -113,21 +113,21 @@ export const languages = {
             text3:
                 "y se mantendra al top de la lista de anuncios por 48 horas.",
             button: "Gracias ya no deseo",
-            buttonPay: "Pagar $10",
+            buttonPay: "Pagar $10"
         },
         contactInfo: {
             contactInfo:
-                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com",
+                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
         },
         premiumSet: {
             title: "Gracias por con confiar en JobDirecto!",
-            activate: "Activar cuenta premium",
+            activate: "Activar cuenta premium"
         },
         serviceModal: {
             name: "Nombre:",
             serviceOffered: "Servicio que ofrece:",
             serviceNumber: "Numero:",
-            serviceExtraInfo: "Mas info:",
+            serviceExtraInfo: "Mas info:"
         },
         jobPayPage: {
             title: "Usted a marcado anuncio TOP",
@@ -136,7 +136,7 @@ export const languages = {
             text2:
                 "Si desea encontrar al mejor personal lo mas rapido posible, esta es la mejor opcion para usted.",
             buttonNO: "Quiero un anuncio gratis y comun",
-            buttonYES: "Pagar $10",
+            buttonYES: "Pagar $10"
         },
         serviceConfirm: {
             title: "Su anuncio esta listo para ser publicado:",
@@ -145,7 +145,7 @@ export const languages = {
             area: "Area: ",
             serviceNumber: "Numero:",
             serviceExtraInfo: "Mas info:",
-            button: "Publicar anuncio",
+            button: "Publicar anuncio"
         },
         serviceForm: {
             serviceOwner: "Cual es su nombre o el de su compania?",
@@ -154,8 +154,8 @@ export const languages = {
             serviceExtraInfo: "Algo que desee agregar?",
             button: "Listo",
             placeholder:
-                "Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios",
-        },
+                "Aqui puede poner cualquier informacion que le ayude a vender mejor sus servicios"
+        }
     },
     english: {
         currentLanguage: "English",
@@ -176,7 +176,7 @@ export const languages = {
                 "This post has been reported by different users. Be careful!",
 
             premium: "You are a premium user!",
-            ambassador: "JobDirecto ambassador in NY: El Kora Cesar",
+            ambassador: "JobDirecto ambassador in NY: El Kora Cesar"
         },
         modalJob: {
             reportedAlready: "You already reported this post.",
@@ -185,7 +185,7 @@ export const languages = {
             pleaseLogin2: "create an account",
             report: "Report",
             pleaseReport:
-                "If you think this ad is inadequate, please report it.",
+                "If you think this ad is inadequate, please report it."
         },
 
         serviceForm: {
@@ -195,30 +195,30 @@ export const languages = {
             serviceExtraInfo: "Any other info you'd like to add?",
             button: "Finish",
             placeholder:
-                "Please add here any info that helps you sell your services better",
+                "Please add here any info that helps you sell your services better"
         },
         premiumSet: {
             title: "Thanks for trusting JobDirecto!",
-            activate: "Activate premium now",
+            activate: "Activate premium now"
         },
         premiumModal: {
             title: "Only premium users can close their posts :)",
             deny: "Nevermind",
-            buyPremium: "Get premium account ($5)",
+            buyPremium: "Get premium account ($5)"
         },
 
         login: {
             title: "Please login to continue",
             text:
                 "After logging in with you will be able to do new things, such a report posts or delete your posts when you don't need them anymore (premium account)",
-            button: "Login with Facebook",
+            button: "Login with Facebook"
         },
         postType: {
             title: "What is your post about?",
             seeksJob: "I'm looking for a job",
             seeksPeople: "I'm looking for staff",
             offersService: "I want to promote my services",
-            button: "Next",
+            button: "Next"
         },
         jobForm: {
             question1: "Name of your company",
@@ -244,11 +244,11 @@ export const languages = {
             verifyCall1:
                 "Tip: If you'd like to delete your posts when you don't need them anymore, please",
             verifyCall2: "sign up first",
-            linkReferral: "For more jobs, please go to www.jobdirecto.com",
+            linkReferral: "For more jobs, please go to www.jobdirecto.com"
         },
         contactInfo: {
             contactInfo:
-                "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com",
+                "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
         },
         jobConfirm: {
             title: "Your post",
@@ -262,11 +262,11 @@ export const languages = {
             phone: "Number:",
             contact: "Ask for:",
             extraInfo: "More info:",
-            button: "Publish",
+            button: "Publish"
         },
         deleteModal: {
             title: "Do you want to delete this post?",
-            yes: "Yes",
+            yes: "Yes"
         },
 
         serviceConfirm: {
@@ -276,14 +276,14 @@ export const languages = {
             area: "Area: ",
             serviceNumber: "Phone Number:",
             serviceExtraInfo: "Extra Info:",
-            button: "Publish Post",
+            button: "Publish Post"
         },
         PrePayPerson: {
             text1: "Posts to promote services cost $10",
             text2: "Your post will stay on top of the page for 48 hours",
             text3: "and it will have a different color.",
             button: "No thanks",
-            buttonPay: "Pay $10",
+            buttonPay: "Pay $10"
         },
 
         personModal: {
@@ -294,13 +294,13 @@ export const languages = {
             schedule: "Schedule:",
             area: "Area:",
             phone: "Number:",
-            extraInfo: "More info:",
+            extraInfo: "More info:"
         },
         serviceModal: {
             name: "Name:",
             serviceOffered: "Service:",
             serviceNumber: "Number:",
-            serviceExtraInfo: "Extra info:",
+            serviceExtraInfo: "Extra info:"
         },
         jobPayPage: {
             title: "You chose TOP post",
@@ -309,9 +309,9 @@ export const languages = {
             text2:
                 "If you are looking for top staff as quickly as possible, this is what you need.",
             buttonNO: "I want a free and normal post",
-            buttonYES: "Pay $10",
-        },
-    },
+            buttonYES: "Pay $10"
+        }
+    }
 };
 
 export const LanguageContext = React.createContext(languages.spanish);

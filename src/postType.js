@@ -12,7 +12,7 @@ export class PostType extends React.Component {
     handleChange(event) {
         this.setState(
             {
-                [event.target.name]: event.target.value,
+                [event.target.name]: event.target.value
             },
             () => {
                 console.log(this.state);

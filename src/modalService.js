@@ -13,7 +13,7 @@ export default class ModalService extends React.Component {
             console.log("result of details pip: ", result);
             this.setState(
                 {
-                    serviceData: result.data,
+                    serviceData: result.data
                 },
                 () => {
                     console.log("is there anything here MODAL?", this.state);
