@@ -7,7 +7,6 @@ export default class Register extends React.Component {
         this.state = {};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.error;
     }
 
     handleChange(evt) {
