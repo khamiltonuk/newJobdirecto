@@ -214,14 +214,14 @@ export default class ModalJob extends React.Component {
                         this.props.whoReported.data.find(
                             x => x.id === this.props.id
                         ).whoreported.length > 5 && (
-                            <div className="modalFlagDiv">
-                                {" "}
-                                <img className="flag" src="flag.png" />
-                                <p className="text">
-                                    {this.context.main.tooltip2}
-                                </p>
-                            </div>
-                        )}
+                        <div className="modalFlagDiv">
+                            {" "}
+                            <img className="flag" src="flag.png" />
+                            <p className="text">
+                                {this.context.main.tooltip2}
+                            </p>
+                        </div>
+                    )}
                     <div className="redFlagDiv">
                         <p className="text">
                             {this.context.modalJob.pleaseReport}
