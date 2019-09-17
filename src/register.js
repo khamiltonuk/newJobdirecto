@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -65,7 +64,6 @@ export default class Register extends React.Component {
             required="required"
             onChange={this.handleChange}
           />
-          //{" "}
           <p className="ta">
             By clicking Sign Up, you agree to our{" "}
             <span className="fakelink">Terms</span>. Learn how we collect, use

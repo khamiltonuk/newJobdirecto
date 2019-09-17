@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { LanguageContext } from "./languageContext";
-
 
 export class ServiceForm extends React.Component {
   constructor(props) {
@@ -24,7 +22,6 @@ export class ServiceForm extends React.Component {
   }
 
   handleSubmit(event) {
-      console.log("are u a ghost", this.state);
     event.preventDefault();
     axios.post("/finalizeService", this.state).then(resp => {
       this.props.history.push("/PrePayPerson");
@@ -37,7 +34,9 @@ export class ServiceForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h1 className="heading-1">JobDirecto</h1>
           <br />
-          <p className="formQuestions">{this.context.serviceForm.serviceOwner}</p>
+          <p className="formQuestions">
+            {this.context.serviceForm.serviceOwner}
+          </p>
           <input
             className="formInputs"
             type="text"
@@ -52,7 +51,10 @@ export class ServiceForm extends React.Component {
           />
           <br />
           <br />
-          <p className="formQuestions"> {this.context.serviceForm.serviceOffered}</p>
+          <p className="formQuestions">
+            {" "}
+            {this.context.serviceForm.serviceOffered}
+          </p>
           <input
             maxLength="30"
             className="formInputs bigInput"
@@ -67,9 +69,9 @@ export class ServiceForm extends React.Component {
             onChange={this.handleChange}
           />
 
-
-
-          <p className="formQuestions">{this.context.serviceForm.serviceNumber}</p>
+          <p className="formQuestions">
+            {this.context.serviceForm.serviceNumber}
+          </p>
           <input
             className="formInputs"
             type="text"
@@ -80,12 +82,13 @@ export class ServiceForm extends React.Component {
                 ? this.state.serviceData.data.serviceNumber
                 : ""
             }
-
             onChange={this.handleChange}
           />
-          <p className="formQuestions">{this.context.serviceForm.serviceExtraInfo}</p>
+          <p className="formQuestions">
+            {this.context.serviceForm.serviceExtraInfo}
+          </p>
           <textarea
-          placeholder={this.context.serviceForm.placeholder}
+            placeholder={this.context.serviceForm.placeholder}
             className="formInputs bigInput"
             type="text"
             name="serviceExtraInfo"
@@ -111,7 +114,9 @@ export class ServiceForm extends React.Component {
           />
           <br />
           <br />
-          <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
+          <div className="contactInfo">
+            <p>{this.context.contactInfo.contactInfo}</p>
+          </div>
 
           <br />
         </form>
