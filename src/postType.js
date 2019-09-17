@@ -1,5 +1,5 @@
-import React from 'react';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import { LanguageContext } from "./languageContext";
 
 export class PostType extends React.Component {
     constructor(props) {
@@ -21,13 +21,13 @@ export class PostType extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log('where this', this.state);
-        if (this.state.posterStatus == 'seeksJob') {
-            this.props.history.push('/personForm');
-        } else if (this.state.posterStatus == 'offersService') {
-            this.props.history.push('/serviceForm');
+        console.log("where this", this.state);
+        if (this.state.posterStatus == "seeksJob") {
+            this.props.history.push("/personForm");
+        } else if (this.state.posterStatus == "offersService") {
+            this.props.history.push("/serviceForm");
         } else {
-            this.props.history.push('/jobForm');
+            this.props.history.push("/jobForm");
         }
     }
 

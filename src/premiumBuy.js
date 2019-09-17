@@ -1,13 +1,13 @@
-import React from 'react';
-import { LanguageContext } from './languageContext';
-import StripeButton3 from './stripebutton3.js';
+import React from "react";
+import { LanguageContext } from "./languageContext";
+import StripeButton3 from "./stripebutton3.js";
 
 export default class PremiumBuy extends React.Component {
     render() {
         return (
             <div className="container">
                 <p className="text">
-                    {' '}
+                    {" "}
                     Las cuentas premium por ahora solo cuestan 5 dolares al mes.
                     Este precio probablemente subira pronto.
                     <br />

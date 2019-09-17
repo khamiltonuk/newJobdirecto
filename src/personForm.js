@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export class PersonForm extends React.Component {
     constructor(props) {
@@ -23,11 +23,11 @@ export class PersonForm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log('state in personForm', this.state);
+        console.log("state in personForm", this.state);
         event.preventDefault();
-        console.log('state in job form: ', this.state);
-        axios.post('/finalizePerson', this.state).then(resp => {
-            this.props.history.push('/PrePayPerson');
+        console.log("state in job form: ", this.state);
+        axios.post("/finalizePerson", this.state).then(resp => {
+            this.props.history.push("/PrePayPerson");
         });
     }
 
@@ -45,7 +45,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personName
-                                : ''
+                                : ""
                         }
                         required="required"
                         onChange={this.handleChange}
@@ -62,7 +62,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personSkill
-                                : ''
+                                : ""
                         }
                         onChange={this.handleChange}
                     />
@@ -75,7 +75,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personExperience
-                                : ''
+                                : ""
                         }
                         onChange={this.handleChange}
                     />
@@ -89,7 +89,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personArea
-                                : ''
+                                : ""
                         }
                         onChange={this.handleChange}
                     />
@@ -103,7 +103,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personSchedule
-                                : ''
+                                : ""
                         }
                         onChange={this.handleChange}
                     />
@@ -117,7 +117,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personNumber
-                                : ''
+                                : ""
                         }
                         required="required"
                         onChange={this.handleChange}
@@ -131,7 +131,7 @@ export class PersonForm extends React.Component {
                         defaultValue={
                             this.state.personData && this.state.personData.data
                                 ? this.state.personData.data.personExtraInfo
-                                : ''
+                                : ""
                         }
                         onChange={this.handleChange}
                     />

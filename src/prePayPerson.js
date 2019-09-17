@@ -1,7 +1,7 @@
-import React from 'react';
-import axios from 'axios';
-import StripeButton2 from './stripebutton2.js';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import axios from "axios";
+import StripeButton2 from "./stripebutton2.js";
+import { LanguageContext } from "./languageContext";
 
 export default class PrePayPerson extends React.Component {
     constructor(props) {
@@ -12,10 +12,10 @@ export default class PrePayPerson extends React.Component {
     }
 
     cancelPay(event) {
-        console.log('someone does not want to pay');
+        console.log("someone does not want to pay");
         event.preventDefault();
-        axios.post('/cancelPay').then(resp => {
-            this.props.history.push('/');
+        axios.post("/cancelPay").then(resp => {
+            this.props.history.push("/");
         });
     }
 
@@ -33,7 +33,7 @@ export default class PrePayPerson extends React.Component {
                     <br />
                     <span className="textHighlight">
                         {this.context.PrePayPerson.text2}
-                    </span>{' '}
+                    </span>{" "}
                     {this.context.PrePayPerson.text3}
                     <br />
                     <br />

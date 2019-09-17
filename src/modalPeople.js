@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export default class ModalPeople extends React.Component {
     constructor(props) {
@@ -9,8 +9,8 @@ export default class ModalPeople extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/getPeopleDetails/' + this.props.id).then(result => {
-            console.log('result of details pip: ', result);
+        axios.get("/getPeopleDetails/" + this.props.id).then(result => {
+            console.log("result of details pip: ", result);
             this.setState({
                 peopleData: result.data,
             });
@@ -43,9 +43,9 @@ export default class ModalPeople extends React.Component {
                         </tr>
 
                         {this.state.peopleData.data.personstatus ===
-                            'seeksJob' && (
+                            "seeksJob" && (
                             <tr>
-                                {' '}
+                                {" "}
                                 <td className="jobDetailsText">
                                     {this.context.personModal.status1}
                                 </td>
@@ -56,9 +56,9 @@ export default class ModalPeople extends React.Component {
                         )}
 
                         {this.state.peopleData.data.personstatus ===
-                            'offersService' && (
+                            "offersService" && (
                             <tr>
-                                {' '}
+                                {" "}
                                 <td className="jobDetailsText">
                                     {this.context.personModal.status2}
                                 </td>
@@ -69,7 +69,7 @@ export default class ModalPeople extends React.Component {
                         )}
 
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.personModal.experience}
                             </td>
@@ -78,7 +78,7 @@ export default class ModalPeople extends React.Component {
                             </td>
                         </tr>
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.personModal.schedule}
                             </td>
@@ -87,7 +87,7 @@ export default class ModalPeople extends React.Component {
                             </td>
                         </tr>
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.personModal.area}
                             </td>
@@ -96,7 +96,7 @@ export default class ModalPeople extends React.Component {
                             </td>
                         </tr>
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.personModal.phone}
                             </td>
@@ -106,7 +106,7 @@ export default class ModalPeople extends React.Component {
                         </tr>
 
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.personModal.extraInfo}
                             </td>

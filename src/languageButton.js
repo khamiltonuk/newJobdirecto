@@ -1,7 +1,7 @@
-import React from 'react';
-import moment from 'moment';
+import React from "react";
+import moment from "moment";
 
-import { LanguageContext } from './languageContext';
+import { LanguageContext } from "./languageContext";
 
 class LanguageButton extends React.Component {
     render() {
@@ -11,15 +11,15 @@ class LanguageButton extends React.Component {
                     id="translateButton"
                     onClick={this.props.changeLanguage}
                 >
-                    {this.context.currentLanguage === 'Español'
-                        ? 'English'
-                        : 'Español'}
+                    {this.context.currentLanguage === "Español"
+                        ? "English"
+                        : "Español"}
                 </button>
                 <div id="dissapear">
-                    {' '}
-                    {this.context.currentLanguage === 'Español'
-                        ? moment.locale('es')
-                        : moment.locale('en')}
+                    {" "}
+                    {this.context.currentLanguage === "Español"
+                        ? moment.locale("es")
+                        : moment.locale("en")}
                 </div>
             </div>
         );

@@ -1,24 +1,24 @@
-import React from 'react';
-import { JobConfirm } from './jobConfirm.js';
-import { JobForm } from './jobForm.js';
-import { PersonForm } from './personForm.js';
-import PremiumBuy from './premiumBuy.js';
-import PremiumSet from './premiumSet.js';
+import React from "react";
+import { JobConfirm } from "./jobConfirm.js";
+import { JobForm } from "./jobForm.js";
+import { PersonForm } from "./personForm.js";
+import PremiumBuy from "./premiumBuy.js";
+import PremiumSet from "./premiumSet.js";
 
-import { PostType } from './postType.js';
-import PrePayPerson from './prePayPerson.js';
-import { PersonConfirm } from './personConfirm.js';
-import { Jobs } from './jobs.js';
-import LoginFacebook from './loginFacebook.js';
-import PrePayJob from './prePayJob.js';
-import { BrowserRouter, Route } from 'react-router-dom';
-import ReactGA from 'react-ga';
-import { LanguageContext, languages } from './languageContext';
-import LanguageButton from './languageButton';
+import { PostType } from "./postType.js";
+import PrePayPerson from "./prePayPerson.js";
+import { PersonConfirm } from "./personConfirm.js";
+import { Jobs } from "./jobs.js";
+import LoginFacebook from "./loginFacebook.js";
+import PrePayJob from "./prePayJob.js";
+import { BrowserRouter, Route } from "react-router-dom";
+import ReactGA from "react-ga";
+import { LanguageContext, languages } from "./languageContext";
+import LanguageButton from "./languageButton";
 
 function initializeReactGA() {
-    ReactGA.initialize('UA-129656531-1');
-    ReactGA.pageview('/homepage');
+    ReactGA.initialize("UA-129656531-1");
+    ReactGA.pageview("/homepage");
 }
 
 export class App extends React.Component {

@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export default class ModalService extends React.Component {
     constructor(props) {
@@ -9,14 +9,14 @@ export default class ModalService extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/getServiceDetails/' + this.props.id).then(result => {
-            console.log('result of details pip: ', result);
+        axios.get("/getServiceDetails/" + this.props.id).then(result => {
+            console.log("result of details pip: ", result);
             this.setState(
                 {
                     serviceData: result.data,
                 },
                 () => {
-                    console.log('is there anything here MODAL?', this.state);
+                    console.log("is there anything here MODAL?", this.state);
                 }
             );
         });
@@ -47,7 +47,7 @@ export default class ModalService extends React.Component {
                         </tr>
 
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.serviceModal.serviceOffered}
                             </td>
@@ -57,7 +57,7 @@ export default class ModalService extends React.Component {
                         </tr>
 
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.serviceModal.serviceNumber}
                             </td>
@@ -66,7 +66,7 @@ export default class ModalService extends React.Component {
                             </td>
                         </tr>
                         <tr>
-                            {' '}
+                            {" "}
                             <td className="jobDetailsText">
                                 {this.context.serviceModal.serviceExtraInfo}
                             </td>

@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export default class LoginFacebook extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ export default class LoginFacebook extends React.Component {
     }
 
     facebookLogin() {
-        axios.get('/loginFacebook');
+        axios.get("/loginFacebook");
     }
 
     render() {
@@ -24,7 +24,7 @@ export default class LoginFacebook extends React.Component {
                             {this.context.login.button}
                         </a>
                     </button>
-                </div>{' '}
+                </div>{" "}
             </div>
         );
     }

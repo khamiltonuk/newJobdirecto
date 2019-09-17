@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export default class DeleteModal extends React.Component {
     constructor(props) {
@@ -13,12 +13,12 @@ export default class DeleteModal extends React.Component {
     }
 
     componentDidMount() {
-        console.log('what props is here?', this.props);
+        console.log("what props is here?", this.props);
     }
 
     deleteJob() {
-        axios.get('/deleteJob/' + this.props.id).then(result => {
-            console.log('boooo');
+        axios.get("/deleteJob/" + this.props.id).then(result => {
+            console.log("boooo");
             this.props.getJobs();
         });
         this.props.close();
@@ -30,14 +30,14 @@ export default class DeleteModal extends React.Component {
     }
 
     deletePersonPost() {
-        axios.get('/deletePersonPost/' + this.props.id).then(result => {
+        axios.get("/deletePersonPost/" + this.props.id).then(result => {
             this.props.getPeople();
         });
         this.props.close();
     }
 
     deleteService() {
-        axios.get('/deleteService/' + this.props.id).then(result => {
+        axios.get("/deleteService/" + this.props.id).then(result => {
             this.props.getServices();
         });
         this.props.close();
@@ -53,8 +53,8 @@ export default class DeleteModal extends React.Component {
                     </h1>
                     <br />
                     <div className="deleteButtons">
-                        {this.props.userstatus == 'true' &&
-                            this.props.postType === 'job' && (
+                        {this.props.userstatus == "true" &&
+                            this.props.postType === "job" && (
                                 <button
                                     className="deleteButton "
                                     onClick={this.deleteJob}
@@ -62,8 +62,8 @@ export default class DeleteModal extends React.Component {
                                     {this.context.deleteModal.yes}
                                 </button>
                             )}
-                        {this.props.userstatus == 'true' &&
-                            this.props.postType === 'person' && (
+                        {this.props.userstatus == "true" &&
+                            this.props.postType === "person" && (
                                 <button
                                     className="deleteButton "
                                     onClick={this.deletePersonPost}
@@ -72,8 +72,8 @@ export default class DeleteModal extends React.Component {
                                 </button>
                             )}
 
-                        {this.props.userstatus !== 'true' &&
-                            this.props.postType === 'job' && (
+                        {this.props.userstatus !== "true" &&
+                            this.props.postType === "job" && (
                                 <button
                                     className="deleteButton "
                                     onClick={this.goPremium}
@@ -81,8 +81,8 @@ export default class DeleteModal extends React.Component {
                                     {this.context.deleteModal.yes}
                                 </button>
                             )}
-                        {this.props.userstatus !== 'true' &&
-                            this.props.postType === 'person' && (
+                        {this.props.userstatus !== "true" &&
+                            this.props.postType === "person" && (
                                 <button
                                     className="deleteButton "
                                     onClick={this.goPremium}

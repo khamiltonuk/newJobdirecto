@@ -1,7 +1,7 @@
-import React from 'react';
-import axios from 'axios';
-import StripeButton from './stripebutton.js';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import axios from "axios";
+import StripeButton from "./stripebutton.js";
+import { LanguageContext } from "./languageContext";
 
 export default class PrePayJob extends React.Component {
     constructor(props) {
@@ -12,10 +12,10 @@ export default class PrePayJob extends React.Component {
     }
 
     cancelUrgency(event) {
-        console.log('someone does not want to pay');
+        console.log("someone does not want to pay");
         event.preventDefault();
-        axios.post('/cancelUrgency').then(resp => {
-            this.props.history.push('/jobConfirm');
+        axios.post("/cancelUrgency").then(resp => {
+            this.props.history.push("/jobConfirm");
         });
     }
 

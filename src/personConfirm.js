@@ -1,21 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export class PersonConfirm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: "",
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
-        axios.get('/getPersonInfo').then(result => {
-            console.log('result data here: ', result.data);
+        axios.get("/getPersonInfo").then(result => {
+            console.log("result data here: ", result.data);
             if (result.data.success == false) {
                 return null;
             } else {
@@ -34,12 +34,12 @@ export class PersonConfirm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('/publishPerson', this.state).then(resp => {
+        axios.post("/publishPerson", this.state).then(resp => {
             if (resp.data.success) {
                 this.setState({
-                    personData: '',
+                    personData: "",
                 });
-                this.props.history.push('/');
+                this.props.history.push("/");
             }
         });
     }

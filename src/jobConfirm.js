@@ -1,20 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
 
 export class JobConfirm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: "",
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
-        axios.get('/getJobInfo').then(result => {
+        axios.get("/getJobInfo").then(result => {
             if (result.data.success == false) {
                 return null;
             } else {
@@ -32,21 +32,21 @@ export class JobConfirm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log('aliens');
+        console.log("aliens");
         event.preventDefault();
-        axios.post('/publishJob', this.state).then(resp => {
-            console.log('common');
+        axios.post("/publishJob", this.state).then(resp => {
+            console.log("common");
             if (resp.data.success) {
-                console.log('success?');
+                console.log("success?");
                 this.setState({
-                    jobData: '',
+                    jobData: "",
                 });
-                this.props.history.push('/');
+                this.props.history.push("/");
             }
         });
 
-        axios.post('/minusCounter').then(resp => {
-            console.log('/minus meow');
+        axios.post("/minusCounter").then(resp => {
+            console.log("/minus meow");
         });
     }
 

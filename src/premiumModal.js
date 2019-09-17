@@ -1,6 +1,6 @@
-import React from 'react';
-import { LanguageContext } from './languageContext';
-import StripeButton3 from './stripebutton3.js';
+import React from "react";
+import { LanguageContext } from "./languageContext";
+import StripeButton3 from "./stripebutton3.js";
 
 export default class PremiumModal extends React.Component {
     render() {

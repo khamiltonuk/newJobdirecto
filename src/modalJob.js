@@ -1,7 +1,7 @@
-import React from 'react';
-import axios from 'axios';
-import { LanguageContext } from './languageContext';
-import { Link } from 'react-router-dom';
+import React from "react";
+import axios from "axios";
+import { LanguageContext } from "./languageContext";
+import { Link } from "react-router-dom";
 
 export default class ModalJob extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ export default class ModalJob extends React.Component {
             pleaseLogin: false,
             reportedAlready: false,
             thanksForReporting: false,
-            whoHasReported: '',
+            whoHasReported: "",
         };
         this.reportPost = this.reportPost.bind(this);
         this.getJobDetails = this.getJobDetails.bind(this);
@@ -25,23 +25,23 @@ export default class ModalJob extends React.Component {
         //     this.props.whoReported.data.find(x => x.id === this.props.id)
         //         .whoreported.length
         // );
-        console.log('id of this job', this.props.id);
-        console.log('state in didmount: ', this.state);
+        console.log("id of this job", this.props.id);
+        console.log("state in didmount: ", this.state);
     }
 
     whoHasReported() {
-        axios.get('/whoHasReported/' + this.props.id).then(results => {
-            console.log('resulti', results);
+        axios.get("/whoHasReported/" + this.props.id).then(results => {
+            console.log("resulti", results);
             results => {
                 this.setState({
-                    whoHasReported: 'blah',
+                    whoHasReported: "blah",
                 });
             };
         });
     }
 
     getJobDetails() {
-        axios.get('/getJobDetails/' + this.props.id).then(
+        axios.get("/getJobDetails/" + this.props.id).then(
             result => {
                 this.setState({
                     jobData: result.data,
@@ -55,15 +55,15 @@ export default class ModalJob extends React.Component {
 
     reportPost() {
         if (!this.props.clickerid) {
-            console.log('log in firstllty and mostly');
+            console.log("log in firstllty and mostly");
             this.setState({
                 pleaseLogin: true,
             });
             return;
         }
-        console.log('here my props im proud of em', this.props);
+        console.log("here my props im proud of em", this.props);
         console.log(
-            'here is people who reported this post: ',
+            "here is people who reported this post: ",
             this.state.jobData.data.whoreported
         );
         if (
@@ -76,10 +76,10 @@ export default class ModalJob extends React.Component {
                 thanksForReporting: false,
             });
         } else {
-            console.log('oh actually u can report');
-            console.log('report post', this.props.id);
-            axios.post('/reportPost/' + this.props.id).then(result => {
-                console.log('good stuff');
+            console.log("oh actually u can report");
+            console.log("report post", this.props.id);
+            axios.post("/reportPost/" + this.props.id).then(result => {
+                console.log("good stuff");
                 this.setState({
                     thanksForReporting: true,
                 });
@@ -92,7 +92,7 @@ export default class ModalJob extends React.Component {
         if (!this.state.jobData) {
             return null;
         }
-        console.log('state in render', this.state);
+        console.log("state in render", this.state);
         return (
             <div>
                 <div
@@ -105,9 +105,9 @@ export default class ModalJob extends React.Component {
 
                 <main
                     className={
-                        this.state.jobData.data.urgent === 'true'
-                            ? 'urgentModal'
-                            : 'modal'
+                        this.state.jobData.data.urgent === "true"
+                            ? "urgentModal"
+                            : "modal"
                     }
                 >
                     <h1 id="title" className="heading-1">
@@ -217,7 +217,7 @@ export default class ModalJob extends React.Component {
                             x => x.id === this.props.id
                         ).whoreported.length > 5 && (
                             <div className="modalFlagDiv">
-                                {' '}
+                                {" "}
                                 <img className="flag" src="flag.png" />
                                 <p className="text">
                                     {this.context.main.tooltip2}
@@ -238,7 +238,11 @@ export default class ModalJob extends React.Component {
                                 <p className="text reportText">
                                     {this.context.modalJob.report}
                                 </p>
-                                <img src="flag.png" className="redFlag" alt="" />
+                                <img
+                                    src="flag.png"
+                                    className="redFlag"
+                                    alt=""
+                                />
                             </div>
                         </button>
                         {this.state.thanksForReporting == true && (
@@ -249,7 +253,7 @@ export default class ModalJob extends React.Component {
                         {this.state.pleaseLogin == true && (
                             <div>
                                 <p className="redReportText">
-                                    {this.context.modalJob.pleaseLogin}{' '}
+                                    {this.context.modalJob.pleaseLogin}{" "}
                                 </p>
                                 <Link className="callToLogin" to="/login">
                                     {this.context.modalJob.pleaseLogin2}

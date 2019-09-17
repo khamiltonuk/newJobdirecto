@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import ModalJob from './modalJob';
-import ModalPeople from './modalPeople';
-import DeleteModal from './deleteModal.js';
-import PremiumModal from './premiumModal.js';
-import { LanguageContext } from './languageContext';
-import Moment from 'react-moment';
-import 'moment/locale/es';
-var ReactGA = require('react-ga');
+import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import ModalJob from "./modalJob";
+import ModalPeople from "./modalPeople";
+import DeleteModal from "./deleteModal.js";
+import PremiumModal from "./premiumModal.js";
+import { LanguageContext } from "./languageContext";
+import Moment from "react-moment";
+import "moment/locale/es";
+var ReactGA = require("react-ga");
 
 export class Jobs extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ export class Jobs extends React.Component {
             showModalJob: false,
             showPremiumModal: false,
             showModalPeople: false,
-            user: 'true',
+            user: "true",
             showDeleteModal: false,
         };
         this.handleChangeArea = this.handleChangeArea.bind(this);
@@ -43,8 +43,8 @@ export class Jobs extends React.Component {
         this.getPeople();
         this.getUserStatus();
         return axios({
-            method: 'get',
-            url: '/user',
+            method: "get",
+            url: "/user",
             params: {},
             withCredentials: true,
         }).then(result => {
@@ -62,20 +62,20 @@ export class Jobs extends React.Component {
     }
 
     getJobs() {
-        axios.get('/getJobs').then(result => {
+        axios.get("/getJobs").then(result => {
             this.setState({ jobData: result.data }, () => {
-                console.log('all active jobs', result.data);
+                console.log("all active jobs", result.data);
             });
         });
     }
 
     getUserStatus() {
-        console.log('getuser status called');
-        axios.get('/getUserStatus').then(result => {
+        console.log("getuser status called");
+        axios.get("/getUserStatus").then(result => {
             // console.log("where my state at", this.state.jobData.data[0].whoreported.length)
             this.setState({ userStatus: result.data }, () => {
                 console.log(
-                    'user status in getUserStatus(): ',
+                    "user status in getUserStatus(): ",
                     this.state.userStatus.data
                 );
             });
@@ -83,15 +83,15 @@ export class Jobs extends React.Component {
     }
 
     getPeople() {
-        axios.get('/getPeople').then(result => {
+        axios.get("/getPeople").then(result => {
             this.setState({ peopleData: result.data }, () => {});
         });
     }
 
     logOut() {
         return axios({
-            method: 'get',
-            url: '/logout',
+            method: "get",
+            url: "/logout",
             params: {},
             withCredentials: true,
         }).then(result => {
@@ -104,11 +104,11 @@ export class Jobs extends React.Component {
     }
 
     handleSubmit(event) {
-        this.props.history.push('/postType');
+        this.props.history.push("/postType");
     }
 
     showModalJob(event, facebookid) {
-        document.body.classList.add('lockBackground');
+        document.body.classList.add("lockBackground");
 
         this.setState({
             showModalJob: true,
@@ -118,17 +118,17 @@ export class Jobs extends React.Component {
     }
 
     showPremium() {
-        document.body.classList.add('lockBackground');
+        document.body.classList.add("lockBackground");
 
-        console.log('oh im in jobs now Im outside');
+        console.log("oh im in jobs now Im outside");
         this.setState({
             showPremiumModal: true,
         });
     }
 
     showDeleteModal(event, id, posttype, userstatus) {
-        console.log('showdeletemodal', id, posttype, userstatus);
-        document.body.classList.add('lockBackground');
+        console.log("showdeletemodal", id, posttype, userstatus);
+        document.body.classList.add("lockBackground");
         event.stopPropagation();
         this.setState({
             showDeleteModal: true,
@@ -138,7 +138,7 @@ export class Jobs extends React.Component {
     }
 
     showModalPeople(event) {
-        document.body.classList.add('lockBackground');
+        document.body.classList.add("lockBackground");
         this.setState({
             showModalPeople: true,
             selectedPersonId: event,
@@ -146,29 +146,29 @@ export class Jobs extends React.Component {
     }
 
     hideModalJob() {
-        document.body.classList.remove('lockBackground');
+        document.body.classList.remove("lockBackground");
         this.setState({ showModalJob: false });
     }
 
     hideDeleteModal() {
-        document.body.classList.remove('lockBackground');
+        document.body.classList.remove("lockBackground");
         this.setState({ showDeleteModal: false }, () => {});
     }
 
     hidePremiumModal() {
-        document.body.classList.remove('lockBackground');
+        document.body.classList.remove("lockBackground");
         this.setState({ showPremiumModal: false }, () => {});
     }
 
     hideModalPeople() {
-        document.body.classList.remove('lockBackground');
+        document.body.classList.remove("lockBackground");
         this.setState({ showModalPeople: false });
     }
 
     trackCreateJob(event) {
-        ga('send', 'event', {
-            eventCategory: 'button',
-            eventAction: 'createJob',
+        ga("send", "event", {
+            eventCategory: "button",
+            eventAction: "createJob",
             eventLabel: event.target.href,
         });
     }
@@ -188,7 +188,7 @@ export class Jobs extends React.Component {
     }
 
     render() {
-        let bodyClass = ['bodyClass'];
+        let bodyClass = ["bodyClass"];
         let date = new Date();
         // si no pongo esto y estoy logeado, nada funciona, porque?
         if (!this.state.jobData || !this.state.peopleData) {
@@ -271,16 +271,16 @@ export class Jobs extends React.Component {
                         {this.state.user &&
                             this.state.userStatus &&
                             this.state.userStatus.data &&
-                            this.state.userStatus.data !== 'true' && (
+                            this.state.userStatus.data !== "true" && (
                                 <h3 id="welcomeText" className="text">
                                     {this.context.main.welcome}
-                                    <br /> {this.state.user.displayName}{' '}
+                                    <br /> {this.state.user.displayName}{" "}
                                 </h3>
                             )}
                         {this.state.user &&
                             this.state.userStatus &&
                             this.state.userStatus.data &&
-                            this.state.userStatus.data == 'true' && (
+                            this.state.userStatus.data == "true" && (
                                 <h3 id="welcomeText" className="text">
                                     {this.context.main.welcome}
                                     <br /> {this.state.user.displayName} <br />
@@ -326,7 +326,7 @@ export class Jobs extends React.Component {
                     {!this.state.userSelectionArea &&
                         this.state.jobData.data.map(data => {
                             if (
-                                data.urgent === 'true' &&
+                                data.urgent === "true" &&
                                 this.urgentJobInterval(data.created_at) === true
                             ) {
                                 return (
@@ -368,7 +368,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -380,10 +380,10 @@ export class Jobs extends React.Component {
 
                                             <p>
                                                 <span className="posterName">
-                                                    {data.restname}{' '}
+                                                    {data.restname}{" "}
                                                 </span>
                                                 <span className="postConnector paidPostConnector">
-                                                    {this.context.main.seeking}{' '}
+                                                    {this.context.main.seeking}{" "}
                                                 </span>
                                                 <span className="posterGoal paidPosterGoal">
                                                     {data.jobtype}
@@ -409,7 +409,7 @@ export class Jobs extends React.Component {
                         this.state.jobData.data.map(data => {
                             if (
                                 this.state.userSelectionArea === data.area &&
-                                data.urgent === 'true' &&
+                                data.urgent === "true" &&
                                 this.urgentJobInterval(data.created_at) === true
                             ) {
                                 return (
@@ -446,7 +446,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -458,10 +458,10 @@ export class Jobs extends React.Component {
                                         </div>
                                         <p>
                                             <span className="posterName">
-                                                {data.restname}{' '}
+                                                {data.restname}{" "}
                                             </span>
                                             <span className="postConnector paidPostConnector">
-                                                {this.context.main.seeking}{' '}
+                                                {this.context.main.seeking}{" "}
                                             </span>
                                             <span className="posterGoal paidPosterGoal">
                                                 {data.jobtype}
@@ -483,12 +483,12 @@ export class Jobs extends React.Component {
                             if (
                                 this.state.userSelectionArea !==
                                     this.context.main.filterOtherArea &&
-                                data.urgent === 'true' &&
-                                data.area !== 'Queens' &&
-                                data.area !== 'Bronx' &&
-                                data.area !== 'Brooklyn' &&
-                                data.area !== 'Manhattan' &&
-                                data.area !== 'Staten Island'
+                                data.urgent === "true" &&
+                                data.area !== "Queens" &&
+                                data.area !== "Bronx" &&
+                                data.area !== "Brooklyn" &&
+                                data.area !== "Manhattan" &&
+                                data.area !== "Staten Island"
                             ) {
                                 return (
                                     <div
@@ -528,7 +528,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -541,9 +541,9 @@ export class Jobs extends React.Component {
                                         <p>
                                             <span className="postConnector">
                                                 {data.restname}
-                                            </span>{' '}
+                                            </span>{" "}
                                             <span className="postConnector paidPostConnector">
-                                                {this.context.main.seeking3}{' '}
+                                                {this.context.main.seeking3}{" "}
                                             </span>
                                             <span className="posterGoal">
                                                 {data.jobtype}
@@ -603,7 +603,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -617,15 +617,15 @@ export class Jobs extends React.Component {
                                                     {data.personname}
                                                 </span>
                                                 <span className="postConnector paidPostConnector">
-                                                    {' '}
+                                                    {" "}
                                                     {
                                                         this.context.main
                                                             .seeking2
-                                                    }{' '}
+                                                    }{" "}
                                                 </span>
                                                 <span className="posterGoal paidPosterGoal">
-                                                    {' '}
-                                                    {data.personskill}{' '}
+                                                    {" "}
+                                                    {data.personskill}{" "}
                                                 </span>
                                             </p>
                                         </div>
@@ -645,7 +645,7 @@ export class Jobs extends React.Component {
                         this.state.jobData.data.map(data => {
                             if (
                                 this.state.userSelectionArea === data.area &&
-                                data.urgent !== 'true'
+                                data.urgent !== "true"
                             ) {
                                 return (
                                     <div
@@ -686,7 +686,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -698,9 +698,9 @@ export class Jobs extends React.Component {
                                             <p>
                                                 <span className="postConnector">
                                                     {data.restname}
-                                                </span>{' '}
+                                                </span>{" "}
                                                 <span className="postConnector">
-                                                    {this.context.main.seeking3}{' '}
+                                                    {this.context.main.seeking3}{" "}
                                                 </span>
                                                 <span className="posterGoal">
                                                     {data.jobtype}
@@ -723,12 +723,12 @@ export class Jobs extends React.Component {
                             if (
                                 this.state.userSelectionArea !==
                                     this.context.main.filterOtherArea &&
-                                data.urgent !== 'true' &&
-                                data.area !== 'Queens' &&
-                                data.area !== 'Bronx' &&
-                                data.area !== 'Brooklyn' &&
-                                data.area !== 'Manhattan' &&
-                                data.area !== 'Staten Island'
+                                data.urgent !== "true" &&
+                                data.area !== "Queens" &&
+                                data.area !== "Bronx" &&
+                                data.area !== "Brooklyn" &&
+                                data.area !== "Manhattan" &&
+                                data.area !== "Staten Island"
                             ) {
                                 return (
                                     <div
@@ -768,7 +768,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -780,9 +780,9 @@ export class Jobs extends React.Component {
                                             <p>
                                                 <span className="postConnector">
                                                     {data.restname}
-                                                </span>{' '}
+                                                </span>{" "}
                                                 <span className="postConnector">
-                                                    {this.context.main.seeking3}{' '}
+                                                    {this.context.main.seeking3}{" "}
                                                 </span>
                                                 <span className="posterGoal">
                                                     {data.jobtype}
@@ -803,7 +803,7 @@ export class Jobs extends React.Component {
 
                     {!this.state.userSelectionArea &&
                         this.state.jobData.data.map(data => {
-                            if (data.urgent !== 'true') {
+                            if (data.urgent !== "true") {
                                 return (
                                     <div
                                         onClick={e =>
@@ -842,7 +842,7 @@ export class Jobs extends React.Component {
                                                                 .tooltip
                                                         }
                                                     >
-                                                        {' '}
+                                                        {" "}
                                                         <img
                                                             className="star"
                                                             src="star.png"
@@ -861,7 +861,7 @@ export class Jobs extends React.Component {
                                                                     .tooltip2
                                                             }
                                                         >
-                                                            {' '}
+                                                            {" "}
                                                             <img
                                                                 className="flag"
                                                                 src="flag.png"
@@ -873,13 +873,13 @@ export class Jobs extends React.Component {
                                             <p>
                                                 <span className="postConnector">
                                                     {data.restname}
-                                                </span>{' '}
+                                                </span>{" "}
                                                 <span className="postConnector">
-                                                    {' '}
+                                                    {" "}
                                                     {
                                                         this.context.main
                                                             .seeking3
-                                                    }{' '}
+                                                    }{" "}
                                                 </span>
                                                 <span className="posterGoal">
                                                     {data.jobtype}
