@@ -10,18 +10,12 @@ export class PostType extends React.Component {
     }
 
     handleChange(event) {
-        this.setState(
-            {
-                [event.target.name]: event.target.value
-            },
-            () => {
-                console.log(this.state);
-            }
-        );
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
     handleSubmit(event) {
-        console.log("where this", this.state);
         if (this.state.posterStatus == "seeksJob") {
             this.props.history.push("/personForm");
         } else if (this.state.posterStatus == "offersService") {

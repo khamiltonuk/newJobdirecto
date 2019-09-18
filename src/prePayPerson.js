@@ -12,7 +12,6 @@ export default class PrePayPerson extends React.Component {
     }
 
     cancelPay(event) {
-        console.log("someone does not want to pay");
         event.preventDefault();
         axios.post("/cancelPay").then(resp => {
             this.props.history.push("/");

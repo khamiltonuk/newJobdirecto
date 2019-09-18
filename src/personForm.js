@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { LanguageContext } from "./languageContext";
 
@@ -23,9 +22,7 @@ export class PersonForm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("state in personForm", this.state);
         event.preventDefault();
-        console.log("state in job form: ", this.state);
         axios.post("/finalizePerson", this.state).then(resp => {
             this.props.history.push("/PrePayPerson");
         });

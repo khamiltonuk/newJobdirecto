@@ -10,7 +10,6 @@ export default class ModalPeople extends React.Component {
 
     componentDidMount() {
         axios.get("/getPeopleDetails/" + this.props.id).then(result => {
-            console.log("result of details pip: ", result);
             this.setState({
                 peopleData: result.data
             });

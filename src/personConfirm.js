@@ -15,7 +15,6 @@ export class PersonConfirm extends React.Component {
 
     componentDidMount() {
         axios.get("/getPersonInfo").then(result => {
-            console.log("result data here: ", result.data);
             if (result.data.success == false) {
                 return null;
             } else {

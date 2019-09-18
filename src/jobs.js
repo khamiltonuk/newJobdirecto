@@ -48,9 +48,7 @@ export class Jobs extends React.Component {
             params: {},
             withCredentials: true
         }).then(result => {
-            this.setState({ user: result.data }, () => {
-                console.log(this.state.user.id);
-            });
+            this.setState({ user: result.data });
         });
     }
 
@@ -63,22 +61,13 @@ export class Jobs extends React.Component {
 
     getJobs() {
         axios.get("/getJobs").then(result => {
-            this.setState({ jobData: result.data }, () => {
-                console.log("all active jobs", result.data);
-            });
+            this.setState({ jobData: result.data });
         });
     }
 
     getUserStatus() {
-        console.log("getuser status called");
         axios.get("/getUserStatus").then(result => {
-            // console.log("where my state at", this.state.jobData.data[0].whoreported.length)
-            this.setState({ userStatus: result.data }, () => {
-                console.log(
-                    "user status in getUserStatus(): ",
-                    this.state.userStatus.data
-                );
-            });
+            this.setState({ userStatus: result.data });
         });
     }
 
@@ -119,15 +108,12 @@ export class Jobs extends React.Component {
 
     showPremium() {
         document.body.classList.add("lockBackground");
-
-        console.log("oh im in jobs now Im outside");
         this.setState({
             showPremiumModal: true
         });
     }
 
     showDeleteModal(event, id, posttype, userstatus) {
-        console.log("showdeletemodal", id, posttype, userstatus);
         document.body.classList.add("lockBackground");
         event.stopPropagation();
         this.setState({
@@ -188,9 +174,6 @@ export class Jobs extends React.Component {
     }
 
     render() {
-        let bodyClass = ["bodyClass"];
-        let date = new Date();
-        // si no pongo esto y estoy logeado, nada funciona, porque?
         if (!this.state.jobData || !this.state.peopleData) {
             return null;
         }
@@ -203,7 +186,6 @@ export class Jobs extends React.Component {
                 </h1>
                 <p className="ambassadorText">{this.context.main.ambassador}</p>
 
-                {/**/}
                 {!this.state.user && (
                     <Link to="/login">
                         <div className="buttonsAuth">
@@ -224,9 +206,6 @@ export class Jobs extends React.Component {
                     </p>
                 )}
 
-                <div>
-                    <h1 />
-                </div>
                 {this.state.showModalJob && (
                     <ModalJob
                         id={this.state.selectedJobId}
@@ -263,7 +242,7 @@ export class Jobs extends React.Component {
                     <div className="buttonAndWelcome">
                         <input
                             id="buttonCreatePost"
-                            class="buttonBasic"
+                            className="buttonBasic"
                             type="submit"
                             value={this.context.main.createPost}
                             onClick={this.handleSubmit}
@@ -291,8 +270,10 @@ export class Jobs extends React.Component {
                         {/**/}
                     </div>
                     <form
-                        onSubmit={this.handleSubmit}
-                        onSubmit={this.trackCreateJob}
+                        onSubmit={() => {
+                            this.handleSubmit();
+                            this.trackCreateJob();
+                        }}
                     >
                         <select
                             className="filter"
@@ -340,12 +321,18 @@ export class Jobs extends React.Component {
                                         className="postData paidPostData"
                                         key={data.id}
                                     >
-                                        <div className="flexContainer">
+                                        <div
+                                            className="flexContainer"
+                                            style={{ background: "red" }}
+                                        >
                                             <div className="postIcons">
                                                 {data.facebookid ===
                                                     this.state.user.id && (
                                                     <button
-                                                        onClick={event =>
+                                                        onClick={event => {
+                                                            console.log(
+                                                                "hello"
+                                                            );
                                                             this.showDeleteModal(
                                                                 event,
                                                                 data.id,
@@ -353,8 +340,8 @@ export class Jobs extends React.Component {
                                                                 this.state
                                                                     .userStatus
                                                                     .data
-                                                            )
-                                                        }
+                                                            );
+                                                        }}
                                                         className="deletePostButton deletePaidButton"
                                                     >
                                                         <i className="fa fa-close" />

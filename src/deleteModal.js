@@ -12,13 +12,8 @@ export default class DeleteModal extends React.Component {
         this.goPremium = this.goPremium.bind(this);
     }
 
-    componentDidMount() {
-        console.log("what props is here?", this.props);
-    }
-
     deleteJob() {
         axios.get("/deleteJob/" + this.props.id).then(result => {
-            console.log("boooo");
             this.props.getJobs();
         });
         this.props.close();

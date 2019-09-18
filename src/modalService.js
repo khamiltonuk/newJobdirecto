@@ -10,15 +10,9 @@ export default class ModalService extends React.Component {
 
     componentDidMount() {
         axios.get("/getServiceDetails/" + this.props.id).then(result => {
-            console.log("result of details pip: ", result);
-            this.setState(
-                {
-                    serviceData: result.data
-                },
-                () => {
-                    console.log("is there anything here MODAL?", this.state);
-                }
-            );
+            this.setState({
+                serviceData: result.data
+            });
         });
     }
 

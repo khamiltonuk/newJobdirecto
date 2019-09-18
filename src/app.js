@@ -62,7 +62,7 @@ export class App extends React.Component {
                         <Route path="/prepayPerson" component={PrePayPerson} />
                         <Route path="/postType" component={PostType} />
                         <Route
-                            exact="exact"
+                            exact
                             path="/personConfirm"
                             component={PersonConfirm}
                         />

@@ -20,66 +20,41 @@ export default class ModalJob extends React.Component {
     componentDidMount() {
         this.whoHasReported();
         this.getJobDetails();
-        // console.log(
-        //     "my props in didmount: ",
-        //     this.props.whoReported.data.find(x => x.id === this.props.id)
-        //         .whoreported.length
-        // );
-        console.log("id of this job", this.props.id);
-        console.log("state in didmount: ", this.state);
     }
 
     whoHasReported() {
         axios.get("/whoHasReported/" + this.props.id).then(results => {
-            console.log("resulti", results);
-            results => {
-                this.setState({
-                    whoHasReported: "blah"
-                });
-            };
+            this.setState({
+                whoHasReported: "blah"
+            });
         });
     }
 
     getJobDetails() {
-        axios.get("/getJobDetails/" + this.props.id).then(
-            result => {
-                this.setState({
-                    jobData: result.data
-                });
-            },
-            () => {
-                // console.log("state in"this.state);
-            }
-        );
+        axios.get("/getJobDetails/" + this.props.id).then(result => {
+            this.setState({
+                jobData: result.data
+            });
+        });
     }
 
     reportPost() {
         if (!this.props.clickerid) {
-            console.log("log in firstllty and mostly");
             this.setState({
                 pleaseLogin: true
             });
             return;
         }
-        console.log("here my props im proud of em", this.props);
-        console.log(
-            "here is people who reported this post: ",
-            this.state.jobData.data.whoreported
-        );
         if (
             this.state.jobData.data.whoreported &&
             this.state.jobData.data.whoreported.includes(this.props.clickerid)
         ) {
-            console.log("u can't report again man");
             this.setState({
                 reportedAlready: true,
                 thanksForReporting: false
             });
         } else {
-            console.log("oh actually u can report");
-            console.log("report post", this.props.id);
             axios.post("/reportPost/" + this.props.id).then(result => {
-                console.log("good stuff");
                 this.setState({
                     thanksForReporting: true
                 });
@@ -92,7 +67,6 @@ export default class ModalJob extends React.Component {
         if (!this.state.jobData) {
             return null;
         }
-        console.log("state in render", this.state);
         return (
             <div>
                 <div
@@ -218,7 +192,7 @@ export default class ModalJob extends React.Component {
                         ).whoreported.length > 5 && (
                             <div className="modalFlagDiv">
                                 {" "}
-                                <img className="flag" src="flag.png" />
+                                <img className="flag" src="flag.png" alt="" />
                                 <p className="text">
                                     {this.context.main.tooltip2}
                                 </p>
@@ -261,6 +235,7 @@ export default class ModalJob extends React.Component {
                                     <img
                                         className="star starJobForm"
                                         src="star.png"
+                                        img=""
                                     />
                                 </Link>
                             </div>

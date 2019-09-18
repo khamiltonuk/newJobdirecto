@@ -12,7 +12,6 @@ export default class PrePayJob extends React.Component {
     }
 
     cancelUrgency(event) {
-        console.log("someone does not want to pay");
         event.preventDefault();
         axios.post("/cancelUrgency").then(resp => {
             this.props.history.push("/jobConfirm");

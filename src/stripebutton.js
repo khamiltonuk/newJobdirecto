@@ -18,7 +18,7 @@ function StripeButton() {
     }
 
     const context = useContext(LanguageContext);
-    const stripe = Stripe(stripeKey);
+    const stripe = Stripe(stripeKey); // eslint-disable-line no-undef
     const [error, setError] = useState();
 
     const handleClick = event => {

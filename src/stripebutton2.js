@@ -20,7 +20,7 @@ function StripeButton2(event) {
 
     const context = useContext(LanguageContext);
 
-    const stripe = Stripe(stripeKey);
+    const stripe = Stripe(stripeKey); // eslint-disable-line no-undef
 
     const [error, setError] = useState();
 
@@ -37,7 +37,6 @@ function StripeButton2(event) {
                 }
             });
 
-        console.log("someone wants to pay");
         event.preventDefault();
         axios.post("/wantsToPay").then(resp => {
             console.log("yes pay");

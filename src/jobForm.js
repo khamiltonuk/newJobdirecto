@@ -27,39 +27,33 @@ export class JobForm extends React.Component {
     }
 
     handleChange(event) {
-        this.setState(
-            {
-                [event.target.name]: event.target.value
-            },
-            () => {
-                console.log(this.state);
-            }
-        );
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
     handleCheckboxChange(event) {
-        this.setState(
-            {
-                urgent: event.target.checked
-            },
-            () => {
-                console.log(this.state);
-            }
-        );
+        this.setState({
+            urgent: event.target.checked
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log("this.state", this.state);
         axios.post("/finalizeJob", this.state).then(resp => {
             if (this.state.urgent === true) {
+                console.log(1);
                 this.props.history.push("/prePayJob");
             } else {
+                console.log(2);
                 this.props.history.push("/JobConfirm");
             }
         });
     }
 
     render() {
+        console.log("this.state.jobData.data.area", this.state.jobData);
         return (
             <div className="jobForm">
                 <form onSubmit={this.handleSubmit}>
@@ -215,7 +209,7 @@ export class JobForm extends React.Component {
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Manhattan"
+                                this.state.jobData.data.area === "Manhattan"
                             }
                             value="Manhattan"
                         >
@@ -225,7 +219,7 @@ export class JobForm extends React.Component {
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Brooklyn"
+                                this.state.jobData.data.area === "Brooklyn"
                             }
                             value="Brooklyn"
                         >
@@ -235,7 +229,7 @@ export class JobForm extends React.Component {
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Bronx"
+                                this.state.jobData.data.area === "Bronx"
                             }
                             value="Bronx"
                         >
@@ -245,7 +239,7 @@ export class JobForm extends React.Component {
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Queens"
+                                this.state.jobData.data.area === "Queens"
                             }
                             value="Queens"
                         >
@@ -255,7 +249,7 @@ export class JobForm extends React.Component {
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Staten Island"
+                                this.state.jobData.data.area === "Staten Island"
                             }
                             value="Staten Island"
                         >
@@ -265,7 +259,7 @@ export class JobForm extends React.Component {
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area ==
+                                this.state.jobData.data.area ===
                                     "Otra area en NY"
                             }
                             value={this.context.jobForm.filterOtherArea}
