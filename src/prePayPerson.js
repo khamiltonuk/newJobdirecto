@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import StripeButton2 from "./stripebutton2.js";
 import { LanguageContext } from "./languageContext";
@@ -13,7 +12,6 @@ export default class PrePayPerson extends React.Component {
     }
 
     cancelPay(event) {
-        console.log("someone does not want to pay");
         event.preventDefault();
         axios.post("/cancelPay").then(resp => {
             this.props.history.push("/");
@@ -26,7 +24,7 @@ export default class PrePayPerson extends React.Component {
                 <br />
                 <br />
 
-                <img className="prePayPics" src="personPost.png" />
+                <img className="prePayPics" alt="" src="personPost.png" />
 
                 <p className="text">
                     {this.context.PrePayPerson.text1}
@@ -44,7 +42,8 @@ export default class PrePayPerson extends React.Component {
                     <StripeButton2 />
                     <button
                         onClick={this.cancelPay}
-                        className="buttonBasic buttonOpaque prePay">
+                        className="buttonBasic buttonOpaque prePay"
+                    >
                         {this.context.PrePayPerson.button}
                     </button>
                     <div className="contactInfo">

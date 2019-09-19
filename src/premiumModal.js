@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import { LanguageContext } from "./languageContext";
 import StripeButton3 from "./stripebutton3.js";
 
@@ -18,7 +16,8 @@ export default class PremiumModal extends React.Component {
                     <div>
                         <button
                             onClick={this.props.close}
-                            className="buttonOpaque premiumDeny">
+                            className="buttonOpaque premiumDeny"
+                        >
                             {this.context.premiumModal.deny}
                         </button>
                     </div>

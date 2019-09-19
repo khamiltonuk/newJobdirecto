@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { LanguageContext } from "./languageContext";
 import { useContext } from "react";
-import { fail } from "assert";
 
 function StripeButton3() {
     let stripeKey, itemArray, successUrl, failUrl;
@@ -21,11 +20,11 @@ function StripeButton3() {
 
     const context = useContext(LanguageContext);
 
-    const stripe = Stripe(stripeKey);
+    const stripe = Stripe(stripeKey); // eslint-disable-line no-undef
 
     const [error, setError] = useState();
 
-    const handleClick = () => {
+    const handleClick = event => {
         stripe
             .redirectToCheckout({
                 items: [{ plan: itemArray, quantity: 1 }],
@@ -37,8 +36,6 @@ function StripeButton3() {
                     setError(result.error.message);
                 }
             });
-
-        console.log("someone wants to pay");
         event.preventDefault();
         axios.post("/wantsToPay").then(resp => {
             console.log("yes pay");

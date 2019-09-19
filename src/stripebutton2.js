@@ -3,7 +3,7 @@ import axios from "axios";
 import { LanguageContext } from "./languageContext";
 import { useContext } from "react";
 
-function StripeButton2() {
+function StripeButton2(event) {
     let stripeKey, itemArray, successUrl, failUrl;
 
     if (window.location.hostname == "localhost") {
@@ -20,7 +20,7 @@ function StripeButton2() {
 
     const context = useContext(LanguageContext);
 
-    const stripe = Stripe(stripeKey);
+    const stripe = Stripe(stripeKey); // eslint-disable-line no-undef
 
     const [error, setError] = useState();
 
@@ -37,7 +37,6 @@ function StripeButton2() {
                 }
             });
 
-        console.log("someone wants to pay");
         event.preventDefault();
         axios.post("/wantsToPay").then(resp => {
             console.log("yes pay");

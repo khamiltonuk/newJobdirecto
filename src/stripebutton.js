@@ -18,10 +18,10 @@ function StripeButton() {
     }
 
     const context = useContext(LanguageContext);
-    const stripe = Stripe(stripeKey);
+    const stripe = Stripe(stripeKey); // eslint-disable-line no-undef
     const [error, setError] = useState();
 
-    const handleClick = () => {
+    const handleClick = event => {
         stripe
             .redirectToCheckout({
                 items: [{ sku: itemArray, quantity: 1 }],

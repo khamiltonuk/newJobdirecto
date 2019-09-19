@@ -32,12 +32,9 @@ export class JobConfirm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("aliens");
         event.preventDefault();
         axios.post("/publishJob", this.state).then(resp => {
-            console.log("common");
             if (resp.data.success) {
-                console.log("success?");
                 this.setState({
                     jobData: ""
                 });
@@ -58,7 +55,7 @@ export class JobConfirm extends React.Component {
         return (
             <div className="jobConfirmPage">
                 <form onSubmit={this.handleSubmit}>
-                    <h1 className="confirmTitle" className="heading-1">
+                    <h1 className="confirmTitle heading-1">
                         {this.context.jobConfirm.title}
                     </h1>
 
@@ -139,10 +136,6 @@ export class JobConfirm extends React.Component {
                     </table>
 
                     <div className="confirmButtons">
-                        {/*  <Link to="/jobForm">
-              <input className="btn-secondary" type="submit" value="Corregir" />
-            </Link>*/}
-
                         <Link to="/">
                             <input
                                 onClick={this.handleSubmit}

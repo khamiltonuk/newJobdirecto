@@ -27,39 +27,33 @@ export class JobForm extends React.Component {
     }
 
     handleChange(event) {
-        this.setState(
-            {
-                [event.target.name]: event.target.value
-            },
-            () => {
-                console.log(this.state);
-            }
-        );
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
-    handleCheckboxChange() {
-        this.setState(
-            {
-                urgent: event.target.checked
-            },
-            () => {
-                console.log(this.state);
-            }
-        );
+    handleCheckboxChange(event) {
+        this.setState({
+            urgent: event.target.checked
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log("this.state", this.state);
         axios.post("/finalizeJob", this.state).then(resp => {
             if (this.state.urgent === true) {
+                console.log(1);
                 this.props.history.push("/prePayJob");
             } else {
+                console.log(2);
                 this.props.history.push("/JobConfirm");
             }
         });
     }
 
     render() {
+        console.log("this.state.jobData.data.area", this.state.jobData);
         return (
             <div className="jobForm">
                 <form onSubmit={this.handleSubmit}>
@@ -74,6 +68,7 @@ export class JobForm extends React.Component {
                             &nbsp;
                             <img
                                 className="star starJobForm"
+                                alt=""
                                 src="star.png"
                             />{" "}
                         </Link>
@@ -207,61 +202,68 @@ export class JobForm extends React.Component {
                                 : ""
                         }
                         required="required"
-                        onChange={this.handleChange}>
+                        onChange={this.handleChange}
+                    >
                         <option value="" />
                         <option
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Manhattan"
+                                this.state.jobData.data.area === "Manhattan"
                             }
-                            value="Manhattan">
+                            value="Manhattan"
+                        >
                             Manhattan
                         </option>
                         <option
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Brooklyn"
+                                this.state.jobData.data.area === "Brooklyn"
                             }
-                            value="Brooklyn">
+                            value="Brooklyn"
+                        >
                             Brooklyn
                         </option>
                         <option
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Bronx"
+                                this.state.jobData.data.area === "Bronx"
                             }
-                            value="Bronx">
+                            value="Bronx"
+                        >
                             Bronx
                         </option>
                         <option
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Queens"
+                                this.state.jobData.data.area === "Queens"
                             }
-                            value="Queens">
+                            value="Queens"
+                        >
                             Queens
                         </option>
                         <option
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area == "Staten Island"
+                                this.state.jobData.data.area === "Staten Island"
                             }
-                            value="Staten Island">
+                            value="Staten Island"
+                        >
                             Staten Island
                         </option>
                         <option
                             selected={
                                 this.state.jobData &&
                                 this.state.jobData.data &&
-                                this.state.jobData.data.area ==
+                                this.state.jobData.data.area ===
                                     "Otra area en NY"
                             }
-                            value={this.context.jobForm.filterOtherArea}>
+                            value={this.context.jobForm.filterOtherArea}
+                        >
                             {this.context.jobForm.filterOtherArea}
                         </option>
                     </select>
@@ -270,7 +272,8 @@ export class JobForm extends React.Component {
                         <div>
                             <p
                                 className="formQuestions"
-                                style={{ color: "blue" }}>
+                                style={{ color: "blue" }}
+                            >
                                 <b>{this.context.jobForm.extraArea}</b>
                             </p>
                             <input

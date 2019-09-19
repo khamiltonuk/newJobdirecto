@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
 import { LanguageContext } from "./languageContext";
-import { Link } from "react-router-dom";
 import StripeButton3 from "./stripebutton3.js";
 
 export default class PremiumBuy extends React.Component {
@@ -26,7 +24,8 @@ export default class PremiumBuy extends React.Component {
 
                     <button
                         onClick={this.cancelPay}
-                        className="buttonBasic buttonOpaque prePay">
+                        className="buttonBasic buttonOpaque prePay"
+                    >
                         {this.context.PrePayPerson.button}
                     </button>
                     <div className="contactInfo">

@@ -12,13 +12,8 @@ export default class DeleteModal extends React.Component {
         this.goPremium = this.goPremium.bind(this);
     }
 
-    componentDidMount() {
-        console.log("what props is here?", this.props);
-    }
-
     deleteJob() {
         axios.get("/deleteJob/" + this.props.id).then(result => {
-            console.log("boooo");
             this.props.getJobs();
         });
         this.props.close();
@@ -57,7 +52,8 @@ export default class DeleteModal extends React.Component {
                             this.props.postType === "job" && (
                                 <button
                                     className="deleteButton "
-                                    onClick={this.deleteJob}>
+                                    onClick={this.deleteJob}
+                                >
                                     {this.context.deleteModal.yes}
                                 </button>
                             )}
@@ -65,7 +61,8 @@ export default class DeleteModal extends React.Component {
                             this.props.postType === "person" && (
                                 <button
                                     className="deleteButton "
-                                    onClick={this.deletePersonPost}>
+                                    onClick={this.deletePersonPost}
+                                >
                                     {this.context.deleteModal.yes}
                                 </button>
                             )}
@@ -74,7 +71,8 @@ export default class DeleteModal extends React.Component {
                             this.props.postType === "job" && (
                                 <button
                                     className="deleteButton "
-                                    onClick={this.goPremium}>
+                                    onClick={this.goPremium}
+                                >
                                     {this.context.deleteModal.yes}
                                 </button>
                             )}
@@ -82,14 +80,16 @@ export default class DeleteModal extends React.Component {
                             this.props.postType === "person" && (
                                 <button
                                     className="deleteButton "
-                                    onClick={this.goPremium}>
+                                    onClick={this.goPremium}
+                                >
                                     {this.context.deleteModal.yes}
                                 </button>
                             )}
 
                         <button
                             className="deleteButton "
-                            onClick={this.props.close}>
+                            onClick={this.props.close}
+                        >
                             No
                         </button>
                     </div>
