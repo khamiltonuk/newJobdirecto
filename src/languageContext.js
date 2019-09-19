@@ -118,7 +118,7 @@ export const languages = {
         },
         contactInfo: {
             contactInfo:
-                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
+                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a me@wilfredocasas.com"
         },
         premiumSet: {
             title: "Gracias por con confiar en JobDirecto!",
@@ -249,7 +249,7 @@ export const languages = {
         },
         contactInfo: {
             contactInfo:
-                "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
+                "If you have questions, suggestions or complains, please send an email to me@wilfredocasas.com"
         },
         jobConfirm: {
             title: "Your post",
