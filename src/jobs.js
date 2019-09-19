@@ -323,7 +323,6 @@ export class Jobs extends React.Component {
                                     >
                                         <div
                                             className="flexContainer"
-                                            style={{ background: "red" }}
                                         >
                                             <div className="postIcons">
                                                 {data.facebookid ===
