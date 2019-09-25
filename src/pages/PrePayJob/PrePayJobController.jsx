@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext.jsx";
 import StripeButton from "../../components/StripeButton/StripeButton.jsx";
@@ -23,7 +22,10 @@ export default class PrePayJob extends React.Component {
     }
 
     cancelUrgency(event) {
+<<<<<<< HEAD:src/pages/PrePayJob/PrePayJobController.jsx
         
+=======
+>>>>>>> 5500f4e56e59eee94c21030a626ee433c115154a:src/prePayJob.js
         event.preventDefault();
         axios.post("/cancelUrgency").then(resp => {
             this.props.navigation.navigate("/JobConfirm");
@@ -34,7 +36,7 @@ export default class PrePayJob extends React.Component {
         return (
             <div className="container">
                 <h1 className="heading-1">{this.context.jobPayPage.title}</h1>
-                <img className="prePayPics" src="topPost.png" />
+                <img className="prePayPics" src="topPost.png" alt="" />
                 <p className="text">
                     {this.context.jobPayPage.text1} <br />
                     <br />
@@ -47,7 +49,8 @@ export default class PrePayJob extends React.Component {
                     <br />
                     <button
                         onClick={this.cancelUrgency}
-                        className="buttonBasic buttonOpaque">
+                        className="buttonBasic buttonOpaque"
+                    >
                         {this.context.jobPayPage.buttonNO}
                     </button>
                     <div className="contactInfo">

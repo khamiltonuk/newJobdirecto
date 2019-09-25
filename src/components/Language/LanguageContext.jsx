@@ -8,7 +8,7 @@ export const languages = {
             createPost: "Crear anuncio",
             seeking: "busca",
             seeking2: "busca trabajo de",
-            seeking3: "Se busca",
+            seeking3: "busca",
             seeking4: "ofrece servicios de",
             filterDefault: "Todo Nueva York",
             filterOtherArea: "Otra area en Nueva York",
@@ -16,6 +16,9 @@ export const languages = {
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido",
             tooltip: "El creador de este anuncio es un usuario verificado.",
+            ambassador:
+                "Embajadores JobDirecto en NY: El Kora Cesar y Oscar Figueroa",
+
             tooltip2:
                 "Este anuncio ha sido reportado por distintos usuarios. Cuidado!",
 
@@ -65,8 +68,9 @@ export const languages = {
             extraArea: "Cual es el nombre del area donde esta ubicado?",
             specialAnswer: "Si, quiero que mi anuncio sea especial",
             verifyCall1:
-                "Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
-            verifyCall2: "crear una cuenta."
+                "Tip: Si desea cerrar sus anuncios cuando ya no los necesite, primero debe",
+            verifyCall2: "crear una cuenta.",
+            linkReferral: "Todos los trabajos en www.jobdirecto.com"
         },
         jobConfirm: {
             title: "Su anuncio",
@@ -88,7 +92,10 @@ export const languages = {
             thanksForReporting:
                 "Gracias por reportar este anuncio. Si 10 personas reportan el mismo anuncio, le daremos bandera roja",
             pleaseLogin: "Para poder reportar un anuncio, primero debe",
-            pleaseLogin2: "crear una cuenta JobDirecto"
+            pleaseLogin2: "crear una cuenta JobDirecto",
+            report: "Reportar",
+            pleaseReport:
+                "Si cree que este anuncio es indebido, porfavor reportelo."
         },
         personModal: {
             name: "Nombre:",
@@ -111,7 +118,7 @@ export const languages = {
         },
         contactInfo: {
             contactInfo:
-                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a wilfredo@jobdirecto.com"
+                "Si tiene preguntas, quejas o sugerencias, porfavor envie un correo a me@wilfredocasas.com"
         },
         premiumSet: {
             title: "Gracias por con confiar en JobDirecto!",
@@ -158,7 +165,7 @@ export const languages = {
             createPost: "New Post",
             seeking: "needs",
             seeking2: "is looking for a job as",
-            seeking3: "Looking for",
+            seeking3: "is looking for a",
             seeking4: "offers services as",
             filterDefault: "All NY",
             filterOtherArea: "Other area in NY",
@@ -169,13 +176,17 @@ export const languages = {
             tooltip2:
                 "This post has been reported by different users. Be careful!",
 
-            premium: "You are a premium user!"
+            premium: "You are a premium user!",
+            ambassador: "JobDirecto ambassador in NY: El Kora Cesar"
         },
         modalJob: {
             reportedAlready: "You already reported this post.",
             thanksForReporting: "Thanks for reporting this post",
             pleaseLogin: "To report a post, first you must",
-            pleaseLogin2: "create an account"
+            pleaseLogin2: "create an account",
+            report: "Report",
+            pleaseReport:
+                "If you think this ad is inadequate, please report it."
         },
 
         serviceForm: {
@@ -232,12 +243,13 @@ export const languages = {
             extraArea: "What''s the name of the area?",
             specialAnswer: "Yes, I want my post to be special",
             verifyCall1:
-                "If you'd like to delete your posts when you don't need them anymore, please",
-            verifyCall2: "sign up first"
+                "Tip: If you'd like to delete your posts when you don't need them anymore, please",
+            verifyCall2: "sign up first",
+            linkReferral: "For more jobs, please go to www.jobdirecto.com"
         },
         contactInfo: {
             contactInfo:
-                "If you have questions, suggestions or complains, please send an email to wilfredo@jobdirecto.com"
+                "If you have questions, suggestions or complains, please send an email to me@wilfredocasas.com"
         },
         jobConfirm: {
             title: "Your post",

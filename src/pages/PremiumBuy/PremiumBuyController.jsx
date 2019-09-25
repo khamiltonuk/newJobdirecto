@@ -1,8 +1,13 @@
 import React from "react";
+<<<<<<< HEAD:src/pages/PremiumBuy/PremiumBuyController.jsx
 import axios from "axios";
 import StripeButton3 from "../../components/StripeButton3/StripeButton3";
 import { LanguageContext } from "../../components/Language/LanguageContext";
 
+=======
+import { LanguageContext } from "./languageContext";
+import StripeButton3 from "./stripebutton3.js";
+>>>>>>> 5500f4e56e59eee94c21030a626ee433c115154a:src/premiumBuy.js
 
 export default class PremiumBuy extends React.Component {
     render() {
@@ -26,7 +31,8 @@ export default class PremiumBuy extends React.Component {
 
                     <button
                         onClick={this.cancelPay}
-                        className="buttonBasic buttonOpaque prePay">
+                        className="buttonBasic buttonOpaque prePay"
+                    >
                         {this.context.PrePayPerson.button}
                     </button>
                     <div className="contactInfo">
