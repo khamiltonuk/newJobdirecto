@@ -10,7 +10,8 @@
         "server-node": "nodemon server/index.js",
         "serve": "webpack-dev-server --config webpack.config.js",
         "serve:prod": "mode=prod webpack-dev-server --config webpack.config.js",
-        "lint": "eslint --max-warnings=0 src"
+        "lint": "eslint --max-warnings=0 src",
+        "update": "node update.js"
     },
     "repository": {
         "type": "git",
@@ -86,15 +87,7 @@
         "webpack": "4.35.2",
         "webpack-cli": "3.3.5",
         "webpack-dev-server": "3.7.2",
-        "eslint": "^6.4.0",
-        "prettier": "^1.18.2",
-        "eslint-config-react-app": "^5.0.1",
-        "eslint-plugin-babel": "^5.3.0",
-        "eslint-plugin-flowtype": "^4.3.0",
-        "eslint-plugin-import": "^2.18.2",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.14.3",
-        "eslint-plugin-react-hooks": "^2.0.1"
+        "prettier": "^1.18.2"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.21",

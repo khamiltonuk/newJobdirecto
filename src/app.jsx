@@ -3,10 +3,6 @@ import ReactDOM from "react-dom";
 import { Router } from "./utils/router";
 
 
-
-
-
-
 const JobsController = React.lazy(_=>import("./pages/Jobs/JobsController"));
 const LoginController = React.lazy(_=>import("./pages/Login/LoginController"));
 const PrePayJobController = React.lazy(_=>import("./pages/PrePayJob/PrePayJobController"));
