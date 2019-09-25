@@ -14,7 +14,6 @@ export default class PremiumSet extends React.Component {
 
     componentDidMount() {
         this.getUserStatus();
-        console.log("what props is here?", this.props);
         axios.get("/user").then(result => {
             this.setState({ userId: result.data.id }, () => {
                 console.log("id in state?", this.state.userId);
@@ -24,16 +23,15 @@ export default class PremiumSet extends React.Component {
 
     getUserStatus() {
         axios.get("/getUserStatus").then(result => {
-            console.log("is this guy premium anot", result.data);
             this.setState({ userStatus: result.data }, () => {
-                console.log("user status in state?", this.state.userStatus);
+                
             });
         });
     }
 
     setPremium() {
         if (this.state.userStatus !== true) {
-            console.log("well let's make him premium");
+            
             axios.post("/setPremium").then(result => {
                 this.props.navigation.navigate("/");
             });

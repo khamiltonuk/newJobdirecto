@@ -13,7 +13,6 @@ export default class LoginController extends React.Component {
     }
 
     facebookLogin() {
-        console.log("facebooki");
         axios.get("/loginFacebook");
 
     }

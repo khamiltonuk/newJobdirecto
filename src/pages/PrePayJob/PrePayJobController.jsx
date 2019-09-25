@@ -22,10 +22,6 @@ export default class PrePayJob extends React.Component {
     }
 
     cancelUrgency(event) {
-<<<<<<< HEAD:src/pages/PrePayJob/PrePayJobController.jsx
-        
-=======
->>>>>>> 5500f4e56e59eee94c21030a626ee433c115154a:src/prePayJob.js
         event.preventDefault();
         axios.post("/cancelUrgency").then(resp => {
             this.props.navigation.navigate("/JobConfirm");
