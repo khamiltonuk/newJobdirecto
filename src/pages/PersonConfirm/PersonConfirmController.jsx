@@ -3,17 +3,6 @@ import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
 import { Link } from "../../utils/router";
 
-<<<<<<< HEAD:src/pages/PersonConfirm/PersonConfirmController.jsx
-export default class PersonConfirm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-=======
 export class PersonConfirm extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +12,6 @@ export class PersonConfirm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
->>>>>>> 5500f4e56e59eee94c21030a626ee433c115154a:src/personConfirm.js
 
     componentDidMount() {
         axios.get("/getPersonInfo").then(result => {
@@ -41,14 +29,8 @@ export class PersonConfirm extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-<<<<<<< HEAD:src/pages/PersonConfirm/PersonConfirmController.jsx
         this.props.navigation.navigate("/");
-      }
-    });
-  }
-=======
     }
->>>>>>> 5500f4e56e59eee94c21030a626ee433c115154a:src/personConfirm.js
 
     handleSubmit(event) {
         event.preventDefault();
