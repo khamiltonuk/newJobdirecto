@@ -2,6 +2,23 @@ DROP TABLE IF EXISTS jobs;
 DROP TABLE IF EXISTS personas;
 DROP TABLE IF EXISTS services;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS cc;
+DROP TABLE If EXISTS job_reporter;
+DROP TABLE If EXISTS cities;
+DROP TABLE If EXISTS cities_area;
+DROP TABLE If EXISTS temporalAnalytics;
+
+CREATE TABLE cities(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(300),
+    prefix VARCHAR(10)
+);
+
+CREATE TABLE cities_area(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(300),
+    id_city INT
+);
 
 CREATE TABLE services(
     id SERIAL PRIMARY KEY,
@@ -10,70 +27,37 @@ CREATE TABLE services(
     serviceArea VARCHAR(300),
     serviceNumber VARCHAR(1300),
     serviceExtraInfo VARCHAR(1300),
+    id_user INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE personas2
-ADD facebookid VARCHAR(300);
-
-ALTER TABLE personas2
-ADD postType VARCHAR(300);
-
-ALTER TABLE users
-ADD premium VARCHAR(300);
-
-UPDATE users
-SET premium = true;
-
-ALTER TABLE users
-UPDATE premium VARCHAR(300) SET DEFAULT false;
-
-ALTER TABLE users ALTER premium SET DEFAULT false;
-
-ALTER TABLE users ALTER COLUMN premium SET DEFAULT false;
-
-ALTER TABLE jobs ADD COLUMN whoReported bigint[];
-
-ALTER TABLE users
-ADD postCounter SMALLINT SET DEFAULT 2;
-
-ALTER TABLE users ALTER COLUMN postcounter SET DEFAULT 2;
-
-ALTER TABLE jobs
-ADD redFlags SMALLINT;
-
-
-ALTER TABLE personas
-ADD facebookid VARCHAR(300);
-
-ALTER TABLE personas
-ADD postType VARCHAR(300);
-
-ALTER TABLE services
-ADD postType VARCHAR(300);
-
-
-ALTER TABLE services
-ADD facebookid VARCHAR(300);
-
-
-ALTER TABLE users
-ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-
-
-
-
 
 CREATE TABLE users(
-id VARCHAR(100),
-name VARCHAR(100) NOT NULL,
-PRIMARY KEY (id)
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    username VARCHAR(250),
+    email VARCHAR(250),
+    pass VARCHAR(250),
+    premium bool DEFAULT false,
+    facebookId VARCHAR(300)
+);
+
+CREATE TABLE cc(
+    id SERIAL PRIMARY KEY,
+    id_transsaction VARCHAR(300),
+    id_external INT,
+    type VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    price_type VARCHAR(50),
+    price decimal(20,2),
+    status VARCHAR(255)
 );
 
 
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
-    facebookId VARCHAR(300),
+    id_user INT,
+    active bool DEFAULT TRUE,
     restName VARCHAR(300),
     jobType VARCHAR(255),
     hourPay VARCHAR(255),
@@ -86,43 +70,15 @@ CREATE TABLE jobs(
     extrainfo VARCHAR(255),
     urgent VARCHAR(255),
     postType VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted bool DEFAULT FALSE
 );
 
-CREATE TABLE jobs2(
-    id SERIAL PRIMARY KEY,
-    facebookId VARCHAR(300),
-    restName VARCHAR(300),
-    jobType VARCHAR(255),
-    hourPay VARCHAR(255),
-    typePay VARCHAR(255) ,
-    schedule VARCHAR(255),
-    contact VARCHAR(255) ,
-    address VARCHAR(255),
-    phone VARCHAR(255),
-    area VARCHAR(255),
-    extrainfo VARCHAR(255),
-    urgent VARCHAR(255),
-    postType VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
-CREATE TABLE deletedJobs(
-    id SERIAL PRIMARY KEY,
-    facebookId VARCHAR(300),
-    restName VARCHAR(300),
-    jobType VARCHAR(255),
-    hourPay VARCHAR(255),
-    typePay VARCHAR(255) ,
-    schedule VARCHAR(255),
-    contact VARCHAR(255) ,
-    address VARCHAR(255),
-    phone VARCHAR(255),
-    area VARCHAR(255),
-    extrainfo VARCHAR(255),
-    urgent VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE job_reporter(
+    id_job INT,
+    id_user INT,
+    reason TEXT,
+    PRIMARY KEY(id_job,id_user)
 );
 
 
@@ -136,21 +92,8 @@ CREATE TABLE personas(
     personArea VARCHAR(300),
     personNumber VARCHAR(300),
     personExtraInfo VARCHAR(1300),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE personas2(
-    id SERIAL PRIMARY KEY,
-    personName VARCHAR(300),
-    personStatus VARCHAR(300),
-    personSkill VARCHAR(300),
-    personExperience VARCHAR(1300),
-    personSchedule VARCHAR(1300),
-    personArea VARCHAR(300),
-    personNumber VARCHAR(300),
-    personExtraInfo VARCHAR(1300),
-facebookid VARCHAR(300),
-postType VARCHAR(300),
+    id_user INT,
+    postType VARCHAR(300),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -161,6 +104,8 @@ CREATE TABLE temporalAnalytics(
     doesNotWantToPay VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
 
 -- jobs
 INSERT INTO jobs (restName, jobType, hourPay, typePay, schedule, contact, address, phone, area, urgent) VALUES ('Tribeca bagels', 'Cocinero', '14', 'cash', 'lunes a viernes tardes hasta cerrar', 'juana marcos', '127 East 7th New York, NY 10009', '(646) 850-5345', 'manhattan', 'false');

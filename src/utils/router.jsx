@@ -1,7 +1,12 @@
 import React, {Component,Suspense} from 'react';
+import { LanguageContext, languages } from '../components/Language/LanguageContext';
 
 
 let RouterEvent = null;
+
+function Emptydiv(){
+    return <div></div>
+}
 
 export class Router extends Component{
     constructor(props){
@@ -9,15 +14,26 @@ export class Router extends Component{
         RouterEvent = this.changeRoute.bind(this);
         this.state = {
             actualComponent:null,
-            lastComponent:props.loadingComponent || (<div></div>)
+            lastComponent:props.loadingComponent || Emptydiv,
+            languages: languages.spanish
         };
-        this.changeRoute = this.changeRoute.bind(this);
+        this.changeRoute = this.changeRoute.bind(this);  
     }
 
     componentDidMount(){
         this.changeRoute();
         window.onpopstate = this.changeRoute.bind(this);
     }
+
+    toggleLanguage = () => {
+        this.setState(state => ({
+            languages:
+                state.languages === languages.spanish
+                    ? languages.english
+                    : languages.spanish
+        }));
+        this.forceUpdate()
+    };
 
     async changeRoute(){
         let pathURL = location.hash;
@@ -75,38 +91,46 @@ export class Router extends Component{
                 }
             }
         }
+        let loadingComponent = this.props.loadingComponent && React.createElement(this.props.loadingComponent);
         if(actual){
             this.setState({
-                lastComponent:this.state.actualComponent || this.props.loadingComponent || this.state.lastComponent,
+                lastComponent:loadingComponent || this.state.actualComponent || this.state.lastComponent,
                 actualComponent:React.createElement(actual.component,{navigation:{
                     state:history.state,
                     params,
                     navigate,
-                    goBack
+                    goBack,
+                    push,
+                    toggleLanguage: this.toggleLanguage
                 }})
             })
         }else if(this.props.notFound){
             this.setState({
-                lastComponent:this.state.actualComponent || this.props.loadingComponent || this.state.lastComponent,
+                lastComponent:loadingComponent || this.state.actualComponent || this.state.lastComponent,
                 actualComponent:React.createElement(this.props.notFound,{navigation:{
                     state:history.state,
                     params,
                     navigate,
-                    goBack
+                    goBack,
+                    push,
+                    toggleLanguage: this.toggleLanguage
                 }})
             })
         }else{
             this.setState({
-                lastComponent:this.state.actualComponent || this.props.loadingComponent || this.state.lastComponent,
+                lastComponent:loadingComponent || this.state.actualComponent || this.state.lastComponent,
                 actualComponent:null
             })
         }
         actual = null;
     }
+
     render(){
         return (<div>
             <Suspense fallback={this.state.lastComponent}>
-            {this.state.actualComponent}
+                <LanguageContext.Provider value={this.state.languages}>
+                    {this.state.actualComponent}
+                </LanguageContext.Provider>
             </Suspense>
         </div>);
     }
@@ -162,12 +186,15 @@ export function navigate(to,options={}){
     if(options.replace){
         history.replaceState(options.state,"",`/#${to}`);
     }else{
-        history.pushState(options.state,"",`/#${to}`);
+        push(to,options)
     }
     
     if(RouterEvent){
         RouterEvent()
     }
+}
+function push(to,options = {}){
+    history.pushState(options.state,"",`/#${to}`);
 }
 
 export function goBack(){

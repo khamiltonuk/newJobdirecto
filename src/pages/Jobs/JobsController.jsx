@@ -1,13 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 //import ModalJob from "./modalJob";
 //import ModalPeople from "./modalPeople";
 //import DeleteModal from "./deleteModal.js";
 //import PremiumModal from "./premiumModal.js";
-//import { LanguageContext } from "./languageContext";
 import Moment from "react-moment";
 import "moment/locale/es";
+import { BodyComponent } from "../../components/Body/BodyComponent";
+import { LanguageContext } from "../../components/Language/LanguageContext";
+import { Link } from "../../utils/router";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import PremiumModal from "../../components/PremiumModal/PremiumModal";
+import ModalPeople from "../../components/ModalPeople/ModalPeople";
+import ModalJob from "../../components/ModalJob/ModalJob";
+
+
+
 var ReactGA = require("react-ga");
 
 export default class JobsController extends React.Component {
@@ -51,6 +59,7 @@ export default class JobsController extends React.Component {
             this.setState({ user: result.data }, () => {
                 console.log(this.state.user.id)
             });
+            
         });
     }
 
@@ -73,10 +82,12 @@ export default class JobsController extends React.Component {
     getUserStatus() {
         console.log("getuser status called")
         axios.get("/getUserStatus").then(result => {
-            console.log("where my state at", this.state.jobData.data[0].whoreported.length)
-            this.setState({ userStatus: result.data }, () => {
-                console.log("user status in getUserStatus(): ", this.state.userStatus.data)
-            });
+            console.log(result);
+            if(result.data){
+                this.setState({ userStatus: result.data }, () => {
+                    console.log("user status in getUserStatus(): ", this.state.userStatus.data)
+                });
+            }
         });
     }
 
@@ -105,16 +116,16 @@ export default class JobsController extends React.Component {
     }
 
     handleSubmit(event) {
-        this.props.history.push("/postType")
+        this.props.navigation.navigate("/postType")
     }
 
-    showModalJob(event, facebookid) {
+    showModalJob(event, id_user) {
         document.body.classList.add('lockBackground')
 
         this.setState({
             showModalJob: true,
             selectedJobId: event,
-            facebookid: facebookid
+            id_user: id_user
 
         });
     }
@@ -130,6 +141,7 @@ export default class JobsController extends React.Component {
 
 
     showDeleteModal(event, id, posttype, userstatus) {
+        event.preventDefault();
         console.log("showdeletemodal", id, posttype, userstatus)
         document.body.classList.add('lockBackground')
         event.stopPropagation();
@@ -200,6 +212,7 @@ export default class JobsController extends React.Component {
             return null;
         }
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="itAll">
                 <h1 id="title" className="heading-1">
                     JobDirecto
@@ -213,33 +226,33 @@ export default class JobsController extends React.Component {
                     <h1 />
                 </div>
                 {this.state.showModalJob && (
-                    {/* <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} facebookid={this.state.facebookid} clickerid={this.state.user.id} whoReported={this.state.jobData} /> */}
+                    <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} id_user={this.state.id_user} clickerid={this.state.user.id} whoReported={this.state.jobData} />
                 )}
                 {this.state.showDeleteModal && this.state.userStatus && (
-                    {/* <DeleteModal id={this.state.selectedJobId} userstatus={this.state.userStatus.data} close={this.hideDeleteModal} showPremium={this.showPremium} delete={this.deletePost} postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} /> */}
+                    <DeleteModal id={this.state.selectedJobId} userstatus={this.state.userStatus.data} close={this.hideDeleteModal} showPremium={this.showPremium} delete={this.deletePost} postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} />
                 )}
                 {this.state.showPremiumModal && this.state.userStatus && (
-                    {/* <PremiumModal close={this.hidePremiumModal} /> */}
+                    <PremiumModal close={this.hidePremiumModal} />
                 )}
 
                 {this.state.showModalPeople && (
-                    {/* <ModalPeople
+                    <ModalPeople
                         id={this.state.selectedPersonId}
                         close={this.hideModalPeople}
-                    /> */}
+                    />
                 )}
 
                 <div className="buttonsAndFilters">
                     <div className="buttonAndWelcome">
                         <input
                             id="buttonCreatePost"
-                            class="buttonBasic"
+                            className="buttonBasic"
                             type="submit"
                             value={this.context.main.createPost}
                             onClick={this.handleSubmit}
                         />
-                        {this.state.user && this.state.userStatus && this.state.userStatus.data && this.state.userStatus.data !== "true" && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.displayName} </h3>}
-                        {this.state.user && this.state.userStatus && this.state.userStatus.data && this.state.userStatus.data == "true" && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.displayName} <br />{this.context.main.premium}</h3>}
+                        {this.state.user && this.state.userStatus && this.state.userStatus.data && this.state.userStatus.data !== "true" && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.name} </h3>}
+                        {this.state.user && this.state.userStatus && this.state.userStatus.data && this.state.userStatus.data == "true" && <h3 id="welcomeText" className="text">{this.context.main.welcome}<br /> {this.state.user.name} <br />{this.context.main.premium}</h3>}
 
                         {/**/}
 
@@ -279,19 +292,19 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.facebookid)}
+                                        onClick={e => this.showModalJob(data.id, data.id_user)}
                                         className="postData paidPostData"
                                         key={data.id}
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>
                                                 }
 
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
 
 
                                             </div>
@@ -308,7 +321,7 @@ export default class JobsController extends React.Component {
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            {/* <Moment className="postMomentChild" fromNow>{data.created_at}</Moment> */}
+                                            <Moment className="postMomentChild" fromNow>{data.created_at}</Moment>
                                         </div>
                                     </div>
                                 );
@@ -324,17 +337,17 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.facebookid)}
+                                        onClick={e => this.showModalJob(data.id, data.id_user)}
                                         className="postData paidPostData"
                                         key={data.id}
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                         </div>
                                         <p>
@@ -348,7 +361,7 @@ export default class JobsController extends React.Component {
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            {/* <Moment fromNow>{data.created_at}</Moment> */}
+                                            <Moment fromNow>{data.created_at}</Moment>
                                         </div>
                                     </div>
                                 );
@@ -362,17 +375,17 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.facebookid)}
+                                        onClick={e => this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                         </div>
                                         <p>
@@ -384,7 +397,7 @@ export default class JobsController extends React.Component {
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            {/* <Moment fromNow>{data.created_at}</Moment> */}
+                                            <Moment fromNow>{data.created_at}</Moment>
                                         </div>
                                     </div>
                                 );
@@ -408,11 +421,11 @@ export default class JobsController extends React.Component {
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                             <p>
                                                 <span className="posterName">{data.personname}</span>
@@ -425,7 +438,7 @@ export default class JobsController extends React.Component {
                                         </div>
 
                                         <div className="postMoment">
-                                            {/* <Moment fromNow>{data.created_at}</Moment> */}
+                                            <Moment fromNow>{data.created_at}</Moment>
                                         </div>
                                     </div>
                                 );
@@ -443,18 +456,18 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.facebookid)}
+                                        onClick={e => this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
 
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                             <p>
                                                 <span className="postConnector">
@@ -466,7 +479,7 @@ export default class JobsController extends React.Component {
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            {/* <Moment fromNow>{data.created_at}</Moment> */}
+                                            <Moment fromNow>{data.created_at}</Moment>
                                         </div>
                                     </div>
                                 );
@@ -480,17 +493,17 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.facebookid)}
+                                        onClick={e => this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                             <p>
                                                 <span className="postConnector">
@@ -503,7 +516,7 @@ export default class JobsController extends React.Component {
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            {/* <Moment fromNow>{data.created_at}</Moment> */}
+                                            <Moment fromNow>{data.created_at}</Moment>
                                         </div>
                                     </div>
                                 );
@@ -516,17 +529,17 @@ export default class JobsController extends React.Component {
                                 return (
 
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.facebookid)}
+                                        onClick={e => this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
                                         <div className="flexContainer">
                                             <div className="postIcons">
-                                                {data.facebookid === this.state.user.id &&
+                                                {data.id_user === this.state.user.id &&
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.facebookid !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                                 {data.whoreported && data.whoreported.length && data.whoreported.length > 10 && <div data-tooltip={this.context.main.tooltip2}> <img className="flag" src="flag.png" /></div>}
 
                                             </div>
@@ -540,7 +553,7 @@ export default class JobsController extends React.Component {
                                         </div>
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            {/* <Moment className="postMomentChild" fromNow>{data.created_at}</Moment> */}
+                                            <Moment className="postMomentChild" fromNow>{data.created_at}</Moment> 
                                         </div>
                                     </div>
 
@@ -549,8 +562,9 @@ export default class JobsController extends React.Component {
                         })}
                 </div>
             </div>
+            </BodyComponent>
         );
     }
 }
 
-//Jobs.contextType = LanguageContext;
+JobsController.contextType = LanguageContext;

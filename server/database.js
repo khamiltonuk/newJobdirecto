@@ -10,7 +10,7 @@ const db = spicedPg(dbUrl);
 var bcrypt = require("bcryptjs");
 
 exports.publishJob = function(
-    facebookId,
+    id_user,
     restname,
     jobtype,
     hourpay,
@@ -21,18 +21,19 @@ exports.publishJob = function(
     area,
     phone,
     extrainfo,
-    urgent
+    urgent,
+    active=true
 ) {
     return db
         .query(
             `
         INSERT INTO jobs
-        (facebookId, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        (id_user, restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType, active)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
         returning *;
         `,
             [
-                facebookId,
+                id_user,
                 restname,
                 jobtype,
                 hourpay,
@@ -44,11 +45,12 @@ exports.publishJob = function(
                 phone,
                 extrainfo,
                 urgent,
-                "job"
+                "job",
+                active
             ]
         )
         .then(function(results) {
-            return results.rows;
+            return results.rows[0];
         });
 };
 
@@ -63,14 +65,15 @@ exports.publishJobNoUser = function(
     area,
     phone,
     extrainfo,
-    urgent
+    urgent,
+    active=true
 ) {
     return db
         .query(
             `
         INSERT INTO jobs
-        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, urgent, postType, active)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         returning *;
         `,
             [
@@ -85,11 +88,12 @@ exports.publishJobNoUser = function(
                 phone,
                 extrainfo,
                 urgent,
-                "job"
+                "job",
+                active
             ]
         )
         .then(function(results) {
-            return results.rows;
+            return results.rows[0];
         });
 };
 
@@ -330,7 +334,7 @@ exports.findOrCreateFacebookUser = function(id, name) {
             .query(
                 `
                   INSERT INTO users
-                  (id, name)
+                  (facebookId, name)
                   VALUES ($1, $2)
                   returning *;
                   `,
@@ -343,7 +347,7 @@ exports.findOrCreateFacebookUser = function(id, name) {
 };
 
 exports.getFacebookUser = function(id) {
-    return db.query(`SELECT * FROM users WHERE id = $1`, [id]).then(results => {
+    return db.query(`SELECT * FROM users WHERE facebookId = $1`, [id]).then(results => {
         return results.rows[0];
     });
 };
@@ -451,6 +455,7 @@ exports.getJobs = function() {
         .query(
             `SELECT *
         FROM jobs
+        WHERE active = TRUE
         ORDER BY id DESC
         LIMIT 100
         ;`

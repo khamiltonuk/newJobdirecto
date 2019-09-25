@@ -9,14 +9,17 @@ const cors = require("cors");
 const path = require('path');
 FacebookStrategy = require("passport-facebook").Strategy;
 let fbSecret;
+let fbclient
 let callback_URL;
 if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
+    fbclient = 1227008554140703
     callback_URL = process.env.CALLBACK_URL;
 } else {
     let secrets = require("./secrets.json");
     fbSecret = `${secrets.facebookSecret}`;
-    callback_URL = "http://localhost:8080/facebook/callback";
+    fbclient = secrets.facebookClient;
+    callback_URL = "http://localhost:6543/facebook/callback";
 }
 
 app.use(
@@ -60,7 +63,7 @@ app.use(
 passport.use(
     new FacebookStrategy(
         {
-            clientID: 1227008554140703,
+            clientID: fbclient,
             clientSecret: fbSecret,
             // callbackURL: "http://localhost:8080/facebook/callback"
             // callbackURL: "https://www.jobdirecto.com/facebook/callback"
@@ -72,7 +75,7 @@ passport.use(
             return database
                 .findOrCreateFacebookUser(profile.id, profile.displayName)
                 .then(user => {
-                    done(null, profile);
+                    done(null, user[0]);
                 });
         }
     )
@@ -80,6 +83,7 @@ passport.use(
 
 // console logs these user and user ids in the different functions, see wat happens
 passport.serializeUser(function(user, done) {
+    console.log(user);
     done(null, user);
 });
 
@@ -104,10 +108,10 @@ app.get("/loginFacebook", passport.authenticate("facebook"));
 app.get(
     "/facebook/callback",
     passport.authenticate("facebook", {
-        failureRedirect: "/login"
+        failureRedirect: "/#/login"
     }),
     function(req, res) {
-        res.redirect("/");
+        res.redirect("/#/");
     }
 );
 
@@ -202,6 +206,7 @@ app.get("/getJobs", function(req, res) {
 });
 
 app.get("/getUserStatus", function(req, res) {
+    console.log(req.user);
     if (req.user !== undefined) {
         return database.getUserStatus(req.user.id).then(data => {
             res.json({
@@ -209,6 +214,7 @@ app.get("/getUserStatus", function(req, res) {
             });
         });
     }
+    res.end();
 });
 
 app.get("/getServices", function(req, res) {
@@ -304,9 +310,10 @@ app.post("/wantsToPay", (req, res) => {
 
 app.post("/finalizeJob", (req, res) => {
     req.session.job = req.body;
+    console.log(req.user);
     if (req.user === undefined) {
         return database
-            .publishJobNoUser2(
+            .publishJobNoUser(
                 req.body.restname,
                 req.body.jobtype,
                 req.body.hourpay,
@@ -320,14 +327,16 @@ app.post("/finalizeJob", (req, res) => {
                 req.body.urgent,
                 req.session.userId
             )
-            .then(() => {
+            .then((r) => {
+
                 res.json({
-                    success: true
+                    success: true,
+                    response:r.id
                 });
             });
     }
     return database
-        .publishJob2(
+        .publishJob(
             req.user.id,
             req.body.restname,
             req.body.jobtype,
@@ -342,9 +351,10 @@ app.post("/finalizeJob", (req, res) => {
             req.body.urgent,
             req.session.userId
         )
-        .then(() => {
+        .then((e) => {
             res.json({
-                success: true
+                success: true,
+                response:r.id
             });
         });
 });
@@ -366,11 +376,12 @@ app.post("/publishJob", (req, res) => {
                 req.body.jobData.data.phone,
                 req.body.jobData.data.extrainfo,
                 req.body.jobData.data.urgent,
-                req.session.userId
+                res.body.jobData.data.active
             )
-            .then(() => {
+            .then((r) => {
                 res.json({
-                    success: true
+                    success: true,
+                    response:r.id
                 });
             });
     }
@@ -388,11 +399,12 @@ app.post("/publishJob", (req, res) => {
             req.body.jobData.data.phone,
             req.body.jobData.data.extrainfo,
             req.body.jobData.data.urgent,
-            req.session.userId
+            res.body.jobData.data.active
         )
-        .then(() => {
+        .then((r) => {
             res.json({
-                success: true
+                success: true,
+                response:r.id
             });
         });
 });

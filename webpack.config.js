@@ -82,6 +82,7 @@ const config = {
         ]
     },
     devServer: {
+        disableHostCheck: true, 
         contentBase: './dist',
         host: "0.0.0.0",
         port: 6543,
