@@ -1,9 +1,5 @@
 import React from "react";
 import axios from "axios";
-//import ModalJob from "./modalJob";
-//import ModalPeople from "./modalPeople";
-//import DeleteModal from "./deleteModal.js";
-//import PremiumModal from "./premiumModal.js";
 import Moment from "react-moment";
 import "moment/locale/es";
 import { BodyComponent } from "../../components/Body/BodyComponent";
@@ -57,7 +53,7 @@ export default class JobsController extends React.Component {
             withCredentials: true
         }).then(result => {
             this.setState({ user: result.data }, () => {
-                console.log(this.state.user.id)
+                
             });
             
         });
@@ -74,18 +70,18 @@ export default class JobsController extends React.Component {
     getJobs() {
         axios.get("/getJobs").then(result => {
             this.setState({ jobData: result.data }, () => {
-                console.log("all active jobs", result.data);
+                
             });
         });
     }
 
     getUserStatus() {
-        console.log("getuser status called")
+        
         axios.get("/getUserStatus").then(result => {
-            console.log(result);
+            
             if(result.data){
                 this.setState({ userStatus: result.data }, () => {
-                    console.log("user status in getUserStatus(): ", this.state.userStatus.data)
+                    
                 });
             }
         });
@@ -133,7 +129,7 @@ export default class JobsController extends React.Component {
     showPremium() {
         document.body.classList.add('lockBackground')
 
-        console.log("oh im in jobs now Im outside")
+        
         this.setState({
             showPremiumModal: true,
         });
@@ -142,7 +138,7 @@ export default class JobsController extends React.Component {
 
     showDeleteModal(event, id, posttype, userstatus) {
         event.preventDefault();
-        console.log("showdeletemodal", id, posttype, userstatus)
+        
         document.body.classList.add('lockBackground')
         event.stopPropagation();
         this.setState({
