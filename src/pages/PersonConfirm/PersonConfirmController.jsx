@@ -3,7 +3,7 @@ import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
 import { Link } from "../../utils/router";
 
-export class PersonConfirm extends React.Component {
+export default class PersonConfirm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
