@@ -10,8 +10,8 @@ function StripeButton3() {
     if (window.location.hostname == "localhost") {
         stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
         itemArray = "plan_FerG4ShuM9GS8D";
-        successUrl = "//localhost:8080/premiumSet";
-        failUrl = "//localhost:8080/StripeButton";
+        successUrl = "//localhost:6543/premiumSet";
+        failUrl = "//localhost:6543/StripeButton";
     } else {
         stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
         itemArray = "plan_Fer31qkbJx0UYm";

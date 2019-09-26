@@ -4,14 +4,13 @@ import { useContext } from "react";
 import { LanguageContext } from "../Language/LanguageContext";
 
 function StripeButton(props) {
-    
     let stripeKey, itemArray, successUrl, failUrl;
 
     if (window.location.hostname == "localhost") {
         stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
         itemArray = "sku_Fdr59otEvaL6b7";
-        successUrl = "//localhost:8080/jobConfirm";
-        failUrl = "//localhost:8080/StripeButton";
+        successUrl = "//localhost:6543/jobConfirm";
+        failUrl = "//localhost:6543/StripeButton";
     } else {
         stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
         itemArray = "sku_FdasqwNe7sxEJj";
@@ -32,7 +31,7 @@ function StripeButton(props) {
                 successUrl: window.location.protocol + successUrl,
 
                 cancelUrl: window.location.protocol + failUrl,
-                clientReferenceId:props.transactionId
+                clientReferenceId: props.transactionId
             })
             .then(result => {
                 if (result.error) {
