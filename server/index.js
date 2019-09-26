@@ -238,47 +238,7 @@ app.get("/getPeople", function(req, res) {
 app.post("/finalizePerson", (req, res) => {
     req.session.personAd = req.body;
     console.log("req body in finalize: ", req.body);
-    if (req.user === undefined) {
-        return database
-            .publishPersonNoUser2(
-                req.body.personName,
-                req.body.personStatus,
-                req.body.personSkill,
-                req.body.personExperience,
-                req.body.personSchedule,
-                req.body.personArea,
-                req.body.personNumber,
-                req.body.personExtraInfo,
-                req.session.userId
-            )
-            .then(() => {
-                res.json({
-                    success: true
-                });
-            });
-    }
-    return database
-        .publishPerson2(
-            req.user.id,
-            req.body.personName,
-            req.body.personStatus,
-            req.body.personSkill,
-            req.body.personExperience,
-            req.body.personSchedule,
-            req.body.personArea,
-            req.body.personNumber,
-            req.body.personExtraInfo,
-            req.session.userId
-        )
-        .then(() => {
-            res.json({
-                success: true
-            });
-        });
-});
 
-app.post("/finalizeService", (req, res) => {
-    req.session.service = req.body;
     res.json({
         success: true
     });
