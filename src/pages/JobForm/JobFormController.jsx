@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "../../utils/router";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 export default class JobForm extends React.Component {
     constructor(props) {
@@ -61,6 +62,7 @@ export default class JobForm extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="jobForm">
                 <form onSubmit={this.handleSubmit}>
                     <h1 id="formTitle" className="heading-1">
@@ -363,6 +365,7 @@ export default class JobForm extends React.Component {
                     <br />
                 </form>
             </div>
+            </BodyComponent>
         );
     }
 }

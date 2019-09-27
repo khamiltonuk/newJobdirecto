@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 
 
@@ -19,6 +20,7 @@ export default class LoginController extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="container">
 
                 <h2 className="heading-1">{this.context.login.title}</h2>
@@ -26,6 +28,7 @@ export default class LoginController extends React.Component {
                 <div className="facebookContainer">
                     <button   ><a id="facebook-button" href="/loginFacebook" >{this.context.login.button}</a></button>
                 </div>  </div>
+                </BodyComponent>
         );
     }
 }

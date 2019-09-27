@@ -1,11 +1,13 @@
 import React from "react";
 import StripeButton3 from "../../components/StripeButton3/StripeButton3";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 
 export default class PremiumBuy extends React.Component {
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="container">
                 <p className="text">
                     {" "}
@@ -34,6 +36,7 @@ export default class PremiumBuy extends React.Component {
                     </div>
                 </div>
             </div>
+            </BodyComponent>
         );
     }
 }

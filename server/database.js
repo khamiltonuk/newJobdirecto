@@ -393,7 +393,7 @@ exports.whoHasReported = function(id) {
     console.log("gimme that array");
     return db
         .query(
-            `SELECT whoreported FROM jobs WHERE id = $1;
+            `SELECT COUNT(*) as whoreported FROM job_reporter WHERE id_job = $1;
         ;`,
             [id]
         )

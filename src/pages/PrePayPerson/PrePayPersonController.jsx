@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import StripeButton2 from "../../components/StripeButton2/StripeButton2";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 export default class PrePayPerson extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ export default class PrePayPerson extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="container">
                 <br />
                 <br />
@@ -51,6 +53,7 @@ export default class PrePayPerson extends React.Component {
                     </div>
                 </div>
             </div>
+            </BodyComponent>
         );
     }
 }

@@ -112,6 +112,15 @@ app.get(
     }),
     function(req, res) {
         res.redirect("/#/");
+    },
+    // these errors occur when the user logs in twice with the same token
+    function(err,req,res,next) {
+        // You could put your own behavior in here, fx: you could force auth again...
+        // res.redirect('/auth/facebook/');
+        
+        if(err) {
+            console.log({message: err.message})
+        }
     }
 );
 
@@ -376,7 +385,7 @@ app.post("/publishJob", (req, res) => {
                 req.body.jobData.data.phone,
                 req.body.jobData.data.extrainfo,
                 req.body.jobData.data.urgent,
-                res.body.jobData.data.active
+                req.body.jobData.data.active
             )
             .then((r) => {
                 res.json({
@@ -399,7 +408,7 @@ app.post("/publishJob", (req, res) => {
             req.body.jobData.data.phone,
             req.body.jobData.data.extrainfo,
             req.body.jobData.data.urgent,
-            res.body.jobData.data.active
+            req.body.jobData.data.active
         )
         .then((r) => {
             res.json({

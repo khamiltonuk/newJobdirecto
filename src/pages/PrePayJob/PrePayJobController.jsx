@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext.jsx";
 import StripeButton from "../../components/StripeButton/StripeButton.jsx";
+import { BodyComponent } from "../../components/Body/BodyComponent.jsx";
 
 
 
@@ -30,6 +31,7 @@ export default class PrePayJob extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="container">
                 <h1 className="heading-1">{this.context.jobPayPage.title}</h1>
                 <img className="prePayPics" src="topPost.png" alt="" />
@@ -54,6 +56,7 @@ export default class PrePayJob extends React.Component {
                     </div>
                 </div>
             </div>
+            </BodyComponent>
         );
     }
 }
