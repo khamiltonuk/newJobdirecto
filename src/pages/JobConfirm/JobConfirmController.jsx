@@ -1,10 +1,8 @@
 import React from "react";
-
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
 import { Link } from "../../utils/router";
 import { BodyComponent } from "../../components/Body/BodyComponent";
-
 
 export default class JobConfirm extends React.Component {
     constructor(props) {
@@ -23,8 +21,7 @@ export default class JobConfirm extends React.Component {
         } else {
             this.setState({
                 jobData: {
-                    data:
-                    {
+                    data: {
                         ...this.props.navigation.state,
                         active: true
                     }
@@ -56,7 +53,6 @@ export default class JobConfirm extends React.Component {
         axios.post("/minusCounter").then(resp => {
             console.log("/minus meow");
         });
-
     }
 
     render() {
@@ -72,10 +68,11 @@ export default class JobConfirm extends React.Component {
                         {this.context.jobConfirm.title}
                     </h1>
 
-
                     <table>
                         <tr>
-                            <td className="jobDetailsText">{this.context.jobConfirm.name}</td>
+                            <td className="jobDetailsText">
+                                {this.context.jobConfirm.name}
+                            </td>
                             <td className="jobDetailsText">
                                 {this.state.jobData.data.restname}
                             </td>
@@ -147,12 +144,10 @@ export default class JobConfirm extends React.Component {
                         </tr>
                     </table>
 
-
                     <div className="confirmButtons">
                         {/*  <Link to="/jobForm">
               <input className="btn-secondary" type="submit" value="Corregir" />
             </Link>*/}
-
 
                         <Link to="/">
                             <input
@@ -163,8 +158,9 @@ export default class JobConfirm extends React.Component {
                             />
                         </Link>
                     </div>
-                    <div className="contactInfo"><p>{this.context.contactInfo.contactInfo}</p></div>
-
+                    <div className="contactInfo">
+                        <p>{this.context.contactInfo.contactInfo}</p>
+                    </div>
                 </form>
             </div>
             </BodyComponent>

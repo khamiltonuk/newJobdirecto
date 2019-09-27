@@ -6,14 +6,14 @@ const cookieSession = require("cookie-session");
 const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
 const passport = require("passport");
 const cors = require("cors");
-const path = require('path');
+const path = require("path");
 FacebookStrategy = require("passport-facebook").Strategy;
 let fbSecret;
-let fbclient
+let fbclient;
 let callback_URL;
 if (process.env.FACEBOOK_SECRET !== undefined) {
     fbSecret = process.env.FACEBOOK_SECRET;
-    fbclient = 1227008554140703
+    fbclient = 1227008554140703;
     callback_URL = process.env.CALLBACK_URL;
 } else {
     let secrets = require("./secrets.json");
@@ -30,9 +30,9 @@ app.use(
 );
 app.use(compression());
 
-app.use(express.static(path.join(__dirname, '..','dist')));
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/../dist/index.html'));
+app.use(express.static(path.join(__dirname, "..", "dist")));
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname + "/../dist/index.html"));
 });
 
 if (process.env.NODE_ENV != "production" && false) {
@@ -247,47 +247,7 @@ app.get("/getPeople", function(req, res) {
 app.post("/finalizePerson", (req, res) => {
     req.session.personAd = req.body;
     console.log("req body in finalize: ", req.body);
-    if (req.user === undefined) {
-        return database
-            .publishPersonNoUser2(
-                req.body.personName,
-                req.body.personStatus,
-                req.body.personSkill,
-                req.body.personExperience,
-                req.body.personSchedule,
-                req.body.personArea,
-                req.body.personNumber,
-                req.body.personExtraInfo,
-                req.session.userId
-            )
-            .then(() => {
-                res.json({
-                    success: true
-                });
-            });
-    }
-    return database
-        .publishPerson2(
-            req.user.id,
-            req.body.personName,
-            req.body.personStatus,
-            req.body.personSkill,
-            req.body.personExperience,
-            req.body.personSchedule,
-            req.body.personArea,
-            req.body.personNumber,
-            req.body.personExtraInfo,
-            req.session.userId
-        )
-        .then(() => {
-            res.json({
-                success: true
-            });
-        });
-});
 
-app.post("/finalizeService", (req, res) => {
-    req.session.service = req.body;
     res.json({
         success: true
     });
@@ -336,11 +296,10 @@ app.post("/finalizeJob", (req, res) => {
                 req.body.urgent,
                 req.session.userId
             )
-            .then((r) => {
-
+            .then(r => {
                 res.json({
                     success: true,
-                    response:r.id
+                    response: r.id
                 });
             });
     }
@@ -360,15 +319,16 @@ app.post("/finalizeJob", (req, res) => {
             req.body.urgent,
             req.session.userId
         )
-        .then((e) => {
+        .then(e => {
             res.json({
                 success: true,
-                response:r.id
+                response: r.id
             });
         });
 });
 
 app.post("/publishJob", (req, res) => {
+    console.log("req body", req.body);
     req.session.job = null;
 
     if (req.user === undefined) {
@@ -387,10 +347,10 @@ app.post("/publishJob", (req, res) => {
                 req.body.jobData.data.urgent,
                 req.body.jobData.data.active
             )
-            .then((r) => {
+            .then(r => {
                 res.json({
                     success: true,
-                    response:r.id
+                    response: r.id
                 });
             });
     }
@@ -410,10 +370,10 @@ app.post("/publishJob", (req, res) => {
             req.body.jobData.data.urgent,
             req.body.jobData.data.active
         )
-        .then((r) => {
+        .then(r => {
             res.json({
                 success: true,
-                response:r.id
+                response: r.id
             });
         });
 });
@@ -507,6 +467,5 @@ app.get("/deleteService/:id", function(req, res) {
 /* app.get("*", function(req, res) {
     res.redirect("https://" + req.headers.host + req.url);
 }); */
-
 
 app.listen(process.env.PORT || 8081);

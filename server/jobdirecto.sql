@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS jobs;
 DROP TABLE IF EXISTS personas;
-DROP TABLE IF EXISTS services;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS cc;
 DROP TABLE If EXISTS job_reporter;
@@ -20,16 +19,6 @@ CREATE TABLE cities_area(
     id_city INT
 );
 
-CREATE TABLE services(
-    id SERIAL PRIMARY KEY,
-    serviceOwner VARCHAR(300),
-    serviceOffered VARCHAR(300),
-    serviceArea VARCHAR(300),
-    serviceNumber VARCHAR(1300),
-    serviceExtraInfo VARCHAR(1300),
-    id_user INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 
 CREATE TABLE users(

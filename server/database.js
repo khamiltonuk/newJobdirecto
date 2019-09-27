@@ -22,7 +22,7 @@ exports.publishJob = function(
     phone,
     extrainfo,
     urgent,
-    active=true
+    active = true
 ) {
     return db
         .query(
@@ -66,7 +66,7 @@ exports.publishJobNoUser = function(
     phone,
     extrainfo,
     urgent,
-    active=true
+    active = true
 ) {
     return db
         .query(
@@ -253,77 +253,77 @@ exports.publishPersonNoUser = function(
         });
 };
 
-exports.publishPerson2 = function(
-    facebookId,
-    personName,
-    personStatus,
-    personSkill,
-    personExperience,
-    personSchedule,
-    personArea,
-    personNumber,
-    personExtraInfo
-) {
-    return db
-        .query(
-            `
-        INSERT INTO personas2
-        (facebookId, personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo, postType)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-        returning *;
-        `,
-            [
-                facebookId,
-                personName,
-                personStatus,
-                personSkill,
-                personExperience,
-                personSchedule,
-                personArea,
-                personNumber,
-                personExtraInfo,
-                "person"
-            ]
-        )
-        .then(function(results) {
-            return results.rows;
-        });
-};
+// exports.publishPerson2 = function(
+//     facebookId,
+//     personName,
+//     personStatus,
+//     personSkill,
+//     personExperience,
+//     personSchedule,
+//     personArea,
+//     personNumber,
+//     personExtraInfo
+// ) {
+//     return db
+//         .query(
+//             `
+//         INSERT INTO personas2
+//         (facebookId, personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo, postType)
+//         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+//         returning *;
+//         `,
+//             [
+//                 facebookId,
+//                 personName,
+//                 personStatus,
+//                 personSkill,
+//                 personExperience,
+//                 personSchedule,
+//                 personArea,
+//                 personNumber,
+//                 personExtraInfo,
+//                 "person"
+//             ]
+//         )
+//         .then(function(results) {
+//             return results.rows;
+//         });
+// };
 
-exports.publishPersonNoUser2 = function(
-    personName,
-    personStatus,
-    personSkill,
-    personExperience,
-    personSchedule,
-    personArea,
-    personNumber,
-    personExtraInfo
-) {
-    return db
-        .query(
-            `
-        INSERT INTO personas2
-        ( personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo, postType)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        returning *;
-        `,
-            [
-                personName,
-                personStatus,
-                personSkill,
-                personExperience,
-                personSchedule,
-                personArea,
-                personNumber,
-                personExtraInfo,
-                "person"
-            ]
-        )
-        .then(function(results) {
-            return results.rows;
-        });
-};
+// exports.publishPersonNoUser2 = function(
+//     personName,
+//     personStatus,
+//     personSkill,
+//     personExperience,
+//     personSchedule,
+//     personArea,
+//     personNumber,
+//     personExtraInfo
+// ) {
+//     return db
+//         .query(
+//             `
+//         INSERT INTO personas2
+//         ( personName, personStatus, personSkill, personExperience, personSchedule, personArea, personNumber, personExtraInfo, postType)
+//         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+//         returning *;
+//         `,
+//             [
+//                 personName,
+//                 personStatus,
+//                 personSkill,
+//                 personExperience,
+//                 personSchedule,
+//                 personArea,
+//                 personNumber,
+//                 personExtraInfo,
+//                 "person"
+//             ]
+//         )
+//         .then(function(results) {
+//             return results.rows;
+//         });
+// };
 
 exports.findOrCreateFacebookUser = function(id, name) {
     return exports.getFacebookUser(id).then(user => {
@@ -347,9 +347,11 @@ exports.findOrCreateFacebookUser = function(id, name) {
 };
 
 exports.getFacebookUser = function(id) {
-    return db.query(`SELECT * FROM users WHERE facebookId = $1`, [id]).then(results => {
-        return results.rows[0];
-    });
+    return db
+        .query(`SELECT * FROM users WHERE facebookId = $1`, [id])
+        .then(results => {
+            return results.rows[0];
+        });
 };
 
 exports.setPremium = function(id) {
