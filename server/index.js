@@ -112,6 +112,15 @@ app.get(
     }),
     function(req, res) {
         res.redirect("/#/");
+    },
+    // these errors occur when the user logs in twice with the same token
+    function(err,req,res,next) {
+        // You could put your own behavior in here, fx: you could force auth again...
+        // res.redirect('/auth/facebook/');
+        
+        if(err) {
+            console.log({message: err.message})
+        }
     }
 );
 
@@ -171,6 +180,14 @@ app.post("/reportPost/:id", function(req, res) {
         });
     });
 });
+
+app.get("/getCountry",function(req,res){
+    return database.getCountry().then(data=>{
+        res.json({
+            data
+        });
+    })
+})
 
 app.get("/getServiceDetails/:id", function(req, res) {
     return database.getServiceInfo(req.params.id).then(data => {
@@ -270,7 +287,6 @@ app.post("/wantsToPay", (req, res) => {
 
 app.post("/finalizeJob", (req, res) => {
     req.session.job = req.body;
-    console.log(req.user);
     if (req.user === undefined) {
         return database
             .publishJobNoUser(
@@ -319,9 +335,14 @@ app.post("/finalizeJob", (req, res) => {
 });
 
 app.post("/publishJob", (req, res) => {
-    console.log("req body", req.body);
     req.session.job = null;
-
+    if(req.body.jobData.data.id){
+        return database.markActive(req.body.jobData.data.id).then(r=>{
+            res.json({
+                success: true,
+            })
+        });
+    }
     if (req.user === undefined) {
         return database
             .publishJobNoUser(
@@ -336,7 +357,7 @@ app.post("/publishJob", (req, res) => {
                 req.body.jobData.data.phone,
                 req.body.jobData.data.extrainfo,
                 req.body.jobData.data.urgent,
-                res.body.jobData.data.active
+                req.body.jobData.data.active
             )
             .then(r => {
                 res.json({
@@ -359,7 +380,7 @@ app.post("/publishJob", (req, res) => {
             req.body.jobData.data.phone,
             req.body.jobData.data.extrainfo,
             req.body.jobData.data.urgent,
-            res.body.jobData.data.active
+            req.body.jobData.data.active
         )
         .then(r => {
             res.json({
@@ -372,7 +393,13 @@ app.post("/publishJob", (req, res) => {
 app.post("/publishPerson", (req, res) => {
     req.session.personAd = null;
     console.log("req body in finalize: ", req.body);
-
+    if(req.body.personData.data.id){
+        return database.markActivePerson(req.body.personData.data.id).then(r=>{
+            res.json({
+                success: true,
+            })
+        });
+    }
     if (req.user === undefined) {
         return database
             .publishPersonNoUser(
@@ -384,11 +411,12 @@ app.post("/publishPerson", (req, res) => {
                 req.body.personData.data.personArea,
                 req.body.personData.data.personNumber,
                 req.body.personData.data.personExtraInfo,
-                req.session.userId
+                req.body.personData.data.active
             )
-            .then(() => {
+            .then((r) => {
                 res.json({
-                    success: true
+                    success: true,
+                    response: r.id
                 });
             });
     }
@@ -403,11 +431,12 @@ app.post("/publishPerson", (req, res) => {
             req.body.personData.data.personArea,
             req.body.personData.data.personNumber,
             req.body.personData.data.personExtraInfo,
-            req.session.userId
+            req.body.personData.data.active
         )
-        .then(() => {
+        .then((r) => {
             res.json({
-                success: true
+                success: true,
+                response: r.id
             });
         });
 });
@@ -448,6 +477,34 @@ app.get("/deleteService/:id", function(req, res) {
             data
         });
         req.session.serviceOwner = data.serviceOwner;
+    });
+});
+app.post("/createJobTransaction",function(req,res){
+    return database.createTransaction(req.body.id,"JOB",10.00).then(r=>{
+        res.json({
+            r
+        });
+    })
+});
+app.post("/createPersonTransaction",function(req,res){
+    return database.createTransaction(req.body.id,"PERSON",10.00).then(r=>{
+        res.json({
+            r
+        });
+    });
+});
+app.get("/getJobTrans/:id",function(req,res){
+    return database.getJobFromTransaction(req.params.id).then(r=>{
+        res.json({
+            jobdata:r
+        });
+    });
+});
+app.get("/getPersonTrans/:id",function(req,res){
+    return database.getPersonFromTransaction(req.params.id).then(r=>{
+        res.json({
+            jobdata:r
+        });
     });
 });
 

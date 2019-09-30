@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 export default class PersonForm extends React.Component {
     constructor(props) {
@@ -23,13 +24,12 @@ export default class PersonForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post("/finalizePerson", this.state).then(resp => {
-            this.props.navigation.navigate("/PrePayPerson");
-        });
+        this.props.navigation.navigate("/PrePayPerson",{state:this.state});
     }
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="personForm">
                 <form onSubmit={this.handleSubmit}>
                     <h1 className="heading-1">JobDirecto</h1>
@@ -154,6 +154,7 @@ export default class PersonForm extends React.Component {
                     <br />
                 </form>
             </div>
+            </BodyComponent>
         );
     }
 }

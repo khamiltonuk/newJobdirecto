@@ -16,10 +16,9 @@ CREATE TABLE cities(
 CREATE TABLE cities_area(
     id SERIAL PRIMARY KEY,
     name VARCHAR(300),
+    active bool DEFAULT false,
     id_city INT
 );
-
-
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -73,6 +72,7 @@ CREATE TABLE job_reporter(
 
 CREATE TABLE personas(
     id SERIAL PRIMARY KEY,
+    active bool DEFAULT TRUE,
     personName VARCHAR(300),
     personStatus VARCHAR(300),
     personSkill VARCHAR(300),
@@ -125,3 +125,7 @@ INSERT INTO personas (personName, personStatus, personSkill, personExperience, p
 
 -- someone offering services
 INSERT INTO services (serviceOwner, serviceOffered, serviceNumber, serviceArea, serviceExtraInfo) VALUES ('', '', '', '', '');
+
+INSERT INTO cities (name,prefix) VALUES('MIAMI','MIAMI');
+INSERT INTO cities_area (name,id_city) VALUES('MIAMI',1);
+
