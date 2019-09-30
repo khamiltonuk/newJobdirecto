@@ -22,11 +22,13 @@ let routes = [
     {path:"premiumBuy",component:PremiumBuyController},
     {path:"premiumSet",component:PremiumSetController},
     {path:"JobConfirm",component:JobConfirmController},
+    {path:"JobConfirm/:id",component:JobConfirmController},
     {path:"personForm",component:PersonFormController},
     {path:"jobForm",component:JobFormController},
     {path:"PrePayPerson",component:PrePayPersonController},
     {path:"postType",component:PostTypeController},
     {path:"personConfirm",component:PersonConfirmController},
+    {path:"personConfirm/:id",component:PersonConfirmController},
 ];
 
 ReactDOM.render(<Router routes={routes}  />, document.querySelector("#app"));

@@ -24,9 +24,7 @@ export default class PersonForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post("/finalizePerson", this.state).then(resp => {
-            this.props.navigation.navigate("/PrePayPerson");
-        });
+        this.props.navigation.navigate("/PrePayPerson",{state:this.state});
     }
 
     render() {

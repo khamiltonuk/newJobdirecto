@@ -9,15 +9,21 @@ import { BodyComponent } from "../../components/Body/BodyComponent.jsx";
 export default class PrePayJob extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            transactionId:null,
+        };
         this.cancelUrgency = this.cancelUrgency.bind(this);
         // this.wantsToPay = this.wantsToPay.bind(this);
     }
 
     componentDidMount(){
-        axios.post("/publishJob", {jobData:{data:{...this.props.navigation.state,active:false,urgent:false}}}).then(resp => {
+        axios.post("/publishJob", {jobData:{data:{...this.props.navigation.state,active:false,urgent:true}}}).then(resp => {
             if (resp.data.success) {
-                axios.post("/createTransaction");
+                axios.post("/createJobTransaction",{id:resp.data.response}).then(r=>{
+                    this.setState({
+                        transactionId:r.data.r
+                    })
+                });
             }
         });
     }
@@ -43,7 +49,7 @@ export default class PrePayJob extends React.Component {
                     <br />
                 </p>
                 <div id="urgentCheckedButtons">
-                    <StripeButton />
+                    <StripeButton transactionId={this.state.transactionId} />
                     <br />
                     <button
                         onClick={this.cancelUrgency}

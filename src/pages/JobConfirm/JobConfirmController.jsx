@@ -14,11 +14,19 @@ export default class JobConfirm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        if(this.props.navigation.params.id){
+            return this.props.navigation.navigate("/JobConfirm",{
+                replace:true,
+                state:{
+                    transactionId:this.props.navigation.params.id
+                }
+            })
+        }
         if (!this.props.navigation.state) {
             this.props.navigation.navigate("/jobForm");
             return null;
-        } else {
+        } else if(!this.props.navigation.state.transactionId) {
             this.setState({
                 jobData: {
                     data: {
@@ -27,6 +35,18 @@ export default class JobConfirm extends React.Component {
                     }
                 }
             });
+        }else{
+            let resp = await axios.get(`/getJobTrans/${this.props.navigation.state.transactionId}`);
+            if(resp.data){
+                this.setState({
+                    jobData: {
+                        data: {
+                            ...resp.data.jobdata,
+                            active: true
+                        }
+                    }
+                }); 
+            }
         }
     }
 
@@ -37,21 +57,17 @@ export default class JobConfirm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("aliens");
         event.preventDefault();
         axios.post("/publishJob", { ...this.state }).then(resp => {
-            console.log("common");
             if (resp.data.success) {
-                console.log("success?");
                 this.setState({
                     jobData: ""
                 });
-                //this.props.navigation.navigate("/");
+                this.props.navigation.navigate("/");
             }
         });
 
         axios.post("/minusCounter").then(resp => {
-            console.log("/minus meow");
         });
     }
 
