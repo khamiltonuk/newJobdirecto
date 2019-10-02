@@ -2,12 +2,14 @@ import React from "react";
 import { Link } from "../../utils/router";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 export default class JobForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            otherArea: ""
+            otherArea: "",
+            country:false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +17,26 @@ export default class JobForm extends React.Component {
         this.submission = this.submission.bind(this);
     }
 
+<<<<<<< HEAD
     componentDidMount() {}
+=======
+    componentDidMount() {
+        this.getCountry();
+    }
+    getCountry(){
+        axios({
+            method: 'get',
+            url: '/getCountry',
+            params: {},
+            withCredentials: true
+        }).then(result => {
+            
+            this.setState({
+                country:result.data.data[0],
+            });
+        });
+    }
+>>>>>>> e82d36de693d07e7eb838d44a844d072cc052be7
 
     submission() {
         if (this.state.area === this.context.jobForm.filterOtherArea) {
@@ -61,6 +82,7 @@ export default class JobForm extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="jobForm">
                 <form onSubmit={this.handleSubmit}>
                     <h1 id="formTitle" className="heading-1">
@@ -198,67 +220,9 @@ export default class JobForm extends React.Component {
                         onChange={this.handleChange}
                     >
                         <option value="" />
-                        <option
-                            selected={
-                                this.state.jobData &&
-                                this.state.jobData.data &&
-                                this.state.jobData.data.area == "Manhattan"
-                            }
-                            value="Manhattan"
-                        >
-                            Manhattan
-                        </option>
-                        <option
-                            selected={
-                                this.state.jobData &&
-                                this.state.jobData.data &&
-                                this.state.jobData.data.area == "Brooklyn"
-                            }
-                            value="Brooklyn"
-                        >
-                            Brooklyn
-                        </option>
-                        <option
-                            selected={
-                                this.state.jobData &&
-                                this.state.jobData.data &&
-                                this.state.jobData.data.area == "Bronx"
-                            }
-                            value="Bronx"
-                        >
-                            Bronx
-                        </option>
-                        <option
-                            selected={
-                                this.state.jobData &&
-                                this.state.jobData.data &&
-                                this.state.jobData.data.area == "Queens"
-                            }
-                            value="Queens"
-                        >
-                            Queens
-                        </option>
-                        <option
-                            selected={
-                                this.state.jobData &&
-                                this.state.jobData.data &&
-                                this.state.jobData.data.area == "Staten Island"
-                            }
-                            value="Staten Island"
-                        >
-                            Staten Island
-                        </option>
-                        <option
-                            selected={
-                                this.state.jobData &&
-                                this.state.jobData.data &&
-                                this.state.jobData.data.area ==
-                                    "Otra area en NY"
-                            }
-                            value={this.context.jobForm.filterOtherArea}
-                        >
-                            {this.context.jobForm.filterOtherArea}
-                        </option>
+                        {this.state.country && this.state.country.areas.map(e=>{
+                                return <option value={e.id}>&#160;&#160;{e.name}</option>
+                            })}
                     </select>
                     {this.state.area ===
                         this.context.jobForm.filterOtherArea && (
@@ -372,6 +336,7 @@ export default class JobForm extends React.Component {
                     <br />
                 </form>
             </div>
+            </BodyComponent>
         );
     }
 }

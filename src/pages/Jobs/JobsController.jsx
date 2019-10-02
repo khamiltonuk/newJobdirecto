@@ -23,7 +23,8 @@ export default class JobsController extends React.Component {
             showPremiumModal: false,
             showModalPeople: false,
             user: "true",
-            showDeleteModal: false
+            showDeleteModal: false,
+            country:false,
         };
         this.handleChangeArea = this.handleChangeArea.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,6 +44,7 @@ export default class JobsController extends React.Component {
     }
 
     componentDidMount() {
+        this.getCountry();
         this.getJobs();
         this.getPeople();
         this.getUserStatus();
@@ -56,6 +58,20 @@ export default class JobsController extends React.Component {
                 
             });
             
+        });
+    }
+
+    getCountry(){
+        axios({
+            method: 'get',
+            url: '/getCountry',
+            params: {},
+            withCredentials: true
+        }).then(result => {
+            
+            this.setState({
+                country:result.data.data[0],
+            });
         });
     }
 
@@ -261,7 +277,11 @@ export default class JobsController extends React.Component {
                             name="area"
                             onChange={this.handleChangeArea}
                         >
-                            <option value="">
+                            
+                            {this.state.country && this.state.country.areas.map(e=>{
+                                return <option value={e.id}>&#160;&#160;{e.name}</option>
+                            })}
+                            {/* <option value="">
                                 &#160;&#160;{this.context.main.filterDefault}
                             </option>
                             <option value="Manhattan">&#160;&#160;Manhattan</option>
@@ -271,7 +291,7 @@ export default class JobsController extends React.Component {
                             <option value="Staten Island">&#160;&#160;Staten Island</option>
                             <option value="Otra area en NY">
                                 &#160;&#160;{this.context.main.filterOtherArea}
-                            </option>
+                            </option> */}
                         </select>
                     </form>
                 </div>

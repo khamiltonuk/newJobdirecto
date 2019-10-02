@@ -1,5 +1,6 @@
 import React from "react";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 
 export default class PostType extends React.Component {
@@ -35,6 +36,7 @@ export default class PostType extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
                     <h1 className="heading-1">{this.context.postType.title}</h1>
@@ -79,6 +81,7 @@ export default class PostType extends React.Component {
                     />
                 </form>
             </div>
+            </BodyComponent>
         );
     }
 }

@@ -3,19 +3,19 @@ import axios from "axios";
 import { useContext } from "react";
 import { LanguageContext } from "../Language/LanguageContext";
 
-function StripeButton2(event) {
+function StripeButton2(props) {
     let stripeKey, itemArray, successUrl, failUrl;
 
     if (window.location.hostname == "localhost") {
         stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
         itemArray = "sku_Fdr59otEvaL6b7";
-        successUrl = "//localhost:6543/#/personConfirm";
-        failUrl = "//localhost:6543/#/StripeButton";
+        successUrl = `//${location.host}/#/personConfirm/${props.transactionId}`;
+        failUrl = `//${location.host}/#/StripeButton`;
     } else {
         stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
         itemArray = "sku_Fdanz5rW5EBFPX";
-        successUrl = "//www.jobdirecto.com/personConfirm";
-        failUrl = "//www.jobdirecto.com/StripeButton";
+        successUrl = `//${location.host}/#/personConfirm/${props.transactionId}`;
+        failUrl = `//${location.host}/#/StripeButton`;
     }
 
     const context = useContext(LanguageContext);
@@ -24,12 +24,13 @@ function StripeButton2(event) {
 
     const [error, setError] = useState();
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         stripe
             .redirectToCheckout({
                 items: [{ sku: itemArray, quantity: 1 }],
                 successUrl: window.location.protocol + successUrl,
-                cancelUrl: window.location.protocol + failUrl
+                cancelUrl: window.location.protocol + failUrl,
+                clientReferenceId: props.transactionId
             })
             .then(result => {
                 if (result.error) {

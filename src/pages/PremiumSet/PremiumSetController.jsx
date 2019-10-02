@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 
 export default class PremiumSet extends React.Component {
@@ -40,6 +41,7 @@ export default class PremiumSet extends React.Component {
 
     render() {
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="container">
                 <p className="text">
                     {" "}
@@ -59,6 +61,7 @@ export default class PremiumSet extends React.Component {
                     </div>
                 </div>
             </div>
+            </BodyComponent>
         );
     }
 }

@@ -127,7 +127,7 @@ export class Router extends Component{
 
     render(){
         return (<div>
-            <Suspense fallback={this.state.lastComponent}>
+            <Suspense fallback={<Emptydiv/>}> {/* Error loading component */}
                 <LanguageContext.Provider value={this.state.languages}>
                     {this.state.actualComponent}
                 </LanguageContext.Provider>

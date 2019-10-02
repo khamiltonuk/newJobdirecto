@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { LanguageContext } from "../../components/Language/LanguageContext";
 import { Link } from "../../utils/router";
+import { BodyComponent } from "../../components/Body/BodyComponent";
 
 export default class PersonConfirm extends React.Component {
     constructor(props) {
@@ -13,8 +14,41 @@ export default class PersonConfirm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        axios.get("/getPersonInfo").then(result => {
+    async componentDidMount() {
+        if(this.props.navigation.params.id){
+            return this.props.navigation.navigate("/personConfirm",{
+                replace:true,
+                state:{
+                    transactionId:this.props.navigation.params.id
+                }
+            })
+        }
+        if (!this.props.navigation.state) {
+            this.props.navigation.navigate("/personForm");
+            return null;
+        } else if(!this.props.navigation.state.transactionId) {
+            this.setState({
+                personData: {
+                    data: {
+                        ...this.props.navigation.state,
+                        active: true
+                    }
+                }
+            });
+        }else{
+            let resp = await axios.get(`/getPersonTrans/${this.props.navigation.state.transactionId}`);
+            if(resp.data){
+                this.setState({
+                    personData: {
+                        data: {
+                            ...resp.data.jobdata,
+                            active: true
+                        }
+                    }
+                }); 
+            }
+        }
+        /* axios.get("/getPersonInfo").then(result => {
             if (result.data.success == false) {
                 return null;
             } else {
@@ -22,7 +56,7 @@ export default class PersonConfirm extends React.Component {
                     personData: result.data
                 });
             }
-        });
+        }); */
     }
 
     handleChange(event) {
@@ -39,7 +73,7 @@ export default class PersonConfirm extends React.Component {
                 this.setState({
                     personData: ""
                 });
-                this.props.history.push("/");
+                this.props.navigation.navigate("/");
             }
         });
     }
@@ -48,8 +82,10 @@ export default class PersonConfirm extends React.Component {
         if (!this.state.personData) {
             return null;
         }
+        console.log(this.state.personData);
 
         return (
+            <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="jobConfirmPage">
                 <form onSubmit={this.handleSubmit}>
                     <h1 className="confirmTitle heading-1">
@@ -59,13 +95,13 @@ export default class PersonConfirm extends React.Component {
                         <tr>
                             <td className="jobDetailsText">Nombre:</td>
                             <td className="jobDetailsText">
-                                {this.state.personData.data.personName}
+                                {this.state.personData.data.personname}
                             </td>
                         </tr>
                         <tr>
                             <td className="jobDetailsText">Busca de:</td>
                             <td className="jobDetailsText">
-                                {this.state.personData.data.personSkill}
+                                {this.state.personData.data.personskill}
                             </td>
                         </tr>
 
@@ -74,7 +110,7 @@ export default class PersonConfirm extends React.Component {
                                 Area de preferencia:
                             </td>
                             <td className="jobDetailsText">
-                                {this.state.personData.data.personArea}
+                                {this.state.personData.data.personarea}
                             </td>
                         </tr>
                         <tr>
@@ -82,19 +118,19 @@ export default class PersonConfirm extends React.Component {
                                 Horario de preferencia:
                             </td>
                             <td className="jobDetailsText">
-                                {this.state.personData.data.personSchedule}
+                                {this.state.personData.data.personschedule}
                             </td>
                         </tr>
                         <tr>
                             <td className="jobDetailsText">Numero:</td>
                             <td className="jobDetailsText">
-                                {this.state.personData.data.personNumber}
+                                {this.state.personData.data.personnumber}
                             </td>
                         </tr>
                         <tr>
                             <td className="jobDetailsText">Mas informacion:</td>
                             <td className="jobDetailsText">
-                                {this.state.personData.data.personExtraInfo}
+                                {this.state.personData.data.personextrainfo}
                             </td>
                         </tr>
                     </table>
@@ -116,6 +152,7 @@ export default class PersonConfirm extends React.Component {
                     </div>
                 </form>
             </div>
+            </BodyComponent>
         );
     }
 }
