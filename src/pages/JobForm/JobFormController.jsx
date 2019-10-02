@@ -15,9 +15,7 @@ export default class JobForm extends React.Component {
         this.submission = this.submission.bind(this);
     }
 
-    componentDidMount() {
-        
-    }
+    componentDidMount() {}
 
     submission() {
         if (this.state.area === this.context.jobForm.filterOtherArea) {
@@ -53,9 +51,11 @@ export default class JobForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.urgent === true) {
-            this.props.navigation.navigate("/prePayJob",{state:this.state});
+            this.props.navigation.navigate("/prePayJob", { state: this.state });
         } else {
-            this.props.navigation.navigate("/JobConfirm",{state:this.state});
+            this.props.navigation.navigate("/JobConfirm", {
+                state: this.state
+            });
         }
     }
 
@@ -195,7 +195,8 @@ export default class JobForm extends React.Component {
                                 : ""
                         }
                         required="required"
-                        onChange={this.handleChange}>
+                        onChange={this.handleChange}
+                    >
                         <option value="" />
                         <option
                             selected={
@@ -203,7 +204,8 @@ export default class JobForm extends React.Component {
                                 this.state.jobData.data &&
                                 this.state.jobData.data.area == "Manhattan"
                             }
-                            value="Manhattan">
+                            value="Manhattan"
+                        >
                             Manhattan
                         </option>
                         <option
@@ -212,7 +214,8 @@ export default class JobForm extends React.Component {
                                 this.state.jobData.data &&
                                 this.state.jobData.data.area == "Brooklyn"
                             }
-                            value="Brooklyn">
+                            value="Brooklyn"
+                        >
                             Brooklyn
                         </option>
                         <option
@@ -221,7 +224,8 @@ export default class JobForm extends React.Component {
                                 this.state.jobData.data &&
                                 this.state.jobData.data.area == "Bronx"
                             }
-                            value="Bronx">
+                            value="Bronx"
+                        >
                             Bronx
                         </option>
                         <option
@@ -230,7 +234,8 @@ export default class JobForm extends React.Component {
                                 this.state.jobData.data &&
                                 this.state.jobData.data.area == "Queens"
                             }
-                            value="Queens">
+                            value="Queens"
+                        >
                             Queens
                         </option>
                         <option
@@ -239,7 +244,8 @@ export default class JobForm extends React.Component {
                                 this.state.jobData.data &&
                                 this.state.jobData.data.area == "Staten Island"
                             }
-                            value="Staten Island">
+                            value="Staten Island"
+                        >
                             Staten Island
                         </option>
                         <option
@@ -249,7 +255,8 @@ export default class JobForm extends React.Component {
                                 this.state.jobData.data.area ==
                                     "Otra area en NY"
                             }
-                            value={this.context.jobForm.filterOtherArea}>
+                            value={this.context.jobForm.filterOtherArea}
+                        >
                             {this.context.jobForm.filterOtherArea}
                         </option>
                     </select>
@@ -258,7 +265,8 @@ export default class JobForm extends React.Component {
                         <div>
                             <p
                                 className="formQuestions"
-                                style={{ color: "blue" }}>
+                                style={{ color: "blue" }}
+                            >
                                 <b>{this.context.jobForm.extraArea}</b>
                             </p>
                             <input
@@ -306,6 +314,7 @@ export default class JobForm extends React.Component {
                         className="formInputs extraInfo bigInput"
                         type="text"
                         name="extrainfo"
+                        placeholder={this.context.jobForm.extraPlaceholder}
                         defaultValue={
                             this.state.jobData && this.state.jobData.data
                                 ? this.state.jobData.data.extrainfo

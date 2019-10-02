@@ -57,6 +57,8 @@ export const languages = {
             question8: "Numero de celular? (opcional)",
             question9: "Por quien preguntar?",
             question10: "Algo que desee agregar?",
+            extraPlaceholder:
+                "Por ejemplo, que es lo mas importante para este puesto?",
             question11:
                 "Desea que su anuncio tenga color y este por encima del resto? Esto cuesta $10.",
             jobFormButton: "Listo",
@@ -232,6 +234,8 @@ export const languages = {
             question8: "Phone Number (optional)",
             question9: "Contact name",
             question10: "Something you'd like to add?",
+            extraPlaceholder:
+                "For example, what is the ideal profile you are looking for?",
             question11:
                 "Would you like this post to have color and be on top of the rest? This costs $10.",
             jobFormButton: "Finish",
