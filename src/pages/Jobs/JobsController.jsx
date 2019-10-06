@@ -231,6 +231,7 @@ export default class JobsController extends React.Component {
                     <br />
                     <span className="heading-1">{this.context.main.title}</span>
                 </h1>
+		<p className="ambassadorText">{this.context.main.ambassador}</p>
                 {!this.state.user && <Link to="/login"><div className="buttonsAuth" ><img className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
                 {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 
@@ -270,7 +271,12 @@ export default class JobsController extends React.Component {
 
 
                     </div>
-                    <form onSubmit={this.handleSubmit} onSubmit={this.trackCreateJob}>
+                    <form
+                        onSubmit={() => {
+                            this.handleSubmit();
+                            this.trackCreateJob();
+                        }}
+                    >
                         <select
                             className="filter"
                             type="text"
@@ -327,17 +333,26 @@ export default class JobsController extends React.Component {
 
 
                                             <p>
-                                                <span className="posterName">{data.restname} </span>
+                                                <span className="posterName">
+                                                    {data.restname}{" "}
+                                                </span>
                                                 <span className="postConnector paidPostConnector">
                                                     {this.context.main.seeking}{" "}
                                                 </span>
-                                                <span className="posterGoal paidPosterGoal">{data.jobtype}</span>
+                                                <span className="posterGoal paidPosterGoal">
+                                                    {data.jobtype}
+                                                </span>
                                             </p>
                                         </div>
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            <Moment className="postMomentChild" fromNow>{data.created_at}</Moment>
+                                            <Moment
+                                                className="postMomentChild"
+                                                fromNow
+                                            >
+                                                {data.created_at}
+                                            </Moment>
                                         </div>
                                     </div>
                                 );
@@ -367,17 +382,22 @@ export default class JobsController extends React.Component {
                                             </div>
                                         </div>
                                         <p>
-
-                                            <span className="posterName">{data.restname} </span>
+                                            <span className="posterName">
+                                                {data.restname}{" "}
+                                            </span>
                                             <span className="postConnector paidPostConnector">
                                                 {this.context.main.seeking}{" "}
                                             </span>
-                                            <span className="posterGoal paidPosterGoal">{data.jobtype}</span>
+                                            <span className="posterGoal paidPosterGoal">
+                                                {data.jobtype}
+                                            </span>
                                         </p>
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            <Moment fromNow>{data.created_at}</Moment>
+                                            <Moment fromNow>
+                                                {data.created_at}
+                                            </Moment>
                                         </div>
                                     </div>
                                 );
@@ -405,15 +425,22 @@ export default class JobsController extends React.Component {
                                             </div>
                                         </div>
                                         <p>
+                                            <span className="postConnector">
+                                                {data.restname}
+                                            </span>{" "}
                                             <span className="postConnector paidPostConnector">
                                                 {this.context.main.seeking3}{" "}
                                             </span>
-                                            <span className="posterGoal">{data.jobtype}</span>
+                                            <span className="posterGoal">
+                                                {data.jobtype}
+                                            </span>
                                         </p>
 
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            <Moment fromNow>{data.created_at}</Moment>
+                                            <Moment fromNow>
+                                                {data.created_at}
+                                            </Moment>
                                         </div>
                                     </div>
                                 );
@@ -431,7 +458,9 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalPeople(data.id)}
+                                        onClick={e =>
+                                            this.showModalPeople(data.id)
+                                        }
                                         className="postData paidPostData"
                                         key={data.id}
                                     >
@@ -444,17 +473,27 @@ export default class JobsController extends React.Component {
                                                 {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                             <p>
-                                                <span className="posterName">{data.personname}</span>
+                                                <span className="posterName">
+                                                    {data.personname}
+                                                </span>
                                                 <span className="postConnector paidPostConnector">
                                                     {" "}
-                                                    {this.context.main.seeking2}{" "}
+                                                    {
+                                                        this.context.main
+                                                            .seeking2
+                                                    }{" "}
                                                 </span>
-                                                <span className="posterGoal paidPosterGoal"> {data.personskill} </span>
+                                                <span className="posterGoal paidPosterGoal">
+                                                    {" "}
+                                                    {data.personskill}{" "}
+                                                </span>
                                             </p>
                                         </div>
 
                                         <div className="postMoment">
-                                            <Moment fromNow>{data.created_at}</Moment>
+                                            <Moment fromNow>
+                                                {data.created_at}
+                                            </Moment>
                                         </div>
                                     </div>
                                 );
@@ -486,6 +525,9 @@ export default class JobsController extends React.Component {
                                                 {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                             <p>
+                                                <span className="postConnector">
+                                                    {data.restname}
+                                                </span>{" "}
                                                 <span className="postConnector">
                                                     {this.context.main.seeking3}{" "}
                                                 </span>
@@ -522,6 +564,9 @@ export default class JobsController extends React.Component {
                                                 {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                             <p>
+                                                <span className="postConnector">
+                                                    {data.restname}
+                                                </span>{" "}
                                                 <span className="postConnector">
                                                     {this.context.main.seeking3}{" "}
                                                 </span>
@@ -561,15 +606,28 @@ export default class JobsController extends React.Component {
                                             </div>
                                             <p>
                                                 <span className="postConnector">
+                                                    {data.restname}
+                                                </span>{" "}
+                                                <span className="postConnector">
                                                     {" "}
-                                                    {this.context.main.seeking3}{" "}
+                                                    {
+                                                        this.context.main
+                                                            .seeking3
+                                                    }{" "}
                                                 </span>
-                                                <span className="posterGoal">{data.jobtype}</span>
+                                                <span className="posterGoal">
+                                                    {data.jobtype}
+                                                </span>
                                             </p>
                                         </div>
                                         <p className="postArea">{data.area}</p>
                                         <div className="postMoment">
-                                            <Moment className="postMomentChild" fromNow>{data.created_at}</Moment> 
+                                            <Moment
+                                                className="postMomentChild"
+                                                fromNow
+                                            >
+                                                {data.created_at}
+                                            </Moment>
                                         </div>
                                     </div>
 

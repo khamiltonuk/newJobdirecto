@@ -67,7 +67,6 @@ export default class ModalJob extends React.Component {
         if (!this.state.jobData) {
             return null;
         }
-        console.log("state in render", this.state);
         return (
             <div>
                 <div
@@ -152,6 +151,7 @@ export default class ModalJob extends React.Component {
                                 {this.state.jobData.data.area}
                             </td>
                         </tr>
+                        {this.state.jobData.data.phone && (
                         <tr>
                             <td className="jobDetailsText">
                                 {this.context.jobConfirm.phone}
@@ -159,7 +159,7 @@ export default class ModalJob extends React.Component {
                             <td className="jobDetailsText">
                                 {this.state.jobData.data.phone}
                             </td>
-                        </tr>
+                        </tr>)}
                         <tr>
                             <td className="jobDetailsText">
                                 {this.context.jobConfirm.Contact}
