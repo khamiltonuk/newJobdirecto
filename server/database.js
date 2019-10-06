@@ -375,8 +375,12 @@ exports.getUserStatus = function(facebookId) {
         });
 };
 
-exports.getJobInfo = function(id) {
-    return db.query(`SELECT * FROM jobs WHERE id = $1`, [id]).then(results => {
+exports.getJobInfo = function(id, isphone) {
+    let phone = ""
+    if(!isphone){
+        phone = ", null as phone"
+    }
+    return db.query(`SELECT * ${phone} FROM jobs WHERE id = $1`, [id]).then(results => {
         return results.rows[0];
     });
 };
@@ -456,14 +460,18 @@ exports.getJobforCorrect = function(id) {
         });
 };
 
-exports.getJobs = function() {
+exports.getJobs = function(isLimit) {
+    let limit = "";
+    if(isLimit){
+        limit = "LIMIT 5";
+    }
     return db
         .query(
             `SELECT *
         FROM jobs
         WHERE active = TRUE
         ORDER BY id DESC
-        LIMIT 100
+            ${limit}
         ;`
         )
         .then(results => {
@@ -485,14 +493,18 @@ exports.getServices = function() {
         });
 };
 
-exports.getPeople = function() {
+exports.getPeople = function(isLimit) {
+    let limit = "";
+    if(isLimit){
+        limit = "LIMIT 10";
+    }
     return db
         .query(
             `SELECT *
         FROM personas
         WHERE active=true
         ORDER BY id DESC
-        LIMIT 100
+        ${limit}
         ;`
         )
         .then(results => {
