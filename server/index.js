@@ -155,7 +155,11 @@ app.get("/getDate", function(req, res) {
 //app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.get("/getJobDetails/:id", function(req, res) {
-    return database.getJobInfo(req.params.id).then(data => {
+    let phone = false;
+    if(req.user && req.user.premiun){
+        phone = true;
+    }
+    return database.getJobInfo(req.params.id,phone).then(data => {
         res.json({
             data
         });
@@ -199,7 +203,11 @@ app.get("/getServiceDetails/:id", function(req, res) {
 });
 
 app.get("/getPeopleDetails/:id", function(req, res) {
-    return database.getPeopleInfo(req.params.id).then(data => {
+    let phone = false;
+    if(req.user && req.user.premiun){
+        phone = true;
+    }
+    return database.getPeopleInfo(req.params.id,phone).then(data => {
         res.json({
             data
         });
@@ -215,7 +223,12 @@ app.get("/getJobforCorrect", function(req, res) {
 
 app.get("/getJobs", function(req, res) {
     // req.session = null;
-    return database.getJobs().then(data => {
+    let limit = false;
+    if(!req.user || !req.user.premiun){
+        limit = true;
+    }
+    
+    return database.getJobs(limit).then(data => {
         res.json({
             data
         });
@@ -245,7 +258,11 @@ app.get("/getServices", function(req, res) {
 
 app.get("/getPeople", function(req, res) {
     // req.session = null;
-    return database.getPeople().then(data => {
+    let limit = false;
+    if(!req.user || !req.user.premiun){
+        limit = true; 
+    }
+    return database.getPeople(limit).then(data => {
         res.json({
             data
         });
