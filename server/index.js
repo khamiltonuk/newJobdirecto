@@ -203,7 +203,11 @@ app.get("/getServiceDetails/:id", function(req, res) {
 });
 
 app.get("/getPeopleDetails/:id", function(req, res) {
-    return database.getPeopleInfo(req.params.id).then(data => {
+    let phone = false;
+    if(req.user && req.user.premiun){
+        phone = true;
+    }
+    return database.getPeopleInfo(req.params.id,phone).then(data => {
         res.json({
             data
         });

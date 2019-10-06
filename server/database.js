@@ -376,9 +376,9 @@ exports.getUserStatus = function(facebookId) {
 };
 
 exports.getJobInfo = function(id, isphone) {
-    let phone = ""
+    let phone = "";
     if(!isphone){
-        phone = ", null as phone"
+        phone = ", null as phone";
     }
     return db.query(`SELECT * ${phone} FROM jobs WHERE id = $1`, [id]).then(results => {
         return results.rows[0];
@@ -433,9 +433,13 @@ exports.deletePersonPost = function(id) {
 //     db.any('select moveJob($1)', [id]);
 // };
 
-exports.getPeopleInfo = function(id) {
+exports.getPeopleInfo = function(id,isphone) {
+    let phone = "";
+    if(!isphone){
+        phone = ", null as personnumber";
+    }
     return db
-        .query(`SELECT * FROM personas WHERE id = $1`, [id])
+        .query(`SELECT * ${phone} FROM personas WHERE id = $1`, [id])
         .then(results => {
             return results.rows[0];
         });
@@ -496,7 +500,7 @@ exports.getServices = function() {
 exports.getPeople = function(isLimit) {
     let limit = "";
     if(isLimit){
-        limit = "LIMIT 10";
+        limit = "LIMIT 5";
     }
     return db
         .query(
