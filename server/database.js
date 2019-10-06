@@ -500,7 +500,7 @@ exports.getServices = function() {
 exports.getPeople = function(isLimit) {
     let limit = "";
     if(isLimit){
-        limit = "LIMIT 10";
+        limit = "LIMIT 5";
     }
     return db
         .query(
