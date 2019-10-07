@@ -23,8 +23,15 @@ export class BodyComponent extends Component{
         return (<div>
             
             <LanguageButton changeLanguage={this.props.toggleLanguage} />
+            <h1 id="title" className="heading-1">
+                JobDirecto
+                        <br />
+                <span className="heading-1">{this.context.main.title}</span>
+            </h1>
                 {children}
             
             </div>)
     }
 }
+
+BodyComponent.contextType = LanguageContext;

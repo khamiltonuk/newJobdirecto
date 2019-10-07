@@ -93,6 +93,10 @@ passport.deserializeUser(function(obj, done) {
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next){
+    console.log(req.headers);
+    next();
+})
 
 app.get("/user", (req, res) => {
     res.json(req.user);

@@ -151,15 +151,15 @@ export default class ModalJob extends React.Component {
                                 {this.state.jobData.data.area}
                             </td>
                         </tr>
-                        {this.state.jobData.data.phone && (
+                        
                         <tr>
                             <td className="jobDetailsText">
                                 {this.context.jobConfirm.phone}
                             </td>
                             <td className="jobDetailsText">
-                                {this.state.jobData.data.phone}
+                            {this.state.jobData.data.phone ? (this.state.jobData.data.phone) : (<div><button >{this.context.job.viewDetails}</button></div>)}
                             </td>
-                        </tr>)}
+                        </tr>
                         <tr>
                             <td className="jobDetailsText">
                                 {this.context.jobConfirm.Contact}

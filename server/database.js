@@ -377,7 +377,7 @@ exports.getUserStatus = function(facebookId) {
 
 exports.getJobInfo = function(id, isphone) {
     let phone = "";
-    if(!isphone){
+    if(!isphone && false){
         phone = ", null as phone";
     }
     return db.query(`SELECT * ${phone} FROM jobs WHERE id = $1`, [id]).then(results => {
@@ -435,7 +435,7 @@ exports.deletePersonPost = function(id) {
 
 exports.getPeopleInfo = function(id,isphone) {
     let phone = "";
-    if(!isphone){
+    if(!isphone && false){
         phone = ", null as personnumber";
     }
     return db
@@ -466,7 +466,7 @@ exports.getJobforCorrect = function(id) {
 
 exports.getJobs = function(isLimit) {
     let limit = "";
-    if(isLimit){
+    if(isLimit && false){
         limit = "LIMIT 5";
     }
     return db
@@ -499,7 +499,7 @@ exports.getServices = function() {
 
 exports.getPeople = function(isLimit) {
     let limit = "";
-    if(isLimit){
+    if(isLimit && false){
         limit = "LIMIT 5";
     }
     return db

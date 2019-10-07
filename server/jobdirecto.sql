@@ -10,7 +10,8 @@ DROP TABLE If EXISTS temporalAnalytics;
 CREATE TABLE cities(
     id SERIAL PRIMARY KEY,
     name VARCHAR(300),
-    prefix VARCHAR(10)
+    prefix VARCHAR(10),
+    limitation bool DEFAULT false
 );
 
 CREATE TABLE cities_area(
@@ -59,7 +60,8 @@ CREATE TABLE jobs(
     urgent VARCHAR(255),
     postType VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    deleted bool DEFAULT FALSE
+    deleted bool DEFAULT FALSE,
+    id_area INT
 );
 
 CREATE TABLE job_reporter(
@@ -83,7 +85,8 @@ CREATE TABLE personas(
     personExtraInfo VARCHAR(1300),
     id_user INT,
     postType VARCHAR(300),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_area INT
 );
 
 

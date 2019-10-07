@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Router } from "./utils/router";
+import { sessionInit } from "./utils/sessions";
 
 
 const JobsController = React.lazy(_=>import("./pages/Jobs/JobsController"));
@@ -14,6 +15,8 @@ const JobFormController = React.lazy(_=>import("./pages/JobForm/JobFormControlle
 const PrePayPersonController = React.lazy(_=>import("./pages/PrePayPerson/PrePayPersonController"));
 const PostTypeController = React.lazy(_=>import("./pages/PostType/PostTypeController"));
 const PersonConfirmController = React.lazy(_=>import("./pages/PersonConfirm/PersonConfirmController"));
+
+sessionInit();
 
 let routes = [
     {path:"", component:JobsController},
