@@ -300,6 +300,12 @@ td {
     overflow: hidden;
 }
 
+.seeAdress {
+}
+
+.seeAdressDiv {
+}
+
 .deleteModal {
     transform: translate(-50%, -50%);
     position: fixed;
@@ -332,6 +338,17 @@ td {
 } */
 
 .deletePostButton {
+    /* position: relative; */
+    width: 75px;
+    float: right;
+    height: 75px;
+    font-size: 50px;
+    color: white;
+    background-color: #ee18d1;
+    margin-bottom: 20px;
+}
+
+.showMoreButton {
     /* position: relative; */
     width: 75px;
     float: right;
@@ -828,7 +845,8 @@ label {
         padding: 10px;
     }
 
-    .deletePostButton {
+    .deletePostButton,
+    .showMoreButton {
         width: 45px;
         height: 45px;
         font-size: 30px;
