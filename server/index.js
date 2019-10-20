@@ -70,8 +70,6 @@ passport.use(
             callbackURL: callback_URL
         },
         function(accessToken, refreshToken, profile, done) {
-            console.log("accessToken", accessToken);
-            console.log("refreshToken", refreshToken);
             return database
                 .findOrCreateFacebookUser(profile.id, profile.displayName)
                 .then(user => {
@@ -81,9 +79,7 @@ passport.use(
     )
 );
 
-// console logs these user and user ids in the different functions, see wat happens
 passport.serializeUser(function(user, done) {
-    console.log(user);
     done(null, user);
 });
 
@@ -114,12 +110,12 @@ app.get(
         res.redirect("/#/");
     },
     // these errors occur when the user logs in twice with the same token
-    function(err,req,res,next) {
+    function(err, req, res, next) {
         // You could put your own behavior in here, fx: you could force auth again...
         // res.redirect('/auth/facebook/');
-        
-        if(err) {
-            console.log({message: err.message})
+
+        if (err) {
+            console.log({ message: err.message });
         }
     }
 );
@@ -156,10 +152,10 @@ app.get("/getDate", function(req, res) {
 
 app.get("/getJobDetails/:id", function(req, res) {
     let phone = false;
-    if(req.user && req.user.premiun){
+    if (req.user && req.user.premiun) {
         phone = true;
     }
-    return database.getJobInfo(req.params.id,phone).then(data => {
+    return database.getJobInfo(req.params.id, phone).then(data => {
         res.json({
             data
         });
@@ -169,7 +165,6 @@ app.get("/getJobDetails/:id", function(req, res) {
 
 app.get("/whoHasReported/:id", function(req, res) {
     return database.whoHasReported(req.params.id).then(data => {
-        console.log("data where u", data);
         res.json({
             data
         });
@@ -177,7 +172,6 @@ app.get("/whoHasReported/:id", function(req, res) {
 });
 
 app.post("/reportPost/:id", function(req, res) {
-    console.log("got here applepie", req.user.id);
     return database.reportPost(req.params.id, req.user.id).then(data => {
         res.json({
             data
@@ -185,13 +179,13 @@ app.post("/reportPost/:id", function(req, res) {
     });
 });
 
-app.get("/getCountry",function(req,res){
-    return database.getCountry().then(data=>{
+app.get("/getCountry", function(req, res) {
+    return database.getCountry().then(data => {
         res.json({
             data
         });
-    })
-})
+    });
+});
 
 app.get("/getServiceDetails/:id", function(req, res) {
     return database.getServiceInfo(req.params.id).then(data => {
@@ -204,10 +198,10 @@ app.get("/getServiceDetails/:id", function(req, res) {
 
 app.get("/getPeopleDetails/:id", function(req, res) {
     let phone = false;
-    if(req.user && req.user.premiun){
+    if (req.user && req.user.premiun) {
         phone = true;
     }
-    return database.getPeopleInfo(req.params.id,phone).then(data => {
+    return database.getPeopleInfo(req.params.id, phone).then(data => {
         res.json({
             data
         });
@@ -224,10 +218,10 @@ app.get("/getJobforCorrect", function(req, res) {
 app.get("/getJobs", function(req, res) {
     // req.session = null;
     let limit = false;
-    if(!req.user || !req.user.premiun){
+    if (!req.user || !req.user.premiun) {
         limit = true;
     }
-    
+
     return database.getJobs(limit).then(data => {
         res.json({
             data
@@ -236,7 +230,6 @@ app.get("/getJobs", function(req, res) {
 });
 
 app.get("/getUserStatus", function(req, res) {
-    console.log(req.user);
     if (req.user !== undefined) {
         return database.getUserStatus(req.user.id).then(data => {
             res.json({
@@ -259,8 +252,8 @@ app.get("/getServices", function(req, res) {
 app.get("/getPeople", function(req, res) {
     // req.session = null;
     let limit = false;
-    if(!req.user || !req.user.premiun){
-        limit = true; 
+    if (!req.user || !req.user.premiun) {
+        limit = true;
     }
     return database.getPeople(limit).then(data => {
         res.json({
@@ -271,8 +264,6 @@ app.get("/getPeople", function(req, res) {
 
 app.post("/finalizePerson", (req, res) => {
     req.session.personAd = req.body;
-    console.log("req body in finalize: ", req.body);
-
     res.json({
         success: true
     });
@@ -353,11 +344,11 @@ app.post("/finalizeJob", (req, res) => {
 
 app.post("/publishJob", (req, res) => {
     req.session.job = null;
-    if(req.body.jobData.data.id){
-        return database.markActive(req.body.jobData.data.id).then(r=>{
+    if (req.body.jobData.data.id) {
+        return database.markActive(req.body.jobData.data.id).then(r => {
             res.json({
-                success: true,
-            })
+                success: true
+            });
         });
     }
     if (req.user === undefined) {
@@ -409,13 +400,14 @@ app.post("/publishJob", (req, res) => {
 
 app.post("/publishPerson", (req, res) => {
     req.session.personAd = null;
-    console.log("req body in finalize: ", req.body);
-    if(req.body.personData.data.id){
-        return database.markActivePerson(req.body.personData.data.id).then(r=>{
-            res.json({
-                success: true,
-            })
-        });
+    if (req.body.personData.data.id) {
+        return database
+            .markActivePerson(req.body.personData.data.id)
+            .then(r => {
+                res.json({
+                    success: true
+                });
+            });
     }
     if (req.user === undefined) {
         return database
@@ -430,7 +422,7 @@ app.post("/publishPerson", (req, res) => {
                 req.body.personData.data.personExtraInfo,
                 req.body.personData.data.active
             )
-            .then((r) => {
+            .then(r => {
                 res.json({
                     success: true,
                     response: r.id
@@ -450,7 +442,7 @@ app.post("/publishPerson", (req, res) => {
             req.body.personData.data.personExtraInfo,
             req.body.personData.data.active
         )
-        .then((r) => {
+        .then(r => {
             res.json({
                 success: true,
                 response: r.id
@@ -459,8 +451,6 @@ app.post("/publishPerson", (req, res) => {
 });
 
 app.get("/deleteJob/:id", function(req, res) {
-    console.log("delte job in index", req.session);
-
     return database.deleteJob(req.params.id).then(data => {
         res.json({
             data
@@ -469,8 +459,6 @@ app.get("/deleteJob/:id", function(req, res) {
 });
 
 app.get("/deletePersonPost/:id", function(req, res) {
-    console.log("delte personpost in index", req.session);
-
     return database.deletePersonPost(req.params.id).then(data => {
         res.json({
             data
@@ -479,7 +467,6 @@ app.get("/deletePersonPost/:id", function(req, res) {
 });
 
 app.post("/setPremium", function(req, res) {
-    console.log("set premium in index js", req.user.id);
     return database.setPremium(req.user.id).then(data => {
         res.json({
             data
@@ -488,7 +475,6 @@ app.post("/setPremium", function(req, res) {
 });
 
 app.get("/deleteService/:id", function(req, res) {
-    console.log("delte service in index", req.session);
     return database.deleteService(req.params.id).then(data => {
         res.json({
             data
@@ -496,31 +482,31 @@ app.get("/deleteService/:id", function(req, res) {
         req.session.serviceOwner = data.serviceOwner;
     });
 });
-app.post("/createJobTransaction",function(req,res){
-    return database.createTransaction(req.body.id,"JOB",10.00).then(r=>{
-        res.json({
-            r
-        });
-    })
-});
-app.post("/createPersonTransaction",function(req,res){
-    return database.createTransaction(req.body.id,"PERSON",10.00).then(r=>{
+app.post("/createJobTransaction", function(req, res) {
+    return database.createTransaction(req.body.id, "JOB", 10.0).then(r => {
         res.json({
             r
         });
     });
 });
-app.get("/getJobTrans/:id",function(req,res){
-    return database.getJobFromTransaction(req.params.id).then(r=>{
+app.post("/createPersonTransaction", function(req, res) {
+    return database.createTransaction(req.body.id, "PERSON", 10.0).then(r => {
         res.json({
-            jobdata:r
+            r
         });
     });
 });
-app.get("/getPersonTrans/:id",function(req,res){
-    return database.getPersonFromTransaction(req.params.id).then(r=>{
+app.get("/getJobTrans/:id", function(req, res) {
+    return database.getJobFromTransaction(req.params.id).then(r => {
         res.json({
-            jobdata:r
+            jobdata: r
+        });
+    });
+});
+app.get("/getPersonTrans/:id", function(req, res) {
+    return database.getPersonFromTransaction(req.params.id).then(r => {
+        res.json({
+            jobdata: r
         });
     });
 });
