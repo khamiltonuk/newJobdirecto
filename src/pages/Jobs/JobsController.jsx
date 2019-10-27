@@ -9,6 +9,8 @@ import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import PremiumModal from "../../components/PremiumModal/PremiumModal";
 import ModalPeople from "../../components/ModalPeople/ModalPeople";
 import ModalJob from "../../components/ModalJob/ModalJob";
+import { logOut } from "../../utils/sessions";
+import BePremiumModal from "../../components/BePremiumModal/BePremiumModal";
 
 
 
@@ -21,12 +23,13 @@ export default class JobsController extends React.Component {
             addClass: false,
             showModalJob: false,
             showPremiumModal: false,
+            showBePremiumModal: false,
             showModalPeople: false,
             user: "true",
             showDeleteModal: false,
             country:false,
         };
-        this.handleChangeArea = this.handleChangeArea.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showModalPeople = this.showModalPeople.bind(this);
         this.hideModalJob = this.hideModalJob.bind(this);
@@ -44,6 +47,7 @@ export default class JobsController extends React.Component {
     }
 
     componentDidMount() {
+        
         this.getCountry();
         this.getJobs();
         this.getPeople();
@@ -62,16 +66,21 @@ export default class JobsController extends React.Component {
     }
 
     getCountry(){
+        let hostname = location.hostname;
+        let sub = hostname.split(".")[0];
         axios({
             method: 'get',
             url: '/getCountry',
-            params: {},
+            params: {
+                code:sub
+            },
             withCredentials: true
         }).then(result => {
             
             this.setState({
                 country:result.data.data[0],
             });
+            
         });
     }
 
@@ -112,15 +121,8 @@ export default class JobsController extends React.Component {
 
 
     logOut() {
-        return axios({
-            method: 'get',
-            url: '/logout',
-            params: {},
-            withCredentials: true
-        }).then(result => {
-            window.location.reload();
-        });
-
+        logOut()
+        location.reload();
     }
 
     lockScroll() {
@@ -129,6 +131,10 @@ export default class JobsController extends React.Component {
 
     handleSubmit(event) {
         this.props.navigation.navigate("/postType")
+    }
+
+    payPremium(){
+        this.setState({ showBePremiumModal: true });
     }
 
     showModalJob(event, id_user) {
@@ -189,6 +195,11 @@ export default class JobsController extends React.Component {
         });
     }
 
+    hideBePremiumModal=()=> {
+        document.body.classList.remove('lockBackground')
+        this.setState({ showBePremiumModal: false })
+    }
+
     hideModalPeople() {
         document.body.classList.remove('lockBackground')
         this.setState({ showModalPeople: false });
@@ -220,18 +231,14 @@ export default class JobsController extends React.Component {
         let bodyClass = ["bodyClass"];
         let date = new Date();
         // si no pongo esto y estoy logeado, nada funciona, porque?
-        if (!this.state.jobData || !this.state.peopleData) {
+        if (!this.state.jobData || !this.state.peopleData || !this.state.country) {
             return null;
         }
         return (
             <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="itAll">
-                <h1 id="title" className="heading-1">
-                    JobDirecto
-                    <br />
-                    <span className="heading-1">{this.context.main.title}</span>
-                </h1>
-		<p className="ambassadorText">{this.context.main.ambassador}</p>
+                
+		        {/* <p className="ambassadorText">{this.context.main.ambassador}</p> */}
                 {!this.state.user && <Link to="/login"><div className="buttonsAuth" ><img className="star starMini" src="star.png" /><p className="authText">{this.context.main.login}</p></div></Link>}
                 {this.state.user && <p className="buttonsAuth" onClick={this.logOut}>{this.context.main.logout}</p>}
 
@@ -239,7 +246,7 @@ export default class JobsController extends React.Component {
                     <h1 />
                 </div>
                 {this.state.showModalJob && (
-                    <ModalJob id={this.state.selectedJobId} close={this.hideModalJob} id_user={this.state.id_user} clickerid={this.state.user.id} whoReported={this.state.jobData} />
+                    <ModalJob countryname={this.state.country.name} country={this.state.country.areas} id={this.state.selectedJobId} close={this.hideModalJob} id_user={this.state.id_user} clickerid={this.state.user.id} whoReported={this.state.jobData} />
                 )}
                 {this.state.showDeleteModal && this.state.userStatus && (
                     <DeleteModal id={this.state.selectedJobId} userstatus={this.state.userStatus.data} close={this.hideDeleteModal} showPremium={this.showPremium} delete={this.deletePost} postType={this.state.posttype} getJobs={this.getJobs} getPeople={this.getPeople} />
@@ -248,8 +255,13 @@ export default class JobsController extends React.Component {
                     <PremiumModal close={this.hidePremiumModal} />
                 )}
 
+                {this.state.showBePremiumModal && (
+                    <BePremiumModal close={this.hideBePremiumModal} />
+                )}
+
                 {this.state.showModalPeople && (
                     <ModalPeople
+                        country={this.state.country.areas}
                         id={this.state.selectedPersonId}
                         close={this.hideModalPeople}
                     />
@@ -344,7 +356,7 @@ export default class JobsController extends React.Component {
                                             </p>
                                         </div>
 
-                                        <p className="postArea">{data.area}</p>
+                                        <p className="postArea">{(this.state.country.areas.find(e=>e.id==data.area) || {}).name}</p>
                                         <div className="postMoment">
                                             <Moment
                                                 className="postMomentChild"
@@ -391,7 +403,7 @@ export default class JobsController extends React.Component {
                                             </span>
                                         </p>
 
-                                        <p className="postArea">{data.area}</p>
+                                        <p className="postArea">{(this.state.country.areas.find(e=>e.id==data.area) || {}).name}</p>
                                         <div className="postMoment">
                                             <Moment fromNow>
                                                 {data.created_at}
@@ -436,7 +448,7 @@ export default class JobsController extends React.Component {
                                             </span>
                                         </p>
 
-                                        <p className="postArea">{data.area}</p>
+                                        <p className="postArea">{(this.state.country.areas.find(e=>e.id==data.area) || {}).name}</p>
                                         <div className="postMoment">
                                             <Moment fromNow>
                                                 {data.created_at}
@@ -513,7 +525,7 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.id_user)}
+                                        onClick={e => data.needPremium?this.payPremium():this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
@@ -538,7 +550,7 @@ export default class JobsController extends React.Component {
                                             </p>
                                         </div>
 
-                                        <p className="postArea">{data.area}</p>
+                                        <p className="postArea">{(this.state.country.areas.find(e=>e.id==data.area) || {}).name}</p>
                                         <div className="postMoment">
                                             <Moment fromNow>{data.created_at}</Moment>
                                         </div>
@@ -554,7 +566,7 @@ export default class JobsController extends React.Component {
                             ) {
                                 return (
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.id_user)}
+                                        onClick={e => data.needPremium?this.payPremium():this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
@@ -580,7 +592,7 @@ export default class JobsController extends React.Component {
 
                                         </div>
 
-                                        <p className="postArea">{data.area}</p>
+                                        <p className="postArea">{(this.state.country.areas.find(e=>e.id==data.area) || {}).name}</p>
                                         <div className="postMoment">
                                             <Moment fromNow>{data.created_at}</Moment>
                                         </div>
@@ -595,7 +607,7 @@ export default class JobsController extends React.Component {
                                 return (
 
                                     <div
-                                        onClick={e => this.showModalJob(data.id, data.id_user)}
+                                        onClick={e => data.needPremium?this.payPremium():this.showModalJob(data.id, data.id_user)}
                                         className="postData"
                                         key={data.id}
                                     >
@@ -627,7 +639,7 @@ export default class JobsController extends React.Component {
                                                 </span>
                                             </p>
                                         </div>
-                                        <p className="postArea">{data.area}</p>
+                                        <p className="postArea">{(this.state.country.areas.find(e=>e.id==data.area) || {}).name}</p>
                                         <div className="postMoment">
                                             <Moment
                                                 className="postMomentChild"

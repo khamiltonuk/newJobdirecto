@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Router } from "./utils/router";
+import { sessionInit, isLogged } from "./utils/sessions";
 
 
 const JobsController = React.lazy(_=>import("./pages/Jobs/JobsController"));
@@ -15,12 +16,14 @@ const PrePayPersonController = React.lazy(_=>import("./pages/PrePayPerson/PrePay
 const PostTypeController = React.lazy(_=>import("./pages/PostType/PostTypeController"));
 const PersonConfirmController = React.lazy(_=>import("./pages/PersonConfirm/PersonConfirmController"));
 
+//console.log(sessionInit());
+
 let routes = [
     {path:"", component:JobsController},
     {path:"login", component:LoginController},
     {path:"prePayJob",component:PrePayJobController},
-    {path:"premiumBuy",component:PremiumBuyController},
-    {path:"premiumSet",component:PremiumSetController},
+    {path:"premiumBuy",component:PremiumBuyController,guard:[isLogged]},
+    {path:"premiumSet",component:PremiumSetController,guard:[isLogged]},
     {path:"JobConfirm",component:JobConfirmController},
     {path:"JobConfirm/:id",component:JobConfirmController},
     {path:"personForm",component:PersonFormController},
@@ -30,5 +33,9 @@ let routes = [
     {path:"personConfirm",component:PersonConfirmController},
     {path:"personConfirm/:id",component:PersonConfirmController},
 ];
+async function init(){
+    await sessionInit();
+    ReactDOM.render(<Router routes={routes} guardFalse={LoginController}   />, document.querySelector("#app"));
+}
 
-ReactDOM.render(<Router routes={routes}  />, document.querySelector("#app"));
+init();

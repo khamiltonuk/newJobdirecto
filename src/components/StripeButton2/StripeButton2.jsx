@@ -7,13 +7,13 @@ function StripeButton2(props) {
     let stripeKey, itemArray, successUrl, failUrl;
 
     if (window.location.hostname == "localhost") {
-        stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
-        itemArray = "sku_Fdr59otEvaL6b7";
+        stripeKey = "pk_test_EchftZwNDBbLUUNsRhb9S8QM00fF3sfDub";
+        itemArray = "prod_G2XPveN5OU6biJ";
         successUrl = `//${location.host}/#/personConfirm/${props.transactionId}`;
         failUrl = `//${location.host}/#/StripeButton`;
     } else {
-        stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
-        itemArray = "sku_Fdanz5rW5EBFPX";
+        stripeKey = "pk_live_nnLZ2Hh8llbujwMwz4kstl9700kF3t8LKz";
+        itemArray = "prod_G2XPveN5OU6biJ";
         successUrl = `//${location.host}/#/personConfirm/${props.transactionId}`;
         failUrl = `//${location.host}/#/StripeButton`;
     }

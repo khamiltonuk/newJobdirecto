@@ -88,11 +88,11 @@ export default class ModalJob extends React.Component {
                         JobDirecto
                         <br />
                         <span className="heading-1">
-                            {this.context.main.title}
+                            {this.context.main.title.replace("%namearea%",this.props.countryname)}
                         </span>
                         <br />
                         <span className="heading-1 website">
-                            (www.jobdirecto.com)
+                            ({location.host})
                         </span>
                     </h1>
                     <table id="jobDetails">
@@ -123,7 +123,7 @@ export default class ModalJob extends React.Component {
                         </tr>
                         <tr>
                             <td className="jobDetailsText">
-                                {this.context.jobConfirm.typePay}
+                                {this.context.jobConfirm.payType}
                             </td>
                             <td className="jobDetailsText">
                                 {this.state.jobData.data.typepay}
@@ -150,22 +150,21 @@ export default class ModalJob extends React.Component {
                                 {this.context.jobConfirm.area}
                             </td>
                             <td className="jobDetailsText">
-                                {this.state.jobData.data.area}
+                                {this.props.country.find(e=>e.id==this.state.jobData.data.area).name}
                             </td>
                         </tr>
-                        {this.state.jobData.data.phone && (
-                            <tr>
-                                <td className="jobDetailsText">
-                                    {this.context.jobConfirm.phone}
-                                </td>
-                                <td className="jobDetailsText">
-                                    {this.state.jobData.data.phone}
-                                </td>
-                            </tr>
-                        )}
+                        
                         <tr>
                             <td className="jobDetailsText">
-                                {this.context.jobConfirm.Contact}
+                                {this.context.jobConfirm.phone}
+                            </td>
+                            <td className="jobDetailsText">
+                            {this.state.jobData.data.phone!==false ? (this.state.jobData.data.phone) : (<div><Link to={"/premiumBuy"}  >{this.context.jobConfirm.viewDetails}</Link></div>)}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="jobDetailsText">
+                                {this.context.jobConfirm.contact}
                             </td>
                             <td className="jobDetailsText">
                                 {this.state.jobData.data.contact}

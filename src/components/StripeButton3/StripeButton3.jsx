@@ -8,15 +8,15 @@ function StripeButton3() {
     let stripeKey, itemArray, successUrl, failUrl;
 
     if (window.location.hostname == "localhost") {
-        stripeKey = "pk_test_868ha51gEUHT0PTaFFMXWHYT00AlPjWsY3";
-        itemArray = "plan_FerG4ShuM9GS8D";
-        successUrl = "//localhost:6543/premiumSet";
-        failUrl = "//localhost:6543/StripeButton";
+        stripeKey = "pk_test_EchftZwNDBbLUUNsRhb9S8QM00fF3sfDub";
+        itemArray = "prod_G2XR9dSeyYHrpl";
+        successUrl = `//${window.location.host}/#/premiumSet`;
+        failUrl = `//${window.location.host}/#/StripeButton`;
     } else {
-        stripeKey = "pk_live_LLZx6k7fXk26iloU4qf46kvW00DNf15eOQ";
-        itemArray = "plan_Fer31qkbJx0UYm";
-        successUrl = "//www.jobdirecto.com/premiumSet";
-        failUrl = "//www.jobdirecto.com/StripeButton";
+        stripeKey = "pk_live_nnLZ2Hh8llbujwMwz4kstl9700kF3t8LKz";
+        itemArray = "prod_G2XR9dSeyYHrpl";
+        successUrl = `//${window.location.host}/#/premiumSet`;
+        failUrl = `//${window.location.host}/#/StripeButton`;
     }
 
     const context = useContext(LanguageContext);

@@ -8,13 +8,29 @@ export default class JobConfirm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ""
+            value: "",
+            country:{}
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    getCountry(){
+        return axios({
+            method: 'get',
+            url: '/getCountry',
+            params: {},
+            withCredentials: true
+        }).then(result => {
+            
+            this.setState({
+                country:result.data.data[0],
+            });
+            
+        });
+    }
     async componentDidMount() {
+        this.getCountry();
         if(this.props.navigation.params.id){
             return this.props.navigation.navigate("/JobConfirm",{
                 replace:true,

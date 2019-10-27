@@ -362,6 +362,7 @@ exports.setPremium = function(id) {
     return db
         .query(`UPDATE users SET premium = true WHERE id = $1`, [id])
         .then(results => {
+            console.log(results);
             return results.rows[0];
         });
 };
@@ -378,7 +379,7 @@ exports.getUserStatus = function(facebookId) {
 exports.getJobInfo = function(id, isphone) {
     let phone = "";
     if(!isphone){
-        phone = ", null as phone";
+        phone = ", false as phone";
     }
     return db.query(`SELECT * ${phone} FROM jobs WHERE id = $1`, [id]).then(results => {
         return results.rows[0];
@@ -435,7 +436,7 @@ exports.deletePersonPost = function(id) {
 
 exports.getPeopleInfo = function(id,isphone) {
     let phone = "";
-    if(!isphone){
+    if(!isphone && false){
         phone = ", null as personnumber";
     }
     return db
@@ -603,7 +604,9 @@ exports.getPersonFromTransaction = function(id_trans){
         return result.rows[0];
     });
 }
-
+exports.cancelTransaction = function(id){
+    return db.query("UPDATE cc SET status='REJECTED' WHERE id_transsaction=$1",[id]);
+}
 exports.markActive = function(id_job){
     return db.query("UPDATE jobs SET active=true WHERE id=$1",[id_job])
         .then(r=>{
