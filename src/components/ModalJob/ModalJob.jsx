@@ -71,7 +71,8 @@ export default class ModalJob extends React.Component {
             <div>
                 <div
                     onClick={this.props.close}
-                    className="backgroundBlock"></div>
+                    className="backgroundBlock"
+                ></div>
                 <button onClick={this.props.close} className="modalButton">
                     <i className="fa fa-close" />
                 </button>
@@ -81,7 +82,8 @@ export default class ModalJob extends React.Component {
                         this.state.jobData.data.urgent === "true"
                             ? "urgentModal"
                             : "modal"
-                    }>
+                    }
+                >
                     <h1 id="title" className="heading-1">
                         JobDirecto
                         <br />
@@ -179,14 +181,7 @@ export default class ModalJob extends React.Component {
                             <br />
                         </tr>
                     </table>
-                    {this.props.facebookid !== null && (
-                        <div className="modalStarDiv">
-                            <img className="star" src="star.png" />
-                            <p className="toolTipModalText">
-                                {this.context.main.tooltip}
-                            </p>
-                        </div>
-                    )}
+
                     {this.props.whoReported &&
                         this.props.whoReported.data &&
                         this.props.whoReported.data.find(
@@ -212,7 +207,8 @@ export default class ModalJob extends React.Component {
                     <div className="reportContainer">
                         <button
                             className="reportButton"
-                            onClick={this.reportPost}>
+                            onClick={this.reportPost}
+                        >
                             <div className="reportDiv">
                                 <p className="text reportText">Reportar</p>
                                 <img src="flag.png" className="redFlag" />

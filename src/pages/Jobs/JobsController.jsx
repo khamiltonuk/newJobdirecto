@@ -313,10 +313,11 @@ export default class JobsController extends React.Component {
                         </select>
                     </form>
                 </div>
-
+                
 
                 <div className="allPosts">
                     {/*urgent job posts here*/}
+                    
                     {!this.state.userSelectionArea &&
                         this.state.jobData.data.map(data => {
                             if (
@@ -336,14 +337,12 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>
+                                                    
                                                 }
-
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
-
-
+                                                <button  className="showMoreButton">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
                                             </div>
-
-
                                             <p>
                                                 <span className="posterName">
                                                     {data.restname}{" "}
@@ -390,7 +389,6 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
                                             </div>
                                         </div>
                                         <p>
@@ -433,7 +431,9 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                    <button  className="showMoreButton">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
                                             </div>
                                         </div>
                                         <p>
@@ -482,7 +482,9 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton deletePaidButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                    <button  className="showMoreButton">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
                                             </div>
                                             <p>
                                                 <span className="posterName">
@@ -533,8 +535,9 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                    <button  className="showMoreButton">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
                                             </div>
                                             <p>
                                                 <span className="postConnector">
@@ -573,7 +576,9 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                    <button  className="showMoreButton">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
                                             </div>
                                             <p>
                                                 <span className="postConnector">
@@ -612,7 +617,9 @@ export default class JobsController extends React.Component {
                                                     <button onClick={event => this.showDeleteModal(event, data.id, data.posttype, this.state.userStatus.data)} className="deletePostButton">
                                                         <i className="fa fa-close" />
                                                     </button>}
-                                                {data.id_user !== null && <div data-tooltip={this.context.main.tooltip}> <img className="star" src="star.png" /></div>}
+                                                    <button  className="showMoreButton">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
                                                 {data.whoreported && data.whoreported.length && data.whoreported.length > 10 && <div data-tooltip={this.context.main.tooltip2}> <img className="flag" src="flag.png" /></div>}
 
                                             </div>
