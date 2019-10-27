@@ -32,7 +32,6 @@ export default class PersonForm extends React.Component {
             <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="personForm">
                 <form onSubmit={this.handleSubmit}>
-                    <h1 className="heading-1">JobDirecto</h1>
                     <br />
                     <p className="formQuestions">Cual es su nombre?</p>
                     <input

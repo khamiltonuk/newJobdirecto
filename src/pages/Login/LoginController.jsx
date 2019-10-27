@@ -15,7 +15,9 @@ export default class LoginController extends React.Component {
     }
 
     facebookLogin() {
-        loginWithFacebook()
+        loginWithFacebook().then(r=>{
+            this.props.navigation.navigate("/");
+        })
         //axios.get("/loginFacebook");
     }
     googleLogin() {

@@ -79,9 +79,6 @@ export default class JobForm extends React.Component {
             <BodyComponent toggleLanguage={this.props.navigation.toggleLanguage}>
             <div className="jobForm">
                 <form onSubmit={this.handleSubmit}>
-                    <h1 id="formTitle" className="heading-1">
-                        JobDirecto
-                    </h1>
                     <p className="formQuestions">
                         {this.context.jobForm.question1}
                     </p>

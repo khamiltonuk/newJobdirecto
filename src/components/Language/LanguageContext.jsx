@@ -4,14 +4,14 @@ export const languages = {
     spanish: {
         currentLanguage: "Español",
         main: {
-            title: "Trabajos en Nueva York",
+            title: "Trabajos en %namearea%",
             createPost: "Crear anuncio",
             seeking: "busca",
             seeking2: "busca trabajo de",
             seeking3: "busca",
             seeking4: "ofrece servicios de",
-            filterDefault: "Todo Nueva York",
-            filterOtherArea: "Otra area en Nueva York",
+            filterDefault: "Todo %namearea%",
+            filterOtherArea: "Otra area en %namearea%",
             login: "Verificar mi cuenta",
             logout: "Salir de mi cuenta",
             welcome: "Bienvenido",
@@ -26,6 +26,11 @@ export const languages = {
         },
         premiumModal: {
             title: "Solo los usuarios premium pueden cerrar sus anuncios :)",
+            deny: "Otro dia",
+            buyPremium: "Comprar cuenta premium ($5)"
+        },
+        bepremiumModal:{
+            title: "Solo los usuarios premium pueden ver estos anuncios :)",
             deny: "Otro dia",
             buyPremium: "Comprar cuenta premium ($5)"
         },
@@ -84,7 +89,8 @@ export const languages = {
             phone: "Numero:",
             contact: "Preguntar por:",
             extraInfo: "Mas informacion:",
-            button: "Publicar"
+            button: "Publicar",
+            viewDetails:"Para ver el numero debe ser premium"
         },
         modalJob: {
             reportedAlready:
@@ -161,14 +167,14 @@ export const languages = {
     english: {
         currentLanguage: "English",
         main: {
-            title: "Jobs in New York",
+            title: "Jobs in %namearea%",
             createPost: "New Post",
             seeking: "needs",
             seeking2: "is looking for a job as",
             seeking3: "is looking for a",
             seeking4: "offers services as",
-            filterDefault: "All NY",
-            filterOtherArea: "Other area in NY",
+            filterDefault: "All %namearea%",
+            filterOtherArea: "Other area in %namearea%",
             login: "Verify my account",
             logout: "Logout",
             welcome: "Welcome",
@@ -204,6 +210,11 @@ export const languages = {
         },
         premiumModal: {
             title: "Only premium users can close their posts :)",
+            deny: "Nevermind",
+            buyPremium: "Get premium account ($5)"
+        },
+        bepremiumModal:{
+            title: "Only premium users can see this posts :)",
             deny: "Nevermind",
             buyPremium: "Get premium account ($5)"
         },

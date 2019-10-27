@@ -19,21 +19,37 @@ function decrypt(text) {
     return dec;
 }
 let firebase = window.firebase;
-window.firebase = undefined;
+//window.firebase = undefined;
 
 export function sessionInit() {
-    var firebaseConfig = {
-        apiKey: "AIzaSyBc9EBqrwhKjXxTfqid1Q_EX_uMwgJqUyg",
-        authDomain: "jobdirecto-47460.firebaseapp.com",
-        databaseURL: "https://jobdirecto-47460.firebaseio.com",
-        projectId: "jobdirecto-47460",
-        storageBucket: "",
-        messagingSenderId: "469717395289",
-        appId: "1:469717395289:web:4781ee2fe08fa705ee0e48"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
+    return new Promise(d=>{
+        var firebaseConfig = {
+            apiKey: "<>",
+            authDomain: "<>",
+            databaseURL: "<>",
+            projectId: "<>",
+            storageBucket: "",
+            messagingSenderId: "<>",
+            appId: "<>",
+            measurementId: "<>"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        firebase.auth().onAuthStateChanged(user =>{ 
+            console.log(isLogged());
+            if (isLogged()) {
+                axios.defaults.headers.common['Authorization'] = btoa(JSON.stringify({
+                    id:isLogged().uid,
+                    displayName:isLogged().displayName
+                }));
+            }
+            d();
+        });
+    })
+    
+    console.log(isLogged());
+    
     axios.interceptors.request.use(function (config) {
         if (isLogged()) {
             config.headers['Authorization'] = isLogged().uid;
@@ -53,7 +69,7 @@ export function logOut() {
     firebase.auth().signOut()
 }
 export function loginWithEmail(email,password){
-    firebase.auth().signInWithEmailAndPassword(email, password).then(console.log).catch(function(error) {
+    return firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -64,7 +80,7 @@ export function loginWithEmail(email,password){
 }
 export function loginWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function (result) {
+    return firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
@@ -90,14 +106,15 @@ export function loginWithFacebook() {
     provider.setCustomParameters({
         'display': 'popup'
     });
-    firebase.auth().signInWithPopup(provider).then(function (result) {
+    return firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
         // ...
         axios.defaults.headers.common['Authorization'] = user.uid;
-        console.log(user);
+        console.log(user,result.credential.accessToken);
+        return 
     }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;

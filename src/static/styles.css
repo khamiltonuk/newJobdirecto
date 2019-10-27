@@ -387,7 +387,6 @@ td {
     text-align: center;
     margin: auto;
     max-width: 800px;
-    padding-top: 140px;
     margin-top: 100px;
 }
 
@@ -1027,4 +1026,24 @@ label {
     }
     .itAll {
     }
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height:10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b9b9b9; 
+    border-radius:5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #8e8e8e; 
 }

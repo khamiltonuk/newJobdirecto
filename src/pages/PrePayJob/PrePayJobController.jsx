@@ -30,8 +30,10 @@ export default class PrePayJob extends React.Component {
 
     cancelUrgency(event) {
         event.preventDefault();
-        axios.post("/cancelUrgency").then(resp => {
-            this.props.navigation.navigate("/JobConfirm");
+        axios.post("/cancelUrgency",{id:this.state.transactionId}).then(resp => {
+            let { state } = this.props.navigation;
+            state.urgent = false
+            this.props.navigation.navigate("/JobConfirm",{state:state});
         });
     }
 

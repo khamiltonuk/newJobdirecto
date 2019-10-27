@@ -7,6 +7,8 @@ const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
 const passport = require("passport");
 const cors = require("cors");
 const path = require("path");
+const atob = require('atob');
+
 FacebookStrategy = require("passport-facebook").Strategy;
 let fbSecret;
 let fbclient;
@@ -60,7 +62,21 @@ app.use(
     })
 );
 
-passport.use(
+app.use(function(req,res,next){
+    if(req.get('Authorization')){
+        let profile = JSON.parse(atob(req.get('Authorization')));
+        console.log(profile);
+        return database
+            .findOrCreateFacebookUser(profile.id, profile.displayName)
+            .then(user => {
+                req.user = user;
+                next();
+            });
+    }
+    next();
+})
+
+/* passport.use(
     new FacebookStrategy(
         {
             clientID: fbclient,
@@ -92,11 +108,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 app.use(passport.initialize());
-app.use(passport.session());
-app.use(function(req, res, next){
-    console.log(req.headers);
-    next();
-})
+app.use(passport.session()); */
+
 
 app.get("/user", (req, res) => {
     res.json(req.user);
@@ -232,7 +245,19 @@ app.get("/getJobs", function(req, res) {
         limit = true;
     }
     
-    return database.getJobs(limit).then(data => {
+    return database.getJobs().then(data => {
+        if(limit){
+            let visibles = data.slice(0,5);
+            let novisibles = data.slice(5);
+            novisibles.forEach(e=>{
+                e.restname = "";
+                e.address = "";
+                e.phone = "";
+                e.contact = "";
+                e.needPremium = true;
+            })
+            data = [...visibles,...novisibles];
+        }
         res.json({
             data
         });
@@ -266,7 +291,8 @@ app.get("/getPeople", function(req, res) {
     if(!req.user || !req.user.premiun){
         limit = true; 
     }
-    return database.getPeople(limit).then(data => {
+    return database.getPeople().then(data => {
+
         res.json({
             data
         });
@@ -284,10 +310,19 @@ app.post("/finalizePerson", (req, res) => {
 
 app.post("/cancelUrgency", function(req, res) {
     // delete req.session.urgent;
-    req.session.job.urgent = "false";
-    res.json({
-        success: true
+    return database.getJobFromTransaction(req.body.id)
+    .then(r=>{
+        console.log(r);
+        return database.deleteJob(r.id)
+    }).then(r=>{
+        console.log(r);
+        return database.cancelTransaction(req.body.id)
+    }).then(r=>{
+        res.json({
+            success: true
+        });
     });
+    
 });
 
 app.post("/cancelPay", function(req, res) {
